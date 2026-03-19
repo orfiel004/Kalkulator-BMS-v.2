@@ -1,0 +1,130 @@
+{
+  "name": "DRV CUBE",
+  "description": "Jednostka wentylacyjna CUBE z dyfuzorem wirowym i czujnikiem CO2",
+  "group_priority": 13,
+  "input_registers": [
+    { "offset": 9, "name": "ambient_temp_value" },
+    { "offset": 10, "name": "supply_temp_value" },
+    { "offset": 11, "name": "return_temp_value" },
+    { "offset": 12, "name": "water_temp_value" },
+    { "offset": 13, "name": "recirculation_damper_level" },
+    { "offset": 14, "name": "swirl_diffuser_position" },
+    { "offset": 16, "name": "rotary_level" },
+    { "offset": 17, "name": "fan_supply_flow" },
+    { "offset": 18, "name": "gas_heating_value" },
+    { "offset": 19, "name": "CO2_status" },
+    { "offset": 20, "name": "Rooftop_work_mode" },
+    { "offset": 21, "name": "Rooftop_current_work_mode" },
+    { "offset": 22, "name": "Alarm" },
+    { "offset": 23, "name": "room_temp_sensor_status" }
+  ],
+  "holding_registers_single": [
+    {
+      "offset": 4, "name": "WorkMode",
+      "values": {
+        "1": "WM_OFF — urządzenie wyłączone",
+        "2": "WM_ON — urządzenie włączone",
+        "3": "WM_THERM — tryb termostatyczny"
+      },
+      "description": "Rejestr 16-bit: MSB ignorowany, LSB = tryb pracy"
+    },
+    {
+      "offset": 5, "name": "fan_eff",
+      "min": 0, "max": 100, "unit": "%",
+      "description": "Nastawa wydajności wentylatora EC, płynna regulacja 0–100%"
+    },
+    {
+      "offset": 6, "name": "fan_eff_CO2_I",
+      "min": 0, "max": 100, "unit": "%",
+      "description": "Nastawa wydajności wentylatora EC dla 1. progu czujnika CO2"
+    },
+    {
+      "offset": 7, "name": "fan_eff_CO2_II",
+      "min": 0, "max": 100, "unit": "%",
+      "description": "Nastawa wydajności wentylatora EC dla 2. progu czujnika CO2"
+    },
+    {
+      "offset": 8, "name": "recirculation_mode",
+      "values": {
+        "0": "RM_AUTO — tryb automatyczny",
+        "1": "RM_MANUAL — tryb ręczny"
+      },
+      "description": "Rejestr 16-bit: MSB ignorowany, LSB = tryb recyrkulacji"
+    },
+    {
+      "offset": 9, "name": "recirculation_value",
+      "min": 0, "max": 100, "unit": "%",
+      "description": "Wartość recyrkulacji, płynna regulacja 0–100%"
+    },
+    {
+      "offset": 10, "name": "recirculation_value_CO2_I",
+      "min": 0, "max": 100, "unit": "%",
+      "description": "Wartość recyrkulacji dla 1. progu czujnika CO2"
+    },
+    {
+      "offset": 11, "name": "recirculation_value_CO2_II",
+      "min": 0, "max": 100, "unit": "%",
+      "description": "Wartość recyrkulacji dla 2. progu czujnika CO2"
+    },
+    {
+      "offset": 12, "name": "work_mode_NW",
+      "values": {
+        "0": "WM_NW_AUTO — tryb automatyczny dyfuzora",
+        "1": "WM_NW_MANUAL — tryb ręczny dyfuzora"
+      },
+      "description": "Tryb pracy dyfuzora wirowego (NW). Rejestr 16-bit: MSB ignorowany, LSB = tryb"
+    },
+    {
+      "offset": 13, "name": "swirl_diffuser_level",
+      "min": 30, "max": 100, "unit": "%",
+      "description": "Poziom otwarcia dyfuzora wirowego"
+    },
+    {
+      "offset": 14, "name": "Htg_swirl_diffuser_level",
+      "min": 30, "max": 100, "unit": "%",
+      "description": "Poziom otwarcia dyfuzora wirowego w trybie grzania"
+    },
+    {
+      "offset": 15, "name": "Clg_swirl_diffuser_level",
+      "min": 30, "max": 100, "unit": "%",
+      "description": "Poziom otwarcia dyfuzora wirowego w trybie chłodzenia"
+    },
+    {
+      "offset": 16, "name": "temperature_ref",
+      "min": 50, "max": 450, "unit": "°C×0.1",
+      "description": "Docelowa temperatura pomieszczenia"
+    },
+    {
+      "offset": 17, "name": "temperature_room",
+      "min": 50, "max": 450, "unit": "°C×0.1",
+      "description": "Temperatura pomieszczenia przekazywana do urządzenia przez Modbus"
+    },
+    {
+      "offset": 18, "name": "room_sensor_selection",
+      "values": {
+        "1": "TSL_PREFERRED_TLEAD — wartość przez Modbus (gdy lokalny czujnik CUBE jest aktywny)",
+        "2": "TSL_TLEAD — wartość przez Modbus (tylko gdy lokalny czujnik CUBE jest wyłączony)",
+        "3": "TSL_PREFERRED_LOCAL — czujnik lokalny CUBE (gdy jest aktywny)"
+      },
+      "description": "Wybór źródła temperatury pomieszczenia"
+    },
+    {
+      "offset": 19, "name": "CO2_status",
+      "values": {
+        "0": "CO2_STAT_OK — status CO2 OK",
+        "1": "CO2_STAT_L1 — poziom CO2 próg 1",
+        "2": "CO2_STAT_L2 — poziom CO2 próg 2"
+      },
+      "description": "Status CO2 zapisywany przez T-box do urządzenia. Rejestr 16-bit: MSB ignorowany, LSB = status"
+    },
+    {
+      "offset": 20, "name": "CO2_source",
+      "values": {
+        "0": "CO2_SOURCE_LOCAL — lokalny czujnik CO2 w CUBE",
+        "1": "CO2_SOURCE_TBOX — źródło CO2 z T-box"
+      },
+      "description": "Wybór źródła danych CO2. Rejestr 16-bit: MSB ignorowany, LSB = źródło"
+    }
+  ],
+  "holding_registers_group": []
+}

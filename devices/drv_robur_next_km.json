@@ -1,0 +1,155 @@
+{
+  "name": "DRV R KM NEXT",
+  "description": "Nagrzewnica gazowa ROBUR NEXT z klapą mieszającą",
+  "group_priority": 11,
+  "input_registers": [
+    { "offset": 4, "name": "T1" },
+    { "offset": 5, "name": "T3" },
+    { "offset": 6, "name": "T4" },
+    { "offset": 7, "name": "T5" },
+    { "offset": 8, "name": "ExternalGasDetectTH1" },
+    { "offset": 9, "name": "ExternalGasDetectTH2" },
+    { "offset": 10, "name": "ExternalGasDetectVal" },
+    { "offset": 11, "name": "FanRoofTK" },
+    { "offset": 12, "name": "FanRoofEff" },
+    { "offset": 13, "name": "DamperLevel" },
+    { "offset": 14, "name": "DamperForceState" },
+    { "offset": 15, "name": "AntifreezeStateWarehouse" },
+    { "offset": 16, "name": "FuseState" },
+    { "offset": 17, "name": "GasAlarmState" },
+    { "offset": 18, "name": "STBAlarmState" },
+    { "offset": 19, "name": "FilterWorkTime" }
+  ],
+  "holding_registers_single": [
+    {
+      "offset": 4, "name": "WorkMode",
+      "values": {
+        "0": "WM_NS — tylko odczyt",
+        "1": "WM_OFF — urządzenie wyłączone",
+        "2": "WM_HEAT_AUTO — automatyczne grzanie",
+        "3": "WM_HEAT_MANUAL — ręczne grzanie",
+        "4": "WM_VENTILATION — wentylacja"
+      }
+    },
+    {
+      "offset": 5, "name": "AntifreezeWareHouseOn",
+      "values": {
+        "1": "ON — włączony",
+        "2": "OFF — wyłączony"
+      }
+    },
+    {
+      "offset": 6, "name": "AntifreezeWareHouseTempRef",
+      "min": 50, "max": 150, "unit": "°C×0.1"
+    },
+    {
+      "offset": 7, "name": "DamperForceMode",
+      "values": {
+        "0": "DAMPER_FMD_NS — tylko odczyt",
+        "1": "DAMPER_FMD_OFF — wymuszanie wyłączone",
+        "2": "DAMPER_FMD_ON — wymuszanie włączone (jeśli T1 < DamperForceTempRef)"
+      }
+    },
+    {
+      "offset": 8, "name": "DamperForceTempRef",
+      "min": -100, "max": 150, "unit": "°C×0.1",
+      "description": "Temperatura wymuszonego otwarcia klapy. Połączona z T1 (temperatura świeżego powietrza — IR 0x04)"
+    },
+    {
+      "offset": 9, "name": "DamperForceLevelRef",
+      "min": 0, "max": 100, "unit": "%",
+      "description": "Docelowe otwarcie klapy przy wymuszeniu (DamperForceMode == DAMPER_FMD_ON, warunek: Temp < DamperForceTempRef)"
+    },
+    {
+      "offset": 10, "name": "DamperLevelRef",
+      "min": 0, "max": 100, "unit": "%",
+      "description": "Pozycja klapy mieszającej"
+    },
+    {
+      "offset": 11, "name": "DamperContLevelRef",
+      "min": 0, "max": 100, "unit": "%",
+      "description": "Pozycja klapy gdy WorkMode == WM_WINTER_CONT"
+    },
+    {
+      "offset": 12, "name": "GasAlarmReset",
+      "values": {
+        "0": "RO — tylko odczyt",
+        "1": "ON — wysyłanie sygnału resetującego (ciągłe)",
+        "2": "OFF — zatrzymanie sygnału resetującego"
+      },
+      "description": "Reset alarmu gazowego/płomieniowego. Czas resetu nie powinien przekraczać 5 s (następnie ustawić wartość na 0x02)"
+    },
+    {
+      "offset": 13, "name": "FanRoofForceEffRef",
+      "min": -100, "max": 100, "unit": "%",
+      "description": "Wymuszenie prędkości wentylatora dachowego — wartość dodawana do aktualnej prędkości"
+    },
+    {
+      "offset": 14, "name": "Tref",
+      "min": 50, "max": 450, "unit": "°C×0.1"
+    },
+    {
+      "offset": 15, "name": "TLeadVal",
+      "min": -600, "max": 600, "unit": "°C×0.1"
+    },
+    {
+      "offset": 16, "name": "TLeadSensorSelect",
+      "values": {
+        "0": "TSL_TNS — tylko odczyt",
+        "1": "TSL_TLEAD — wartość przez Modbus (TLeadVal)",
+        "3": "TSL_T4 — czujnik T4 (temperatura pomieszczenia)"
+      }
+    },
+    {
+      "offset": 17, "name": "FanRoofMode",
+      "values": {
+        "0": "FR_MD_NS — tylko odczyt",
+        "1": "FR_MD_01 — zależny od pozycji klapy (DamperLevelRef) i nastawy wentylatora (FanEffRef)",
+        "2": "FR_MD_02 — zależny wyłącznie od pozycji klapy (DamperLevelRef)"
+      }
+    },
+    {
+      "offset": 18, "name": "STBTemperatureAlarmOn",
+      "min": 810, "max": 1200, "unit": "°C×0.1",
+      "description": "Temperatura progowa alarmu STB (IR 0x12). Alarm aktywny gdy wartość ustawiona > T3 (IR 0x05)"
+    },
+    {
+      "offset": 19, "name": "FilterTimeCntRst",
+      "values": {
+        "0": "FLT_CNT_RST_NS — tylko odczyt (po resecie)",
+        "1": "FLT_CNT_RST — reset licznika czasu filtra (FilterWorkTime = 0)"
+      }
+    },
+    {
+      "offset": 20, "name": "STBTemperatureAlarmOff",
+      "min": 610, "max": 800, "unit": "°C×0.1",
+      "description": "Temperatura resetowania alarmu STB. Reset możliwy gdy wartość ustawiona > T3. Dodatkowy warunek: STB_T_OFF < STB_T_REF"
+    },
+    {
+      "offset": 21, "name": "STBAlarmReset",
+      "values": {
+        "1": "ON — reset alarmu aktywny",
+        "2": "OFF — reset alarmu nieaktywny"
+      },
+      "description": "Jeśli STB_T (T3, IR 0x03) < STBTemperatureAlarmOff (HR 0x14), rejestr zostanie automatycznie ustawiony na 0x02 (OFF)"
+    },
+    {
+      "offset": 22, "name": "ContModeFanSpeedRef",
+      "values": {
+        "0": "Fan OFF — wentylator wyłączony",
+        "100": "Fan ON — wentylator włączony"
+      },
+      "description": "Ustawienie wydajności wentylatora po osiągnięciu temperatury docelowej"
+    },
+    {
+      "offset": 23, "name": "GasBurnerLvlRef",
+      "values": {
+        "0": "RO — tylko odczyt",
+        "1": "FIRST_STEP — pierwszy stopień spalania",
+        "2": "SECOND_STEP — drugi stopień spalania"
+      },
+      "description": "Ustawienie stopnia spalania gazu (aktywne tylko w trybie ręcznego grzania WM_HEAT_MANUAL)"
+    }
+  ],
+  "holding_registers_group": []
+}

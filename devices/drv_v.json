@@ -1,0 +1,135 @@
+{
+  "name": "DRV V",
+  "description": "Nagrzewnica wodna z wentylatorem EC",
+  "group_priority": 5,
+  "input_registers": [
+    { "offset": 4, "name": "T3" },
+    { "offset": 5, "name": "T4" },
+    { "offset": 6, "name": "FanEff" },
+    { "offset": 7, "name": "AntifreezeState" },
+    { "offset": 8, "name": "DestStatus" },
+    { "offset": 9, "name": "FanEcConnect" },
+    { "offset": 10, "name": "FuseState" },
+    { "offset": 11, "name": "ValveState" }
+  ],
+  "holding_registers_single": [
+    {
+      "offset": 4, "name": "WorkMode", "default": 0,
+      "values": {
+        "0": "WM_DEF — domyślny po resecie",
+        "1": "WM_OFF — urządzenie wyłączone",
+        "2": "WM_HT_AUTO — grzanie automatyczne",
+        "3": "WM_HT_MANUAL — grzanie ręczne",
+        "4": "WM_COOL_AUTO — chłodzenie automatyczne",
+        "5": "WM_COOL_MANUAL — chłodzenie ręczne",
+        "6": "WM_VENT — wentylacja"
+      }
+    },
+    {
+      "offset": 5, "name": "AntifreezeWareHouseOn",
+      "values": {
+        "1": "WM_ON — włączony",
+        "2": "WM_OFF — wyłączony"
+      }
+    },
+    {
+      "offset": 6, "name": "AntifreezeWareHouseTempRef",
+      "min": 50, "max": 150, "unit": "°C×0.1"
+    },
+    {
+      "offset": 7, "name": "FanEffRef",
+      "min": 0, "max": 100, "unit": "%",
+      "description": "Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
+    },
+    {
+      "offset": 8, "name": "Tref",
+      "min": 50, "max": 450, "unit": "°C×0.1"
+    },
+    {
+      "offset": 9, "name": "TLeadVal",
+      "min": -600, "max": 600, "unit": "°C×0.1"
+    },
+    {
+      "offset": 10, "name": "TleadSensorSelect",
+      "values": {
+        "0": "TSL_TNS — tylko odczyt",
+        "1": "TSL_TLEAD — wartość przez Modbus",
+        "3": "TSL_T4 — czujnik T4 (powietrze przed wymiennikiem)"
+      }
+    },
+    {
+      "offset": 11, "name": "DestModeForce",
+      "values": {
+        "1": "DEST_MDF_OFF — wymuś wyłączenie",
+        "2": "DEST_MDF_ON — wymuś włączenie"
+      }
+    },
+    {
+      "offset": 12, "name": "DestMode",
+      "values": {
+        "1": "DEST_MD_OFF — wyłączony",
+        "2": "DEST_MD_AUTO_DEPEND — AUTO zależny od trybu pracy",
+        "3": "DEST_MD_AUTO_INDEPEND — AUTO niezależny"
+      }
+    },
+    {
+      "offset": 13, "name": "DestTempRef",
+      "default": 50, "min": 0, "max": 100, "unit": "K×0.1"
+    },
+    {
+      "offset": 14, "name": "DestStratTimeDelay"
+    },
+    {
+      "offset": 15, "name": "ModeAuto_FanEffRefMin",
+      "min": 0, "max": 100, "unit": "%"
+    },
+    {
+      "offset": 16, "name": "ModeAuto_FanEffRefMax",
+      "min": 0, "max": 100, "unit": "%"
+    },
+    {
+      "offset": 17, "name": "ModeManual_FanEffRef",
+      "min": 0, "max": 100, "unit": "%"
+    }
+  ],
+  "holding_registers_group": [
+    {
+      "offset": 4, "name": "WorkMode", "default": 0,
+      "values": {
+        "0": "WM_DEF — domyślny po resecie",
+        "1": "WM_OFF — urządzenie wyłączone",
+        "2": "WM_HT_AUTO — grzanie automatyczne",
+        "3": "WM_HT_MANUAL — grzanie ręczne",
+        "4": "WM_COOL_AUTO — chłodzenie automatyczne",
+        "5": "WM_COOL_MANUAL — chłodzenie ręczne",
+        "6": "WM_VENT — wentylacja"
+      }
+    },
+    {
+      "offset": 5, "name": "FanEffRef",
+      "min": 0, "max": 100, "unit": "%"
+    },
+    {
+      "offset": 6, "name": "DestModeForce",
+      "values": {
+        "1": "DEST_MDF_OFF — wymuś wyłączenie",
+        "2": "DEST_MDF_ON — wymuś włączenie"
+      }
+    },
+    {
+      "offset": 7, "name": "DestTempRef",
+      "default": 50, "min": 0, "max": 100, "unit": "K×0.1"
+    },
+    {
+      "offset": 8, "name": "DestStratTimeDelay"
+    },
+    {
+      "offset": 9, "name": "ModeAuto_FanEffRefMin",
+      "min": 0, "max": 100, "unit": "%"
+    },
+    {
+      "offset": 10, "name": "ModeManual_FanEffRef",
+      "min": 0, "max": 100, "unit": "%"
+    }
+  ]
+}

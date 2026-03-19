@@ -1,0 +1,79 @@
+{
+  "name": "DRV D",
+  "description": "Nagrzewnica wodna (wariant D)",
+  "group_priority": 7,
+  "input_registers": [
+    { "offset": 4, "name": "T3" },
+    { "offset": 5, "name": "T4" },
+    { "offset": 6, "name": "FanEff" },
+    { "offset": 7, "name": "DestStatus" },
+    { "offset": 8, "name": "FuseState" }
+  ],
+  "holding_registers_single": [
+    {
+      "offset": 4, "name": "WorkMode",
+      "values": {
+        "1": "WM_OFF — odszranianie wyłączone",
+        "2": "WM_AUTO_DEPEND — AUTO zależny od trybu pracy",
+        "3": "WM_AUTO_INDEPEND — AUTO niezależny",
+        "4": "WM_MANUAL — tryb ręczny"
+      }
+    },
+    {
+      "offset": 5, "name": "FanEffRef",
+      "min": 0, "max": 100, "unit": "%",
+      "description": "Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
+    },
+    {
+      "offset": 6, "name": "Tref",
+      "min": 50, "max": 450, "unit": "°C×0.1"
+    },
+    {
+      "offset": 7, "name": "TLeadVal",
+      "min": -600, "max": 600, "unit": "°C×0.1"
+    },
+    {
+      "offset": 8, "name": "TLeadSensorSelect",
+      "values": {
+        "1": "TSL_TLEAD — wartość przez Modbus (TLeadVal)",
+        "3": "TSL_T4 — czujnik T4 (złącze DRV)"
+      }
+    },
+    {
+      "offset": 10, "name": "DestTempRef",
+      "min": 0, "max": 100, "unit": "K×0.1",
+      "description": "Próg odszraniania: warunek DestTempRef > Td − Tm (Td=T3 sufit, Tm=czujnik prowadzący)"
+    },
+    {
+      "offset": 11, "name": "WorkModeTempRef",
+      "min": 50, "max": 450, "unit": "°C×0.1",
+      "description": "Docelowa temperatura przy suficie w trybie ręcznym; warunek: WorkModeTempRef > czujnik prowadzący"
+    }
+  ],
+  "holding_registers_group": [
+    {
+      "offset": 4, "name": "WorkMode",
+      "values": {
+        "1": "WM_OFF — odszranianie wyłączone",
+        "2": "WM_AUTO_DEPEND — AUTO zależny od trybu pracy",
+        "3": "WM_AUTO_INDEPEND — AUTO niezależny",
+        "4": "WM_MANUAL — tryb ręczny"
+      }
+    },
+    {
+      "offset": 5, "name": "FanEffRef",
+      "min": 0, "max": 100, "unit": "%",
+      "description": "Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
+    },
+    {
+      "offset": 6, "name": "DestTempRef",
+      "min": 0, "max": 100, "unit": "K×0.1",
+      "description": "Próg odszraniania: warunek DestTempRef > Td − Tm (Td=T3 sufit, Tm=czujnik prowadzący)"
+    },
+    {
+      "offset": 7, "name": "WorkModeTempRef",
+      "min": 50, "max": 450, "unit": "°C×0.1",
+      "description": "Docelowa temperatura przy suficie w trybie ręcznym; warunek: WorkModeTempRef > czujnik prowadzący"
+    }
+  ]
+}

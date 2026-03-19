@@ -1,0 +1,288 @@
+/* ============================================================
+   Kalkulator BMS — Style
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 14px;
+  background: #f0f2f5;
+  color: #222;
+}
+
+/* ---- Header ---- */
+header {
+  background: #1a2d47;
+  color: #fff;
+  padding: 16px 24px;
+}
+header h1 { font-size: 20px; font-weight: 600; }
+header p  { font-size: 12px; color: #8da6c5; margin-top: 2px; }
+
+/* ---- Main layout ---- */
+main {
+  max-width: 1100px;
+  margin: 20px auto;
+  padding: 0 16px;
+}
+
+/* ---- Form section ---- */
+.form-section {
+  background: #fff;
+  border: 1px solid #dde2ea;
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.form-row {
+  display: flex;
+  gap: 32px;
+  align-items: flex-end;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.field-group label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #667;
+  letter-spacing: 0.5px;
+}
+
+select, input[type="number"] {
+  padding: 6px 10px;
+  border: 1px solid #ccd2da;
+  border-radius: 4px;
+  font-size: 13px;
+  background: #fff;
+  color: #222;
+  min-width: 160px;
+}
+
+select:focus, input[type="number"]:focus {
+  outline: none;
+  border-color: #3a7bd5;
+  box-shadow: 0 0 0 2px rgba(58,123,213,0.15);
+}
+
+.radio-group {
+  display: flex;
+  gap: 16px;
+  padding: 7px 0;
+}
+.radio-group label {
+  font-size: 13px;
+  font-weight: normal;
+  text-transform: none;
+  letter-spacing: 0;
+  cursor: pointer;
+  color: #222;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* ---- Devices table in form ---- */
+.devices-header {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #667;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.device-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.device-row select { min-width: 200px; }
+
+.device-row input[type="number"] { width: 80px; min-width: unset; }
+
+.device-row label {
+  font-size: 12px;
+  color: #667;
+  white-space: nowrap;
+}
+
+.btn-remove {
+  background: none;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  color: #c00;
+  cursor: pointer;
+  padding: 4px 10px;
+  font-size: 16px;
+  line-height: 1;
+}
+.btn-remove:hover { background: #fff0f0; }
+
+/* ---- Form actions ---- */
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+button {
+  padding: 8px 18px;
+  border-radius: 4px;
+  border: 1px solid #ccd2da;
+  cursor: pointer;
+  font-size: 13px;
+  background: #fff;
+  color: #333;
+}
+button:hover { background: #f5f7fa; }
+
+.btn-primary {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+  font-weight: 600;
+}
+.btn-primary:hover { background: #1d4ed8; }
+
+.btn-secondary {
+  background: #f0f2f5;
+  border-color: #ccd2da;
+}
+
+/* ---- Form error ---- */
+.form-error {
+  margin-top: 12px;
+  padding: 8px 12px;
+  background: #fff3f3;
+  border: 1px solid #f5c0c0;
+  border-radius: 4px;
+  color: #c00;
+  font-size: 13px;
+}
+
+/* ---- Results section ---- */
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.results-header h2 { font-size: 16px; color: #1a2d47; }
+
+/* ---- Device result block ---- */
+.result-block {
+  background: #fff;
+  border: 1px solid #dde2ea;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.result-block-header {
+  background: #1a2d47;
+  color: #fff;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.result-block-header h3 { font-size: 14px; font-weight: 600; }
+.result-block-header .badge {
+  font-size: 11px;
+  background: rgba(255,255,255,0.15);
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+/* ---- Sub-section (IR / HR) ---- */
+.reg-section { padding: 12px 16px 0; }
+
+.reg-section-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #3a7bd5;
+  margin-bottom: 6px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid #e8edf5;
+}
+
+/* ---- Register table ---- */
+.reg-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 12px;
+}
+
+.reg-table th {
+  background: #f5f7fa;
+  padding: 6px 10px;
+  text-align: left;
+  font-weight: 600;
+  color: #445;
+  border-bottom: 2px solid #dde2ea;
+  white-space: nowrap;
+}
+
+.reg-table td {
+  padding: 5px 10px;
+  border-bottom: 1px solid #eef0f4;
+  vertical-align: top;
+}
+
+.reg-table tr:last-child td { border-bottom: none; }
+.reg-table tr:hover td { background: #f8fafd; }
+
+.addr-hex { font-family: 'Consolas', monospace; color: #1a5eb8; font-weight: 600; }
+.addr-dec { font-family: 'Consolas', monospace; color: #555; }
+.reg-name { font-weight: 600; color: #1a2d47; }
+
+/* ---- Values display ---- */
+.values-list { display: flex; flex-direction: column; gap: 1px; }
+.val-item { color: #445; }
+.val-item b { color: #2563eb; margin-right: 3px; }
+.range-info { color: #556; }
+.val-desc { color: #888; font-style: italic; font-size: 11px; margin-top: 2px; }
+
+/* ---- Mode badges ---- */
+.mode-tag {
+  display: inline-block;
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-weight: 600;
+  margin-left: 6px;
+}
+.mode-single { background: #e8f0fe; color: #2563eb; }
+.mode-group  { background: #fef3e8; color: #c87020; }
+
+/* ---- Empty state ---- */
+.empty-note {
+  padding: 12px 16px;
+  color: #999;
+  font-style: italic;
+  font-size: 12px;
+}
+
+/* ---- Loading ---- */
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #667;
+}

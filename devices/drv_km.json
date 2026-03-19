@@ -1,0 +1,183 @@
+{
+  "name": "DRV KM",
+  "description": "Centrala wentylacyjna z klapą mieszającą",
+  "group_priority": 2,
+  "input_registers": [
+    { "offset": 4, "name": "T1" },
+    { "offset": 5, "name": "T3" },
+    { "offset": 6, "name": "T4" },
+    { "offset": 7, "name": "T5" },
+    { "offset": 8, "name": "ExternalGasDetect_TH1" },
+    { "offset": 9, "name": "ExternalGasDetect_TH2" },
+    { "offset": 10, "name": "ExternalGasDetect_val" },
+    { "offset": 11, "name": "FanRoof_TK" },
+    { "offset": 12, "name": "FanEff" },
+    { "offset": 13, "name": "FanUvoEff" },
+    { "offset": 14, "name": "DamperLevel" },
+    { "offset": 15, "name": "DamperForceState" },
+    { "offset": 16, "name": "AntiFreezeState" },
+    { "offset": 17, "name": "FilterWorkTime" },
+    { "offset": 18, "name": "FilterPreasureSwitchState" },
+    { "offset": 19, "name": "FanEcConnect" },
+    { "offset": 20, "name": "FuseState" },
+    { "offset": 21, "name": "ValveState" }
+  ],
+  "holding_registers_single": [
+    {
+      "offset": 4, "name": "WorkMode",
+      "values": {
+        "0": "WM_NS — tylko odczyt",
+        "1": "WM_OFF — urządzenie wyłączone",
+        "2": "WM_HT — tryb grzania",
+        "3": "WM_COOL — tryb chłodzenia",
+        "4": "WM_VENT — wentylacja"
+      }
+    },
+    {
+      "offset": 5, "name": "AntiFreezeWareHouseOn",
+      "values": {
+        "1": "disable — wyłączony",
+        "2": "enable — włączony"
+      }
+    },
+    {
+      "offset": 6, "name": "AntifreezeWareHouseTempRef",
+      "min": 50, "max": 150, "unit": "°C×0.1"
+    },
+    {
+      "offset": 7, "name": "DamperForceMode",
+      "values": {
+        "0": "DAMPER_FMD_NS — tylko odczyt",
+        "1": "DAMPER_FMD_OFF — wymuszanie wyłączone",
+        "2": "DAMPER_FMD_ON — wymuszanie włączone (jeśli T1 < DamperForceTempRef)"
+      }
+    },
+    {
+      "offset": 8, "name": "DamperForceTempRef",
+      "min": -100, "max": 150, "unit": "°C×0.1"
+    },
+    {
+      "offset": 9, "name": "DamperForceLevelRef",
+      "min": 0, "max": 100, "unit": "%"
+    },
+    {
+      "offset": 10, "name": "DamperLevelRef",
+      "min": 0, "max": 100, "unit": "%"
+    },
+    {
+      "offset": 11, "name": "FanEffRef",
+      "min": 0, "max": 100, "unit": "%",
+      "description": "Wentylator EC: płynna regulacja 0–100%. Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
+    },
+    {
+      "offset": 12, "name": "FanRoofForceEffRef",
+      "min": -10, "max": 10, "unit": "%",
+      "description": "Korekta prędkości wentylatora dachowego — wartość dodawana do aktualnej prędkości"
+    },
+    {
+      "offset": 13, "name": "Tref",
+      "min": 50, "max": 450, "unit": "°C×0.1"
+    },
+    {
+      "offset": 14, "name": "TLeadVal",
+      "min": -600, "max": 600, "unit": "°C×0.1"
+    },
+    {
+      "offset": 15, "name": "TLeadSensorSelect",
+      "values": {
+        "0": "TSL_TNS — tylko odczyt",
+        "1": "TSL_TLEAD — wartość przez Modbus (TLeadVal)",
+        "3": "TSL_T4 — czujnik T4 (powietrze przed wymiennikiem)"
+      }
+    },
+    {
+      "offset": 16, "name": "FanRoofMode",
+      "values": {
+        "0": "FR_MD_NS — tylko odczyt",
+        "1": "FR_MD_01 — zależny od pozycji klapy (DamperLevelRef) i nastawy wentylatora (FanEffRef)",
+        "2": "FR_MD_02 — zależny wyłącznie od pozycji klapy (DamperLevelRef)"
+      }
+    },
+    {
+      "offset": 17, "name": "FilterTimeCntRst",
+      "values": {
+        "0": "FLT_CNT_RST_NS — tylko odczyt (po resecie)",
+        "1": "FLT_CNT_RST — reset licznika czasu filtra"
+      }
+    },
+    {
+      "offset": 18, "name": "ThermostatModeState",
+      "values": {
+        "1": "THERMO_MD_ON — tryb termostatu włączony",
+        "2": "THERMO_MD_OFF — tryb termostatu wyłączony"
+      }
+    },
+    {
+      "offset": 19, "name": "ThermostatModeFanEffRef",
+      "min": 0, "max": 100, "unit": "%",
+      "description": "Prędkość wentylatora w trybie termostatu. EC: płynna 0–100%. AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1, 34–66=bieg 2, 67–100=bieg 3"
+    }
+  ],
+  "holding_registers_group": [
+    {
+      "offset": 4, "name": "WorkMode",
+      "values": {
+        "0": "WM_NS — tylko odczyt",
+        "1": "WM_OFF — urządzenie wyłączone",
+        "2": "WM_HT — tryb grzania",
+        "3": "WM_COOL — tryb chłodzenia",
+        "4": "WM_VENT — wentylacja"
+      }
+    },
+    {
+      "offset": 5, "name": "DamperForceMode",
+      "values": {
+        "0": "DAMPER_FMD_NS — tylko odczyt",
+        "1": "DAMPER_FMD_OFF — wymuszanie wyłączone",
+        "2": "DAMPER_FMD_ON — wymuszanie włączone (jeśli T1 < DamperForceTempRef)"
+      }
+    },
+    {
+      "offset": 6, "name": "DamperForceTempRef",
+      "min": -100, "max": 150, "unit": "°C×0.1"
+    },
+    {
+      "offset": 7, "name": "DamperForceLevelRef",
+      "min": 0, "max": 100, "unit": "%"
+    },
+    {
+      "offset": 8, "name": "DamperLevelRef",
+      "min": 0, "max": 100, "unit": "%"
+    },
+    {
+      "offset": 9, "name": "FanEffRef",
+      "min": 0, "max": 100, "unit": "%",
+      "description": "Wentylator EC: płynna regulacja 0–100%. Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
+    },
+    {
+      "offset": 10, "name": "FanRoofForceEffRef",
+      "min": -10, "max": 10, "unit": "%",
+      "description": "Korekta prędkości wentylatora dachowego — wartość dodawana do aktualnej prędkości"
+    },
+    {
+      "offset": 11, "name": "FanRoofMode",
+      "values": {
+        "0": "FR_MD_NS — tylko odczyt",
+        "1": "FR_MD_01 — zależny od pozycji klapy (DamperLevelRef) i nastawy wentylatora (FanEffRef)",
+        "2": "FR_MD_02 — zależny wyłącznie od pozycji klapy (DamperLevelRef)"
+      }
+    },
+    {
+      "offset": 12, "name": "ThermostatModeState",
+      "values": {
+        "1": "THERMO_MD_ON — tryb termostatu włączony",
+        "2": "THERMO_MD_OFF — tryb termostatu wyłączony"
+      }
+    },
+    {
+      "offset": 13, "name": "ThermostatModeFanEffRef",
+      "min": 0, "max": 100, "unit": "%",
+      "description": "Prędkość wentylatora w trybie termostatu. EC: płynna 0–100%. AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1, 34–66=bieg 2, 67–100=bieg 3"
+    }
+  ]
+}

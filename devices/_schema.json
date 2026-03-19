@@ -1,0 +1,103 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "Device Register Definition",
+  "description": "Schemat pliku definicji rejestrów Modbus dla urządzenia BMS",
+  "type": "object",
+  "required": ["name", "description", "group_priority", "input_registers", "holding_registers_single", "holding_registers_group"],
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Nazwa modelu urządzenia wyświetlana w aplikacji, np. 'DRV V'. Musi być unikalna w całym katalogu devices/."
+    },
+    "description": {
+      "type": "string",
+      "description": "Opis słowny urządzenia, np. 'Nagrzewnica wodna z wentylatorem EC'."
+    },
+    "group_priority": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Kolejność przydzielania numeru grupy w trybie Group mode. Niższy numer = wyższy priorytet."
+    },
+    "input_registers": {
+      "type": "array",
+      "description": "Rejestry tylko do odczytu (Input Registers) — stany, temperatury, alarmy.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["offset", "name"],
+        "additionalProperties": false,
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Bazowy numer rejestru z dokumentacji (przed przeliczeniem na adres Modbus)."
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Nazwa parametru z dokumentacji, np. 'T3', 'FanEff'."
+          }
+        }
+      }
+    },
+    "holding_registers_single": {
+      "type": "array",
+      "description": "Rejestry do odczytu i zapisu w trybie Single mode.",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/holding_register" }
+    },
+    "holding_registers_group": {
+      "type": "array",
+      "description": "Rejestry do odczytu i zapisu w trybie Group mode.",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/holding_register" }
+    }
+  },
+  "definitions": {
+    "holding_register": {
+      "type": "object",
+      "required": ["offset", "name"],
+      "additionalProperties": false,
+      "properties": {
+        "offset": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Bazowy numer rejestru z dokumentacji (przed przeliczeniem na adres Modbus)."
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Nazwa parametru z dokumentacji."
+        },
+        "default": {
+          "type": ["integer", "number"],
+          "description": "Wartość domyślna rejestru po resecie / fabryczna."
+        },
+        "min": {
+          "type": ["integer", "number"],
+          "description": "Minimalna dopuszczalna wartość (tylko dla parametrów liczbowych, nie używać razem z 'values')."
+        },
+        "max": {
+          "type": ["integer", "number"],
+          "description": "Maksymalna dopuszczalna wartość (tylko dla parametrów liczbowych, nie używać razem z 'values')."
+        },
+        "unit": {
+          "type": "string",
+          "description": "Jednostka wartości, np. '°C', '%', 's', '' dla wartości bezwymiarowych."
+        },
+        "values": {
+          "type": "object",
+          "description": "Słownik wartości wyliczeniowych (enum). Klucz = wartość rejestru jako string, wartość = opis. Np. {'0': 'Off', '1': 'Grzanie'}. Nie używać razem z 'min'/'max'.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "description": {
+          "type": "string",
+          "description": "Dodatkowy opis zachowania rejestru gdy samo min/max lub values nie wystarczy. Używać np. dla rejestrów z nieciągłym zakresem lub wieloma trybami działania (np. wentylator AC 3-biegowy)."
+        }
+      }
+    }
+  }
+}
