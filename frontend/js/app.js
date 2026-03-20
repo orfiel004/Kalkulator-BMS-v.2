@@ -21,7 +21,7 @@ let deviceRowCount = 0;  // licznik wierszy urządzeń (do unikalnych ID)
 async function loadDevices() {
   const promises = DEVICE_FILES.map(async (file) => {
     try {
-      const resp = await fetch(`../devices/${file}.json`);
+      const resp = await fetch(`devices/${file}.json`);
       if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
       const data = await resp.json();
       devices[data.name] = data;
