@@ -16,25 +16,14 @@ let devices = {};        // { "DRV V": { ...json }, ... }
 let deviceRowCount = 0;  // licznik wierszy urządzeń (do unikalnych ID)
 
 // ============================================================
-// Inicjalizacja — wczytanie JSON-ów przy starcie strony
+// Inicjalizacja — dane wbudowane bezpośrednio w kod
 // ============================================================
-async function loadDevices() {
-  const promises = DEVICE_FILES.map(async (file) => {
-    try {
-      const resp = await fetch(`devices/${file}.json`);
-      if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-      const data = await resp.json();
-      devices[data.name] = data;
-    } catch (e) {
-      console.warn(`Nie można wczytać ${file}.json:`, e.message);
-    }
-  });
-
-  await Promise.all(promises);
+function loadDevices() {
+  devices = DEVICES_DATA;
 
   const names = Object.keys(devices).sort();
   if (names.length === 0) {
-    showError('Nie udało się wczytać żadnych urządzeń. Uruchom stronę przez serwer HTTP (python -m http.server 8080).');
+    showError('Brak danych urządzeń.');
     return;
   }
 
