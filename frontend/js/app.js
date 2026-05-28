@@ -2,42 +2,44 @@
  * app.js — Główna logika UI kalkulatora BMS
  */
 
-// ---- Lista plików urządzeń do wczytania ----
-const DEVICE_FILES = [
-  'drv_v', 'drv_m', 'drv_d',
-  'drv_elis', 'drv_slim', 'drv_km',
-  'drv_oxen', 'drv_el',
-  'drv_robur_next', 'drv_robur_next_km',
-  'drv_cool', 'drv_cube',
-];
-
-// ---- Stan aplikacji ----
-let devices = {};        // { "DRV V": { ...json }, ... }
-let deviceRowCount = 0;  // licznik wierszy urządzeń (do unikalnych ID)
+let devices = {};
+let deviceRowCount = 0;
 
 // ============================================================
-// Inicjalizacja — dane wbudowane bezpośrednio w kod
+// Inicjalizacja
 // ============================================================
 function loadDevices() {
   devices = DEVICES_DATA;
-
   const names = Object.keys(devices).sort();
   if (names.length === 0) {
     showError('Brak danych urządzeń.');
     return;
   }
-
-  // Dodaj dwa domyślne wiersze urządzeń
   addDeviceRow();
   addDeviceRow();
+  updateFormForControllerType();
 }
 
 // ============================================================
-// Dodawanie / usuwanie wierszy urządzeń w formularzu
+// Zmiana sterownika — aktualizacja formularza
+// ============================================================
+function updateFormForControllerType() {
+  const isTboxZone = document.getElementById('controllerType').value === 'tbox_zone';
+
+  document.getElementById('mode-field').style.display = isTboxZone ? 'none' : '';
+
+  document.querySelectorAll('.device-row .zone-field').forEach(el => {
+    el.style.display = isTboxZone ? 'flex' : 'none';
+  });
+}
+
+// ============================================================
+// Dodawanie wierszy urządzeń
 // ============================================================
 function addDeviceRow() {
   const id = ++deviceRowCount;
   const names = Object.keys(devices).sort();
+  const isTboxZone = document.getElementById('controllerType').value === 'tbox_zone';
 
   const row = document.createElement('div');
   row.className = 'device-row';
@@ -63,6 +65,24 @@ function addDeviceRow() {
   addrInput.max = 31;
   addrInput.value = id;
 
+  // Pole Strefa (widoczne tylko w T-box Zone)
+  const zoneField = document.createElement('span');
+  zoneField.className = 'zone-field';
+  zoneField.style.cssText = `display:${isTboxZone ? 'flex' : 'none'}; align-items:center; gap:4px;`;
+
+  const zoneLabel = document.createElement('label');
+  zoneLabel.textContent = 'Strefa:';
+  zoneLabel.htmlFor = `zone-${id}`;
+
+  const zoneInput = document.createElement('input');
+  zoneInput.type = 'number';
+  zoneInput.id = `zone-${id}`;
+  zoneInput.min = 1;
+  zoneInput.max = 31;
+  zoneInput.value = 1;
+
+  zoneField.append(zoneLabel, zoneInput);
+
   const removeBtn = document.createElement('button');
   removeBtn.type = 'button';
   removeBtn.className = 'btn-remove';
@@ -70,7 +90,7 @@ function addDeviceRow() {
   removeBtn.title = 'Usuń urządzenie';
   removeBtn.onclick = () => row.remove();
 
-  row.append(select, addrLabel, addrInput, removeBtn);
+  row.append(select, addrLabel, addrInput, zoneField, removeBtn);
   document.getElementById('devices-container').appendChild(row);
 }
 
@@ -81,17 +101,26 @@ function validateForm() {
   const rows = document.querySelectorAll('.device-row');
   if (rows.length === 0) return 'Dodaj co najmniej jedno urządzenie.';
 
+  const isTboxZone = document.getElementById('controllerType').value === 'tbox_zone';
   const addrs = [];
+
   for (const row of rows) {
     const id = row.dataset.rowId;
     const addr = parseInt(document.getElementById(`addr-${id}`).value);
     if (isNaN(addr) || addr < 1 || addr > 31) {
-      return `Nieprawidłowy adres Modbus (musi być 1–31).`;
+      return 'Nieprawidłowy adres Modbus (musi być 1–31).';
     }
     if (addrs.includes(addr)) {
       return `Adres Modbus ${addr} jest użyty więcej niż raz. Każde urządzenie musi mieć unikalny adres.`;
     }
     addrs.push(addr);
+
+    if (isTboxZone) {
+      const zone = parseInt(document.getElementById(`zone-${id}`).value);
+      if (isNaN(zone) || zone < 1 || zone > 31) {
+        return 'Nieprawidłowy numer strefy (musi być 1–31).';
+      }
+    }
   }
   return null;
 }
@@ -101,48 +130,62 @@ function validateForm() {
 // ============================================================
 function calculate() {
   hideError();
-
   const err = validateForm();
   if (err) { showError(err); return; }
 
-  const mode           = document.querySelector('input[name="mode"]:checked').value;
   const controllerType = document.getElementById('controllerType').value;
+  const isTboxZone = controllerType === 'tbox_zone';
 
-  // Zbierz wybrane urządzenia
   const selectedDevices = [];
   document.querySelectorAll('.device-row').forEach(row => {
     const id   = row.dataset.rowId;
     const name = document.getElementById(`device-${id}`).value;
     const addr = parseInt(document.getElementById(`addr-${id}`).value);
-    selectedDevices.push({ name, addr });
+    const zone = isTboxZone ? parseInt(document.getElementById(`zone-${id}`).value) : null;
+    selectedDevices.push({ name, addr, zone });
   });
 
-  // Przypisz numery grup (wg group_priority)
-  const selectedNames = selectedDevices.map(d => d.name);
-  const groupMap      = Calculator.assignGroupNumbers(selectedNames, devices);
-
-  // Generuj wyniki
   const resultsEl = document.getElementById('results-content');
   resultsEl.innerHTML = '';
 
-  // Info o trybie
   const modeInfo = document.createElement('div');
   modeInfo.style.cssText = 'margin-bottom:12px; font-size:12px; color:#667;';
-  modeInfo.textContent = `Tryb: ${mode === 'single' ? 'Single (jedno urządzenie)' : 'Group (grupowy)'} — Sterownik: ${controllerType === 'tbox' ? 'T-box' : 'T-box Zone'}`;
-  resultsEl.appendChild(modeInfo);
 
-  // Blok dla każdego urządzenia
+  if (isTboxZone) {
+    modeInfo.textContent = 'Tryb: T-box Zone';
+    resultsEl.appendChild(modeInfo);
+    renderTboxZone(resultsEl, selectedDevices);
+  } else {
+    const mode = document.querySelector('input[name="mode"]:checked').value;
+    modeInfo.textContent = `Tryb: ${mode === 'single' ? 'Single (jedno urządzenie)' : 'Group (grupowy)'} — Sterownik: T-box`;
+    resultsEl.appendChild(modeInfo);
+    renderTbox(resultsEl, selectedDevices, mode);
+  }
+
+  document.getElementById('results').style.display = 'block';
+  document.querySelector('.form-section').style.display = 'none';
+  document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ============================================================
+// Render: T-box (tryb klasyczny)
+// ============================================================
+function renderTbox(resultsEl, selectedDevices, mode) {
+  resultsEl.appendChild(buildControllerSection('tbox', mode));
+
+  const selectedNames = selectedDevices.map(d => d.name);
+  const groupMap = Calculator.assignGroupNumbers(selectedNames, devices);
+
   selectedDevices.forEach(({ name, addr }) => {
-    const device  = devices[name];
+    const device = devices[name];
     if (!device) return;
 
     const groupNum = groupMap[name] ?? 1;
-    const tables   = Calculator.buildRegisterTable(device, addr, mode, groupNum);
+    const tables = Calculator.buildRegisterTable(device, addr, mode, groupNum);
 
     const block = document.createElement('div');
     block.className = 'result-block';
 
-    // Nagłówek bloku
     const header = document.createElement('div');
     header.className = 'result-block-header';
     header.innerHTML = `
@@ -151,57 +194,171 @@ function calculate() {
     `;
     block.appendChild(header);
 
-    // Input Registers
     if (tables.ir.length > 0) {
-      block.appendChild(buildRegSection(
-        'Input Registers (IR) — tylko odczyt',
-        tables.ir,
-        false
-      ));
+      block.appendChild(buildRegSection('Input Registers (IR) — tylko odczyt', tables.ir));
     }
 
-    // Holding Registers
     if (mode === 'single') {
       if (tables.hrSingle.length > 0) {
-        block.appendChild(buildRegSection(
-          'Holding Registers (HR) — Single mode',
-          tables.hrSingle,
-          true
-        ));
+        block.appendChild(buildRegSection('Holding Registers (HR) — Single mode', tables.hrSingle));
       }
     } else {
-      // W trybie group pokazujemy oba zestawy
       if (tables.hrSingle.length > 0) {
-        block.appendChild(buildRegSection(
-          'Holding Registers — Single (adresowanie indywidualne)',
-          tables.hrSingle,
-          true,
-          'single'
-        ));
+        block.appendChild(buildRegSection('Holding Registers — Single (adresowanie indywidualne)', tables.hrSingle, 'single'));
       }
       if (tables.hrGroup.length > 0) {
-        block.appendChild(buildRegSection(
-          'Holding Registers — Group (adresowanie grupowe)',
-          tables.hrGroup,
-          true,
-          'group'
-        ));
+        block.appendChild(buildRegSection('Holding Registers — Group (adresowanie grupowe)', tables.hrGroup, 'group'));
       }
     }
 
     resultsEl.appendChild(block);
   });
+}
 
-  // Pokaż sekcję wyników
-  document.getElementById('results').style.display = 'block';
-  document.querySelector('.form-section').style.display = 'none';
-  document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+// ============================================================
+// Render: T-box Zone
+// ============================================================
+function renderTboxZone(resultsEl, selectedDevices) {
+  // Sekcja rejestrów sterownika (rozwijana na żądanie)
+  resultsEl.appendChild(buildControllerSection('tbox_zone', null));
+
+  // Urządzenia — posortowane po adresie, IR obliczane przez pozycję w liście
+  const sortedDevices = [...selectedDevices].sort((a, b) => a.addr - b.addr);
+
+  sortedDevices.forEach(({ name, addr, zone }, sortedIndex) => {
+    const device = devices[name];
+    if (!device) return;
+
+    const ir = (device.input_registers || []).map(reg => {
+      const addrDec = Calculator.calcZoneDeviceAddress(reg.offset, sortedIndex);
+      return {
+        addrDec,
+        addrHex: Calculator.toHex(addrDec),
+        name:    reg.name,
+        reg:     reg,
+      };
+    });
+
+    const block = document.createElement('div');
+    block.className = 'result-block';
+
+    const header = document.createElement('div');
+    header.className = 'result-block-header';
+    header.innerHTML = `
+      <h3>${name}</h3>
+      <span class="badge">Adres: ${addr} &nbsp;|&nbsp; Strefa: ${zone}</span>
+    `;
+    block.appendChild(header);
+
+    if (ir.length > 0) {
+      block.appendChild(buildRegSection('Input Registers (IR) — tylko odczyt', ir));
+    } else {
+      const empty = document.createElement('div');
+      empty.className = 'empty-note';
+      empty.textContent = 'Brak rejestrów wejściowych dla tego urządzenia.';
+      block.appendChild(empty);
+    }
+
+    resultsEl.appendChild(block);
+  });
+
+  // Sekcje stref — jedna per unikalna strefa, posortowane
+  const uniqueZones = [...new Set(selectedDevices.map(d => d.zone))].sort((a, b) => a - b);
+  uniqueZones.forEach((zoneNum, zoneIndex) => {
+    resultsEl.appendChild(buildZoneSection(zoneNum, zoneIndex));
+  });
+}
+
+// ============================================================
+// Sekcja rejestrów sterownika — zwijana przyciskiem
+// ============================================================
+function buildControllerSection(controllerType, mode) {
+  const ctrl = Calculator.CONTROLLER[controllerType];
+
+  const wrapper = document.createElement('div');
+  wrapper.className = 'controller-section';
+
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'btn-controller-toggle';
+  btn.textContent = 'Pokaż rejestry sterownika';
+
+  const body = document.createElement('div');
+  body.className = 'result-block controller-block';
+  body.style.display = 'none';
+
+  const blockHeader = document.createElement('div');
+  blockHeader.className = 'result-block-header controller-block-header';
+  blockHeader.innerHTML = `<h3>Rejestry sterownika</h3><span class="badge">${controllerType === 'tbox_zone' ? 'T-box Zone' : 'T-box'}</span>`;
+  body.appendChild(blockHeader);
+
+  const irRows = ctrl.ir.map(r => ({
+    addrDec: r.addr,
+    addrHex: Calculator.toHex(r.addr),
+    name:    r.name,
+    reg:     {},
+  }));
+  body.appendChild(buildRegSection('Input Registers (IR) — tylko odczyt', irRows));
+
+  let hrList;
+  if (controllerType === 'tbox_zone') {
+    hrList = ctrl.hr;
+  } else if (mode === 'group') {
+    hrList = ctrl.hr_group;
+  } else {
+    hrList = ctrl.hr_single;
+  }
+
+  const hrRows = hrList.map(r => ({
+    addrDec: r.addr,
+    addrHex: Calculator.toHex(r.addr),
+    name:    r.name,
+    reg:     {},
+  }));
+  body.appendChild(buildRegSection('Holding Registers (HR)', hrRows));
+
+  btn.addEventListener('click', () => {
+    const isOpen = body.style.display !== 'none';
+    body.style.display = isOpen ? 'none' : 'block';
+    btn.textContent = isOpen ? 'Pokaż rejestry sterownika' : 'Ukryj rejestry sterownika';
+  });
+
+  wrapper.append(btn, body);
+  return wrapper;
+}
+
+// ============================================================
+// Sekcja rejestrów strefy (T-box Zone)
+// ============================================================
+function buildZoneSection(zoneNum, zoneIndex) {
+  const block = document.createElement('div');
+  block.className = 'result-block zone-block';
+
+  const header = document.createElement('div');
+  header.className = 'result-block-header zone-block-header';
+  header.innerHTML = `<h3>Strefa ${zoneNum}</h3><span class="badge">Rejestry strefy</span>`;
+  block.appendChild(header);
+
+  const irRows = Calculator.ZONE_REGS.ir.map(r => {
+    const addrDec = Calculator.calcZoneRegAddress(r.baseAddr, zoneIndex);
+    return { addrDec, addrHex: Calculator.toHex(addrDec), name: r.name, reg: {} };
+  });
+  block.appendChild(buildRegSection('Input Registers (IR) — tylko odczyt', irRows));
+
+  const hrRows = Calculator.ZONE_REGS.hr.map(r => {
+    const addrDec = Calculator.calcZoneRegAddress(r.baseAddr, zoneIndex);
+    return { addrDec, addrHex: Calculator.toHex(addrDec), name: r.name, reg: {} };
+  });
+  block.appendChild(buildRegSection('Holding Registers (HR)', hrRows));
+
+  return block;
 }
 
 // ============================================================
 // Budowanie sekcji tabeli rejestrów
+// Kliknięcie na wiersz z wartościami rozwija szczegóły
 // ============================================================
-function buildRegSection(title, rows, showValues, modeTag) {
+function buildRegSection(title, rows, modeTag) {
   const section = document.createElement('div');
   section.className = 'reg-section';
 
@@ -217,8 +374,6 @@ function buildRegSection(title, rows, showValues, modeTag) {
 
   const table = document.createElement('table');
   table.className = 'reg-table';
-
-  // Nagłówek tabeli
   table.innerHTML = `
     <thead>
       <tr>
@@ -226,22 +381,47 @@ function buildRegSection(title, rows, showValues, modeTag) {
         <th>Adres HEX</th>
         <th>Adres DEC</th>
         <th>Nazwa rejestru</th>
-        ${showValues ? '<th>Wartości / Zakres</th>' : ''}
       </tr>
     </thead>
   `;
 
   const tbody = document.createElement('tbody');
   rows.forEach((row, idx) => {
+    const hasValues = row.reg && (
+      (row.reg.values && Object.keys(row.reg.values).length > 0) ||
+      row.reg.min !== undefined ||
+      row.reg.max !== undefined ||
+      row.reg.description
+    );
+
     const tr = document.createElement('tr');
+    tr.className = hasValues ? 'reg-row reg-row-expandable' : 'reg-row';
     tr.innerHTML = `
       <td style="color:#aaa">${idx + 1}</td>
       <td><span class="addr-hex">${row.addrHex}</span></td>
       <td><span class="addr-dec">${row.addrDec}</span></td>
-      <td><span class="reg-name">${row.name}</span></td>
-      ${showValues ? `<td>${Calculator.renderValueInfo(row.reg)}</td>` : ''}
+      <td>
+        ${hasValues
+          ? '<span class="expand-icon">&#9654;</span>'
+          : '<span class="expand-spacer"></span>'}
+        <span class="reg-name">${row.name}</span>
+      </td>
     `;
     tbody.appendChild(tr);
+
+    if (hasValues) {
+      const detailTr = document.createElement('tr');
+      detailTr.className = 'reg-detail-row';
+      detailTr.innerHTML = `<td colspan="4" class="reg-detail-cell">${Calculator.renderValueInfo(row.reg)}</td>`;
+      tbody.appendChild(detailTr);
+
+      tr.addEventListener('click', () => {
+        const isOpen = detailTr.classList.contains('reg-detail-open');
+        detailTr.classList.toggle('reg-detail-open', !isOpen);
+        tr.classList.toggle('reg-row-open', !isOpen);
+        tr.querySelector('.expand-icon').innerHTML = isOpen ? '&#9654;' : '&#9660;';
+      });
+    }
   });
 
   table.appendChild(tbody);
@@ -250,7 +430,7 @@ function buildRegSection(title, rows, showValues, modeTag) {
 }
 
 // ============================================================
-// Pomocnicze: błędy
+// Pomocnicze
 // ============================================================
 function showError(msg) {
   const el = document.getElementById('form-error');
@@ -262,20 +442,17 @@ function hideError() {
   document.getElementById('form-error').style.display = 'none';
 }
 
-// ============================================================
-// Reset — powrót do formularza
-// ============================================================
 function resetForm() {
   document.getElementById('results').style.display = 'none';
   document.querySelector('.form-section').style.display = 'block';
 }
 
 // ============================================================
-// Inicjalizacja zdarzeń
+// Zdarzenia
 // ============================================================
+document.getElementById('controllerType').addEventListener('change', updateFormForControllerType);
 document.getElementById('btn-add-device').addEventListener('click', addDeviceRow);
 document.getElementById('btn-calculate').addEventListener('click', calculate);
 document.getElementById('btn-reset').addEventListener('click', resetForm);
 
-// Start
 loadDevices();

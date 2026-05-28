@@ -286,3 +286,77 @@ button:hover { background: #f5f7fa; }
   padding: 40px;
   color: #667;
 }
+
+/* ---- Sekcja rejestrów sterownika ---- */
+.controller-section {
+  margin-bottom: 16px;
+}
+
+.btn-controller-toggle {
+  background: #f0f4fa;
+  border: 1px solid #b8c8e8;
+  color: #1a2d47;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 8px 18px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+.btn-controller-toggle:hover { background: #dce8f8; }
+
+.controller-block-header {
+  background: #2d4a6e;
+}
+
+/* ---- Sekcja rejestrów strefy ---- */
+.zone-block {
+  border-left: 4px solid #2d8a5a;
+}
+
+.zone-block-header {
+  background: #1e6640;
+}
+
+/* ---- Pole Strefa w wierszu urządzenia ---- */
+.zone-field input[type="number"] {
+  width: 70px;
+  min-width: unset;
+}
+
+/* ---- Rozwijane wiersze rejestrów ---- */
+.reg-row-expandable {
+  cursor: pointer;
+  user-select: none;
+}
+.reg-row-expandable:hover td {
+  background: #eef4ff;
+}
+.reg-row-open td {
+  background: #e4edff;
+}
+
+.expand-icon {
+  display: inline-block;
+  font-size: 9px;
+  color: #3a7bd5;
+  margin-right: 6px;
+  line-height: 1;
+}
+.expand-spacer {
+  display: inline-block;
+  width: 15px;
+}
+
+.reg-detail-row {
+  display: none;
+}
+.reg-detail-row.reg-detail-open {
+  display: table-row;
+}
+.reg-detail-cell {
+  padding: 8px 16px 12px 36px;
+  background: #f0f5ff;
+  border-bottom: 2px solid #c8d8f0;
+  border-left: 3px solid #3a7bd5;
+}
