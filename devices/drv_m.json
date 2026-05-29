@@ -3,18 +3,52 @@
   "description": "Nagrzewnica wodna z wentylatorem EC (płynna regulacja)",
   "group_priority": 6,
   "input_registers": [
-    { "offset": 4,  "name": "T3",               "description": "Temperatura powietrza za wymiennikiem wodnym (czujnik T3)." },
-    { "offset": 5,  "name": "T4",               "description": "Temperatura w pomieszczeniu (czujnik T4)." },
-    { "offset": 6,  "name": "FanEff",           "description": "Wydajność wentylatora EC — prędkość obrotowa [rpm]." },
-    { "offset": 7,  "name": "AntifreezeeState", "description": "Stan ochrony przeciwzamrożeniowej — 8 bitów." },
-    { "offset": 8,  "name": "DestStatus",       "description": "Stan destratyfikacji: aktywna gdy (DestTempRef > Td–Tm) oraz (Tz > Tm)." },
-    { "offset": 9,  "name": "FanEcConnect",     "description": "Status połączenia wentylatora EC z urządzeniem DRV M." },
-    { "offset": 10, "name": "FuseState",        "description": "Stan bezpiecznika wentylatorów EC/3V/dachowych (bity). Przykład: 0x100 = wentylator 3V OK." },
-    { "offset": 11, "name": "ValveState",       "description": "Stan zaworu wodnego." }
+    {
+      "offset": 4,
+      "name": "T3",
+      "description": "Temperatura powietrza za wymiennikiem wodnym (czujnik T3)."
+    },
+    {
+      "offset": 5,
+      "name": "T4",
+      "description": "Temperatura w pomieszczeniu (czujnik T4)."
+    },
+    {
+      "offset": 6,
+      "name": "FanEff",
+      "description": "Wydajność wentylatora EC — prędkość obrotowa [rpm]."
+    },
+    {
+      "offset": 7,
+      "name": "AntifreezeeState",
+      "description": "Stan ochrony przeciwzamrożeniowej — 8 bitów."
+    },
+    {
+      "offset": 8,
+      "name": "DestStatus",
+      "description": "Stan destratyfikacji: aktywna gdy (DestTempRef > Td–Tm) oraz (Tz > Tm)."
+    },
+    {
+      "offset": 9,
+      "name": "FanEcConnect",
+      "description": "Status połączenia wentylatora EC z urządzeniem DRV M."
+    },
+    {
+      "offset": 10,
+      "name": "FuseState",
+      "description": "Stan bezpiecznika wentylatorów EC/3V/dachowych (bity). Przykład: 0x100 = wentylator 3V OK."
+    },
+    {
+      "offset": 11,
+      "name": "ValveState",
+      "description": "Stan zaworu wodnego."
+    }
   ],
   "holding_registers_single": [
     {
-      "offset": 4, "name": "WorkMode", "default": 0,
+      "offset": 4,
+      "name": "WorkMode",
+      "default": 0,
       "values": {
         "0": "WM_DEF — domyślny po resecie",
         "1": "WM_OFF — urządzenie wyłączone",
@@ -26,30 +60,44 @@
       }
     },
     {
-      "offset": 5, "name": "AntifreezeWareHouseOn",
+      "offset": 5,
+      "name": "AntifreezeWareHouseOn",
       "values": {
         "1": "WM_ON — włączony",
         "2": "WM_OFF — wyłączony"
       }
     },
     {
-      "offset": 6, "name": "AntifreezeWareHouseTempRef",
-      "min": 50, "max": 150, "unit": "°C×0.1"
+      "offset": 6,
+      "name": "AntifreezeWareHouseTempRef",
+      "min": 50,
+      "max": 150,
+      "unit": "°C×0.1"
     },
     {
-      "offset": 7, "name": "FanEffRef",
-      "min": 0, "max": 100, "unit": "%"
+      "offset": 7,
+      "name": "FanEffRef",
+      "min": 0,
+      "max": 100,
+      "unit": "%"
     },
     {
-      "offset": 8, "name": "Tref",
-      "min": 50, "max": 450, "unit": "°C×0.1"
+      "offset": 8,
+      "name": "Tref",
+      "min": 50,
+      "max": 450,
+      "unit": "°C×0.1"
     },
     {
-      "offset": 9, "name": "TLeadVal",
-      "min": -600, "max": 600, "unit": "°C×0.1"
+      "offset": 9,
+      "name": "TLeadVal",
+      "min": -600,
+      "max": 600,
+      "unit": "°C×0.1"
     },
     {
-      "offset": 10, "name": "TleadSensorSelect",
+      "offset": 10,
+      "name": "TleadSensorSelect",
       "values": {
         "0": "TSL_TNS — tylko odczyt",
         "1": "TSL_TLEAD — wartość przez Modbus",
@@ -57,14 +105,16 @@
       }
     },
     {
-      "offset": 11, "name": "DestModeForce",
+      "offset": 11,
+      "name": "DestModeForce",
       "values": {
         "1": "DEST_MDF_OFF — wymuś wyłączenie",
         "2": "DEST_MDF_ON — wymuś włączenie"
       }
     },
     {
-      "offset": 12, "name": "DestMode",
+      "offset": 12,
+      "name": "DestMode",
       "values": {
         "1": "DEST_MD_OFF — wyłączony",
         "2": "DEST_MD_AUTO_DEPEND — AUTO zależny od trybu pracy",
@@ -72,28 +122,44 @@
       }
     },
     {
-      "offset": 13, "name": "DestTempRef",
-      "default": 50, "min": 0, "max": 100, "unit": "K×0.1"
+      "offset": 13,
+      "name": "DestTempRef",
+      "default": 50,
+      "min": 0,
+      "max": 100,
+      "unit": "K×0.1"
     },
     {
-      "offset": 14, "name": "DestStratTimeDelay"
+      "offset": 14,
+      "name": "DestStratTimeDelay"
     },
     {
-      "offset": 15, "name": "ModeAuto_FanEffRefMin",
-      "min": 0, "max": 100, "unit": "%"
+      "offset": 15,
+      "name": "ModeAuto_FanEffRefMin",
+      "min": 0,
+      "max": 100,
+      "unit": "%"
     },
     {
-      "offset": 16, "name": "ModeAuto_FanEffRefMax",
-      "min": 0, "max": 100, "unit": "%"
+      "offset": 16,
+      "name": "ModeAuto_FanEffRefMax",
+      "min": 0,
+      "max": 100,
+      "unit": "%"
     },
     {
-      "offset": 17, "name": "ModeManual_FanEffRef",
-      "min": 0, "max": 100, "unit": "%"
+      "offset": 17,
+      "name": "ModeManual_FanEffRef",
+      "min": 0,
+      "max": 100,
+      "unit": "%"
     }
   ],
   "holding_registers_group": [
     {
-      "offset": 4, "name": "WorkMode", "default": 0,
+      "offset": 4,
+      "name": "WorkMode",
+      "default": 0,
       "values": {
         "0": "WM_DEF — domyślny po resecie",
         "1": "WM_OFF — urządzenie wyłączone",
@@ -105,34 +171,52 @@
       }
     },
     {
-      "offset": 5, "name": "FanEffRef",
-      "min": 0, "max": 100, "unit": "%"
+      "offset": 5,
+      "name": "FanEffRef",
+      "min": 0,
+      "max": 100,
+      "unit": "%"
     },
     {
-      "offset": 6, "name": "DestModeForce",
+      "offset": 6,
+      "name": "DestModeForce",
       "values": {
         "1": "DEST_MDF_OFF — wymuś wyłączenie",
         "2": "DEST_MDF_ON — wymuś włączenie"
       }
     },
     {
-      "offset": 7, "name": "DestTempRef",
-      "default": 50, "min": 0, "max": 100, "unit": "K×0.1"
+      "offset": 7,
+      "name": "DestTempRef",
+      "default": 50,
+      "min": 0,
+      "max": 100,
+      "unit": "K×0.1"
     },
     {
-      "offset": 8, "name": "DestStratTimeDelay"
+      "offset": 8,
+      "name": "DestStratTimeDelay"
     },
     {
-      "offset": 9, "name": "ModeAuto_FanEffRefMin",
-      "min": 0, "max": 100, "unit": "%"
+      "offset": 9,
+      "name": "ModeAuto_FanEffRefMin",
+      "min": 0,
+      "max": 100,
+      "unit": "%"
     },
     {
-      "offset": 10, "name": "ModeAuto_FanEffRefMax",
-      "min": 0, "max": 100, "unit": "%"
+      "offset": 10,
+      "name": "ModeAuto_FanEffRefMax",
+      "min": 0,
+      "max": 100,
+      "unit": "%"
     },
     {
-      "offset": 11, "name": "ModeManual_FanEffRef",
-      "min": 0, "max": 100, "unit": "%"
+      "offset": 11,
+      "name": "ModeManual_FanEffRef",
+      "min": 0,
+      "max": 100,
+      "unit": "%"
     }
   ]
 }

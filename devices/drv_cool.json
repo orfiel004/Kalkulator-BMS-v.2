@@ -3,17 +3,46 @@
   "description": "Nagrzewnica/chłodnica wodna",
   "group_priority": 12,
   "input_registers": [
-    { "offset": 4,  "name": "T3",                  "description": "Temperatura przy suficie (czujnik T3)." },
-    { "offset": 5,  "name": "T4",                  "description": "Temperatura w pomieszczeniu (czujnik T4)." },
-    { "offset": 6,  "name": "FanEff",              "description": "Prędkość wentylatora (AC 3-biegowy)." },
-    { "offset": 7,  "name": "AntifreezeState",     "description": "Stan ochrony przeciwzamrożeniowej magazynu — 8 bitów." },
-    { "offset": 9,  "name": "FilterPressureState", "description": "Stan presostatu filtra." },
-    { "offset": 10, "name": "FuseState",           "description": "Stan bezpiecznika wentylatorów (bity). Przykład: 0x100 = OK, 0x200 = przepalony." },
-    { "offset": 11, "name": "ValveState",          "description": "Stan zaworu wodnego." }
+    {
+      "offset": 4,
+      "name": "T3",
+      "description": "Temperatura przy suficie (czujnik T3)."
+    },
+    {
+      "offset": 5,
+      "name": "T4",
+      "description": "Temperatura w pomieszczeniu (czujnik T4)."
+    },
+    {
+      "offset": 6,
+      "name": "FanEff",
+      "description": "Prędkość wentylatora (AC 3-biegowy)."
+    },
+    {
+      "offset": 7,
+      "name": "AntifreezeState",
+      "description": "Stan ochrony przeciwzamrożeniowej magazynu — 8 bitów."
+    },
+    {
+      "offset": 9,
+      "name": "FilterPressureState",
+      "description": "Stan presostatu filtra."
+    },
+    {
+      "offset": 10,
+      "name": "FuseState",
+      "description": "Stan bezpiecznika wentylatorów (bity). Przykład: 0x100 = OK, 0x200 = przepalony."
+    },
+    {
+      "offset": 11,
+      "name": "ValveState",
+      "description": "Stan zaworu wodnego."
+    }
   ],
   "holding_registers_single": [
     {
-      "offset": 4, "name": "WorkMode",
+      "offset": 4,
+      "name": "WorkMode",
       "values": {
         "0": "WM_DEF — wartość domyślna po resecie zasilania",
         "1": "WM_OFF — urządzenie wyłączone",
@@ -25,31 +54,45 @@
       }
     },
     {
-      "offset": 5, "name": "AntifreezeWareHouseOn",
+      "offset": 5,
+      "name": "AntifreezeWareHouseOn",
       "values": {
         "1": "WM_ON — włączony",
         "2": "WM_OFF — wyłączony"
       }
     },
     {
-      "offset": 6, "name": "AntifreezeWareHouseTempRef",
-      "min": 50, "max": 150, "unit": "°C×0.1"
+      "offset": 6,
+      "name": "AntifreezeWareHouseTempRef",
+      "min": 50,
+      "max": 150,
+      "unit": "°C×0.1"
     },
     {
-      "offset": 7, "name": "FanEffRef",
-      "min": 0, "max": 100, "unit": "%",
+      "offset": 7,
+      "name": "FanEffRef",
+      "min": 0,
+      "max": 100,
+      "unit": "%",
       "description": "Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
     },
     {
-      "offset": 8, "name": "Tref",
-      "min": 50, "max": 450, "unit": "°C×0.1"
+      "offset": 8,
+      "name": "Tref",
+      "min": 50,
+      "max": 450,
+      "unit": "°C×0.1"
     },
     {
-      "offset": 9, "name": "TLeadVal",
-      "min": -600, "max": 600, "unit": "°C×0.1"
+      "offset": 9,
+      "name": "TLeadVal",
+      "min": -600,
+      "max": 600,
+      "unit": "°C×0.1"
     },
     {
-      "offset": 10, "name": "TLeadSensorSelect",
+      "offset": 10,
+      "name": "TLeadSensorSelect",
       "values": {
         "0": "TSL_TNS — tylko odczyt",
         "1": "TSL_TLEAD — wartość przez Modbus (TLeadVal)",
@@ -57,18 +100,27 @@
       }
     },
     {
-      "offset": 15, "name": "ModeAuto_FanEffRefMin",
-      "min": 0, "max": 100, "unit": "%",
+      "offset": 15,
+      "name": "ModeAuto_FanEffRefMin",
+      "min": 0,
+      "max": 100,
+      "unit": "%",
       "description": "Minimalna wydajność wentylatora w trybie AUTO. AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1, 34–66=bieg 2, 67–100=bieg 3"
     },
     {
-      "offset": 16, "name": "ModeAuto_FanEffRefMax",
-      "min": 0, "max": 100, "unit": "%",
+      "offset": 16,
+      "name": "ModeAuto_FanEffRefMax",
+      "min": 0,
+      "max": 100,
+      "unit": "%",
       "description": "Maksymalna wydajność wentylatora w trybie AUTO. AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1, 34–66=bieg 2, 67–100=bieg 3"
     },
     {
-      "offset": 17, "name": "ModeManual_FanEffRef",
-      "min": 0, "max": 100, "unit": "%",
+      "offset": 17,
+      "name": "ModeManual_FanEffRef",
+      "min": 0,
+      "max": 100,
+      "unit": "%",
       "description": "Wydajność wentylatora po osiągnięciu temperatury docelowej w trybie MANUAL. AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1, 34–66=bieg 2, 67–100=bieg 3"
     }
   ],
