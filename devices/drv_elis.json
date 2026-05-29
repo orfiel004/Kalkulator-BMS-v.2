@@ -3,16 +3,16 @@
   "description": "Kurtyna powietrzna ELIS",
   "group_priority": 3,
   "input_registers": [
-    { "offset": 4, "name": "T3" },
-    { "offset": 5, "name": "T4" },
-    { "offset": 6, "name": "CurtainFanSpeed" },
-    { "offset": 7, "name": "ValveState" },
-    { "offset": 8, "name": "HeaterFanSpeed" },
-    { "offset": 9, "name": "ContactDoor" },
-    { "offset": 10, "name": "HeaterDetect" },
-    { "offset": 11, "name": "AntifreezeState" },
-    { "offset": 12, "name": "FuseState" },
-    { "offset": 13, "name": "CurtainElectricpower" }
+    { "offset": 4,  "name": "T3",                   "description": "Temperatura powietrza za wymiennikiem wodnym (czujnik T3)." },
+    { "offset": 5,  "name": "T4",                   "description": "Temperatura powietrza przed wymiennikiem wodnym (czujnik T4)." },
+    { "offset": 6,  "name": "CurtainFanSpeed",      "description": "Prędkość wentylatora kurtyny (AC 3-biegowy: 0=stop, 1–33=bieg1, 34–66=bieg2, 67–100=bieg3)." },
+    { "offset": 7,  "name": "ValveState",           "description": "Stan zaworu wodnego." },
+    { "offset": 8,  "name": "HeaterFanSpeed",       "description": "Prędkość wentylatora nagrzewnicy (AC 3-biegowy)." },
+    { "offset": 9,  "name": "ContactDoor",          "description": "Stan styku drzwiowego." },
+    { "offset": 10, "name": "HeaterDetect",         "description": "Procedura wykrywania nagrzewnicy (ELIS-DUO)." },
+    { "offset": 11, "name": "AntifreezeState",      "description": "Stan ochrony przeciwzamrożeniowej — 8 bitów dla poszczególnych trybów." },
+    { "offset": 12, "name": "FuseState",            "description": "Stan bezpiecznika wentylatora 3V (bity 8–11). Przykład: 0x100 = OK, 0x200 = przepalony." },
+    { "offset": 13, "name": "CurtainElectricpower", "description": "Moc elektrycznej nagrzewnicy kurtyny (wyjścia L1/L2 na złączu VALVE)." }
   ],
   "holding_registers_single": [
     {
