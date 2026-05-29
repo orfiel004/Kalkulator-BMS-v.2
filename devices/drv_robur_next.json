@@ -3,16 +3,16 @@
   "description": "Nagrzewnica gazowa ROBUR NEXT",
   "group_priority": 10,
   "input_registers": [
-    { "offset": 5, "name": "T3" },
-    { "offset": 6, "name": "T4" },
-    { "offset": 8, "name": "ExternalGasDetectTH1" },
-    { "offset": 9, "name": "ExternalGasDetectTH2" },
-    { "offset": 10, "name": "ExternalGasDetectVal" },
-    { "offset": 15, "name": "AntifreezeStateWarehouse" },
-    { "offset": 16, "name": "FuseState" },
-    { "offset": 17, "name": "GasAlarmState" },
-    { "offset": 18, "name": "STBAlarmState" },
-    { "offset": 19, "name": "FilterWorkTime" }
+    { "offset": 5,  "name": "T3",                       "description": "Temperatura przy suficie (czujnik T3)." },
+    { "offset": 6,  "name": "T4",                       "description": "Temperatura w pomieszczeniu (czujnik T4)." },
+    { "offset": 8,  "name": "ExternalGasDetectTH1",     "description": "Sygnał zewnętrznego czujnika gazu — próg pierwszy." },
+    { "offset": 9,  "name": "ExternalGasDetectTH2",     "description": "Sygnał zewnętrznego czujnika gazu — próg drugi." },
+    { "offset": 10, "name": "ExternalGasDetectVal",     "description": "Stężenie gazu — wejście 0–10V DC (wymagana kalibracja czujnika)." },
+    { "offset": 15, "name": "AntifreezeStateWarehouse", "description": "Stan ochrony przeciwzamrożeniowej magazynu." },
+    { "offset": 16, "name": "FuseState",                "description": "Stan bezpiecznika wentylatora." },
+    { "offset": 17, "name": "GasAlarmState",            "description": "Alarm Robur — gaz/płomień. Odczyt z zacisku nr 6 (terminal wewnątrz nagrzewnicy)." },
+    { "offset": 18, "name": "STBAlarmState",            "description": "Alarm temperatury wyciągu powietrza (STB)." },
+    { "offset": 19, "name": "FilterWorkTime",           "description": "Czas pracy filtra. Czas rzeczywisty = 5 × wartość [min]." }
   ],
   "holding_registers_single": [
     {
