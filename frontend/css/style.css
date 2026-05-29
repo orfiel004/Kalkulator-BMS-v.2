@@ -228,7 +228,19 @@ button:hover { background: #f5f7fa; }
   border-collapse: collapse;
   margin-bottom: 16px;
   font-size: 12px;
+  table-layout: fixed;
 }
+
+.reg-table th:nth-child(1),
+.reg-table td:nth-child(1) { width: 38px; }
+
+.reg-table th:nth-child(2),
+.reg-table td:nth-child(2) { width: 120px; }
+
+.reg-table th:nth-child(3),
+.reg-table td:nth-child(3) { width: 100px; }
+
+/* Kolumna 4 (Nazwa rejestru) zajmuje pozostałe miejsce */
 
 .reg-table th {
   background: #f5f7fa;
@@ -238,12 +250,15 @@ button:hover { background: #f5f7fa; }
   color: #445;
   border-bottom: 2px solid #dde2ea;
   white-space: nowrap;
+  overflow: hidden;
 }
 
 .reg-table td {
   padding: 5px 10px;
   border-bottom: 1px solid #eef0f4;
   vertical-align: top;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .reg-table tr:last-child td { border-bottom: none; }
