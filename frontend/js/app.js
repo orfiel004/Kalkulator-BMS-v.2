@@ -308,7 +308,7 @@ function buildControllerSection(controllerType, mode) {
     addrDec: r.addr,
     addrHex: Calculator.toHex(r.addr),
     name:    r.name,
-    reg:     {},
+    reg:     r,
   }));
   body.appendChild(buildRegSection('Input Registers (IR) — tylko odczyt', irRows));
 
@@ -325,7 +325,7 @@ function buildControllerSection(controllerType, mode) {
     addrDec: r.addr,
     addrHex: Calculator.toHex(r.addr),
     name:    r.name,
-    reg:     {},
+    reg:     r,
   }));
   body.appendChild(buildRegSection('Holding Registers (HR)', hrRows));
 
@@ -353,13 +353,13 @@ function buildZoneSection(zoneNum, zoneIndex) {
 
   const irRows = Calculator.ZONE_REGS.ir.map(r => {
     const addrDec = Calculator.calcZoneRegAddress(r.baseAddr, zoneIndex);
-    return { addrDec, addrHex: Calculator.toHex(addrDec), name: r.name, reg: {} };
+    return { addrDec, addrHex: Calculator.toHex(addrDec), name: r.name, reg: r };
   });
   block.appendChild(buildRegSection('Input Registers (IR) — tylko odczyt', irRows));
 
   const hrRows = Calculator.ZONE_REGS.hr.map(r => {
     const addrDec = Calculator.calcZoneRegAddress(r.baseAddr, zoneIndex);
-    return { addrDec, addrHex: Calculator.toHex(addrDec), name: r.name, reg: {} };
+    return { addrDec, addrHex: Calculator.toHex(addrDec), name: r.name, reg: r };
   });
   block.appendChild(buildRegSection('Holding Registers (HR)', hrRows));
 
