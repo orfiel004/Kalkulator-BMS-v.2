@@ -1,6 +1,6 @@
 {
   "name": "DRV D",
-  "description": "Nagrzewnica wodna (wariant D)",
+  "description": "Destratyfikator (DRV D / LEO D)",
   "group_priority": 7,
   "input_registers": [
     { "offset": 4, "name": "T3" },
