@@ -3,17 +3,17 @@
   "description": "Rekuperator OXEN",
   "group_priority": 8,
   "input_registers": [
-    { "offset": 0, "name": "Status1" },
-    { "offset": 2, "name": "T1" },
-    { "offset": 3, "name": "T2" },
-    { "offset": 4, "name": "T3" },
-    { "offset": 5, "name": "T4" },
-    { "offset": 6, "name": "T5" },
-    { "offset": 7, "name": "Outputs" },
-    { "offset": 8, "name": "Inputs" },
-    { "offset": 9, "name": "FilterWorkTime" },
-    { "offset": 10, "name": "FansEff_1" },
-    { "offset": 11, "name": "FansEff_2" }
+    { "offset": 0,  "name": "Status1",        "description": "Rejestr statusu nr 1 (bitowy)." },
+    { "offset": 2,  "name": "T1",             "description": "Temperatura powietrza nawiewanego (czujnik T1)." },
+    { "offset": 3,  "name": "T2",             "description": "Temperatura powietrza przy wentylatorze wyciągowym (czujnik T2)." },
+    { "offset": 4,  "name": "T3",             "description": "Temperatura powietrza za wymiennikiem wodnym (czujnik T3)." },
+    { "offset": 5,  "name": "T4",             "description": "Temperatura powietrza powrotnego / pomieszczenia (czujnik T4)." },
+    { "offset": 6,  "name": "T5",             "description": "Temperatura wymiennika wodnego (czujnik T5)." },
+    { "offset": 7,  "name": "Outputs",        "description": "Stan wyjść sterownika." },
+    { "offset": 8,  "name": "Inputs",         "description": "Stan wejść sterownika (wejścia beznap. i przełączniki)." },
+    { "offset": 9,  "name": "FilterWorkTime", "description": "Czas pracy filtra." },
+    { "offset": 10, "name": "FansEff_1",      "description": "Wydajność wentylatorów grupy I — nawiew [%]." },
+    { "offset": 11, "name": "FansEff_2",      "description": "Wydajność wentylatorów grupy II — wyciąg [%]." }
   ],
   "holding_registers_single": [
     {
