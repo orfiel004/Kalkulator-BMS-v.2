@@ -2,6 +2,7 @@
   "name": "DRV LUNA",
   "description": "Nagrzewnica LUNA",
   "group_priority": 14,
+  "tbox_zone_only": true,
   "input_registers": [
     { "offset": 5,  "name": "RoomTemperatureValue",    "description": "Temperatura zmierzona przez czujnik T4 (temperatura w pomieszczeniu)." },
     { "offset": 6,  "name": "LeadTemperatureValue",    "description": "Temperatura z czujnika wiodącego (MODBUS, ROOM, SUPPLY lub INTAKE — zależnie od ustawień)." },
