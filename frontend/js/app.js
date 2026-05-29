@@ -229,13 +229,23 @@ function renderTboxZone(resultsEl, selectedDevices) {
     const device = devices[name];
     if (!device) return;
 
-    const mapZoneReg = (reg) => {
-      const addrDec = Calculator.calcZoneDeviceAddress(reg.offset, sortedIndex);
-      return { addrDec, addrHex: Calculator.toHex(addrDec), name: reg.name, reg };
-    };
+    const mapIR = (reg) => ({
+      offset:  reg.offset,
+      addrDec: Calculator.calcZoneDeviceAddress(reg.offset, sortedIndex),
+      addrHex: Calculator.toHex(Calculator.calcZoneDeviceAddress(reg.offset, sortedIndex)),
+      name:    reg.name,
+      reg:     reg,
+    });
+    const mapHR = (reg) => ({
+      offset:  reg.offset,
+      addrDec: Calculator.calcZoneDeviceHRAddress(reg.offset, sortedIndex),
+      addrHex: Calculator.toHex(Calculator.calcZoneDeviceHRAddress(reg.offset, sortedIndex)),
+      name:    reg.name,
+      reg:     reg,
+    });
 
-    const ir       = (device.input_registers          || []).map(mapZoneReg);
-    const hrSingle = (device.holding_registers_single || []).map(mapZoneReg);
+    const ir       = (device.input_registers          || []).map(mapIR);
+    const hrSingle = (device.holding_registers_single || []).map(mapHR);
 
     const block = document.createElement('div');
     block.className = 'result-block';
