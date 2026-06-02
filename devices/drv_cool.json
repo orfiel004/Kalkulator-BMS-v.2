@@ -4,11 +4,6 @@
   "group_priority": 12,
   "input_registers": [
     {
-      "offset": 4,
-      "name": "T3",
-      "description": "Temperatura przy suficie (czujnik T3)."
-    },
-    {
       "offset": 5,
       "name": "T4",
       "description": "Temperatura w pomieszczeniu (czujnik T4)."
