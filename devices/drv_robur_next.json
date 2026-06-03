@@ -167,5 +167,11 @@
       "description": "Ustawienie stopnia spalania gazu (aktywne tylko w trybie ręcznego grzania WM_HEAT_MANUAL)"
     }
   ],
-  "holding_registers_group": []
+  "holding_registers_group": [
+    { "offset": 4,  "name": "WorkMode",              "values": { "0": "WM_NS — tylko odczyt", "1": "WM_OFF — urządzenie wyłączone", "2": "WM_HEAT_AUTO — automatyczne grzanie", "3": "WM_HEAT_MANUAL — ręczne grzanie", "4": "WM_VENTILATION — wentylacja" } },
+    { "offset": 12, "name": "STBTemperatureAlarmOn",  "min": 810, "max": 1200, "unit": "°C×0.1", "description": "Temperatura progowa aktywacji alarmu STB. Alarm gdy T3 > wartość." },
+    { "offset": 13, "name": "STBTemperatureAlarmOff", "min": 610, "max": 800,  "unit": "°C×0.1", "description": "Temperatura resetowania alarmu STB. Reset gdy T3 < wartość." },
+    { "offset": 14, "name": "ContModeFanSpeedRef",    "values": { "0": "Fan OFF — wentylator wyłączony", "100": "Fan ON — wentylator włączony" }, "description": "Wydajność wentylatora po osiągnięciu temperatury docelowej." },
+    { "offset": 15, "name": "GasBurnerLvlRef",        "values": { "0": "RO — tylko odczyt", "1": "FIRST_STEP — pierwszy stopień spalania", "2": "SECOND_STEP — drugi stopień spalania" }, "description": "Stopień spalania gazu (aktywne w trybie WM_HEAT_MANUAL)." }
+  ]
 }
