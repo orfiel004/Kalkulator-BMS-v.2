@@ -2003,7 +2003,7 @@ const DEVICES_DATA = {
         "min": 810,
         "max": 1200,
         "unit": "°C×0.1",
-        "description": "Temperatura progowa aktywacji alarmu STB. Alarm gdy T3 > wartość."
+        "description": "Temperatura progowa aktywacji alarmu STB."
       },
       {
         "offset": 13,
@@ -2011,7 +2011,7 @@ const DEVICES_DATA = {
         "min": 610,
         "max": 800,
         "unit": "°C×0.1",
-        "description": "Temperatura resetowania alarmu STB. Reset gdy T3 < wartość."
+        "description": "Temperatura resetowania alarmu STB."
       },
       {
         "offset": 14,
@@ -2313,7 +2313,7 @@ const DEVICES_DATA = {
         "min": -100,
         "max": 150,
         "unit": "°C×0.1",
-        "description": "Temperatura wymuszonego otwarcia klapy (tryb DAMPER_FMD_ON)."
+        "description": "Temperatura wymuszonego otwarcia klapy."
       },
       {
         "offset": 7,
@@ -2345,15 +2345,15 @@ const DEVICES_DATA = {
         "min": -100,
         "max": 100,
         "unit": "%",
-        "description": "Wymuszenie prędkości wentylatora dachowego (dodawane do FanEffRef)."
+        "description": "Wymuszenie prędkości wentylatora dachowego."
       },
       {
         "offset": 11,
         "name": "FanRoofMode",
         "values": {
           "0": "FR_MD_NS — tylko odczyt",
-          "1": "FR_MD_01 — zależny od pozycji klapy (DamperLevelRef) i nastawy wentylatora (FanEffRef)",
-          "2": "FR_MD_02 — zależny wyłącznie od pozycji klapy (DamperLevelRef)"
+          "1": "FR_MD_01 — zależny od pozycji klapy i nastawy wentylatora",
+          "2": "FR_MD_02 — zależny wyłącznie od pozycji klapy"
         }
       },
       {
@@ -2397,7 +2397,7 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Pozycja klapy dla wejścia zewnętrznego EXT TH1. Krok: 5."
+        "description": "Pozycja klapy dla wejścia EXT TH1. Krok: 5."
       },
       {
         "offset": 17,
@@ -2410,7 +2410,7 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Pozycja klapy dla wejścia zewnętrznego EXT TH2. Krok: 5."
+        "description": "Pozycja klapy dla wejścia EXT TH2. Krok: 5."
       }
     ]
   },
@@ -2419,6 +2419,11 @@ const DEVICES_DATA = {
     "description": "Nagrzewnica/chłodnica wodna",
     "group_priority": 12,
     "input_registers": [
+      {
+        "offset": 4,
+        "name": "T3",
+        "description": "Temperatura przy suficie (czujnik T3)."
+      },
       {
         "offset": 5,
         "name": "T4",
