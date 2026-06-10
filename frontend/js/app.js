@@ -31,6 +31,26 @@ function updateFormForControllerType() {
   document.querySelectorAll('.device-row .zone-field').forEach(el => {
     el.style.display = isTboxZone ? 'flex' : 'none';
   });
+
+  // Przebuduj opcje we wszystkich selektach urządzeń — filtruj tbox_zone_only
+  const names = Object.keys(devices)
+    .filter(name => isTboxZone || !devices[name].tbox_zone_only)
+    .sort();
+
+  document.querySelectorAll('.device-row select[id^="device-"]').forEach(sel => {
+    const currentVal = sel.value;
+    sel.innerHTML = '';
+    names.forEach(name => {
+      const opt = document.createElement('option');
+      opt.value = name;
+      opt.textContent = name;
+      sel.appendChild(opt);
+    });
+    // Zachowaj aktualny wybór jeśli nadal dostępny
+    if (names.includes(currentVal)) {
+      sel.value = currentVal;
+    }
+  });
 }
 
 // ============================================================
