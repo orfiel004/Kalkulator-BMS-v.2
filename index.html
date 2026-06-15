@@ -10,7 +10,7 @@
 
 <header>
   <h1>Kalkulator BMS</h1>
-  <p>Obliczanie adresów rejestrów Modbus dla urządzeń podłączonych do sterownika T-box</p>
+  <p>Obliczanie adresów rejestrów Modbus dla urządzeń podłączonych do sterowników SYSTEMU FLOWAIR</p>
 </header>
 
 <main>
@@ -21,6 +21,7 @@
         <select id="controllerType">
           <option value="tbox">T-box</option>
           <option value="tbox_zone">T-box Zone</option>
+          <option value="mbox">M-box</option>
         </select>
       </div>
       <div class="field-group" id="mode-field">
@@ -38,6 +39,10 @@
 
     <div id="devices-container">
       <!-- Wiersze urządzeń dodawane dynamicznie -->
+    </div>
+
+    <div id="mbox-placeholder" style="display:none">
+      <p class="mbox-info">Kalkulator dla sterownika M-box jest w przygotowaniu.</p>
     </div>
 
     <div class="form-actions">

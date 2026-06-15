@@ -24,33 +24,37 @@ function loadDevices() {
 // Zmiana sterownika — aktualizacja formularza
 // ============================================================
 function updateFormForControllerType() {
-  const isTboxZone = document.getElementById('controllerType').value === 'tbox_zone';
+  const val = document.getElementById('controllerType').value;
+  const isTboxZone = val === 'tbox_zone';
+  const isMbox = val === 'mbox';
 
-  document.getElementById('mode-field').style.display = isTboxZone ? 'none' : '';
+  // Tryb pracy — widoczny tylko dla T-box klasycznego
+  document.getElementById('mode-field').style.display = (isTboxZone || isMbox) ? 'none' : '';
 
-  document.querySelectorAll('.device-row .zone-field').forEach(el => {
+  // Nagłówki ZoneID/DeviceID — tylko T-box Zone
+  document.querySelectorAll('.zone-header-row').forEach(el => {
     el.style.display = isTboxZone ? 'flex' : 'none';
   });
 
-  // Przebuduj opcje we wszystkich selektach urządzeń — filtruj tbox_zone_only
-  const names = Object.keys(devices)
-    .filter(name => isTboxZone || !devices[name].tbox_zone_only)
-    .sort();
+  // Sekcja urządzeń + przyciski — ukryta dla M-box
+  document.getElementById('devices-container').style.display = isMbox ? 'none' : '';
+  document.querySelector('.form-actions').style.display = isMbox ? 'none' : '';
+  document.getElementById('mbox-placeholder').style.display = isMbox ? 'block' : 'none';
 
-  document.querySelectorAll('.device-row select[id^="device-"]').forEach(sel => {
-    const currentVal = sel.value;
-    sel.innerHTML = '';
-    names.forEach(name => {
-      const opt = document.createElement('option');
-      opt.value = name;
-      opt.textContent = name;
-      sel.appendChild(opt);
+  // Przebuduj opcje we wszystkich selektach urządzeń — filtruj tbox_zone_only
+  if (!isMbox) {
+    const names = Object.keys(devices)
+      .filter(name => isTboxZone || !devices[name].tbox_zone_only)
+      .sort();
+
+    document.querySelectorAll('.device-row select[id^="device-"]').forEach(sel => {
+      const current = sel.value;
+      sel.innerHTML = names.map(n =>
+        `<option value="${n}"${n === current ? ' selected' : ''}>${n}</option>`
+      ).join('');
+      if (!names.includes(current) && names.length > 0) sel.value = names[0];
     });
-    // Zachowaj aktualny wybór jeśli nadal dostępny
-    if (names.includes(currentVal)) {
-      sel.value = currentVal;
-    }
-  });
+  }
 }
 
 // ============================================================
