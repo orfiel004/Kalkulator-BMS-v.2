@@ -38,8 +38,8 @@ function updateFormForControllerType() {
     el.style.display = isTboxZone ? 'flex' : 'none';
   });
 
-  // Pola stref w istniejących wierszach urządzeń — tylko T-box Zone
-  document.querySelectorAll('.zone-field').forEach(el => {
+  // Pola stref w wierszach T-box — tylko T-box Zone (nie dotykaj M-box zone-field)
+  document.querySelectorAll('#devices-container .zone-field').forEach(el => {
     el.style.display = isTboxZone ? 'flex' : 'none';
   });
 
@@ -170,6 +170,11 @@ function addMboxDeviceRow() {
   devIdInput.value = id;
 
   // Strefa (opcjonalna)
+  // Pole Strefa — opakowane w span.zone-field jak w addDeviceRow()
+  const zoneField = document.createElement('span');
+  zoneField.className = 'zone-field';
+  zoneField.style.cssText = 'display:flex; align-items:center; gap:4px;';
+
   const zoneLabel = document.createElement('label');
   zoneLabel.textContent = 'Strefa:';
   zoneLabel.htmlFor = `mbox-zone-${id}`;
@@ -181,6 +186,8 @@ function addMboxDeviceRow() {
   zoneInput.max = 6;
   zoneInput.placeholder = '—';
 
+  zoneField.append(zoneLabel, zoneInput);
+
   // Przycisk usunięcia
   const removeBtn = document.createElement('button');
   removeBtn.type = 'button';
@@ -189,7 +196,7 @@ function addMboxDeviceRow() {
   removeBtn.title = 'Usuń urządzenie';
   removeBtn.onclick = () => row.remove();
 
-  row.append(select, devIdLabel, devIdInput, zoneLabel, zoneInput, removeBtn);
+  row.append(select, devIdLabel, devIdInput, zoneField, removeBtn);
   document.getElementById('mbox-devices-container').appendChild(row);
 }
 
@@ -686,8 +693,8 @@ function calculateMbox() {
     name: r.name,
     reg: r,
   }));
-  sysWrapper.appendChild(buildRegSection('Holding Registers (HR) — odczyt/zapis', sysHrRows));
   sysWrapper.appendChild(buildRegSection('Input Registers (IR) — tylko odczyt', sysIrRows));
+  sysWrapper.appendChild(buildRegSection('Holding Registers (HR) — odczyt/zapis', sysHrRows));
   resultsEl.appendChild(sysWrapper);
 
   // ---- Sekcje urządzeń — po jednej na każdy wiersz ----
@@ -719,8 +726,8 @@ function calculateMbox() {
       name: r.name,
       reg: r,
     }));
-    devWrapper.appendChild(buildRegSection('Holding Registers (HR) — odczyt/zapis', devHrRows));
     devWrapper.appendChild(buildRegSection('Input Registers (IR) — tylko odczyt', devIrRows));
+    devWrapper.appendChild(buildRegSection('Holding Registers (HR) — odczyt/zapis', devHrRows));
     resultsEl.appendChild(devWrapper);
 
     // Blok strefowy — raz na unikalną strefę
@@ -747,8 +754,8 @@ function calculateMbox() {
         name: r.name,
         reg: r,
       }));
-      zoneWrapper.appendChild(buildRegSection('Holding Registers (HR) — odczyt/zapis', zoneHrRows));
       zoneWrapper.appendChild(buildRegSection('Input Registers (IR) — tylko odczyt', zoneIrRows));
+      zoneWrapper.appendChild(buildRegSection('Holding Registers (HR) — odczyt/zapis', zoneHrRows));
       resultsEl.appendChild(zoneWrapper);
     }
   });
