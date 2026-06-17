@@ -63,7 +63,7 @@ function updateFormForControllerType() {
       .filter(name => isTboxZone || !devices[name].tbox_zone_only)
       .sort();
 
-    document.querySelectorAll('.device-row select[id^="device-"]').forEach(sel => {
+    document.querySelectorAll('#devices-container .device-row select[id^="device-"]').forEach(sel => {
       const current = sel.value;
       sel.innerHTML = names.map(n =>
         `<option value="${n}"${n === current ? ' selected' : ''}>${n}</option>`
@@ -144,7 +144,7 @@ function addMboxDeviceRow() {
   const mboxNames = Object.keys(Calculator.MBOX.devices);
 
   const row = document.createElement('div');
-  row.className = 'mbox-device-row';
+  row.className = 'device-row mbox-device-row';
   row.dataset.mboxRowId = id;
 
   // Select typu urządzenia M-box
@@ -204,7 +204,7 @@ function addMboxDeviceRow() {
 // Walidacja formularza
 // ============================================================
 function validateForm() {
-  const rows = document.querySelectorAll('.device-row');
+  const rows = document.querySelectorAll('#devices-container .device-row');
   if (rows.length === 0) return 'Dodaj co najmniej jedno urządzenie.';
 
   const isTboxZone = document.getElementById('controllerType').value === 'tbox_zone';
@@ -243,7 +243,7 @@ function calculate() {
   const isTboxZone = controllerType === 'tbox_zone';
 
   const selectedDevices = [];
-  document.querySelectorAll('.device-row').forEach(row => {
+  document.querySelectorAll('#devices-container .device-row').forEach(row => {
     const id   = row.dataset.rowId;
     const name = document.getElementById(`device-${id}`).value;
     const addr = parseInt(document.getElementById(`addr-${id}`).value);
