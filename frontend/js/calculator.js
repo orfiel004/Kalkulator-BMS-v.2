@@ -252,7 +252,7 @@ const Calculator = {
 
     devices: {
 
-      'LEO D (AC/EC)': {
+      'LEO D (DRV D)': {
         ir: [
           { n:1,  name:'Type',              description:'Typ urządzenia (wartość: 3)' },
           { n:2,  name:'Ver',               description:'Wersja oprogramowania' },
@@ -275,7 +275,7 @@ const Calculator = {
         ],
       },
 
-      'ELIS (AC) — kurtyna powietrzna': {
+      'ELIS (DRV ELIS)': {
         ir: [
           { n:1,  name:'Type',                    description:'Typ urządzenia (wartość: 1)' },
           { n:2,  name:'Ver',                     description:'Wersja oprogramowania' },
@@ -305,7 +305,7 @@ const Calculator = {
         ],
       },
 
-      'SLIM (AC) — kurtyna powietrzna': {
+      'SLIM (DRV SLIM)': {
         ir: [
           { n:1,  name:'Type',                    description:'Typ urządzenia' },
           { n:2,  name:'Ver',                     description:'Wersja oprogramowania' },
@@ -335,7 +335,7 @@ const Calculator = {
         ],
       },
 
-      'KM — Komora Mieszania': {
+      'LEO KM (DRV KM)': {
         ir: [
           { n:1,  name:'Type',                      description:'Typ urządzenia (wartość: 11)' },
           { n:2,  name:'Ver',                       description:'Wersja oprogramowania' },
@@ -381,7 +381,7 @@ const Calculator = {
         ],
       },
 
-      'LEO M (EC)': {
+      'LEO EC (DRV M)': {
         ir: [
           { n:1,  name:'Type',              description:'Typ urządzenia' },
           { n:2,  name:'Ver',               description:'Wersja oprogramowania' },
@@ -414,7 +414,7 @@ const Calculator = {
         ],
       },
 
-      'ROOFTOP': {
+      'CUBE (DRV CUBE)': {
         ir: [
           { n:1,  name:'Type',                        description:'Typ urządzenia (wartość: 13)' },
           { n:2,  name:'T1',                          description:'Temperatura — czujnik T1 (x0.1 °C)' },
@@ -465,7 +465,7 @@ const Calculator = {
         ],
       },
 
-      'LEO V (AC)': {
+      'LEO AC (DRV V)': {
         ir: [
           { n:1,  name:'Type',              description:'Typ urządzenia (wartość: 5)' },
           { n:2,  name:'Ver',               description:'Wersja oprogramowania' },
@@ -498,7 +498,7 @@ const Calculator = {
         ],
       },
 
-      'LEO EL (AC)': {
+      'LEO EL (DRV EL)': {
         ir: [
           { n:1,  name:'Type',                  description:'Typ urządzenia (wartość: 6)' },
           { n:2,  name:'Ver',                   description:'Wersja oprogramowania' },
@@ -532,7 +532,7 @@ const Calculator = {
         ],
       },
 
-      'LEO COOL (AC)': {
+      'LEO COOL (DRV COOL)': {
         ir: [
           { n:1,  name:'Type',              description:'Typ urządzenia (wartość: 7)' },
           { n:2,  name:'Ver',               description:'Wersja oprogramowania' },
@@ -560,7 +560,7 @@ const Calculator = {
         ],
       },
 
-      'ROBUR R KM NEXT': {
+      'ROBUR R KM NEXT (DRV R KM NEXT)': {
         ir: [
           { n:1,  name:'Type',                  description:'Typ urządzenia (wartość: 8)' },
           { n:2,  name:'Ver',                   description:'Wersja oprogramowania' },
@@ -605,7 +605,7 @@ const Calculator = {
         ],
       },
 
-      'ROBUR R NEXT': {
+      'ROBUR R NEXT (DRV R NEXT)': {
         ir: [
           { n:1,  name:'Type',                  description:'Typ urządzenia (wartość: 9)' },
           { n:2,  name:'Ver',                   description:'Wersja oprogramowania' },
@@ -637,7 +637,7 @@ const Calculator = {
         ],
       },
 
-      'LUNA': {
+      'LUNA (DRV LUNA)': {
         ir: [
           { n:1,  name:'Type',                  description:'Typ urządzenia (wartość: 14)' },
           { n:2,  name:'Hardware',              description:'Wersja hardware' },
@@ -676,7 +676,7 @@ const Calculator = {
         ],
       },
 
-      'OXEN': {
+      'OXEN (DRV OXEN)': {
         ir: [
           { n:1,  name:'Type',                  description:'Typ urządzenia (wartość: 666)' },
           { n:2,  name:'Zone',                  description:'Przypisana strefa (1–6)' },

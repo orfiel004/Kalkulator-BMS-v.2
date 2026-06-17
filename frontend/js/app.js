@@ -51,7 +51,7 @@ function updateFormForControllerType() {
   if (mboxContainer) mboxContainer.style.display = isMbox ? 'block' : 'none';
 
   // Przyciski formularza T-box
-  document.querySelector('.form-actions').style.display = isMbox ? 'none' : '';
+  document.getElementById('tbox-actions').style.display = isMbox ? 'none' : '';
 
   // Przyciski formularza M-box
   const mboxActions = document.getElementById('mbox-actions');
@@ -159,7 +159,7 @@ function addMboxDeviceRow() {
 
   // DeviceID
   const devIdLabel = document.createElement('label');
-  devIdLabel.textContent = 'DeviceID:';
+  devIdLabel.textContent = 'Adres:';
   devIdLabel.htmlFor = `mbox-dev-id-${id}`;
 
   const devIdInput = document.createElement('input');
@@ -523,7 +523,7 @@ function buildZoneSection(zoneNum, zoneIndex) {
     const addrDec = Calculator.calcZoneRegAddress(r.baseAddr, zoneIndex);
     return { addrDec, addrHex: Calculator.toHex(addrDec), name: r.name, reg: r };
   });
-  block.appendChild(buildRegSection('Holding Registers (HR)', hrRows));
+  block.appendChild(buildRegSection('Holding Registers (HR) — Nastawy', hrRows));
 
   return block;
 }
