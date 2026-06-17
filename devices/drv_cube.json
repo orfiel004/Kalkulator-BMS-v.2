@@ -221,5 +221,106 @@
       "description": "Wybór źródła danych CO2. Rejestr 16-bit: MSB ignorowany, LSB = źródło"
     }
   ],
-  "holding_registers_group": []
+  "holding_registers_group": [
+    {
+      "offset": 4,
+      "name": "WorkMode",
+      "values": {
+        "1": "WM_OFF — urządzenie wyłączone",
+        "2": "WM_ON — urządzenie włączone",
+        "3": "WM_THERM — tryb termostatyczny"
+      },
+      "description": "Rejestr 16-bit: MSB ignorowany, LSB = tryb pracy"
+    },
+    {
+      "offset": 5,
+      "name": "fan_eff",
+      "min": 0,
+      "max": 100,
+      "unit": "%",
+      "description": "Nastawa wydajności wentylatora EC, płynna regulacja 0–100%"
+    },
+    {
+      "offset": 6,
+      "name": "fan_eff_CO2_I",
+      "min": 0,
+      "max": 100,
+      "unit": "%",
+      "description": "Nastawa wydajności wentylatora EC dla 1. progu czujnika CO2"
+    },
+    {
+      "offset": 7,
+      "name": "fan_eff_CO2_II",
+      "min": 0,
+      "max": 100,
+      "unit": "%",
+      "description": "Nastawa wydajności wentylatora EC dla 2. progu czujnika CO2"
+    },
+    {
+      "offset": 8,
+      "name": "recirculation_mode",
+      "values": {
+        "0": "RM_AUTO — tryb automatyczny",
+        "1": "RM_MANUAL — tryb ręczny"
+      },
+      "description": "Rejestr 16-bit: MSB ignorowany, LSB = tryb recyrkulacji"
+    },
+    {
+      "offset": 9,
+      "name": "recirculation_value",
+      "min": 0,
+      "max": 100,
+      "unit": "%",
+      "description": "Wartość recyrkulacji, płynna regulacja 0–100%"
+    },
+    {
+      "offset": 10,
+      "name": "recirculation_value_CO2_I",
+      "min": 0,
+      "max": 100,
+      "unit": "%",
+      "description": "Wartość recyrkulacji dla 1. progu czujnika CO2"
+    },
+    {
+      "offset": 11,
+      "name": "recirculation_value_CO2_II",
+      "min": 0,
+      "max": 100,
+      "unit": "%",
+      "description": "Wartość recyrkulacji dla 2. progu czujnika CO2"
+    },
+    {
+      "offset": 12,
+      "name": "work_mode_NW",
+      "values": {
+        "0": "WM_NW_AUTO — tryb automatyczny dyfuzora",
+        "1": "WM_NW_MANUAL — tryb ręczny dyfuzora"
+      },
+      "description": "Tryb pracy dyfuzora wirowego (NW). Rejestr 16-bit: MSB ignorowany, LSB = tryb"
+    },
+    {
+      "offset": 13,
+      "name": "swirl_diffuser_level",
+      "min": 30,
+      "max": 100,
+      "unit": "%",
+      "description": "Poziom otwarcia dyfuzora wirowego"
+    },
+    {
+      "offset": 14,
+      "name": "Htg_swirl_diffuser_level",
+      "min": 30,
+      "max": 100,
+      "unit": "%",
+      "description": "Poziom otwarcia dyfuzora wirowego w trybie grzania"
+    },
+    {
+      "offset": 15,
+      "name": "Clg_swirl_diffuser_level",
+      "min": 30,
+      "max": 100,
+      "unit": "%",
+      "description": "Poziom otwarcia dyfuzora wirowego w trybie chłodzenia"
+    }
+  ]
 }
