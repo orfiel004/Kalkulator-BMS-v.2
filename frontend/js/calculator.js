@@ -79,8 +79,9 @@ const Calculator = {
       if (reg.unit)              r.push(`<i>${reg.unit}</i>`);
       parts.push(`<span class="range-info">${r.join(' &nbsp;|&nbsp; ')}</span>`);
     }
-    if (reg.description) {
-      parts.push(`<div class="val-desc">${reg.description}</div>`);
+    const desc = (currentLang === 'en' && reg.description_en) ? reg.description_en : reg.description;
+    if (desc) {
+      parts.push(`<div class="val-desc">${desc}</div>`);
     }
     return parts.join('') || '<span style="color:#ccc">—</span>';
   },
@@ -140,35 +141,35 @@ const Calculator = {
     },
     tbox_zone: {
       ir: [
-        { addr: 0,  name: 'HardwareType',          description: 'Informacja o typie sprzętu i wersji PCB.' },
-        { addr: 1,  name: 'SoftType',              description: 'Typ i wersja oprogramowania sterownika.' },
-        { addr: 2,  name: 'ConnectionCnt',         description: 'Licznik połączeń — rośnie przy każdym odczycie. Pierwsze zapytanie zawsze zwraca 0x01. Monitoring tego rejestru umożliwia diagnostykę połączenia.' },
-        { addr: 3,  name: 'SoftVer',               description: 'Wersja oprogramowania sterownika.' },
-        { addr: 4,  name: 'MainSensorReading',     description: 'Temperatura zmierzona przez czujnik główny.' },
-        { addr: 5,  name: 'SecSensorReading',      description: 'Temperatura zmierzona przez czujnik pomocniczy.' },
-        { addr: 8,  name: 'DeviceCount',           description: 'Liczba wykrytych urządzeń podłączonych do sterownika.' },
-        { addr: 9,  name: 'ZoneCount',             description: 'Liczba skonfigurowanych stref.' },
-        { addr: 10, name: 'GroupCount',            description: 'Liczba grup urządzeń.' },
-        { addr: 11, name: 'DeviceStatus1-16',      description: 'Status wykrytych urządzeń 1–16. Każdy bit odpowiada jednemu urządzeniu.' },
-        { addr: 12, name: 'DeviceStatus17-32',     description: 'Status wykrytych urządzeń 17–32. Każdy bit odpowiada jednemu urządzeniu.' },
-        { addr: 13, name: 'ControlerStatus1-16',   description: 'Status sterownika — wartość 32-bitowa, bity 1–16.' },
-        { addr: 14, name: 'ControlerStatus17-32',  description: 'Status sterownika — wartość 23-bitowa, bity 17–31.' },
-        { addr: 15, name: 'InfoStartPoint',        description: 'Punkt startowy dynamicznej informacji o urządzeniach (patrz rejestr IR 0x10 — mapowanie urządzeń).' },
+        { addr: 0,  name: 'HardwareType',          description: 'Informacja o typie sprzętu i wersji PCB.',                                                          description_en: 'Hardware type and PCB version information.' },
+        { addr: 1,  name: 'SoftType',              description: 'Typ i wersja oprogramowania sterownika.',                                                            description_en: 'Controller firmware type and version.' },
+        { addr: 2,  name: 'ConnectionCnt',         description: 'Licznik połączeń — rośnie przy każdym odczycie. Pierwsze zapytanie zawsze zwraca 0x01. Monitoring tego rejestru umożliwia diagnostykę połączenia.', description_en: 'Connection counter — increments on each read. First query always returns 0x01. Monitoring this register enables connection diagnostics.' },
+        { addr: 3,  name: 'SoftVer',               description: 'Wersja oprogramowania sterownika.',                                                                  description_en: 'Controller firmware version.' },
+        { addr: 4,  name: 'MainSensorReading',     description: 'Temperatura zmierzona przez czujnik główny.',                                                        description_en: 'Temperature measured by the main sensor.' },
+        { addr: 5,  name: 'SecSensorReading',      description: 'Temperatura zmierzona przez czujnik pomocniczy.',                                                    description_en: 'Temperature measured by the secondary sensor.' },
+        { addr: 8,  name: 'DeviceCount',           description: 'Liczba wykrytych urządzeń podłączonych do sterownika.',                                              description_en: 'Number of devices detected on the controller.' },
+        { addr: 9,  name: 'ZoneCount',             description: 'Liczba skonfigurowanych stref.',                                                                     description_en: 'Number of configured zones.' },
+        { addr: 10, name: 'GroupCount',            description: 'Liczba grup urządzeń.',                                                                              description_en: 'Number of device groups.' },
+        { addr: 11, name: 'DeviceStatus1-16',      description: 'Status wykrytych urządzeń 1–16. Każdy bit odpowiada jednemu urządzeniu.',                            description_en: 'Status of detected devices 1–16. Each bit corresponds to one device.' },
+        { addr: 12, name: 'DeviceStatus17-32',     description: 'Status wykrytych urządzeń 17–32. Każdy bit odpowiada jednemu urządzeniu.',                           description_en: 'Status of detected devices 17–32. Each bit corresponds to one device.' },
+        { addr: 13, name: 'ControlerStatus1-16',   description: 'Status sterownika — wartość 32-bitowa, bity 1–16.',                                                  description_en: 'Controller status — 32-bit value, bits 1–16.' },
+        { addr: 14, name: 'ControlerStatus17-32',  description: 'Status sterownika — wartość 23-bitowa, bity 17–31.',                                                 description_en: 'Controller status — bits 17–31.' },
+        { addr: 15, name: 'InfoStartPoint',        description: 'Punkt startowy dynamicznej informacji o urządzeniach (patrz rejestr IR 0x10 — mapowanie urządzeń).', description_en: 'Start point of dynamic device information (see IR register 0x10 — device mapping).' },
       ],
       hr: [
-        { addr: 0,  name: 'SetScreenLock',            description: 'Włącza blokadę ekranu sterownika.' },
-        { addr: 1,  name: 'EnableDisableController',  description: 'Włącza lub wyłącza sterownik i wszystkie podłączone urządzenia.' },
-        { addr: 2,  name: 'UnlockScreen',             description: 'Odblokowuje ekran — aktywne gdy blokada ekranu jest włączona.' },
-        { addr: 4,  name: 'SetYear',                  description: 'Ustawienie daty i czasu — rok.' },
-        { addr: 5,  name: 'SetMonth',                 description: 'Ustawienie daty i czasu — miesiąc.' },
-        { addr: 6,  name: 'SetDay',                   description: 'Ustawienie daty i czasu — dzień.' },
-        { addr: 7,  name: 'SetHours',                 description: 'Ustawienie daty i czasu — godzina.' },
-        { addr: 8,  name: 'SetMinutes',               description: 'Ustawienie daty i czasu — minuty.' },
-        { addr: 9,  name: 'SetSeconds',               description: 'Ustawienie daty i czasu — sekundy.' },
-        { addr: 10, name: 'SetExternalSignalEnable',  description: 'Obsługa sygnału zewnętrznego — włącz/wyłącz.' },
-        { addr: 11, name: 'SetExternalSignalMode',    description: 'Tryb i funkcjonalność sygnału zewnętrznego.' },
-        { addr: 12, name: 'SetExternalSignalContact', description: 'Konfiguracja polaryzacji styku sygnału zewnętrznego.' },
-        { addr: 13, name: 'SetExternalSignalLevel',   description: 'Poziom sygnału zewnętrznego.' },
+        { addr: 0,  name: 'SetScreenLock',            description: 'Włącza blokadę ekranu sterownika.',                                    description_en: 'Enables controller screen lock.' },
+        { addr: 1,  name: 'EnableDisableController',  description: 'Włącza lub wyłącza sterownik i wszystkie podłączone urządzenia.',      description_en: 'Enables or disables the controller and all connected devices.' },
+        { addr: 2,  name: 'UnlockScreen',             description: 'Odblokowuje ekran — aktywne gdy blokada ekranu jest włączona.',        description_en: 'Unlocks the screen — active when screen lock is enabled.' },
+        { addr: 4,  name: 'SetYear',                  description: 'Ustawienie daty i czasu — rok.',                                       description_en: 'Date and time setting — year.' },
+        { addr: 5,  name: 'SetMonth',                 description: 'Ustawienie daty i czasu — miesiąc.',                                   description_en: 'Date and time setting — month.' },
+        { addr: 6,  name: 'SetDay',                   description: 'Ustawienie daty i czasu — dzień.',                                     description_en: 'Date and time setting — day.' },
+        { addr: 7,  name: 'SetHours',                 description: 'Ustawienie daty i czasu — godzina.',                                   description_en: 'Date and time setting — hour.' },
+        { addr: 8,  name: 'SetMinutes',               description: 'Ustawienie daty i czasu — minuty.',                                    description_en: 'Date and time setting — minutes.' },
+        { addr: 9,  name: 'SetSeconds',               description: 'Ustawienie daty i czasu — sekundy.',                                   description_en: 'Date and time setting — seconds.' },
+        { addr: 10, name: 'SetExternalSignalEnable',  description: 'Obsługa sygnału zewnętrznego — włącz/wyłącz.',                        description_en: 'External signal handling — enable/disable.' },
+        { addr: 11, name: 'SetExternalSignalMode',    description: 'Tryb i funkcjonalność sygnału zewnętrznego.',                         description_en: 'External signal mode and functionality.' },
+        { addr: 12, name: 'SetExternalSignalContact', description: 'Konfiguracja polaryzacji styku sygnału zewnętrznego.',                description_en: 'External signal contact polarity configuration.' },
+        { addr: 13, name: 'SetExternalSignalLevel',   description: 'Poziom sygnału zewnętrznego.',                                        description_en: 'External signal level.' },
       ],
     },
   },

@@ -1,97 +1,116 @@
 {
   "name": "LEO KM (DRV KM)",
   "description": "Centrala wentylacyjna z klapą mieszającą",
+  "description_en": "LEO KM mixing chamber air handling unit",
   "group_priority": 2,
   "input_registers": [
     {
       "offset": 4,
       "name": "T1",
-      "description": "Temperatura powietrza świeżego (czujnik T1)."
+      "description": "Temperatura powietrza świeżego (czujnik T1).",
+      "description_en": "Fresh air temperature (T1 sensor)."
     },
     {
       "offset": 5,
       "name": "T3",
-      "description": "Temperatura czujnika T3 (powietrze za wymiennikiem wodnym)."
+      "description": "Temperatura czujnika T3 (powietrze za wymiennikiem wodnym).",
+      "description_en": "T3 sensor temperature (air after water heat exchanger)."
     },
     {
       "offset": 6,
       "name": "T4",
-      "description": "Temperatura powietrza przed wymiennikiem (czujnik T4)."
+      "description": "Temperatura powietrza przed wymiennikiem (czujnik T4).",
+      "description_en": "Air temperature before heat exchanger (T4 sensor)."
     },
     {
       "offset": 7,
       "name": "T5",
-      "description": "Temperatura wody na wymienniku (czujnik T5)."
+      "description": "Temperatura wody na wymienniku (czujnik T5).",
+      "description_en": "Water temperature at heat exchanger (T5 sensor)."
     },
     {
       "offset": 8,
       "name": "ExternalGasDetectTH1",
-      "description": "Sygnał zewnętrznego czujnika gazu — próg pierwszy."
+      "description": "Sygnał zewnętrznego czujnika gazu — próg pierwszy.",
+      "description_en": "External gas sensor signal — first threshold."
     },
     {
       "offset": 9,
       "name": "ExternalGasDetectTH2",
-      "description": "Sygnał zewnętrznego czujnika gazu — próg drugi."
+      "description": "Sygnał zewnętrznego czujnika gazu — próg drugi.",
+      "description_en": "External gas sensor signal — second threshold."
     },
     {
       "offset": 10,
       "name": "ExternalGasDetectVal",
-      "description": "Stężenie gazu — wejście 0–10V DC."
+      "description": "Stężenie gazu — wejście 0–10V DC.",
+      "description_en": "Gas concentration — 0–10V DC input."
     },
     {
       "offset": 11,
       "name": "FanRoofTK",
-      "description": "Sygnał TK z wentylatora dachowego."
+      "description": "Sygnał TK z wentylatora dachowego.",
+      "description_en": "TK signal from rooftop fan."
     },
     {
       "offset": 12,
       "name": "FanEff",
-      "description": "Wydajność wentylatora EC lub AC (3-biegowy)."
+      "description": "Wydajność wentylatora EC lub AC (3-biegowy).",
+      "description_en": "EC or AC fan efficiency (3-speed)."
     },
     {
       "offset": 13,
       "name": "FanRoofEff",
-      "description": "Wydajność wentylatora dachowego."
+      "description": "Wydajność wentylatora dachowego.",
+      "description_en": "Rooftop fan efficiency."
     },
     {
       "offset": 14,
       "name": "DamperLevel",
-      "description": "Aktualna pozycja klapy."
+      "description": "Aktualna pozycja klapy.",
+      "description_en": "Current damper position."
     },
     {
       "offset": 15,
       "name": "DamperForceState",
-      "description": "Stan wymuszenia pozycji klapy."
+      "description": "Stan wymuszenia pozycji klapy.",
+      "description_en": "Damper forced position state."
     },
     {
       "offset": 16,
       "name": "AntiFreezeState",
-      "description": "Stan ochrony przeciwzamrożeniowej — 8 bitów."
+      "description": "Stan ochrony przeciwzamrożeniowej — 8 bitów.",
+      "description_en": "Antifreeze protection state — 8 bits."
     },
     {
       "offset": 17,
       "name": "FilterWorkTime",
-      "description": "Czas pracy filtra. Czas rzeczywisty = 5 × wartość [min]."
+      "description": "Czas pracy filtra. Czas rzeczywisty = 5 × wartość [min].",
+      "description_en": "Filter operating time. Actual value = 5 × register value [min]."
     },
     {
       "offset": 18,
       "name": "FilterPressureSwitchState",
-      "description": "Stan presostatu filtra."
+      "description": "Stan presostatu filtra.",
+      "description_en": "Filter pressure switch state."
     },
     {
       "offset": 19,
       "name": "FanEcConnect",
-      "description": "Status połączenia wentylatora EC."
+      "description": "Status połączenia wentylatora EC.",
+      "description_en": "EC fan connection status."
     },
     {
       "offset": 20,
       "name": "FuseState",
-      "description": "Stan bezpiecznika wentylatorów EC/3V/dachowych (bity maskowane)."
+      "description": "Stan bezpiecznika wentylatorów EC/3V/dachowych (bity maskowane).",
+      "description_en": "EC/3-speed/rooftop fan fuse state (masked bits)."
     },
     {
       "offset": 21,
       "name": "ValveState",
-      "description": "Stan zaworu wodnego."
+      "description": "Stan zaworu wodnego.",
+      "description_en": "Water valve state."
     }
   ],
   "holding_registers_single": [
@@ -157,7 +176,8 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Wentylator EC: płynna regulacja 0–100%. Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
+      "description": "Wentylator EC: płynna regulacja 0–100%. Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
+      "description_en": "EC fan: continuous 0–100% control. 3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
     },
     {
       "offset": 12,
@@ -165,7 +185,8 @@
       "min": -10,
       "max": 10,
       "unit": "%",
-      "description": "Korekta prędkości wentylatora dachowego — wartość dodawana do aktualnej prędkości"
+      "description": "Korekta prędkości wentylatora dachowego — wartość dodawana do aktualnej prędkości",
+      "description_en": "Rooftop fan speed correction — value added to current speed"
     },
     {
       "offset": 13,
@@ -221,7 +242,8 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Prędkość wentylatora w trybie termostatu. EC: płynna 0–100%. AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1, 34–66=bieg 2, 67–100=bieg 3"
+      "description": "Prędkość wentylatora w trybie termostatu. EC: płynna 0–100%. AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1, 34–66=bieg 2, 67–100=bieg 3",
+      "description_en": "Fan speed in thermostat mode. EC: continuous 0–100%. 3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1, 34–66=speed 2, 67–100=speed 3"
     }
   ],
   "holding_registers_group": [
@@ -272,7 +294,8 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Wentylator EC: płynna regulacja 0–100%. Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
+      "description": "Wentylator EC: płynna regulacja 0–100%. Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
+      "description_en": "EC fan: continuous 0–100% control. 3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
     },
     {
       "offset": 10,
@@ -280,7 +303,8 @@
       "min": -10,
       "max": 10,
       "unit": "%",
-      "description": "Korekta prędkości wentylatora dachowego — wartość dodawana do aktualnej prędkości"
+      "description": "Korekta prędkości wentylatora dachowego — wartość dodawana do aktualnej prędkości",
+      "description_en": "Rooftop fan speed correction — value added to current speed"
     },
     {
       "offset": 11,
@@ -305,7 +329,8 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Prędkość wentylatora w trybie termostatu. EC: płynna 0–100%. AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1, 34–66=bieg 2, 67–100=bieg 3"
+      "description": "Prędkość wentylatora w trybie termostatu. EC: płynna 0–100%. AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1, 34–66=bieg 2, 67–100=bieg 3",
+      "description_en": "Fan speed in thermostat mode. EC: continuous 0–100%. 3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1, 34–66=speed 2, 67–100=speed 3"
     }
   ]
 }

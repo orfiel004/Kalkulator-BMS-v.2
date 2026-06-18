@@ -2,69 +2,82 @@ const DEVICES_DATA = {
   "OXEN (DRV OXEN)": {
     "name": "OXEN (DRV OXEN)",
     "description": "Rekuperator OXEN",
+    "description_en": "OXEN heat recovery unit (HRV)",
     "group_priority": 1,
     "input_registers": [
       {
         "offset": 0,
         "name": "Status1",
-        "description": "Rejestr statusu nr 1 (bitowy)."
+        "description": "Rejestr statusu nr 1 (bitowy).",
+        "description_en": "Status register no. 1 (bit-mapped)."
       },
       {
         "offset": 2,
         "name": "T1",
-        "description": "Temperatura powietrza nawiewanego (czujnik T1)."
+        "description": "Temperatura powietrza nawiewanego (czujnik T1).",
+        "description_en": "Supply air temperature (T1 sensor)."
       },
       {
         "offset": 3,
         "name": "T2",
-        "description": "Temperatura powietrza przy wentylatorze wyciągowym (czujnik T2)."
+        "description": "Temperatura powietrza przy wentylatorze wyciągowym (czujnik T2).",
+        "description_en": "Air temperature at extract fan (T2 sensor)."
       },
       {
         "offset": 4,
         "name": "T3",
-        "description": "Temperatura powietrza za wymiennikiem wodnym (czujnik T3)."
+        "description": "Temperatura powietrza za wymiennikiem wodnym (czujnik T3).",
+        "description_en": "Air temperature after water heat exchanger (T3 sensor)."
       },
       {
         "offset": 5,
         "name": "T4",
-        "description": "Temperatura powietrza powrotnego / pomieszczenia (czujnik T4)."
+        "description": "Temperatura powietrza powrotnego / pomieszczenia (czujnik T4).",
+        "description_en": "Return air / room temperature (T4 sensor)."
       },
       {
         "offset": 6,
         "name": "T5",
-        "description": "Temperatura wymiennika wodnego (czujnik T5)."
+        "description": "Temperatura wymiennika wodnego (czujnik T5).",
+        "description_en": "Water heat exchanger temperature (T5 sensor)."
       },
       {
         "offset": 7,
         "name": "Outputs",
-        "description": "Stan wyjść sterownika."
+        "description": "Stan wyjść sterownika.",
+        "description_en": "Controller output states."
       },
       {
         "offset": 8,
         "name": "Inputs",
-        "description": "Stan wejść sterownika (wejścia beznap. i przełączniki)."
+        "description": "Stan wejść sterownika (wejścia beznap. i przełączniki).",
+        "description_en": "Controller input states (voltage-free inputs and switches)."
       },
       {
         "offset": 9,
         "name": "FilterWorkTime",
-        "description": "Czas pracy filtra."
+        "description": "Czas pracy filtra.",
+        "description_en": "Filter operating time."
       },
       {
         "offset": 10,
         "name": "FansEff_1",
-        "description": "Wydajność wentylatorów grupy I — nawiew [%]."
+        "description": "Wydajność wentylatorów grupy I — nawiew [%].",
+        "description_en": "Group I fan efficiency — supply [%]."
       },
       {
         "offset": 11,
         "name": "FansEff_2",
-        "description": "Wydajność wentylatorów grupy II — wyciąg [%]."
+        "description": "Wydajność wentylatorów grupy II — wyciąg [%].",
+        "description_en": "Group II fan efficiency — extract [%]."
       }
     ],
     "holding_registers_single": [
       {
         "offset": 0,
         "name": "Config1",
-        "description": "Bit 0: FilterWorkTimeRST — 0=brak akcji, 1=reset licznika czasu filtra (ustawia adres 0x09 na 0x000)"
+        "description": "Bit 0: FilterWorkTimeRST — 0=brak akcji, 1=reset licznika czasu filtra (ustawia adres 0x09 na 0x000)",
+        "description_en": "Bit 0: FilterWorkTimeRST — 0=no action, 1=reset filter time counter (sets address 0x09 to 0x000)"
       },
       {
         "offset": 2,
@@ -72,7 +85,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wentylator EC — wentylatory nawiewne (grupa I), płynna regulacja 0–100%"
+        "description": "Wentylator EC — wentylatory nawiewne (grupa I), płynna regulacja 0–100%",
+        "description_en": "EC fan — supply fans (group I), continuous 0–100% control"
       },
       {
         "offset": 3,
@@ -80,7 +94,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wentylator EC — wentylatory wywiewne (grupa II), płynna regulacja 0–100%"
+        "description": "Wentylator EC — wentylatory wywiewne (grupa II), płynna regulacja 0–100%",
+        "description_en": "EC fan — extract fans (group II), continuous 0–100% control"
       },
       {
         "offset": 4,
@@ -133,7 +148,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wentylator EC — wentylatory nawiewne (grupa I), płynna regulacja 0–100%"
+        "description": "Wentylator EC — wentylatory nawiewne (grupa I), płynna regulacja 0–100%",
+        "description_en": "EC fan — supply fans (group I), continuous 0–100% control"
       },
       {
         "offset": 3,
@@ -141,7 +157,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wentylator EC — wentylatory wywiewne (grupa II), płynna regulacja 0–100%"
+        "description": "Wentylator EC — wentylatory wywiewne (grupa II), płynna regulacja 0–100%",
+        "description_en": "EC fan — extract fans (group II), continuous 0–100% control"
       },
       {
         "offset": 5,
@@ -164,97 +181,116 @@ const DEVICES_DATA = {
   "LEO KM (DRV KM)": {
     "name": "LEO KM (DRV KM)",
     "description": "Centrala wentylacyjna z klapą mieszającą",
+    "description_en": "LEO KM mixing chamber air handling unit",
     "group_priority": 2,
     "input_registers": [
       {
         "offset": 4,
         "name": "T1",
-        "description": "Temperatura powietrza świeżego (czujnik T1)."
+        "description": "Temperatura powietrza świeżego (czujnik T1).",
+        "description_en": "Fresh air temperature (T1 sensor)."
       },
       {
         "offset": 5,
         "name": "T3",
-        "description": "Temperatura czujnika T3 (powietrze za wymiennikiem wodnym)."
+        "description": "Temperatura czujnika T3 (powietrze za wymiennikiem wodnym).",
+        "description_en": "T3 sensor temperature (air after water heat exchanger)."
       },
       {
         "offset": 6,
         "name": "T4",
-        "description": "Temperatura powietrza przed wymiennikiem (czujnik T4)."
+        "description": "Temperatura powietrza przed wymiennikiem (czujnik T4).",
+        "description_en": "Air temperature before heat exchanger (T4 sensor)."
       },
       {
         "offset": 7,
         "name": "T5",
-        "description": "Temperatura wody na wymienniku (czujnik T5)."
+        "description": "Temperatura wody na wymienniku (czujnik T5).",
+        "description_en": "Water temperature at heat exchanger (T5 sensor)."
       },
       {
         "offset": 8,
         "name": "ExternalGasDetectTH1",
-        "description": "Sygnał zewnętrznego czujnika gazu — próg pierwszy."
+        "description": "Sygnał zewnętrznego czujnika gazu — próg pierwszy.",
+        "description_en": "External gas sensor signal — first threshold."
       },
       {
         "offset": 9,
         "name": "ExternalGasDetectTH2",
-        "description": "Sygnał zewnętrznego czujnika gazu — próg drugi."
+        "description": "Sygnał zewnętrznego czujnika gazu — próg drugi.",
+        "description_en": "External gas sensor signal — second threshold."
       },
       {
         "offset": 10,
         "name": "ExternalGasDetectVal",
-        "description": "Stężenie gazu — wejście 0–10V DC."
+        "description": "Stężenie gazu — wejście 0–10V DC.",
+        "description_en": "Gas concentration — 0–10V DC input."
       },
       {
         "offset": 11,
         "name": "FanRoofTK",
-        "description": "Sygnał TK z wentylatora dachowego."
+        "description": "Sygnał TK z wentylatora dachowego.",
+        "description_en": "TK signal from rooftop fan."
       },
       {
         "offset": 12,
         "name": "FanEff",
-        "description": "Wydajność wentylatora EC lub AC (3-biegowy)."
+        "description": "Wydajność wentylatora EC lub AC (3-biegowy).",
+        "description_en": "EC or AC fan efficiency (3-speed)."
       },
       {
         "offset": 13,
         "name": "FanRoofEff",
-        "description": "Wydajność wentylatora dachowego."
+        "description": "Wydajność wentylatora dachowego.",
+        "description_en": "Rooftop fan efficiency."
       },
       {
         "offset": 14,
         "name": "DamperLevel",
-        "description": "Aktualna pozycja klapy."
+        "description": "Aktualna pozycja klapy.",
+        "description_en": "Current damper position."
       },
       {
         "offset": 15,
         "name": "DamperForceState",
-        "description": "Stan wymuszenia pozycji klapy."
+        "description": "Stan wymuszenia pozycji klapy.",
+        "description_en": "Damper forced position state."
       },
       {
         "offset": 16,
         "name": "AntiFreezeState",
-        "description": "Stan ochrony przeciwzamrożeniowej — 8 bitów."
+        "description": "Stan ochrony przeciwzamrożeniowej — 8 bitów.",
+        "description_en": "Antifreeze protection state — 8 bits."
       },
       {
         "offset": 17,
         "name": "FilterWorkTime",
-        "description": "Czas pracy filtra. Czas rzeczywisty = 5 × wartość [min]."
+        "description": "Czas pracy filtra. Czas rzeczywisty = 5 × wartość [min].",
+        "description_en": "Filter operating time. Actual value = 5 × register value [min]."
       },
       {
         "offset": 18,
         "name": "FilterPressureSwitchState",
-        "description": "Stan presostatu filtra."
+        "description": "Stan presostatu filtra.",
+        "description_en": "Filter pressure switch state."
       },
       {
         "offset": 19,
         "name": "FanEcConnect",
-        "description": "Status połączenia wentylatora EC."
+        "description": "Status połączenia wentylatora EC.",
+        "description_en": "EC fan connection status."
       },
       {
         "offset": 20,
         "name": "FuseState",
-        "description": "Stan bezpiecznika wentylatorów EC/3V/dachowych (bity maskowane)."
+        "description": "Stan bezpiecznika wentylatorów EC/3V/dachowych (bity maskowane).",
+        "description_en": "EC/3-speed/rooftop fan fuse state (masked bits)."
       },
       {
         "offset": 21,
         "name": "ValveState",
-        "description": "Stan zaworu wodnego."
+        "description": "Stan zaworu wodnego.",
+        "description_en": "Water valve state."
       }
     ],
     "holding_registers_single": [
@@ -320,7 +356,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wentylator EC: płynna regulacja 0–100%. Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
+        "description": "Wentylator EC: płynna regulacja 0–100%. Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
+        "description_en": "EC fan: continuous 0–100% control. 3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
       },
       {
         "offset": 12,
@@ -328,7 +365,8 @@ const DEVICES_DATA = {
         "min": -10,
         "max": 10,
         "unit": "%",
-        "description": "Korekta prędkości wentylatora dachowego — wartość dodawana do aktualnej prędkości"
+        "description": "Korekta prędkości wentylatora dachowego — wartość dodawana do aktualnej prędkości",
+        "description_en": "Rooftop fan speed correction — value added to current speed"
       },
       {
         "offset": 13,
@@ -384,7 +422,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Prędkość wentylatora w trybie termostatu. EC: płynna 0–100%. AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1, 34–66=bieg 2, 67–100=bieg 3"
+        "description": "Prędkość wentylatora w trybie termostatu. EC: płynna 0–100%. AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1, 34–66=bieg 2, 67–100=bieg 3",
+        "description_en": "Fan speed in thermostat mode. EC: continuous 0–100%. 3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1, 34–66=speed 2, 67–100=speed 3"
       }
     ],
     "holding_registers_group": [
@@ -435,7 +474,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wentylator EC: płynna regulacja 0–100%. Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
+        "description": "Wentylator EC: płynna regulacja 0–100%. Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
+        "description_en": "EC fan: continuous 0–100% control. 3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
       },
       {
         "offset": 10,
@@ -443,7 +483,8 @@ const DEVICES_DATA = {
         "min": -10,
         "max": 10,
         "unit": "%",
-        "description": "Korekta prędkości wentylatora dachowego — wartość dodawana do aktualnej prędkości"
+        "description": "Korekta prędkości wentylatora dachowego — wartość dodawana do aktualnej prędkości",
+        "description_en": "Rooftop fan speed correction — value added to current speed"
       },
       {
         "offset": 11,
@@ -468,64 +509,76 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Prędkość wentylatora w trybie termostatu. EC: płynna 0–100%. AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1, 34–66=bieg 2, 67–100=bieg 3"
+        "description": "Prędkość wentylatora w trybie termostatu. EC: płynna 0–100%. AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1, 34–66=bieg 2, 67–100=bieg 3",
+        "description_en": "Fan speed in thermostat mode. EC: continuous 0–100%. 3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1, 34–66=speed 2, 67–100=speed 3"
       }
     ]
   },
   "ELIS (DRV ELIS)": {
     "name": "ELIS (DRV ELIS)",
     "description": "Kurtyna powietrzna ELIS",
+    "description_en": "ELIS air curtain with EC fans",
     "group_priority": 3,
     "input_registers": [
       {
         "offset": 4,
         "name": "T3",
-        "description": "Temperatura powietrza za wymiennikiem wodnym (czujnik T3)."
+        "description": "Temperatura powietrza za wymiennikiem wodnym (czujnik T3).",
+        "description_en": "Supply air temperature after water heat exchanger (T3 sensor)."
       },
       {
         "offset": 5,
         "name": "T4",
-        "description": "Temperatura powietrza przed wymiennikiem wodnym (czujnik T4)."
+        "description": "Temperatura powietrza przed wymiennikiem wodnym (czujnik T4).",
+        "description_en": "Supply air temperature before water heat exchanger (T4 sensor)."
       },
       {
         "offset": 6,
         "name": "CurtainFanSpeed",
-        "description": "Prędkość wentylatora kurtyny (AC 3-biegowy: 0=stop, 1–33=bieg1, 34–66=bieg2, 67–100=bieg3)."
+        "description": "Prędkość wentylatora kurtyny (AC 3-biegowy: 0=stop, 1–33=bieg1, 34–66=bieg2, 67–100=bieg3).",
+        "description_en": "Curtain fan speed (3-speed AC fan: 0=stop, 1–33=speed 1, 34–66=speed 2, 67–100=speed 3)."
       },
       {
         "offset": 7,
         "name": "ValveState",
-        "description": "Stan zaworu wodnego."
+        "description": "Stan zaworu wodnego.",
+        "description_en": "Water valve state."
       },
       {
         "offset": 8,
         "name": "HeaterFanSpeed",
-        "description": "Prędkość wentylatora nagrzewnicy (AC 3-biegowy)."
+        "description": "Prędkość wentylatora nagrzewnicy (AC 3-biegowy).",
+        "description_en": "Heater fan speed (3-speed AC fan)."
       },
       {
         "offset": 9,
         "name": "ContactDoor",
-        "description": "Stan styku drzwiowego."
+        "description": "Stan styku drzwiowego.",
+        "description_en": "Door contact state."
       },
       {
         "offset": 10,
         "name": "HeaterDetect",
-        "description": "Procedura wykrywania nagrzewnicy (ELIS-DUO)."
+        "description": "Procedura wykrywania nagrzewnicy (ELIS-DUO).",
+        "description_en": "Heater detection procedure (ELIS-DUO)."
       },
       {
         "offset": 11,
         "name": "AntifreezeState",
-        "description": "Stan ochrony przeciwzamrożeniowej — 8 bitów dla poszczególnych trybów."
+        "description": "Stan ochrony przeciwzamrożeniowej — 8 bitów dla poszczególnych trybów.",
+        "description_en": "Antifreeze protection state — 8 bits for individual modes."
       },
       {
         "offset": 12,
         "name": "FuseState",
-        "description": "Stan bezpiecznika wentylatora 3V (bity 8–11). Przykład: 0x100 = OK, 0x200 = przepalony."
+        "description": "Stan bezpiecznika wentylatora 3V (bity 8–11). Przykład: 0x100 = OK, 0x200 = przepalony.",
+        "description_en": "3-speed fan fuse state (bits 8–11). Example: 0x100 = OK, 0x200 = blown."
       },
       {
         "offset": 13,
         "name": "CurtainElectricpower",
-        "description": "Moc elektrycznej nagrzewnicy kurtyny (wyjścia L1/L2 na złączu VALVE)."
+        "description": "Moc elektrycznej nagrzewnicy kurtyny (wyjścia L1/L2 na złączu VALVE).",
+        "description_en": "Electric heater power of the curtain (L1/L2 outputs on VALVE connector)."
       }
     ],
     "holding_registers_single": [
@@ -545,7 +598,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wentylator kurtyny AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
+        "description": "Wentylator kurtyny AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
+        "description_en": "Curtain 3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
       },
       {
         "offset": 6,
@@ -562,7 +616,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wentylator nagrzewnicy AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
+        "description": "Wentylator nagrzewnicy AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
+        "description_en": "Heater 3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
       },
       {
         "offset": 8,
@@ -610,7 +665,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wentylator kurtyny AC 3-biegowy (stand-by): 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
+        "description": "Wentylator kurtyny AC 3-biegowy (stand-by): 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
+        "description_en": "Curtain 3-speed AC fan (stand-by): 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
       },
       {
         "offset": 15,
@@ -618,7 +674,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wentylator nagrzewnicy AC 3-biegowy (stand-by): 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
+        "description": "Wentylator nagrzewnicy AC 3-biegowy (stand-by): 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
+        "description_en": "Heater 3-speed AC fan (stand-by): 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
       },
       {
         "offset": 16,
@@ -626,7 +683,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 65535,
         "unit": "s",
-        "description": "Opóźnienie stand-by wentylatora w sekundach; 65535 = nieskończone"
+        "description": "Opóźnienie stand-by wentylatora w sekundach; 65535 = nieskończone",
+        "description_en": "Fan stand-by delay in seconds; 65535 = infinite"
       },
       {
         "offset": 17,
@@ -634,7 +692,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 65535,
         "unit": "s",
-        "description": "Opóźnienie zaworu w trybie stand-by w sekundach; 65535 = nieskończone. Warunek: ValveIdleDelay < FanIdleDelay"
+        "description": "Opóźnienie zaworu w trybie stand-by w sekundach; 65535 = nieskończone. Warunek: ValveIdleDelay < FanIdleDelay",
+        "description_en": "Valve stand-by delay in seconds; 65535 = infinite. Constraint: ValveIdleDelay < FanIdleDelay"
       },
       {
         "offset": 18,
@@ -669,7 +728,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wentylator kurtyny AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
+        "description": "Wentylator kurtyny AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
+        "description_en": "Curtain 3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
       },
       {
         "offset": 6,
@@ -703,7 +763,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wentylator kurtyny AC 3-biegowy (stand-by): 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
+        "description": "Wentylator kurtyny AC 3-biegowy (stand-by): 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
+        "description_en": "Curtain 3-speed AC fan (stand-by): 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
       },
       {
         "offset": 10,
@@ -711,100 +772,119 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 65535,
         "unit": "s",
-        "description": "Opóźnienie stand-by wentylatora w sekundach; 65535 = nieskończone"
+        "description": "Opóźnienie stand-by wentylatora w sekundach; 65535 = nieskończone",
+        "description_en": "Fan stand-by delay in seconds; 65535 = infinite"
       }
     ]
   },
   "ELIS AX (DRV AX)": {
     "name": "ELIS AX (DRV AX)",
     "description": "Kurtyna powietrzna ELIS AX (wielobiegowe wentylatory EC)",
+    "description_en": "ELIS AX air curtain (multi-speed EC fans)",
     "group_priority": 4,
     "tbox_zone_only": true,
     "input_registers": [
       {
         "offset": 4,
         "name": "T1",
-        "description": "Temperatura powietrza zewnętrznego (czujnik T1)."
+        "description": "Temperatura powietrza zewnętrznego (czujnik T1).",
+        "description_en": "Outdoor air temperature (T1 sensor)."
       },
       {
         "offset": 5,
         "name": "T3",
-        "description": "Temperatura powietrza za wymiennikiem wodnym (czujnik T3)."
+        "description": "Temperatura powietrza za wymiennikiem wodnym (czujnik T3).",
+        "description_en": "Supply air temperature after water heat exchanger (T3 sensor)."
       },
       {
         "offset": 6,
         "name": "T4",
-        "description": "Temperatura w pomieszczeniu (czujnik T4)."
+        "description": "Temperatura w pomieszczeniu (czujnik T4).",
+        "description_en": "Room temperature (T4 sensor)."
       },
       {
         "offset": 7,
         "name": "T5",
-        "description": "Temperatura wymiennika wodnego — rura powrotna (czujnik T5)."
+        "description": "Temperatura wymiennika wodnego — rura powrotna (czujnik T5).",
+        "description_en": "Water heat exchanger return pipe temperature (T5 sensor)."
       },
       {
         "offset": 8,
         "name": "CurtainState1",
-        "description": "Rejestr statusu sterownika — bity reprezentują aktywne funkcje i tryby pracy."
+        "description": "Rejestr statusu sterownika — bity reprezentują aktywne funkcje i tryby pracy.",
+        "description_en": "Controller status register — bits represent active functions and operating modes."
       },
       {
         "offset": 9,
         "name": "CurtainState2",
-        "description": "Rozszerzenie rejestru statusu sterownika."
+        "description": "Rozszerzenie rejestru statusu sterownika.",
+        "description_en": "Controller status register extension."
       },
       {
         "offset": 10,
         "name": "CurtainState3",
-        "description": "Rozszerzenie rejestru statusu sterownika."
+        "description": "Rozszerzenie rejestru statusu sterownika.",
+        "description_en": "Controller status register extension."
       },
       {
         "offset": 11,
         "name": "Fan1Speed",
-        "description": "Rzeczywista prędkość wentylatora nawiewnego 1 [RPM]."
+        "description": "Rzeczywista prędkość wentylatora nawiewnego 1 [RPM].",
+        "description_en": "Actual supply fan 1 speed [RPM]."
       },
       {
         "offset": 12,
         "name": "Fan2Speed",
-        "description": "Rzeczywista prędkość wentylatora nawiewnego 2 [RPM]."
+        "description": "Rzeczywista prędkość wentylatora nawiewnego 2 [RPM].",
+        "description_en": "Actual supply fan 2 speed [RPM]."
       },
       {
         "offset": 13,
         "name": "Fan3Speed",
-        "description": "Rzeczywista prędkość wentylatora nawiewnego 3 [RPM]."
+        "description": "Rzeczywista prędkość wentylatora nawiewnego 3 [RPM].",
+        "description_en": "Actual supply fan 3 speed [RPM]."
       },
       {
         "offset": 14,
         "name": "Fan4Speed",
-        "description": "Rzeczywista prędkość wentylatora nawiewnego 4 [RPM]."
+        "description": "Rzeczywista prędkość wentylatora nawiewnego 4 [RPM].",
+        "description_en": "Actual supply fan 4 speed [RPM]."
       },
       {
         "offset": 15,
         "name": "Fan5Speed",
-        "description": "Rzeczywista prędkość wentylatora nawiewnego 5 [RPM]."
+        "description": "Rzeczywista prędkość wentylatora nawiewnego 5 [RPM].",
+        "description_en": "Actual supply fan 5 speed [RPM]."
       },
       {
         "offset": 16,
         "name": "Fan6Speed",
-        "description": "Rzeczywista prędkość wentylatora nawiewnego 6 [RPM]."
+        "description": "Rzeczywista prędkość wentylatora nawiewnego 6 [RPM].",
+        "description_en": "Actual supply fan 6 speed [RPM]."
       },
       {
         "offset": 17,
         "name": "Fan7Speed",
-        "description": "Rzeczywista prędkość wentylatora nawiewnego 7 [RPM]."
+        "description": "Rzeczywista prędkość wentylatora nawiewnego 7 [RPM].",
+        "description_en": "Actual supply fan 7 speed [RPM]."
       },
       {
         "offset": 18,
         "name": "FilterWorkTime",
-        "description": "Czas pracy filtra. Czas rzeczywisty = 5 × wartość [min]."
+        "description": "Czas pracy filtra. Czas rzeczywisty = 5 × wartość [min].",
+        "description_en": "Filter operating time. Actual value = 5 × register value [min]."
       },
       {
         "offset": 19,
         "name": "ValveRelaysState",
-        "description": "Aktualny status zaworu na stykach VALVE_RELAYS (L1, L2). 0=otwarty, 1=zamknięty."
+        "description": "Aktualny status zaworu na stykach VALVE_RELAYS (L1, L2). 0=otwarty, 1=zamknięty.",
+        "description_en": "Current valve status on VALVE_RELAYS contacts (L1, L2). 0=open, 1=closed."
       },
       {
         "offset": 20,
         "name": "Valve0-10State",
-        "description": "Aktualny status zaworu 0–10V."
+        "description": "Aktualny status zaworu 0–10V.",
+        "description_en": "Current 0–10V valve status."
       }
     ],
     "holding_registers_single": [
@@ -825,12 +905,14 @@ const DEVICES_DATA = {
           "0": "AUTO",
           "1": "MANUAL"
         },
-        "description": "Tryb pracy wentylatora. Domyślnie MANUAL."
+        "description": "Tryb pracy wentylatora. Domyślnie MANUAL.",
+        "description_en": "Fan operating mode. Default: MANUAL."
       },
       {
         "offset": 6,
         "name": "Program",
-        "description": "Program pracy kurtyny (K1, K2...). Domyślnie K1."
+        "description": "Program pracy kurtyny (K1, K2...). Domyślnie K1.",
+        "description_en": "Curtain operating program (K1, K2...). Default: K1."
       },
       {
         "offset": 7,
@@ -838,7 +920,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wydajność wentylatora w trybie MANUAL (HEAT lub VENT). Domyślnie 50%."
+        "description": "Wydajność wentylatora w trybie MANUAL (HEAT lub VENT). Domyślnie 50%.",
+        "description_en": "Fan capacity in MANUAL mode (HEAT or VENT). Default: 50%."
       },
       {
         "offset": 8,
@@ -846,7 +929,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wydajność wentylatora w trybie STANDBY. Domyślnie 20%."
+        "description": "Wydajność wentylatora w trybie STANDBY. Domyślnie 20%.",
+        "description_en": "Fan capacity in STANDBY mode. Default: 20%."
       },
       {
         "offset": 9,
@@ -854,7 +938,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Minimalna wydajność wentylatora w trybie AUTO (HEAT/VENT). Warunek: Min < Max. Domyślnie 0%."
+        "description": "Minimalna wydajność wentylatora w trybie AUTO (HEAT/VENT). Warunek: Min < Max. Domyślnie 0%.",
+        "description_en": "Minimum fan capacity in AUTO mode (HEAT/VENT). Constraint: Min < Max. Default: 0%."
       },
       {
         "offset": 10,
@@ -862,7 +947,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Maksymalna wydajność wentylatora w trybie AUTO (HEAT/VENT). Warunek: Max > Min. Domyślnie 100%."
+        "description": "Maksymalna wydajność wentylatora w trybie AUTO (HEAT/VENT). Warunek: Max > Min. Domyślnie 100%.",
+        "description_en": "Maximum fan capacity in AUTO mode (HEAT/VENT). Constraint: Max > Min. Default: 100%."
       },
       {
         "offset": 11,
@@ -870,7 +956,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 999,
         "unit": "×0.1°C",
-        "description": "Temperatura zadana nawiewu dla trybu grzania (HEAT). Domyślnie 320 = 32.0°C."
+        "description": "Temperatura zadana nawiewu dla trybu grzania (HEAT). Domyślnie 320 = 32.0°C.",
+        "description_en": "Supply air setpoint temperature for HEAT mode. Default: 320 = 32.0°C."
       },
       {
         "offset": 12,
@@ -878,7 +965,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 999,
         "unit": "×0.1°C",
-        "description": "Ograniczenie temperatury wody powrotnej dla trybu grzania. Domyślnie 320 = 32.0°C."
+        "description": "Ograniczenie temperatury wody powrotnej dla trybu grzania. Domyślnie 320 = 32.0°C.",
+        "description_en": "Return water temperature limit for HEAT mode. Default: 320 = 32.0°C."
       },
       {
         "offset": 13,
@@ -887,7 +975,8 @@ const DEVICES_DATA = {
           "1": "ON — aktywne",
           "2": "OFF — wyłączone"
         },
-        "description": "Włącz/wyłącz ograniczenie temperatury wody powrotnej. Domyślnie OFF."
+        "description": "Włącz/wyłącz ograniczenie temperatury wody powrotnej. Domyślnie OFF.",
+        "description_en": "Enable/disable return water temperature limit. Default: OFF."
       },
       {
         "offset": 14,
@@ -895,7 +984,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 999,
         "unit": "×0.1°C",
-        "description": "Temperatura wody powrotnej po której włącza się wentylator (PREHEAT). Domyślnie 300 = 30.0°C."
+        "description": "Temperatura wody powrotnej po której włącza się wentylator (PREHEAT). Domyślnie 300 = 30.0°C.",
+        "description_en": "Return water temperature (T5) threshold to start fan (PREHEAT). Default: 300 = 30.0°C."
       },
       {
         "offset": 15,
@@ -903,7 +993,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 9999,
         "unit": "s",
-        "description": "Opóźnienie pracy wentylatora w trybie STANDBY [s]. Domyślnie 300s. Warunek: ≥ StandbyValveIdleDelay."
+        "description": "Opóźnienie pracy wentylatora w trybie STANDBY [s]. Domyślnie 300s. Warunek: ≥ StandbyValveIdleDelay.",
+        "description_en": "Fan idle delay in STANDBY mode [s]. Default: 300s. Constraint: ≥ StandbyValveIdleDelay."
       },
       {
         "offset": 16,
@@ -911,7 +1002,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 9999,
         "unit": "s",
-        "description": "Opóźnienie pracy zaworu w trybie STANDBY [s]. Domyślnie 300s. Warunek: ≤ StandbyFanIdleDelay."
+        "description": "Opóźnienie pracy zaworu w trybie STANDBY [s]. Domyślnie 300s. Warunek: ≤ StandbyFanIdleDelay.",
+        "description_en": "Valve idle delay in STANDBY mode [s]. Default: 300s. Constraint: ≤ StandbyFanIdleDelay."
       },
       {
         "offset": 17,
@@ -920,7 +1012,8 @@ const DEVICES_DATA = {
           "1": "ON — aktywne",
           "2": "OFF — wyłączone"
         },
-        "description": "Ochrona przeciwzamrożeniowa magazynu. Domyślnie OFF."
+        "description": "Ochrona przeciwzamrożeniowa magazynu. Domyślnie OFF.",
+        "description_en": "Warehouse antifreeze protection. Default: OFF."
       },
       {
         "offset": 18,
@@ -928,7 +1021,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 999,
         "unit": "×0.1°C",
-        "description": "Temperatura progowa aktywacji ochrony przeciwzamrożeniowej magazynu. Domyślnie 70 = 7.0°C."
+        "description": "Temperatura progowa aktywacji ochrony przeciwzamrożeniowej magazynu. Domyślnie 70 = 7.0°C.",
+        "description_en": "Warehouse antifreeze activation temperature threshold. Default: 70 = 7.0°C."
       },
       {
         "offset": 19,
@@ -937,7 +1031,8 @@ const DEVICES_DATA = {
           "1": "ON — aktywne",
           "2": "OFF — wyłączone"
         },
-        "description": "Ochrona przeciwzamrożeniowa wymiennika wodnego. Domyślnie ON."
+        "description": "Ochrona przeciwzamrożeniowa wymiennika wodnego. Domyślnie ON.",
+        "description_en": "Water heat exchanger antifreeze protection. Default: ON."
       },
       {
         "offset": 20,
@@ -945,7 +1040,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 999,
         "unit": "×0.1°C",
-        "description": "Progowa temperatura nawiewu T3 dla aktywacji ochrony wymiennika. Domyślnie 70 = 7.0°C."
+        "description": "Progowa temperatura nawiewu T3 dla aktywacji ochrony wymiennika. Domyślnie 70 = 7.0°C.",
+        "description_en": "Supply air temperature (T3) threshold for exchanger antifreeze activation. Default: 70 = 7.0°C."
       },
       {
         "offset": 21,
@@ -953,7 +1049,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 999,
         "unit": "×0.1°C",
-        "description": "Progowa temperatura wody T5 dla aktywacji ochrony wymiennika. Domyślnie 70 = 7.0°C."
+        "description": "Progowa temperatura wody T5 dla aktywacji ochrony wymiennika. Domyślnie 70 = 7.0°C.",
+        "description_en": "Water temperature (T5) threshold for exchanger antifreeze activation. Default: 70 = 7.0°C."
       },
       {
         "offset": 22,
@@ -962,25 +1059,29 @@ const DEVICES_DATA = {
           "1": "ON",
           "2": "OFF"
         },
-        "description": "Włącz/wyłącz podgrzewanie wstępne (PREHEAT). Domyślnie OFF."
+        "description": "Włącz/wyłącz podgrzewanie wstępne (PREHEAT). Domyślnie OFF.",
+        "description_en": "Enable/disable preheat function (PREHEAT). Default: OFF."
       },
       {
         "offset": 23,
         "name": "FilterMaxWorkTime",
-        "description": "Kasowanie licznika czasu pracy filtra. Domyślnie OFF."
+        "description": "Kasowanie licznika czasu pracy filtra. Domyślnie OFF.",
+        "description_en": "Reset filter operating time counter. Default: OFF."
       },
       {
         "offset": 24,
         "name": "DoorOpenFreqAlphaThreshold",
         "min": 0,
         "max": 100,
-        "description": "Próg detekcji częstotliwości otwierania drzwi w trybie SMART. Domyślnie 60."
+        "description": "Próg detekcji częstotliwości otwierania drzwi w trybie SMART. Domyślnie 60.",
+        "description_en": "Door opening frequency detection threshold in SMART mode. Default: 60."
       },
       {
         "offset": 25,
         "name": "DoorOpenFreqTimePeriod",
         "unit": "s",
-        "description": "Okres detekcji częstotliwości otwierania drzwi w trybie SMART. Domyślnie 300s."
+        "description": "Okres detekcji częstotliwości otwierania drzwi w trybie SMART. Domyślnie 300s.",
+        "description_en": "Door opening frequency detection time period in SMART mode. Default: 300s."
       },
       {
         "offset": 26,
@@ -988,7 +1089,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Minimalna wydajność wentylatora w trybie dogrzewania (ADD HEAT), Auto. Domyślnie 5%. Warunek: Min < Max."
+        "description": "Minimalna wydajność wentylatora w trybie dogrzewania (ADD HEAT), Auto. Domyślnie 5%. Warunek: Min < Max.",
+        "description_en": "Minimum fan capacity in ADD HEAT mode, Auto. Default: 5%. Constraint: Min < Max."
       },
       {
         "offset": 27,
@@ -996,7 +1098,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Maksymalna wydajność wentylatora w trybie dogrzewania (ADD HEAT), Auto. Domyślnie 5%. Warunek: Min < Max."
+        "description": "Maksymalna wydajność wentylatora w trybie dogrzewania (ADD HEAT), Auto. Domyślnie 5%. Warunek: Min < Max.",
+        "description_en": "Maximum fan capacity in ADD HEAT mode, Auto. Default: 5%. Constraint: Min < Max."
       },
       {
         "offset": 28,
@@ -1004,7 +1107,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 999,
         "unit": "×0.1°C",
-        "description": "Temperatura zadana przejścia VENT→HEAT w trybie SMART. Domyślnie 170 = 17.0°C. Warunek: ≤ EWMSmartT13h − 1K."
+        "description": "Temperatura zadana przejścia VENT→HEAT w trybie SMART. Domyślnie 170 = 17.0°C. Warunek: ≤ EWMSmartT13h − 1K.",
+        "description_en": "Setpoint temperature for VENT→HEAT transition in SMART mode. Default: 170 = 17.0°C. Constraint: ≤ EWMSmartT13h − 1K."
       },
       {
         "offset": 29,
@@ -1012,29 +1116,34 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 999,
         "unit": "×0.1°C",
-        "description": "Temperatura zadana przejścia HEAT→VENT w trybie SMART. Domyślnie 210 = 21.0°C. Warunek: ≥ EWMSmartT124h + 1K."
+        "description": "Temperatura zadana przejścia HEAT→VENT w trybie SMART. Domyślnie 210 = 21.0°C. Warunek: ≥ EWMSmartT124h + 1K.",
+        "description_en": "Setpoint temperature for HEAT→VENT transition in SMART mode. Default: 210 = 21.0°C. Constraint: ≥ EWMSmartT124h + 1K."
       },
       {
         "offset": 30,
         "name": "HeatT3_PI_KP",
-        "description": "Wzmocnienie KP regulatora PI temperatury nawiewu T3. Domyślnie 3."
+        "description": "Wzmocnienie KP regulatora PI temperatury nawiewu T3. Domyślnie 3.",
+        "description_en": "Proportional gain KP of the PI controller for supply air temperature T3. Default: 3."
       },
       {
         "offset": 31,
         "name": "HeatT3_PI_TI",
         "unit": "s",
-        "description": "Czas podwajania TI regulatora PI temperatury nawiewu T3. Domyślnie 180s."
+        "description": "Czas podwajania TI regulatora PI temperatury nawiewu T3. Domyślnie 180s.",
+        "description_en": "Integral time TI of the PI controller for supply air temperature T3. Default: 180s."
       },
       {
         "offset": 32,
         "name": "HeatT5_PI_KP",
-        "description": "Wzmocnienie KP regulatora PI temperatury wody powrotnej T5. Domyślnie 3."
+        "description": "Wzmocnienie KP regulatora PI temperatury wody powrotnej T5. Domyślnie 3.",
+        "description_en": "Proportional gain KP of the PI controller for return water temperature T5. Default: 3."
       },
       {
         "offset": 33,
         "name": "HeatT5_PI_TI",
         "unit": "s",
-        "description": "Czas TI regulatora PI temperatury wody powrotnej T5. Domyślnie 180s."
+        "description": "Czas TI regulatora PI temperatury wody powrotnej T5. Domyślnie 180s.",
+        "description_en": "Integral time TI of the PI controller for return water temperature T5. Default: 180s."
       }
     ],
     "holding_registers_group": []
@@ -1042,47 +1151,56 @@ const DEVICES_DATA = {
   "LEO AC (DRV V)": {
     "name": "LEO AC (DRV V)",
     "description": "Nagrzewnica wodna z wentylatorem EC",
+    "description_en": "LEO AC water heater series V (heating/cooling, EC fan)",
     "group_priority": 5,
     "input_registers": [
       {
         "offset": 4,
         "name": "T3",
-        "description": "Temperatura przy suficie (czujnik T3)."
+        "description": "Temperatura przy suficie (czujnik T3).",
+        "description_en": "Ceiling temperature (T3 sensor)."
       },
       {
         "offset": 5,
         "name": "T4",
-        "description": "Temperatura w pomieszczeniu (czujnik T4)."
+        "description": "Temperatura w pomieszczeniu (czujnik T4).",
+        "description_en": "Room temperature (T4 sensor)."
       },
       {
         "offset": 6,
         "name": "FanEff",
-        "description": "Prędkość wentylatora (AC 3-biegowy)."
+        "description": "Prędkość wentylatora (AC 3-biegowy).",
+        "description_en": "Fan speed (3-speed AC fan)."
       },
       {
         "offset": 7,
         "name": "AntifreezeeState",
-        "description": "Stan ochrony przeciwzamrożeniowej magazynu — 8 bitów."
+        "description": "Stan ochrony przeciwzamrożeniowej magazynu — 8 bitów.",
+        "description_en": "Warehouse antifreeze protection state — 8 bits."
       },
       {
         "offset": 8,
         "name": "DestStatus",
-        "description": "Stan destratyfikacji: aktywna gdy (DestTempRef > Td–Tm) oraz (Tz > Tm)."
+        "description": "Stan destratyfikacji: aktywna gdy (DestTempRef > Td–Tm) oraz (Tz > Tm).",
+        "description_en": "Destratification state: active when (DestTempRef > Td–Tm) and (Tz > Tm)."
       },
       {
         "offset": 9,
         "name": "FilterPressureState",
-        "description": "Stan presostatu filtra."
+        "description": "Stan presostatu filtra.",
+        "description_en": "Filter pressure switch state."
       },
       {
         "offset": 10,
         "name": "FuseState",
-        "description": "Stan bezpiecznika wentylatorów (bity). Przykład: 0x100 = OK, 0x200 = przepalony."
+        "description": "Stan bezpiecznika wentylatorów (bity). Przykład: 0x100 = OK, 0x200 = przepalony.",
+        "description_en": "Fan fuse state (bits). Example: 0x100 = OK, 0x200 = blown."
       },
       {
         "offset": 11,
         "name": "ValveState",
-        "description": "Stan zaworu wodnego."
+        "description": "Stan zaworu wodnego.",
+        "description_en": "Water valve state."
       }
     ],
     "holding_registers_single": [
@@ -1121,7 +1239,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
+        "description": "Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
+        "description_en": "3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
       },
       {
         "offset": 8,
@@ -1258,47 +1377,56 @@ const DEVICES_DATA = {
   "LEO EC (DRV M)": {
     "name": "LEO EC (DRV M)",
     "description": "Nagrzewnica wodna z wentylatorem EC (płynna regulacja)",
+    "description_en": "LEO EC water heater series M (EC fan, continuous control)",
     "group_priority": 6,
     "input_registers": [
       {
         "offset": 4,
         "name": "T3",
-        "description": "Temperatura powietrza za wymiennikiem wodnym (czujnik T3)."
+        "description": "Temperatura powietrza za wymiennikiem wodnym (czujnik T3).",
+        "description_en": "Supply air temperature after water heat exchanger (T3 sensor)."
       },
       {
         "offset": 5,
         "name": "T4",
-        "description": "Temperatura w pomieszczeniu (czujnik T4)."
+        "description": "Temperatura w pomieszczeniu (czujnik T4).",
+        "description_en": "Room temperature (T4 sensor)."
       },
       {
         "offset": 6,
         "name": "FanEff",
-        "description": "Wydajność wentylatora EC — prędkość obrotowa [rpm]."
+        "description": "Wydajność wentylatora EC — prędkość obrotowa [rpm].",
+        "description_en": "EC fan efficiency — rotational speed [rpm]."
       },
       {
         "offset": 7,
         "name": "AntifreezeeState",
-        "description": "Stan ochrony przeciwzamrożeniowej — 8 bitów."
+        "description": "Stan ochrony przeciwzamrożeniowej — 8 bitów.",
+        "description_en": "Antifreeze protection state — 8 bits."
       },
       {
         "offset": 8,
         "name": "DestStatus",
-        "description": "Stan destratyfikacji: aktywna gdy (DestTempRef > Td–Tm) oraz (Tz > Tm)."
+        "description": "Stan destratyfikacji: aktywna gdy (DestTempRef > Td–Tm) oraz (Tz > Tm).",
+        "description_en": "Destratification state: active when (DestTempRef > Td–Tm) and (Tz > Tm)."
       },
       {
         "offset": 9,
         "name": "FanEcConnect",
-        "description": "Status połączenia wentylatora EC z urządzeniem DRV M."
+        "description": "Status połączenia wentylatora EC z urządzeniem DRV M.",
+        "description_en": "EC fan connection status with DRV M device."
       },
       {
         "offset": 10,
         "name": "FuseState",
-        "description": "Stan bezpiecznika wentylatorów EC/3V/dachowych (bity). Przykład: 0x100 = wentylator 3V OK."
+        "description": "Stan bezpiecznika wentylatorów EC/3V/dachowych (bity). Przykład: 0x100 = wentylator 3V OK.",
+        "description_en": "EC/3-speed/rooftop fan fuse state (bits). Example: 0x100 = 3-speed fan OK."
       },
       {
         "offset": 11,
         "name": "ValveState",
-        "description": "Stan zaworu wodnego."
+        "description": "Stan zaworu wodnego.",
+        "description_en": "Water valve state."
       }
     ],
     "holding_registers_single": [
@@ -1480,32 +1608,38 @@ const DEVICES_DATA = {
   "LEO D (DRV D)": {
     "name": "LEO D (DRV D)",
     "description": "Destratyfikator (DRV D / LEO D)",
+    "description_en": "LEO D water heater (destratification unit)",
     "group_priority": 7,
     "input_registers": [
       {
         "offset": 4,
         "name": "T3",
-        "description": "Temperatura przy suficie (czujnik T3)."
+        "description": "Temperatura przy suficie (czujnik T3).",
+        "description_en": "Ceiling temperature (T3 sensor)."
       },
       {
         "offset": 5,
         "name": "T4",
-        "description": "Temperatura w pomieszczeniu (czujnik T4)."
+        "description": "Temperatura w pomieszczeniu (czujnik T4).",
+        "description_en": "Room temperature (T4 sensor)."
       },
       {
         "offset": 6,
         "name": "FanEff",
-        "description": "Prędkość wentylatora (AC 3-biegowy)."
+        "description": "Prędkość wentylatora (AC 3-biegowy).",
+        "description_en": "Fan speed (3-speed AC fan)."
       },
       {
         "offset": 7,
         "name": "DestStatus",
-        "description": "Stan destratyfikacji: aktywna gdy (DestTempRef > Td–Tm) oraz (Tz > Tm). Td=T3, Tm=TLeadVal lub T4."
+        "description": "Stan destratyfikacji: aktywna gdy (DestTempRef > Td–Tm) oraz (Tz > Tm). Td=T3, Tm=TLeadVal lub T4.",
+        "description_en": "Destratification state: active when (DestTempRef > Td–Tm) and (Tz > Tm). Td=T3, Tm=TLeadVal or T4."
       },
       {
         "offset": 8,
         "name": "FuseState",
-        "description": "Stan bezpiecznika wentylatora 3V (bity 8–11). Przykład: 0x100 = OK, 0x200 = przepalony."
+        "description": "Stan bezpiecznika wentylatora 3V (bity 8–11). Przykład: 0x100 = OK, 0x200 = przepalony.",
+        "description_en": "3-speed fan fuse state (bits 8–11). Example: 0x100 = OK, 0x200 = blown."
       }
     ],
     "holding_registers_single": [
@@ -1525,7 +1659,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
+        "description": "Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
+        "description_en": "3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
       },
       {
         "offset": 6,
@@ -1555,7 +1690,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "K×0.1",
-        "description": "Próg odszraniania: warunek DestTempRef > Td − Tm (Td=T3 sufit, Tm=czujnik prowadzący)"
+        "description": "Próg odszraniania: warunek DestTempRef > Td − Tm (Td=T3 sufit, Tm=czujnik prowadzący)",
+        "description_en": "Destratification threshold: condition DestTempRef > Td − Tm (Td=T3 ceiling, Tm=lead sensor)"
       },
       {
         "offset": 11,
@@ -1563,7 +1699,8 @@ const DEVICES_DATA = {
         "min": 50,
         "max": 450,
         "unit": "°C×0.1",
-        "description": "Docelowa temperatura przy suficie w trybie ręcznym; warunek: WorkModeTempRef > czujnik prowadzący"
+        "description": "Docelowa temperatura przy suficie w trybie ręcznym; warunek: WorkModeTempRef > czujnik prowadzący",
+        "description_en": "Target ceiling temperature in manual mode; condition: WorkModeTempRef > lead sensor"
       }
     ],
     "holding_registers_group": [
@@ -1583,7 +1720,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
+        "description": "Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
+        "description_en": "3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
       },
       {
         "offset": 6,
@@ -1591,7 +1729,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "K×0.1",
-        "description": "Próg odszraniania: warunek DestTempRef > Td − Tm (Td=T3 sufit, Tm=czujnik prowadzący)"
+        "description": "Próg odszraniania: warunek DestTempRef > Td − Tm (Td=T3 sufit, Tm=czujnik prowadzący)",
+        "description_en": "Destratification threshold: condition DestTempRef > Td − Tm (Td=T3 ceiling, Tm=lead sensor)"
       },
       {
         "offset": 7,
@@ -1599,59 +1738,70 @@ const DEVICES_DATA = {
         "min": 50,
         "max": 450,
         "unit": "°C×0.1",
-        "description": "Docelowa temperatura przy suficie w trybie ręcznym; warunek: WorkModeTempRef > czujnik prowadzący"
+        "description": "Docelowa temperatura przy suficie w trybie ręcznym; warunek: WorkModeTempRef > czujnik prowadzący",
+        "description_en": "Target ceiling temperature in manual mode; condition: WorkModeTempRef > lead sensor"
       }
     ]
   },
   "LEO EL (DRV EL)": {
     "name": "LEO EL (DRV EL)",
     "description": "Nagrzewnica elektryczna",
+    "description_en": "LEO EL electric heater",
     "group_priority": 9,
     "input_registers": [
       {
         "offset": 4,
         "name": "T3",
-        "description": "Temperatura przy suficie (czujnik T3)."
+        "description": "Temperatura przy suficie (czujnik T3).",
+        "description_en": "Ceiling temperature (T3 sensor)."
       },
       {
         "offset": 5,
         "name": "T4",
-        "description": "Temperatura w pomieszczeniu (czujnik T4)."
+        "description": "Temperatura w pomieszczeniu (czujnik T4).",
+        "description_en": "Room temperature (T4 sensor)."
       },
       {
         "offset": 6,
         "name": "FanEff",
-        "description": "Prędkość wentylatora (AC 3-biegowy)."
+        "description": "Prędkość wentylatora (AC 3-biegowy).",
+        "description_en": "Fan speed (3-speed AC fan)."
       },
       {
         "offset": 7,
         "name": "AntifreezeeState",
-        "description": "Stan ochrony przeciwzamrożeniowej."
+        "description": "Stan ochrony przeciwzamrożeniowej.",
+        "description_en": "Antifreeze protection state."
       },
       {
         "offset": 8,
         "name": "DestStatus",
-        "description": "Stan destratyfikacji."
+        "description": "Stan destratyfikacji.",
+        "description_en": "Destratification state."
       },
       {
         "offset": 9,
         "name": "ThermalContactState",
-        "description": "Stan styku termicznego. Gdy = 1: FanEffRef → 100, ElectricHeaterPTCPower → 0 (ochrona przed przegrzaniem)."
+        "description": "Stan styku termicznego. Gdy = 1: FanEffRef → 100, ElectricHeaterPTCPower → 0 (ochrona przed przegrzaniem).",
+        "description_en": "Thermal contact state. When = 1: FanEffRef → 100, ElectricHeaterPTCPower → 0 (overheat protection)."
       },
       {
         "offset": 10,
         "name": "FuseState",
-        "description": "Stan bezpiecznika wentylatorów EC/3V/dachowych (bity). Przykład: 0x100 = wentylator 3V OK."
+        "description": "Stan bezpiecznika wentylatorów EC/3V/dachowych (bity). Przykład: 0x100 = wentylator 3V OK.",
+        "description_en": "EC/3-speed/rooftop fan fuse state (bits). Example: 0x100 = 3-speed fan OK."
       },
       {
         "offset": 11,
         "name": "PTCHeaterPowerState",
-        "description": "Moc nagrzewnicy elektrycznej PTC. LEO EL L (SW3.5=K1) lub LEO EL S (SW3.5=K2)."
+        "description": "Moc nagrzewnicy elektrycznej PTC. LEO EL L (SW3.5=K1) lub LEO EL S (SW3.5=K2).",
+        "description_en": "PTC electric heater power. LEO EL L (SW3.5=K1) or LEO EL S (SW3.5=K2)."
       },
       {
         "offset": 12,
         "name": "ElectricHeaterType",
-        "description": "Typ elektrycznej nagrzewnicy."
+        "description": "Typ elektrycznej nagrzewnicy.",
+        "description_en": "Electric heater type."
       }
     ],
     "holding_registers_single": [
@@ -1688,7 +1838,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
+        "description": "Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
+        "description_en": "3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
       },
       {
         "offset": 8,
@@ -1736,7 +1887,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "K×0.1",
-        "description": "Próg destratyfikacji: warunek DestTempRef > Td − Tm (Td=T3 sufit, Tm=czujnik prowadzący)"
+        "description": "Próg destratyfikacji: warunek DestTempRef > Td − Tm (Td=T3 sufit, Tm=czujnik prowadzący)",
+        "description_en": "Destratification threshold: condition DestTempRef > Td − Tm (Td=T3 ceiling, Tm=lead sensor)"
       },
       {
         "offset": 15,
@@ -1747,7 +1899,8 @@ const DEVICES_DATA = {
           "3": "2 — 2 stopnie grzania",
           "4": "3 — 3 stopnie grzania (tylko SW3.5=K1)"
         },
-        "description": "SW3.5=K1 (3 stopnie): 1=Off, 2=1heat, 3=2heat, 4=3heat. SW3.5=K2 (2 stopnie): 1=Off, 2=1heat, 3=2heat, 4=2heat"
+        "description": "SW3.5=K1 (3 stopnie): 1=Off, 2=1heat, 3=2heat, 4=3heat. SW3.5=K2 (2 stopnie): 1=Off, 2=1heat, 3=2heat, 4=2heat",
+        "description_en": "SW3.5=K1 (3 steps): 1=Off, 2=1heat, 3=2heat, 4=3heat. SW3.5=K2 (2 steps): 1=Off, 2=1heat, 3=2heat, 4=2heat"
       },
       {
         "offset": 16,
@@ -1755,7 +1908,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Prędkość wentylatora w trybie AUTO. AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1, 34–66=bieg 2, 67–100=bieg 3"
+        "description": "Prędkość wentylatora w trybie AUTO. AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1, 34–66=bieg 2, 67–100=bieg 3",
+        "description_en": "Fan speed in AUTO mode. 3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1, 34–66=speed 2, 67–100=speed 3"
       },
       {
         "offset": 17,
@@ -1763,7 +1917,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Prędkość wentylatora w trybie ręcznym. AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1, 34–66=bieg 2, 67–100=bieg 3"
+        "description": "Prędkość wentylatora w trybie ręcznym. AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1, 34–66=bieg 2, 67–100=bieg 3",
+        "description_en": "Fan speed in MANUAL mode. 3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1, 34–66=speed 2, 67–100=speed 3"
       }
     ],
     "holding_registers_group": [
@@ -1785,7 +1940,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
+        "description": "Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
+        "description_en": "3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
       },
       {
         "offset": 6,
@@ -1812,64 +1968,76 @@ const DEVICES_DATA = {
           "3": "2 — 2 stopnie grzania",
           "4": "3 — 3 stopnie grzania (tylko SW3.5=K1)"
         },
-        "description": "SW3.5=K1 (3 stopnie): 1=Off, 2=1heat, 3=2heat, 4=3heat. SW3.5=K2 (2 stopnie): 1=Off, 2=1heat, 3=2heat, 4=2heat"
+        "description": "SW3.5=K1 (3 stopnie): 1=Off, 2=1heat, 3=2heat, 4=3heat. SW3.5=K2 (2 stopnie): 1=Off, 2=1heat, 3=2heat, 4=2heat",
+        "description_en": "SW3.5=K1 (3 steps): 1=Off, 2=1heat, 3=2heat, 4=3heat. SW3.5=K2 (2 steps): 1=Off, 2=1heat, 3=2heat, 4=2heat"
       }
     ]
   },
   "ROBUR R NEXT (DRV R NEXT)": {
     "name": "ROBUR R NEXT (DRV R NEXT)",
     "description": "Nagrzewnica gazowa ROBUR NEXT",
+    "description_en": "ROBUR NEXT gas-fired water heater with EC fans",
     "group_priority": 10,
     "input_registers": [
       {
         "offset": 5,
         "name": "T3",
-        "description": "Temperatura przy suficie (czujnik T3)."
+        "description": "Temperatura przy suficie (czujnik T3).",
+        "description_en": "Ceiling temperature (T3 sensor)."
       },
       {
         "offset": 6,
         "name": "T4",
-        "description": "Temperatura w pomieszczeniu (czujnik T4)."
+        "description": "Temperatura w pomieszczeniu (czujnik T4).",
+        "description_en": "Room temperature (T4 sensor)."
       },
       {
         "offset": 8,
         "name": "ExternalGasDetectTH1",
-        "description": "Sygnał zewnętrznego czujnika gazu — próg pierwszy."
+        "description": "Sygnał zewnętrznego czujnika gazu — próg pierwszy.",
+        "description_en": "External gas sensor signal — first threshold."
       },
       {
         "offset": 9,
         "name": "ExternalGasDetectTH2",
-        "description": "Sygnał zewnętrznego czujnika gazu — próg drugi."
+        "description": "Sygnał zewnętrznego czujnika gazu — próg drugi.",
+        "description_en": "External gas sensor signal — second threshold."
       },
       {
         "offset": 10,
         "name": "ExternalGasDetectVal",
-        "description": "Stężenie gazu — wejście 0–10V DC (wymagana kalibracja czujnika)."
+        "description": "Stężenie gazu — wejście 0–10V DC (wymagana kalibracja czujnika).",
+        "description_en": "Gas concentration — 0–10V DC input (sensor calibration required)."
       },
       {
         "offset": 15,
         "name": "AntifreezeStateWarehouse",
-        "description": "Stan ochrony przeciwzamrożeniowej magazynu."
+        "description": "Stan ochrony przeciwzamrożeniowej magazynu.",
+        "description_en": "Warehouse antifreeze protection state."
       },
       {
         "offset": 16,
         "name": "FuseState",
-        "description": "Stan bezpiecznika wentylatora."
+        "description": "Stan bezpiecznika wentylatora.",
+        "description_en": "Fan fuse state."
       },
       {
         "offset": 17,
         "name": "GasAlarmState",
-        "description": "Alarm Robur — gaz/płomień. Odczyt z zacisku nr 6 (terminal wewnątrz nagrzewnicy)."
+        "description": "Alarm Robur — gaz/płomień. Odczyt z zacisku nr 6 (terminal wewnątrz nagrzewnicy).",
+        "description_en": "Robur alarm — gas/flame. Read from terminal no. 6 (inside the heater)."
       },
       {
         "offset": 18,
         "name": "STBAlarmState",
-        "description": "Alarm temperatury wyciągu powietrza (STB)."
+        "description": "Alarm temperatury wyciągu powietrza (STB).",
+        "description_en": "Extract air temperature alarm (STB)."
       },
       {
         "offset": 19,
         "name": "FilterWorkTime",
-        "description": "Czas pracy filtra. Czas rzeczywisty = 5 × wartość [min]."
+        "description": "Czas pracy filtra. Czas rzeczywisty = 5 × wartość [min].",
+        "description_en": "Filter operating time. Actual value = 5 × register value [min]."
       }
     ],
     "holding_registers_single": [
@@ -1907,7 +2075,8 @@ const DEVICES_DATA = {
           "1": "ON — wysyłanie sygnału resetującego (ciągłe)",
           "2": "OFF — zatrzymanie sygnału resetującego"
         },
-        "description": "Reset alarmu gazowego/płomieniowego. Czas resetu nie powinien przekraczać 5 s (następnie ustawić wartość na 0x02)"
+        "description": "Reset alarmu gazowego/płomieniowego. Czas resetu nie powinien przekraczać 5 s (następnie ustawić wartość na 0x02)",
+        "description_en": "Gas/flame alarm reset. Reset time should not exceed 5 s (then set value to 0x02)"
       },
       {
         "offset": 14,
@@ -1938,7 +2107,8 @@ const DEVICES_DATA = {
         "min": 810,
         "max": 1200,
         "unit": "°C×0.1",
-        "description": "Temperatura progowa alarmu STB (Input Register 0x12). Alarm aktywny gdy wartość ustawiona > T3 (IR 0x05). Domyślna wartość 900 zapewnia wystąpienie błędu przed rzeczywistym alarmem STB Robur (który wymaga ręcznego resetu ze skrzynki sterowniczej)"
+        "description": "Temperatura progowa alarmu STB (Input Register 0x12). Alarm aktywny gdy wartość ustawiona > T3 (IR 0x05). Domyślna wartość 900 zapewnia wystąpienie błędu przed rzeczywistym alarmem STB Robur (który wymaga ręcznego resetu ze skrzynki sterowniczej)",
+        "description_en": "STB alarm threshold temperature (Input Register 0x12). Alarm active when set value > T3 (IR 0x05). Default value 900 ensures error occurs before actual Robur STB alarm (which requires manual reset from the control box)"
       },
       {
         "offset": 19,
@@ -1954,7 +2124,8 @@ const DEVICES_DATA = {
         "min": 610,
         "max": 800,
         "unit": "°C×0.1",
-        "description": "Temperatura resetowania alarmu STB. Reset możliwy gdy wartość ustawiona > T3 (IR 0x05). Dodatkowy warunek: STB_T_OFF < STB_T_REF"
+        "description": "Temperatura resetowania alarmu STB. Reset możliwy gdy wartość ustawiona > T3 (IR 0x05). Dodatkowy warunek: STB_T_OFF < STB_T_REF",
+        "description_en": "STB alarm reset temperature. Reset possible when set value > T3 (IR 0x05). Additional condition: STB_T_OFF < STB_T_REF"
       },
       {
         "offset": 21,
@@ -1963,7 +2134,8 @@ const DEVICES_DATA = {
           "1": "ON — reset alarmu aktywny",
           "2": "OFF — reset alarmu nieaktywny"
         },
-        "description": "Jeśli STB_T (T3, IR 0x03) < STBTemperatureAlarmOff (HR 0x14), rejestr zostanie automatycznie ustawiony na 0x02 (OFF)"
+        "description": "Jeśli STB_T (T3, IR 0x03) < STBTemperatureAlarmOff (HR 0x14), rejestr zostanie automatycznie ustawiony na 0x02 (OFF)",
+        "description_en": "If STB_T (T3, IR 0x03) < STBTemperatureAlarmOff (HR 0x14), the register will be automatically set to 0x02 (OFF)"
       },
       {
         "offset": 22,
@@ -1972,7 +2144,8 @@ const DEVICES_DATA = {
           "0": "Fan OFF — wentylator wyłączony",
           "100": "Fan ON — wentylator włączony"
         },
-        "description": "Ustawienie wydajności wentylatora po osiągnięciu temperatury docelowej"
+        "description": "Ustawienie wydajności wentylatora po osiągnięciu temperatury docelowej",
+        "description_en": "Fan capacity setting after reaching target temperature"
       },
       {
         "offset": 23,
@@ -1982,7 +2155,8 @@ const DEVICES_DATA = {
           "1": "FIRST_STEP — pierwszy stopień spalania",
           "2": "SECOND_STEP — drugi stopień spalania"
         },
-        "description": "Ustawienie stopnia spalania gazu (aktywne tylko w trybie ręcznego grzania WM_HEAT_MANUAL)"
+        "description": "Ustawienie stopnia spalania gazu (aktywne tylko w trybie ręcznego grzania WM_HEAT_MANUAL)",
+        "description_en": "Gas combustion stage setting (active only in manual heating mode WM_HEAT_MANUAL)"
       }
     ],
     "holding_registers_group": [
@@ -2003,7 +2177,8 @@ const DEVICES_DATA = {
         "min": 810,
         "max": 1200,
         "unit": "°C×0.1",
-        "description": "Temperatura progowa aktywacji alarmu STB."
+        "description": "Temperatura progowa aktywacji alarmu STB.",
+        "description_en": "STB alarm activation threshold temperature."
       },
       {
         "offset": 13,
@@ -2011,7 +2186,8 @@ const DEVICES_DATA = {
         "min": 610,
         "max": 800,
         "unit": "°C×0.1",
-        "description": "Temperatura resetowania alarmu STB."
+        "description": "Temperatura resetowania alarmu STB.",
+        "description_en": "STB alarm reset temperature."
       },
       {
         "offset": 14,
@@ -2020,7 +2196,8 @@ const DEVICES_DATA = {
           "0": "Fan OFF — wentylator wyłączony",
           "100": "Fan ON — wentylator włączony"
         },
-        "description": "Wydajność wentylatora po osiągnięciu temperatury docelowej."
+        "description": "Wydajność wentylatora po osiągnięciu temperatury docelowej.",
+        "description_en": "Fan capacity after reaching target temperature."
       },
       {
         "offset": 15,
@@ -2030,89 +2207,106 @@ const DEVICES_DATA = {
           "1": "FIRST_STEP — pierwszy stopień spalania",
           "2": "SECOND_STEP — drugi stopień spalania"
         },
-        "description": "Stopień spalania gazu (aktywne w trybie WM_HEAT_MANUAL)."
+        "description": "Stopień spalania gazu (aktywne w trybie WM_HEAT_MANUAL).",
+        "description_en": "Gas combustion stage (active in WM_HEAT_MANUAL mode)."
       }
     ]
   },
   "ROBUR R KM NEXT (DRV R KM NEXT)": {
     "name": "ROBUR R KM NEXT (DRV R KM NEXT)",
     "description": "Nagrzewnica gazowa ROBUR NEXT z klapą mieszającą",
+    "description_en": "ROBUR NEXT KM gas-fired water heater with mixing chamber",
     "group_priority": 11,
     "input_registers": [
       {
         "offset": 4,
         "name": "T1",
-        "description": "Temperatura powietrza świeżego (czujnik T1)."
+        "description": "Temperatura powietrza świeżego (czujnik T1).",
+        "description_en": "Fresh air temperature (T1 sensor)."
       },
       {
         "offset": 5,
         "name": "T3",
-        "description": "Temperatura wyciągu powietrza (czujnik T3)."
+        "description": "Temperatura wyciągu powietrza (czujnik T3).",
+        "description_en": "Extract air temperature (T3 sensor)."
       },
       {
         "offset": 6,
         "name": "T4",
-        "description": "Temperatura w pomieszczeniu (czujnik T4)."
+        "description": "Temperatura w pomieszczeniu (czujnik T4).",
+        "description_en": "Room temperature (T4 sensor)."
       },
       {
         "offset": 8,
         "name": "ExternalGasDetectTH1",
-        "description": "Sygnał zewnętrznego czujnika gazu — próg pierwszy."
+        "description": "Sygnał zewnętrznego czujnika gazu — próg pierwszy.",
+        "description_en": "External gas sensor signal — first threshold."
       },
       {
         "offset": 9,
         "name": "ExternalGasDetectTH2",
-        "description": "Sygnał zewnętrznego czujnika gazu — próg drugi."
+        "description": "Sygnał zewnętrznego czujnika gazu — próg drugi.",
+        "description_en": "External gas sensor signal — second threshold."
       },
       {
         "offset": 10,
         "name": "ExternalGasDetectVal",
-        "description": "Stężenie gazu — wejście 0–10V DC."
+        "description": "Stężenie gazu — wejście 0–10V DC.",
+        "description_en": "Gas concentration — 0–10V DC input."
       },
       {
         "offset": 11,
         "name": "FanRoofTK",
-        "description": "Sygnał TK z wentylatora dachowego."
+        "description": "Sygnał TK z wentylatora dachowego.",
+        "description_en": "TK signal from rooftop fan."
       },
       {
         "offset": 12,
         "name": "FanRoofEff",
-        "description": "Wydajność wentylatora dachowego."
+        "description": "Wydajność wentylatora dachowego.",
+        "description_en": "Rooftop fan efficiency."
       },
       {
         "offset": 13,
         "name": "DamperLevel",
-        "description": "Aktualna pozycja klapy mieszania."
+        "description": "Aktualna pozycja klapy mieszania.",
+        "description_en": "Current mixing damper position."
       },
       {
         "offset": 14,
         "name": "DamperForceState",
-        "description": "Stan wymuszenia pozycji klapy (tryb DamperForceMode = ON)."
+        "description": "Stan wymuszenia pozycji klapy (tryb DamperForceMode = ON).",
+        "description_en": "Damper forced position state (DamperForceMode = ON)."
       },
       {
         "offset": 15,
         "name": "AntifreezeStateWarehouse",
-        "description": "Stan ochrony przeciwzamrożeniowej magazynu."
+        "description": "Stan ochrony przeciwzamrożeniowej magazynu.",
+        "description_en": "Warehouse antifreeze protection state."
       },
       {
         "offset": 16,
         "name": "FuseState",
-        "description": "Stan bezpiecznika wentylatora."
+        "description": "Stan bezpiecznika wentylatora.",
+        "description_en": "Fan fuse state."
       },
       {
         "offset": 17,
         "name": "GasAlarmState",
-        "description": "Alarm Robur — gaz/płomień."
+        "description": "Alarm Robur — gaz/płomień.",
+        "description_en": "Robur alarm — gas/flame."
       },
       {
         "offset": 18,
         "name": "STBAlarmState",
-        "description": "Alarm STB — temperatura wyciągu powietrza."
+        "description": "Alarm STB — temperatura wyciągu powietrza.",
+        "description_en": "STB alarm — extract air temperature."
       },
       {
         "offset": 19,
         "name": "FilterWorkTime",
-        "description": "Czas pracy filtra. Czas rzeczywisty = 5 × wartość [min]."
+        "description": "Czas pracy filtra. Czas rzeczywisty = 5 × wartość [min].",
+        "description_en": "Filter operating time. Actual value = 5 × register value [min]."
       }
     ],
     "holding_registers_single": [
@@ -2157,7 +2351,8 @@ const DEVICES_DATA = {
         "min": -100,
         "max": 150,
         "unit": "°C×0.1",
-        "description": "Temperatura wymuszonego otwarcia klapy. Połączona z T1 (temperatura świeżego powietrza — IR 0x04)"
+        "description": "Temperatura wymuszonego otwarcia klapy. Połączona z T1 (temperatura świeżego powietrza — IR 0x04)",
+        "description_en": "Damper forced open temperature. Linked to T1 (fresh air temperature — IR 0x04)"
       },
       {
         "offset": 9,
@@ -2165,7 +2360,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Docelowe otwarcie klapy przy wymuszeniu (DamperForceMode == DAMPER_FMD_ON, warunek: Temp < DamperForceTempRef)"
+        "description": "Docelowe otwarcie klapy przy wymuszeniu (DamperForceMode == DAMPER_FMD_ON, warunek: Temp < DamperForceTempRef)",
+        "description_en": "Target damper opening at forced mode (DamperForceMode == DAMPER_FMD_ON, condition: Temp < DamperForceTempRef)"
       },
       {
         "offset": 10,
@@ -2173,7 +2369,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Pozycja klapy mieszającej"
+        "description": "Pozycja klapy mieszającej",
+        "description_en": "Mixing damper position"
       },
       {
         "offset": 11,
@@ -2181,7 +2378,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Pozycja klapy gdy WorkMode == WM_WINTER_CONT"
+        "description": "Pozycja klapy gdy WorkMode == WM_WINTER_CONT",
+        "description_en": "Damper position when WorkMode == WM_WINTER_CONT"
       },
       {
         "offset": 12,
@@ -2191,7 +2389,8 @@ const DEVICES_DATA = {
           "1": "ON — wysyłanie sygnału resetującego (ciągłe)",
           "2": "OFF — zatrzymanie sygnału resetującego"
         },
-        "description": "Reset alarmu gazowego/płomieniowego. Czas resetu nie powinien przekraczać 5 s (następnie ustawić wartość na 0x02)"
+        "description": "Reset alarmu gazowego/płomieniowego. Czas resetu nie powinien przekraczać 5 s (następnie ustawić wartość na 0x02)",
+        "description_en": "Gas/flame alarm reset. Reset time should not exceed 5 s (then set value to 0x02)"
       },
       {
         "offset": 13,
@@ -2199,7 +2398,8 @@ const DEVICES_DATA = {
         "min": -100,
         "max": 100,
         "unit": "%",
-        "description": "Wymuszenie prędkości wentylatora dachowego — wartość dodawana do aktualnej prędkości"
+        "description": "Wymuszenie prędkości wentylatora dachowego — wartość dodawana do aktualnej prędkości",
+        "description_en": "Rooftop fan speed override — value added to current speed"
       },
       {
         "offset": 14,
@@ -2239,7 +2439,8 @@ const DEVICES_DATA = {
         "min": 810,
         "max": 1200,
         "unit": "°C×0.1",
-        "description": "Temperatura progowa alarmu STB (IR 0x12). Alarm aktywny gdy wartość ustawiona > T3 (IR 0x05)"
+        "description": "Temperatura progowa alarmu STB (IR 0x12). Alarm aktywny gdy wartość ustawiona > T3 (IR 0x05)",
+        "description_en": "STB alarm threshold temperature (IR 0x12). Alarm active when set value > T3 (IR 0x05)"
       },
       {
         "offset": 19,
@@ -2255,7 +2456,8 @@ const DEVICES_DATA = {
         "min": 610,
         "max": 800,
         "unit": "°C×0.1",
-        "description": "Temperatura resetowania alarmu STB. Reset możliwy gdy wartość ustawiona > T3. Dodatkowy warunek: STB_T_OFF < STB_T_REF"
+        "description": "Temperatura resetowania alarmu STB. Reset możliwy gdy wartość ustawiona > T3. Dodatkowy warunek: STB_T_OFF < STB_T_REF",
+        "description_en": "STB alarm reset temperature. Reset possible when set value > T3. Additional condition: STB_T_OFF < STB_T_REF"
       },
       {
         "offset": 21,
@@ -2264,7 +2466,8 @@ const DEVICES_DATA = {
           "1": "ON — reset alarmu aktywny",
           "2": "OFF — reset alarmu nieaktywny"
         },
-        "description": "Jeśli STB_T (T3, IR 0x03) < STBTemperatureAlarmOff (HR 0x14), rejestr zostanie automatycznie ustawiony na 0x02 (OFF)"
+        "description": "Jeśli STB_T (T3, IR 0x03) < STBTemperatureAlarmOff (HR 0x14), rejestr zostanie automatycznie ustawiony na 0x02 (OFF)",
+        "description_en": "If STB_T (T3, IR 0x03) < STBTemperatureAlarmOff (HR 0x14), the register will be automatically set to 0x02 (OFF)"
       },
       {
         "offset": 22,
@@ -2273,7 +2476,8 @@ const DEVICES_DATA = {
           "0": "Fan OFF — wentylator wyłączony",
           "100": "Fan ON — wentylator włączony"
         },
-        "description": "Ustawienie wydajności wentylatora po osiągnięciu temperatury docelowej"
+        "description": "Ustawienie wydajności wentylatora po osiągnięciu temperatury docelowej",
+        "description_en": "Fan capacity setting after reaching target temperature"
       },
       {
         "offset": 23,
@@ -2283,7 +2487,8 @@ const DEVICES_DATA = {
           "1": "FIRST_STEP — pierwszy stopień spalania",
           "2": "SECOND_STEP — drugi stopień spalania"
         },
-        "description": "Ustawienie stopnia spalania gazu (aktywne tylko w trybie ręcznego grzania WM_HEAT_MANUAL)"
+        "description": "Ustawienie stopnia spalania gazu (aktywne tylko w trybie ręcznego grzania WM_HEAT_MANUAL)",
+        "description_en": "Gas combustion stage setting (active only in manual heating mode WM_HEAT_MANUAL)"
       }
     ],
     "holding_registers_group": [
@@ -2313,7 +2518,8 @@ const DEVICES_DATA = {
         "min": -100,
         "max": 150,
         "unit": "°C×0.1",
-        "description": "Temperatura wymuszonego otwarcia klapy."
+        "description": "Temperatura wymuszonego otwarcia klapy.",
+        "description_en": "Damper forced open temperature."
       },
       {
         "offset": 7,
@@ -2321,7 +2527,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Docelowe otwarcie klapy przy wymuszeniu."
+        "description": "Docelowe otwarcie klapy przy wymuszeniu.",
+        "description_en": "Target damper opening at forced mode."
       },
       {
         "offset": 8,
@@ -2329,7 +2536,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Pozycja klapy mieszającej."
+        "description": "Pozycja klapy mieszającej.",
+        "description_en": "Mixing damper position."
       },
       {
         "offset": 9,
@@ -2337,7 +2545,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Pozycja klapy gdy WorkMode = WM_WINTER_CONT."
+        "description": "Pozycja klapy gdy WorkMode = WM_WINTER_CONT.",
+        "description_en": "Damper position when WorkMode = WM_WINTER_CONT."
       },
       {
         "offset": 10,
@@ -2345,7 +2554,8 @@ const DEVICES_DATA = {
         "min": -100,
         "max": 100,
         "unit": "%",
-        "description": "Wymuszenie prędkości wentylatora dachowego."
+        "description": "Wymuszenie prędkości wentylatora dachowego.",
+        "description_en": "Rooftop fan speed override."
       },
       {
         "offset": 11,
@@ -2362,7 +2572,8 @@ const DEVICES_DATA = {
         "min": 810,
         "max": 1200,
         "unit": "°C×0.1",
-        "description": "Temperatura progowa aktywacji alarmu STB."
+        "description": "Temperatura progowa aktywacji alarmu STB.",
+        "description_en": "STB alarm activation threshold temperature."
       },
       {
         "offset": 13,
@@ -2370,7 +2581,8 @@ const DEVICES_DATA = {
         "min": 610,
         "max": 800,
         "unit": "°C×0.1",
-        "description": "Temperatura resetowania alarmu STB."
+        "description": "Temperatura resetowania alarmu STB.",
+        "description_en": "STB alarm reset temperature."
       },
       {
         "offset": 14,
@@ -2379,7 +2591,8 @@ const DEVICES_DATA = {
           "0": "Fan OFF — wentylator wyłączony",
           "100": "Fan ON — wentylator włączony"
         },
-        "description": "Wydajność wentylatora po osiągnięciu temperatury docelowej."
+        "description": "Wydajność wentylatora po osiągnięciu temperatury docelowej.",
+        "description_en": "Fan capacity after reaching target temperature."
       },
       {
         "offset": 15,
@@ -2389,7 +2602,8 @@ const DEVICES_DATA = {
           "1": "FIRST_STEP — pierwszy stopień spalania",
           "2": "SECOND_STEP — drugi stopień spalania"
         },
-        "description": "Stopień spalania gazu (aktywne w trybie WM_HEAT_MANUAL)."
+        "description": "Stopień spalania gazu (aktywne w trybie WM_HEAT_MANUAL).",
+        "description_en": "Gas combustion stage (active in WM_HEAT_MANUAL mode)."
       },
       {
         "offset": 16,
@@ -2397,12 +2611,14 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Pozycja klapy dla wejścia EXT TH1. Krok: 5."
+        "description": "Pozycja klapy dla wejścia EXT TH1. Krok: 5.",
+        "description_en": "Damper position for EXT TH1 input. Step: 5."
       },
       {
         "offset": 17,
         "name": "FilterMaxWorkTime",
-        "description": "Czas po którym aktywuje się alarm filtra. Krok: 100."
+        "description": "Czas po którym aktywuje się alarm filtra. Krok: 100.",
+        "description_en": "Time after which the filter alarm activates. Step: 100."
       },
       {
         "offset": 18,
@@ -2410,49 +2626,58 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Pozycja klapy dla wejścia EXT TH2. Krok: 5."
+        "description": "Pozycja klapy dla wejścia EXT TH2. Krok: 5.",
+        "description_en": "Damper position for EXT TH2 input. Step: 5."
       }
     ]
   },
   "LEO COOL (DRV COOL)": {
     "name": "LEO COOL (DRV COOL)",
     "description": "Nagrzewnica/chłodnica wodna",
+    "description_en": "LEO COOL water/electric heating and cooling unit with EC fans",
     "group_priority": 12,
     "input_registers": [
       {
         "offset": 4,
         "name": "T3",
-        "description": "Temperatura przy suficie (czujnik T3)."
+        "description": "Temperatura przy suficie (czujnik T3).",
+        "description_en": "Ceiling temperature (T3 sensor)."
       },
       {
         "offset": 5,
         "name": "T4",
-        "description": "Temperatura w pomieszczeniu (czujnik T4)."
+        "description": "Temperatura w pomieszczeniu (czujnik T4).",
+        "description_en": "Room temperature (T4 sensor)."
       },
       {
         "offset": 6,
         "name": "FanEff",
-        "description": "Prędkość wentylatora (AC 3-biegowy)."
+        "description": "Prędkość wentylatora (AC 3-biegowy).",
+        "description_en": "Fan speed (3-speed AC fan)."
       },
       {
         "offset": 7,
         "name": "AntifreezeState",
-        "description": "Stan ochrony przeciwzamrożeniowej magazynu — 8 bitów."
+        "description": "Stan ochrony przeciwzamrożeniowej magazynu — 8 bitów.",
+        "description_en": "Warehouse antifreeze protection state — 8 bits."
       },
       {
         "offset": 9,
         "name": "FilterPressureState",
-        "description": "Stan presostatu filtra."
+        "description": "Stan presostatu filtra.",
+        "description_en": "Filter pressure switch state."
       },
       {
         "offset": 10,
         "name": "FuseState",
-        "description": "Stan bezpiecznika wentylatorów (bity). Przykład: 0x100 = OK, 0x200 = przepalony."
+        "description": "Stan bezpiecznika wentylatorów (bity). Przykład: 0x100 = OK, 0x200 = przepalony.",
+        "description_en": "Fan fuse state (bits). Example: 0x100 = OK, 0x200 = blown."
       },
       {
         "offset": 11,
         "name": "ValveState",
-        "description": "Stan zaworu wodnego."
+        "description": "Stan zaworu wodnego.",
+        "description_en": "Water valve state."
       }
     ],
     "holding_registers_single": [
@@ -2490,7 +2715,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
+        "description": "Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
+        "description_en": "3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
       },
       {
         "offset": 8,
@@ -2521,7 +2747,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Minimalna wydajność wentylatora w trybie AUTO. AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1, 34–66=bieg 2, 67–100=bieg 3"
+        "description": "Minimalna wydajność wentylatora w trybie AUTO. AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1, 34–66=bieg 2, 67–100=bieg 3",
+        "description_en": "Minimum fan capacity in AUTO mode. 3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1, 34–66=speed 2, 67–100=speed 3"
       },
       {
         "offset": 16,
@@ -2529,7 +2756,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Maksymalna wydajność wentylatora w trybie AUTO. AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1, 34–66=bieg 2, 67–100=bieg 3"
+        "description": "Maksymalna wydajność wentylatora w trybie AUTO. AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1, 34–66=bieg 2, 67–100=bieg 3",
+        "description_en": "Maximum fan capacity in AUTO mode. 3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1, 34–66=speed 2, 67–100=speed 3"
       },
       {
         "offset": 17,
@@ -2537,7 +2765,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wydajność wentylatora po osiągnięciu temperatury docelowej w trybie MANUAL. AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1, 34–66=bieg 2, 67–100=bieg 3"
+        "description": "Wydajność wentylatora po osiągnięciu temperatury docelowej w trybie MANUAL. AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1, 34–66=bieg 2, 67–100=bieg 3",
+        "description_en": "Fan capacity after reaching target temperature in MANUAL mode. 3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1, 34–66=speed 2, 67–100=speed 3"
       }
     ],
     "holding_registers_group": [
@@ -2560,7 +2789,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wydajność wentylatora. AC 3-biegowy."
+        "description": "Wydajność wentylatora. AC 3-biegowy.",
+        "description_en": "Fan capacity. 3-speed AC fan."
       },
       {
         "offset": 9,
@@ -2568,7 +2798,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Minimalna wydajność wentylatora w trybie AUTO."
+        "description": "Minimalna wydajność wentylatora w trybie AUTO.",
+        "description_en": "Minimum fan capacity in AUTO mode."
       },
       {
         "offset": 10,
@@ -2576,84 +2807,100 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wydajność wentylatora po osiągnięciu temperatury docelowej w trybie MANUAL."
+        "description": "Wydajność wentylatora po osiągnięciu temperatury docelowej w trybie MANUAL.",
+        "description_en": "Fan capacity after reaching target temperature in MANUAL mode."
       }
     ]
   },
   "CUBE (DRV CUBE)": {
     "name": "CUBE (DRV CUBE)",
     "description": "Jednostka wentylacyjna CUBE z dyfuzorem wirowym i czujnikiem CO2",
+    "description_en": "CUBE rooftop unit with EC fans and CO2 sensor",
     "group_priority": 13,
     "input_registers": [
       {
         "offset": 9,
         "name": "ambient_temp_value",
-        "description": "Temperatura zewnętrzna."
+        "description": "Temperatura zewnętrzna.",
+        "description_en": "Outdoor air temperature."
       },
       {
         "offset": 10,
         "name": "supply_temp_value",
-        "description": "Temperatura powietrza nawiewanego."
+        "description": "Temperatura powietrza nawiewanego.",
+        "description_en": "Supply air temperature."
       },
       {
         "offset": 11,
         "name": "return_temp_value",
-        "description": "Temperatura powietrza wyciąganego."
+        "description": "Temperatura powietrza wyciąganego.",
+        "description_en": "Return/extract air temperature."
       },
       {
         "offset": 12,
         "name": "water_temp_value",
-        "description": "Temperatura wymiennika wodnego."
+        "description": "Temperatura wymiennika wodnego.",
+        "description_en": "Water heat exchanger temperature."
       },
       {
         "offset": 13,
         "name": "TempRoom_ADD",
-        "description": "Temperatura z dodatkowego czujnika pokojowego."
+        "description": "Temperatura z dodatkowego czujnika pokojowego.",
+        "description_en": "Temperature from additional room sensor."
       },
       {
         "offset": 14,
         "name": "recirculation_damper_level",
-        "description": "Aktualna pozycja klapy recyrkulacji."
+        "description": "Aktualna pozycja klapy recyrkulacji.",
+        "description_en": "Current recirculation damper position."
       },
       {
         "offset": 16,
         "name": "swirl_diffuser_position",
-        "description": "Pozycja dyfuzora wirowego."
+        "description": "Pozycja dyfuzora wirowego.",
+        "description_en": "Swirl diffuser position."
       },
       {
         "offset": 17,
         "name": "rotary_level",
-        "description": "Poziom obrotowego (rotary)."
+        "description": "Poziom obrotowego (rotary).",
+        "description_en": "Rotary level."
       },
       {
         "offset": 18,
         "name": "fan_supply_flow",
-        "description": "Przepływ powietrza nawiewanego."
+        "description": "Przepływ powietrza nawiewanego.",
+        "description_en": "Supply air flow."
       },
       {
         "offset": 19,
         "name": "gas_heating_value",
-        "description": "Wartość ogrzewania gazowego."
+        "description": "Wartość ogrzewania gazowego.",
+        "description_en": "Gas heating value."
       },
       {
         "offset": 20,
         "name": "CO2_status",
-        "description": "Status CO2 — wartość LSB (MSB ignorowany)."
+        "description": "Status CO2 — wartość LSB (MSB ignorowany).",
+        "description_en": "CO2 status — LSB value (MSB ignored)."
       },
       {
         "offset": 21,
         "name": "Rooftop_work_mode",
-        "description": "Zadany tryb pracy jednostki dachowej — wartość LSB."
+        "description": "Zadany tryb pracy jednostki dachowej — wartość LSB.",
+        "description_en": "Commanded rooftop unit operating mode — LSB value."
       },
       {
         "offset": 22,
         "name": "Rooftop_current_work_mode",
-        "description": "Aktualny tryb pracy jednostki dachowej — wartość LSB."
+        "description": "Aktualny tryb pracy jednostki dachowej — wartość LSB.",
+        "description_en": "Current rooftop unit operating mode — LSB value."
       },
       {
         "offset": 23,
         "name": "Alarm",
-        "description": "Stan alarmów — wartość LSB."
+        "description": "Stan alarmów — wartość LSB.",
+        "description_en": "Alarm states — LSB value."
       }
     ],
     "holding_registers_single": [
@@ -2665,7 +2912,8 @@ const DEVICES_DATA = {
           "2": "WM_ON — urządzenie włączone",
           "3": "WM_THERM — tryb termostatyczny"
         },
-        "description": "Rejestr 16-bit: MSB ignorowany, LSB = tryb pracy"
+        "description": "Rejestr 16-bit: MSB ignorowany, LSB = tryb pracy",
+        "description_en": "16-bit register: MSB ignored, LSB = operating mode"
       },
       {
         "offset": 5,
@@ -2673,7 +2921,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Nastawa wydajności wentylatora EC, płynna regulacja 0–100%"
+        "description": "Nastawa wydajności wentylatora EC, płynna regulacja 0–100%",
+        "description_en": "EC fan capacity setpoint, continuous 0–100% control"
       },
       {
         "offset": 6,
@@ -2681,7 +2930,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Nastawa wydajności wentylatora EC dla 1. progu czujnika CO2"
+        "description": "Nastawa wydajności wentylatora EC dla 1. progu czujnika CO2",
+        "description_en": "EC fan capacity setpoint for CO2 sensor threshold 1"
       },
       {
         "offset": 7,
@@ -2689,7 +2939,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Nastawa wydajności wentylatora EC dla 2. progu czujnika CO2"
+        "description": "Nastawa wydajności wentylatora EC dla 2. progu czujnika CO2",
+        "description_en": "EC fan capacity setpoint for CO2 sensor threshold 2"
       },
       {
         "offset": 8,
@@ -2698,7 +2949,8 @@ const DEVICES_DATA = {
           "0": "RM_AUTO — tryb automatyczny",
           "1": "RM_MANUAL — tryb ręczny"
         },
-        "description": "Rejestr 16-bit: MSB ignorowany, LSB = tryb recyrkulacji"
+        "description": "Rejestr 16-bit: MSB ignorowany, LSB = tryb recyrkulacji",
+        "description_en": "16-bit register: MSB ignored, LSB = recirculation mode"
       },
       {
         "offset": 9,
@@ -2706,7 +2958,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wartość recyrkulacji, płynna regulacja 0–100%"
+        "description": "Wartość recyrkulacji, płynna regulacja 0–100%",
+        "description_en": "Recirculation value, continuous 0–100% control"
       },
       {
         "offset": 10,
@@ -2714,7 +2967,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wartość recyrkulacji dla 1. progu czujnika CO2"
+        "description": "Wartość recyrkulacji dla 1. progu czujnika CO2",
+        "description_en": "Recirculation value for CO2 sensor threshold 1"
       },
       {
         "offset": 11,
@@ -2722,7 +2976,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wartość recyrkulacji dla 2. progu czujnika CO2"
+        "description": "Wartość recyrkulacji dla 2. progu czujnika CO2",
+        "description_en": "Recirculation value for CO2 sensor threshold 2"
       },
       {
         "offset": 12,
@@ -2731,7 +2986,8 @@ const DEVICES_DATA = {
           "0": "WM_NW_AUTO — tryb automatyczny dyfuzora",
           "1": "WM_NW_MANUAL — tryb ręczny dyfuzora"
         },
-        "description": "Tryb pracy dyfuzora wirowego (NW). Rejestr 16-bit: MSB ignorowany, LSB = tryb"
+        "description": "Tryb pracy dyfuzora wirowego (NW). Rejestr 16-bit: MSB ignorowany, LSB = tryb",
+        "description_en": "Swirl diffuser (NW) operating mode. 16-bit register: MSB ignored, LSB = mode"
       },
       {
         "offset": 13,
@@ -2739,7 +2995,8 @@ const DEVICES_DATA = {
         "min": 30,
         "max": 100,
         "unit": "%",
-        "description": "Poziom otwarcia dyfuzora wirowego"
+        "description": "Poziom otwarcia dyfuzora wirowego",
+        "description_en": "Swirl diffuser opening level"
       },
       {
         "offset": 14,
@@ -2747,7 +3004,8 @@ const DEVICES_DATA = {
         "min": 30,
         "max": 100,
         "unit": "%",
-        "description": "Poziom otwarcia dyfuzora wirowego w trybie grzania"
+        "description": "Poziom otwarcia dyfuzora wirowego w trybie grzania",
+        "description_en": "Swirl diffuser opening level in heating mode"
       },
       {
         "offset": 15,
@@ -2755,7 +3013,8 @@ const DEVICES_DATA = {
         "min": 30,
         "max": 100,
         "unit": "%",
-        "description": "Poziom otwarcia dyfuzora wirowego w trybie chłodzenia"
+        "description": "Poziom otwarcia dyfuzora wirowego w trybie chłodzenia",
+        "description_en": "Swirl diffuser opening level in cooling mode"
       },
       {
         "offset": 16,
@@ -2763,7 +3022,8 @@ const DEVICES_DATA = {
         "min": 50,
         "max": 450,
         "unit": "°C×0.1",
-        "description": "Docelowa temperatura pomieszczenia"
+        "description": "Docelowa temperatura pomieszczenia",
+        "description_en": "Target room temperature"
       },
       {
         "offset": 17,
@@ -2771,7 +3031,8 @@ const DEVICES_DATA = {
         "min": 50,
         "max": 450,
         "unit": "°C×0.1",
-        "description": "Temperatura pomieszczenia przekazywana do urządzenia przez Modbus"
+        "description": "Temperatura pomieszczenia przekazywana do urządzenia przez Modbus",
+        "description_en": "Room temperature sent to the device via Modbus"
       },
       {
         "offset": 18,
@@ -2781,7 +3042,8 @@ const DEVICES_DATA = {
           "2": "TSL_TLEAD — wartość przez Modbus (tylko gdy lokalny czujnik CUBE jest wyłączony)",
           "3": "TSL_PREFERRED_LOCAL — czujnik lokalny CUBE (gdy jest aktywny)"
         },
-        "description": "Wybór źródła temperatury pomieszczenia"
+        "description": "Wybór źródła temperatury pomieszczenia",
+        "description_en": "Room temperature source selection"
       },
       {
         "offset": 19,
@@ -2791,7 +3053,8 @@ const DEVICES_DATA = {
           "1": "CO2_STAT_L1 — poziom CO2 próg 1",
           "2": "CO2_STAT_L2 — poziom CO2 próg 2"
         },
-        "description": "Status CO2 zapisywany przez T-box do urządzenia. Rejestr 16-bit: MSB ignorowany, LSB = status"
+        "description": "Status CO2 zapisywany przez T-box do urządzenia. Rejestr 16-bit: MSB ignorowany, LSB = status",
+        "description_en": "CO2 status written by T-box to the device. 16-bit register: MSB ignored, LSB = status"
       },
       {
         "offset": 20,
@@ -2800,7 +3063,8 @@ const DEVICES_DATA = {
           "0": "CO2_SOURCE_LOCAL — lokalny czujnik CO2 w CUBE",
           "1": "CO2_SOURCE_TBOX — źródło CO2 z T-box"
         },
-        "description": "Wybór źródła danych CO2. Rejestr 16-bit: MSB ignorowany, LSB = źródło"
+        "description": "Wybór źródła danych CO2. Rejestr 16-bit: MSB ignorowany, LSB = źródło",
+        "description_en": "CO2 data source selection. 16-bit register: MSB ignored, LSB = source"
       }
     ],
     "holding_registers_group": [
@@ -2812,7 +3076,8 @@ const DEVICES_DATA = {
           "2": "WM_ON — urządzenie włączone",
           "3": "WM_THERM — tryb termostatyczny"
         },
-        "description": "Rejestr 16-bit: MSB ignorowany, LSB = tryb pracy"
+        "description": "Rejestr 16-bit: MSB ignorowany, LSB = tryb pracy",
+        "description_en": "16-bit register: MSB ignored, LSB = operating mode"
       },
       {
         "offset": 5,
@@ -2820,7 +3085,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Nastawa wydajności wentylatora EC, płynna regulacja 0–100%"
+        "description": "Nastawa wydajności wentylatora EC, płynna regulacja 0–100%",
+        "description_en": "EC fan capacity setpoint, continuous 0–100% control"
       },
       {
         "offset": 6,
@@ -2828,7 +3094,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Nastawa wydajności wentylatora EC dla 1. progu czujnika CO2"
+        "description": "Nastawa wydajności wentylatora EC dla 1. progu czujnika CO2",
+        "description_en": "EC fan capacity setpoint for CO2 sensor threshold 1"
       },
       {
         "offset": 7,
@@ -2836,7 +3103,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Nastawa wydajności wentylatora EC dla 2. progu czujnika CO2"
+        "description": "Nastawa wydajności wentylatora EC dla 2. progu czujnika CO2",
+        "description_en": "EC fan capacity setpoint for CO2 sensor threshold 2"
       },
       {
         "offset": 8,
@@ -2845,7 +3113,8 @@ const DEVICES_DATA = {
           "0": "RM_AUTO — tryb automatyczny",
           "1": "RM_MANUAL — tryb ręczny"
         },
-        "description": "Rejestr 16-bit: MSB ignorowany, LSB = tryb recyrkulacji"
+        "description": "Rejestr 16-bit: MSB ignorowany, LSB = tryb recyrkulacji",
+        "description_en": "16-bit register: MSB ignored, LSB = recirculation mode"
       },
       {
         "offset": 9,
@@ -2853,7 +3122,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wartość recyrkulacji, płynna regulacja 0–100%"
+        "description": "Wartość recyrkulacji, płynna regulacja 0–100%",
+        "description_en": "Recirculation value, continuous 0–100% control"
       },
       {
         "offset": 10,
@@ -2861,7 +3131,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wartość recyrkulacji dla 1. progu czujnika CO2"
+        "description": "Wartość recyrkulacji dla 1. progu czujnika CO2",
+        "description_en": "Recirculation value for CO2 sensor threshold 1"
       },
       {
         "offset": 11,
@@ -2869,7 +3140,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wartość recyrkulacji dla 2. progu czujnika CO2"
+        "description": "Wartość recyrkulacji dla 2. progu czujnika CO2",
+        "description_en": "Recirculation value for CO2 sensor threshold 2"
       },
       {
         "offset": 12,
@@ -2878,7 +3150,8 @@ const DEVICES_DATA = {
           "0": "WM_NW_AUTO — tryb automatyczny dyfuzora",
           "1": "WM_NW_MANUAL — tryb ręczny dyfuzora"
         },
-        "description": "Tryb pracy dyfuzora wirowego (NW). Rejestr 16-bit: MSB ignorowany, LSB = tryb"
+        "description": "Tryb pracy dyfuzora wirowego (NW). Rejestr 16-bit: MSB ignorowany, LSB = tryb",
+        "description_en": "Swirl diffuser (NW) operating mode. 16-bit register: MSB ignored, LSB = mode"
       },
       {
         "offset": 13,
@@ -2886,7 +3159,8 @@ const DEVICES_DATA = {
         "min": 30,
         "max": 100,
         "unit": "%",
-        "description": "Poziom otwarcia dyfuzora wirowego"
+        "description": "Poziom otwarcia dyfuzora wirowego",
+        "description_en": "Swirl diffuser opening level"
       },
       {
         "offset": 14,
@@ -2894,7 +3168,8 @@ const DEVICES_DATA = {
         "min": 30,
         "max": 100,
         "unit": "%",
-        "description": "Poziom otwarcia dyfuzora wirowego w trybie grzania"
+        "description": "Poziom otwarcia dyfuzora wirowego w trybie grzania",
+        "description_en": "Swirl diffuser opening level in heating mode"
       },
       {
         "offset": 15,
@@ -2902,125 +3177,149 @@ const DEVICES_DATA = {
         "min": 30,
         "max": 100,
         "unit": "%",
-        "description": "Poziom otwarcia dyfuzora wirowego w trybie chłodzenia"
+        "description": "Poziom otwarcia dyfuzora wirowego w trybie chłodzenia",
+        "description_en": "Swirl diffuser opening level in cooling mode"
       }
     ]
   },
   "LUNA (DRV LUNA)": {
     "name": "LUNA (DRV LUNA)",
     "description": "Nagrzewnica LUNA",
+    "description_en": "LUNA fan coil unit",
     "group_priority": 14,
     "tbox_zone_only": true,
     "input_registers": [
       {
         "offset": 5,
         "name": "RoomTemperatureValue",
-        "description": "Temperatura zmierzona przez czujnik T4 (temperatura w pomieszczeniu)."
+        "description": "Temperatura zmierzona przez czujnik T4 (temperatura w pomieszczeniu).",
+        "description_en": "Temperature measured by T4 sensor (room temperature)."
       },
       {
         "offset": 6,
         "name": "LeadTemperatureValue",
-        "description": "Temperatura z czujnika wiodącego (MODBUS, ROOM, SUPPLY lub INTAKE — zależnie od ustawień)."
+        "description": "Temperatura z czujnika wiodącego (MODBUS, ROOM, SUPPLY lub INTAKE — zależnie od ustawień).",
+        "description_en": "Temperature from the lead sensor (MODBUS, ROOM, SUPPLY or INTAKE — depending on settings)."
       },
       {
         "offset": 7,
         "name": "IntakeTemperatureValue",
-        "description": "Temperatura zmierzona przez czujnik Ti3 (powietrze wlotowe)."
+        "description": "Temperatura zmierzona przez czujnik Ti3 (powietrze wlotowe).",
+        "description_en": "Temperature measured by Ti3 sensor (intake air)."
       },
       {
         "offset": 8,
         "name": "SupplyTemperatureValue",
-        "description": "Temperatura zmierzona przez czujnik T1 (powietrze wylotowe)."
+        "description": "Temperatura zmierzona przez czujnik T1 (powietrze wylotowe).",
+        "description_en": "Temperature measured by T1 sensor (supply air)."
       },
       {
         "offset": 9,
         "name": "HeaterTemperatureValue",
-        "description": "Temperatura zmierzona przez czujnik T2 (wymiennik wodny)."
+        "description": "Temperatura zmierzona przez czujnik T2 (wymiennik wodny).",
+        "description_en": "Temperature measured by T2 sensor (water heat exchanger)."
       },
       {
         "offset": 10,
         "name": "FanEfficiencyValue",
-        "description": "Aktualna wydajność wentylatora."
+        "description": "Aktualna wydajność wentylatora.",
+        "description_en": "Current fan efficiency."
       },
       {
         "offset": 11,
         "name": "DrainPumpAlarm",
-        "description": "Stan alarmu pompy skroplin."
+        "description": "Stan alarmu pompy skroplin.",
+        "description_en": "Drain pump alarm state."
       },
       {
         "offset": 12,
         "name": "FilterWorkTime",
-        "description": "Czas pracy filtra. Czas rzeczywisty = 5 × wartość [min]."
+        "description": "Czas pracy filtra. Czas rzeczywisty = 5 × wartość [min].",
+        "description_en": "Filter operating time. Actual value = 5 × register value [min]."
       },
       {
         "offset": 13,
         "name": "ValveHTValue",
-        "description": "Aktualny stan zaworu grzewczego (HT)."
+        "description": "Aktualny stan zaworu grzewczego (HT).",
+        "description_en": "Current heating valve (HT) state."
       },
       {
         "offset": 14,
         "name": "ValveCLValue",
-        "description": "Aktualny stan zaworu chłodniczego (CL)."
+        "description": "Aktualny stan zaworu chłodniczego (CL).",
+        "description_en": "Current cooling valve (CL) state."
       },
       {
         "offset": 15,
         "name": "Smart1State",
-        "description": "Stan trybu SMART I — informacja czy tryb jest aktywny."
+        "description": "Stan trybu SMART I — informacja czy tryb jest aktywny.",
+        "description_en": "SMART MODE I state — indicates whether the mode is active."
       },
       {
         "offset": 16,
         "name": "Smart2State",
-        "description": "Stan trybu SMART II — informacja czy tryb jest aktywny."
+        "description": "Stan trybu SMART II — informacja czy tryb jest aktywny.",
+        "description_en": "SMART MODE II state — indicates whether the mode is active."
       },
       {
         "offset": 17,
         "name": "Smart3State",
-        "description": "Stan trybu SMART III — informacja czy tryb jest aktywny."
+        "description": "Stan trybu SMART III — informacja czy tryb jest aktywny.",
+        "description_en": "SMART MODE III state — indicates whether the mode is active."
       },
       {
         "offset": 18,
         "name": "TechnologicalHeatAlarm",
-        "description": "Brak ciepła ze źródła zasilania."
+        "description": "Brak ciepła ze źródła zasilania.",
+        "description_en": "No heat from the supply source."
       },
       {
         "offset": 19,
         "name": "Smart2LowTempAlarm",
-        "description": "Alarm niskiej temperatury nawiewu — II stan."
+        "description": "Alarm niskiej temperatury nawiewu — II stan.",
+        "description_en": "Low supply temperature alarm — state II."
       },
       {
         "offset": 20,
         "name": "SupplyTemperatureValue2",
-        "description": "Temperatura powietrza wylotowego — dodatkowy odczyt (czujnik T1)."
+        "description": "Temperatura powietrza wylotowego — dodatkowy odczyt (czujnik T1).",
+        "description_en": "Supply air temperature — additional reading (T1 sensor)."
       },
       {
         "offset": 21,
         "name": "HeaterTemperatureValue2",
-        "description": "Temperatura wymiennika wodnego — dodatkowy odczyt (czujnik T2)."
+        "description": "Temperatura wymiennika wodnego — dodatkowy odczyt (czujnik T2).",
+        "description_en": "Water heat exchanger temperature — additional reading (T2 sensor)."
       },
       {
         "offset": 22,
         "name": "IntakeTemperatureValue2",
-        "description": "Temperatura powietrza wlotowego — dodatkowy odczyt (czujnik T3)."
+        "description": "Temperatura powietrza wlotowego — dodatkowy odczyt (czujnik T3).",
+        "description_en": "Intake air temperature — additional reading (T3 sensor)."
       },
       {
         "offset": 23,
         "name": "RoomTemperatureValue2",
-        "description": "Temperatura powietrza w pomieszczeniu — dodatkowy odczyt (czujnik T4)."
+        "description": "Temperatura powietrza w pomieszczeniu — dodatkowy odczyt (czujnik T4).",
+        "description_en": "Room air temperature — additional reading (T4 sensor)."
       },
       {
         "offset": 24,
         "name": "InputDIState",
-        "description": "Stan wejścia cyfrowego DI."
+        "description": "Stan wejścia cyfrowego DI.",
+        "description_en": "Digital input DI state."
       },
       {
         "offset": 25,
         "name": "FanWorkTime",
-        "description": "Czas pracy wentylatora."
+        "description": "Czas pracy wentylatora.",
+        "description_en": "Fan operating time."
       },
       {
         "offset": 26,
         "name": "PreheatState",
-        "description": "Stan funkcji podgrzewania wstępnego."
+        "description": "Stan funkcji podgrzewania wstępnego.",
+        "description_en": "Preheat function state."
       }
     ],
     "holding_registers_single": [
@@ -3031,7 +3330,8 @@ const DEVICES_DATA = {
           "0": "OFF — wyłączone",
           "1": "ON — włączone"
         },
-        "description": "Włącz/wyłącz urządzenie. Domyślnie OFF."
+        "description": "Włącz/wyłącz urządzenie. Domyślnie OFF.",
+        "description_en": "Turn device on/off. Default: OFF."
       },
       {
         "offset": 6,
@@ -3040,7 +3340,8 @@ const DEVICES_DATA = {
           "0": "AUTO",
           "1": "MANUAL"
         },
-        "description": "Tryb pracy wentylatora. Domyślnie MANUAL."
+        "description": "Tryb pracy wentylatora. Domyślnie MANUAL.",
+        "description_en": "Fan operating mode. Default: MANUAL."
       },
       {
         "offset": 7,
@@ -3049,7 +3350,8 @@ const DEVICES_DATA = {
           "0": "OFF",
           "1": "ON"
         },
-        "description": "Włącz/wyłącz tryb destratyfikacji. Aktywne gdy LowCeilingMode=OFF."
+        "description": "Włącz/wyłącz tryb destratyfikacji. Aktywne gdy LowCeilingMode=OFF.",
+        "description_en": "Enable/disable destratification mode. Active when LowCeilingMode=OFF."
       },
       {
         "offset": 8,
@@ -3058,7 +3360,8 @@ const DEVICES_DATA = {
           "0": "OFF",
           "1": "ON"
         },
-        "description": "Włącz/wyłącz tryb niskiego sufitu."
+        "description": "Włącz/wyłącz tryb niskiego sufitu.",
+        "description_en": "Enable/disable low ceiling mode."
       },
       {
         "offset": 9,
@@ -3066,7 +3369,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Ustawienie dyszy (5 kroków). Aktywne gdy ManualWorkMode=ON. Domyślnie 0%."
+        "description": "Ustawienie dyszy (5 kroków). Aktywne gdy ManualWorkMode=ON. Domyślnie 0%.",
+        "description_en": "Nozzle setting (5 steps). Active when ManualWorkMode=ON. Default: 0%."
       },
       {
         "offset": 10,
@@ -3075,7 +3379,8 @@ const DEVICES_DATA = {
           "0": "OFF",
           "1": "ON"
         },
-        "description": "Włącz/wyłącz tryb SMART. Aktywne gdy InputDIConfiguration=1 lub 2."
+        "description": "Włącz/wyłącz tryb SMART. Aktywne gdy InputDIConfiguration=1 lub 2.",
+        "description_en": "Enable/disable SMART mode. Active when InputDIConfiguration=1 or 2."
       },
       {
         "offset": 11,
@@ -3084,7 +3389,8 @@ const DEVICES_DATA = {
           "0": "OFF",
           "1": "ON"
         },
-        "description": "Włącz/wyłącz podgrzewanie wstępne. Aktywne gdy ExchangerTypeConfiguration=0 lub 2."
+        "description": "Włącz/wyłącz podgrzewanie wstępne. Aktywne gdy ExchangerTypeConfiguration=0 lub 2.",
+        "description_en": "Enable/disable preheat. Active when ExchangerTypeConfiguration=0 or 2."
       },
       {
         "offset": 12,
@@ -3092,7 +3398,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 1000,
         "unit": "×0.1%",
-        "description": "Ręczna wydajność wentylatora. Aktywne gdy ManualWorkMode=1. Domyślnie 200 = 20%."
+        "description": "Ręczna wydajność wentylatora. Aktywne gdy ManualWorkMode=1. Domyślnie 200 = 20%.",
+        "description_en": "Manual fan capacity. Active when ManualWorkMode=1. Default: 200 = 20%."
       },
       {
         "offset": 13,
@@ -3100,7 +3407,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 999,
         "unit": "×0.1°C",
-        "description": "Różnica temperatur aktywująca destratyfikację: IntakeTemp − RoomTemp > wartość. Domyślnie 50 = 5.0°C."
+        "description": "Różnica temperatur aktywująca destratyfikację: IntakeTemp − RoomTemp > wartość. Domyślnie 50 = 5.0°C.",
+        "description_en": "Temperature difference activating destratification: IntakeTemp − RoomTemp > value. Default: 50 = 5.0°C."
       },
       {
         "offset": 14,
@@ -3108,7 +3416,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 999,
         "unit": "×0.1°C",
-        "description": "Temperatura wymiennika po której włącza się wentylator (tryb grzania). Domyślnie 280 = 28.0°C."
+        "description": "Temperatura wymiennika po której włącza się wentylator (tryb grzania). Domyślnie 280 = 28.0°C.",
+        "description_en": "Exchanger temperature at which fan starts (heating mode). Default: 280 = 28.0°C."
       },
       {
         "offset": 15,
@@ -3116,7 +3425,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 99999,
         "unit": "s",
-        "description": "Czas aktywacji warunku SMART MODE I. Domyślnie 1800s."
+        "description": "Czas aktywacji warunku SMART MODE I. Domyślnie 1800s.",
+        "description_en": "Activation time for SMART MODE I condition. Default: 1800s."
       },
       {
         "offset": 16,
@@ -3124,7 +3434,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 99999,
         "unit": "s",
-        "description": "Czas aktywacji warunku SMART MODE II. Domyślnie 3600s."
+        "description": "Czas aktywacji warunku SMART MODE II. Domyślnie 3600s.",
+        "description_en": "Activation time for SMART MODE II condition. Default: 3600s."
       },
       {
         "offset": 17,
@@ -3132,7 +3443,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 99999,
         "unit": "s",
-        "description": "Czas aktywacji warunku SMART MODE III. Domyślnie 7200s."
+        "description": "Czas aktywacji warunku SMART MODE III. Domyślnie 7200s.",
+        "description_en": "Activation time for SMART MODE III condition. Default: 7200s."
       },
       {
         "offset": 18,
@@ -3140,7 +3452,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 999,
         "unit": "×0.1°C",
-        "description": "Histereza temperatury dla grzania w SMART MODE II. Domyślnie 20 = 2.0°C."
+        "description": "Histereza temperatury dla grzania w SMART MODE II. Domyślnie 20 = 2.0°C.",
+        "description_en": "Temperature hysteresis for heating in SMART MODE II. Default: 20 = 2.0°C."
       },
       {
         "offset": 19,
@@ -3148,7 +3461,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 999,
         "unit": "×0.1°C",
-        "description": "Histereza temperatury dla chłodzenia w SMART MODE II. Domyślnie 20 = 2.0°C."
+        "description": "Histereza temperatury dla chłodzenia w SMART MODE II. Domyślnie 20 = 2.0°C.",
+        "description_en": "Temperature hysteresis for cooling in SMART MODE II. Default: 20 = 2.0°C."
       },
       {
         "offset": 20,
@@ -3156,12 +3470,14 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 999,
         "unit": "×0.1°C",
-        "description": "Minimalna temperatura dla SMART MODE III. Domyślnie 180 = 18.0°C."
+        "description": "Minimalna temperatura dla SMART MODE III. Domyślnie 180 = 18.0°C.",
+        "description_en": "Minimum temperature for SMART MODE III. Default: 180 = 18.0°C."
       },
       {
         "offset": 21,
         "name": "InputDiForce",
-        "description": "Nadpisanie wejścia DI przez MODBUS. Aktywne gdy InputDIConfiguration=1 lub 2 i IR[0x0E]=1. Domyślnie 0."
+        "description": "Nadpisanie wejścia DI przez MODBUS. Aktywne gdy InputDIConfiguration=1 lub 2 i IR[0x0E]=1. Domyślnie 0.",
+        "description_en": "Override DI input via MODBUS. Active when InputDIConfiguration=1 or 2 and IR[0x0E]=1. Default: 0."
       },
       {
         "offset": 22,
@@ -3169,7 +3485,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 1000,
         "unit": "×0.1%",
-        "description": "Wydajność wentylatora w trybie destratyfikacji. Domyślnie 600 = 60%."
+        "description": "Wydajność wentylatora w trybie destratyfikacji. Domyślnie 600 = 60%.",
+        "description_en": "Fan capacity in destratification mode. Default: 600 = 60%."
       },
       {
         "offset": 23,
@@ -3177,7 +3494,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 1000,
         "unit": "×0.1%",
-        "description": "Wydajność wentylatora w trybie niskiego sufitu. Domyślnie 600 = 60%."
+        "description": "Wydajność wentylatora w trybie niskiego sufitu. Domyślnie 600 = 60%.",
+        "description_en": "Fan capacity in low ceiling mode. Default: 600 = 60%."
       },
       {
         "offset": 24,
@@ -3185,7 +3503,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 1000,
         "unit": "×0.1%",
-        "description": "Dolny limit wydajności wentylatora w trybie Low Ceiling. Domyślnie 0%."
+        "description": "Dolny limit wydajności wentylatora w trybie Low Ceiling. Domyślnie 0%.",
+        "description_en": "Lower fan capacity limit in Low Ceiling mode. Default: 0%."
       },
       {
         "offset": 25,
@@ -3193,43 +3512,51 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 1000,
         "unit": "×0.1%",
-        "description": "Górny limit wydajności wentylatora w trybie Low Ceiling. Domyślnie 600 = 60%."
+        "description": "Górny limit wydajności wentylatora w trybie Low Ceiling. Domyślnie 600 = 60%.",
+        "description_en": "Upper fan capacity limit in Low Ceiling mode. Default: 600 = 60%."
       },
       {
         "offset": 26,
         "name": "InputDIConfiguration",
-        "description": "Aktywacja i wybór polaryzacji wejścia DI."
+        "description": "Aktywacja i wybór polaryzacji wejścia DI.",
+        "description_en": "DI input activation and polarity selection."
       },
       {
         "offset": 27,
         "name": "ActuatorsTimeConfiguration",
         "unit": "s",
-        "description": "Czas otwarcia siłownika 3-drogowego — zgodnie z danymi producenta. Domyślnie 150s."
+        "description": "Czas otwarcia siłownika 3-drogowego — zgodnie z danymi producenta. Domyślnie 150s.",
+        "description_en": "3-way actuator opening time — as per manufacturer data. Default: 150s."
       },
       {
         "offset": 28,
         "name": "ExchangerTypeConfiguration",
-        "description": "Typ wymiennika ciepła. Domyślnie 2."
+        "description": "Typ wymiennika ciepła. Domyślnie 2.",
+        "description_en": "Heat exchanger type. Default: 2."
       },
       {
         "offset": 29,
         "name": "ValveTypeConfiguration",
-        "description": "Typ siłownika zaworu. Domyślnie 0."
+        "description": "Typ siłownika zaworu. Domyślnie 0.",
+        "description_en": "Valve actuator type. Default: 0."
       },
       {
         "offset": 30,
         "name": "DrainPumpAlarmConfiguration",
-        "description": "Polaryzacja styku alarmu pompy skroplin. Domyślnie 0."
+        "description": "Polaryzacja styku alarmu pompy skroplin. Domyślnie 0.",
+        "description_en": "Drain pump alarm contact polarity. Default: 0."
       },
       {
         "offset": 31,
         "name": "FilterMaxWorkTime",
-        "description": "Maksymalny czas pracy filtra. Domyślnie 4000h."
+        "description": "Maksymalny czas pracy filtra. Domyślnie 4000h.",
+        "description_en": "Maximum filter operating time. Default: 4000h."
       },
       {
         "offset": 32,
         "name": "GroupTLeadSensorSelect",
-        "description": "Wybór czujnika wiodącego grupy."
+        "description": "Wybór czujnika wiodącego grupy.",
+        "description_en": "Group lead sensor selection."
       }
     ],
     "holding_registers_group": []
@@ -3237,57 +3564,68 @@ const DEVICES_DATA = {
   "SLIM (DRV SLIM)": {
     "name": "SLIM (DRV SLIM)",
     "description": "Kurtyna powietrzna SLIM",
+    "description_en": "SLIM compact air curtain",
     "group_priority": 15,
     "input_registers": [
       {
         "offset": 4,
         "name": "T3",
-        "description": "Temperatura powietrza za wymiennikiem wodnym (czujnik T3)."
+        "description": "Temperatura powietrza za wymiennikiem wodnym (czujnik T3).",
+        "description_en": "Supply air temperature after water heat exchanger (T3 sensor)."
       },
       {
         "offset": 5,
         "name": "T4",
-        "description": "Temperatura powietrza przed wymiennikiem wodnym (czujnik T4)."
+        "description": "Temperatura powietrza przed wymiennikiem wodnym (czujnik T4).",
+        "description_en": "Supply air temperature before water heat exchanger (T4 sensor)."
       },
       {
         "offset": 6,
         "name": "CurtainFanSpeed",
-        "description": "Prędkość wentylatora kurtyny (AC 3-biegowy: 0=stop, 1–33=bieg1, 34–66=bieg2, 67–100=bieg3)."
+        "description": "Prędkość wentylatora kurtyny (AC 3-biegowy: 0=stop, 1–33=bieg1, 34–66=bieg2, 67–100=bieg3).",
+        "description_en": "Curtain fan speed (3-speed AC fan: 0=stop, 1–33=speed 1, 34–66=speed 2, 67–100=speed 3)."
       },
       {
         "offset": 7,
         "name": "ValveState",
-        "description": "Stan zaworu wodnego."
+        "description": "Stan zaworu wodnego.",
+        "description_en": "Water valve state."
       },
       {
         "offset": 8,
         "name": "HeaterFanSpeed",
-        "description": "Prędkość wentylatora nagrzewnicy (AC 3-biegowy)."
+        "description": "Prędkość wentylatora nagrzewnicy (AC 3-biegowy).",
+        "description_en": "Heater fan speed (3-speed AC fan)."
       },
       {
         "offset": 9,
         "name": "ContactDoor",
-        "description": "Stan styku drzwiowego."
+        "description": "Stan styku drzwiowego.",
+        "description_en": "Door contact state."
       },
       {
         "offset": 10,
         "name": "HeaterDetect",
-        "description": "Procedura wykrywania nagrzewnicy (ELIS-DUO)."
+        "description": "Procedura wykrywania nagrzewnicy (ELIS-DUO).",
+        "description_en": "Heater detection procedure (ELIS-DUO)."
       },
       {
         "offset": 11,
         "name": "AntifreezeState",
-        "description": "Stan ochrony przeciwzamrożeniowej — 8 bitów dla poszczególnych trybów."
+        "description": "Stan ochrony przeciwzamrożeniowej — 8 bitów dla poszczególnych trybów.",
+        "description_en": "Antifreeze protection state — 8 bits for individual modes."
       },
       {
         "offset": 12,
         "name": "FuseState",
-        "description": "Stan bezpiecznika wentylatora 3V (bity 8–11). Przykład: 0x100 = OK, 0x200 = przepalony."
+        "description": "Stan bezpiecznika wentylatora 3V (bity 8–11). Przykład: 0x100 = OK, 0x200 = przepalony.",
+        "description_en": "3-speed fan fuse state (bits 8–11). Example: 0x100 = OK, 0x200 = blown."
       },
       {
         "offset": 13,
         "name": "CurtainElectricpower",
-        "description": "Moc elektrycznej nagrzewnicy kurtyny (wyjścia L1/L2 na złączu VALVE)."
+        "description": "Moc elektrycznej nagrzewnicy kurtyny (wyjścia L1/L2 na złączu VALVE).",
+        "description_en": "Electric heater power of the curtain (L1/L2 outputs on VALVE connector)."
       }
     ],
     "holding_registers_single": [
@@ -3307,7 +3645,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wentylator kurtyny AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
+        "description": "Wentylator kurtyny AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
+        "description_en": "Curtain 3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
       },
       {
         "offset": 6,
@@ -3324,7 +3663,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wentylator nagrzewnicy AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
+        "description": "Wentylator nagrzewnicy AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
+        "description_en": "Heater 3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
       },
       {
         "offset": 8,
@@ -3372,7 +3712,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wentylator kurtyny AC 3-biegowy (stand-by): 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
+        "description": "Wentylator kurtyny AC 3-biegowy (stand-by): 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
+        "description_en": "Curtain 3-speed AC fan (stand-by): 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
       },
       {
         "offset": 15,
@@ -3380,7 +3721,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wentylator nagrzewnicy AC 3-biegowy (stand-by): 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
+        "description": "Wentylator nagrzewnicy AC 3-biegowy (stand-by): 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
+        "description_en": "Heater 3-speed AC fan (stand-by): 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
       },
       {
         "offset": 16,
@@ -3388,7 +3730,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 65535,
         "unit": "s",
-        "description": "Opóźnienie stand-by wentylatora w sekundach; 65535 = nieskończone"
+        "description": "Opóźnienie stand-by wentylatora w sekundach; 65535 = nieskończone",
+        "description_en": "Fan stand-by delay in seconds; 65535 = infinite"
       },
       {
         "offset": 17,
@@ -3396,7 +3739,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 65535,
         "unit": "s",
-        "description": "Opóźnienie zaworu w trybie stand-by w sekundach; 65535 = nieskończone. Warunek: ValveIdleDelay < FanIdleDelay"
+        "description": "Opóźnienie zaworu w trybie stand-by w sekundach; 65535 = nieskończone. Warunek: ValveIdleDelay < FanIdleDelay",
+        "description_en": "Valve stand-by delay in seconds; 65535 = infinite. Constraint: ValveIdleDelay < FanIdleDelay"
       },
       {
         "offset": 18,
@@ -3431,7 +3775,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wentylator kurtyny AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
+        "description": "Wentylator kurtyny AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
+        "description_en": "Curtain 3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
       },
       {
         "offset": 6,
@@ -3465,7 +3810,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 100,
         "unit": "%",
-        "description": "Wentylator kurtyny AC 3-biegowy (stand-by): 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
+        "description": "Wentylator kurtyny AC 3-biegowy (stand-by): 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
+        "description_en": "Curtain 3-speed AC fan (stand-by): 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
       },
       {
         "offset": 10,
@@ -3473,7 +3819,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 65535,
         "unit": "s",
-        "description": "Opóźnienie stand-by wentylatora w sekundach; 65535 = nieskończone"
+        "description": "Opóźnienie stand-by wentylatora w sekundach; 65535 = nieskończone",
+        "description_en": "Fan stand-by delay in seconds; 65535 = infinite"
       },
       {
         "offset": 11,
@@ -3481,7 +3828,8 @@ const DEVICES_DATA = {
         "min": 0,
         "max": 65535,
         "unit": "s",
-        "description": "Opóźnienie zaworu w trybie stand-by w sekundach; 65535 = nieskończone. Warunek: ValveIdleDelay < FanIdleDelay"
+        "description": "Opóźnienie zaworu w trybie stand-by w sekundach; 65535 = nieskończone. Warunek: ValveIdleDelay < FanIdleDelay",
+        "description_en": "Valve stand-by delay in seconds; 65535 = infinite. Constraint: ValveIdleDelay < FanIdleDelay"
       }
     ]
   }

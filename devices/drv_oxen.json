@@ -1,69 +1,82 @@
 {
   "name": "OXEN (DRV OXEN)",
   "description": "Rekuperator OXEN",
+  "description_en": "OXEN heat recovery unit (HRV)",
   "group_priority": 1,
   "input_registers": [
     {
       "offset": 0,
       "name": "Status1",
-      "description": "Rejestr statusu nr 1 (bitowy)."
+      "description": "Rejestr statusu nr 1 (bitowy).",
+      "description_en": "Status register no. 1 (bit-mapped)."
     },
     {
       "offset": 2,
       "name": "T1",
-      "description": "Temperatura powietrza nawiewanego (czujnik T1)."
+      "description": "Temperatura powietrza nawiewanego (czujnik T1).",
+      "description_en": "Supply air temperature (T1 sensor)."
     },
     {
       "offset": 3,
       "name": "T2",
-      "description": "Temperatura powietrza przy wentylatorze wyciągowym (czujnik T2)."
+      "description": "Temperatura powietrza przy wentylatorze wyciągowym (czujnik T2).",
+      "description_en": "Air temperature at extract fan (T2 sensor)."
     },
     {
       "offset": 4,
       "name": "T3",
-      "description": "Temperatura powietrza za wymiennikiem wodnym (czujnik T3)."
+      "description": "Temperatura powietrza za wymiennikiem wodnym (czujnik T3).",
+      "description_en": "Air temperature after water heat exchanger (T3 sensor)."
     },
     {
       "offset": 5,
       "name": "T4",
-      "description": "Temperatura powietrza powrotnego / pomieszczenia (czujnik T4)."
+      "description": "Temperatura powietrza powrotnego / pomieszczenia (czujnik T4).",
+      "description_en": "Return air / room temperature (T4 sensor)."
     },
     {
       "offset": 6,
       "name": "T5",
-      "description": "Temperatura wymiennika wodnego (czujnik T5)."
+      "description": "Temperatura wymiennika wodnego (czujnik T5).",
+      "description_en": "Water heat exchanger temperature (T5 sensor)."
     },
     {
       "offset": 7,
       "name": "Outputs",
-      "description": "Stan wyjść sterownika."
+      "description": "Stan wyjść sterownika.",
+      "description_en": "Controller output states."
     },
     {
       "offset": 8,
       "name": "Inputs",
-      "description": "Stan wejść sterownika (wejścia beznap. i przełączniki)."
+      "description": "Stan wejść sterownika (wejścia beznap. i przełączniki).",
+      "description_en": "Controller input states (voltage-free inputs and switches)."
     },
     {
       "offset": 9,
       "name": "FilterWorkTime",
-      "description": "Czas pracy filtra."
+      "description": "Czas pracy filtra.",
+      "description_en": "Filter operating time."
     },
     {
       "offset": 10,
       "name": "FansEff_1",
-      "description": "Wydajność wentylatorów grupy I — nawiew [%]."
+      "description": "Wydajność wentylatorów grupy I — nawiew [%].",
+      "description_en": "Group I fan efficiency — supply [%]."
     },
     {
       "offset": 11,
       "name": "FansEff_2",
-      "description": "Wydajność wentylatorów grupy II — wyciąg [%]."
+      "description": "Wydajność wentylatorów grupy II — wyciąg [%].",
+      "description_en": "Group II fan efficiency — extract [%]."
     }
   ],
   "holding_registers_single": [
     {
       "offset": 0,
       "name": "Config1",
-      "description": "Bit 0: FilterWorkTimeRST — 0=brak akcji, 1=reset licznika czasu filtra (ustawia adres 0x09 na 0x000)"
+      "description": "Bit 0: FilterWorkTimeRST — 0=brak akcji, 1=reset licznika czasu filtra (ustawia adres 0x09 na 0x000)",
+      "description_en": "Bit 0: FilterWorkTimeRST — 0=no action, 1=reset filter time counter (sets address 0x09 to 0x000)"
     },
     {
       "offset": 2,
@@ -71,7 +84,8 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Wentylator EC — wentylatory nawiewne (grupa I), płynna regulacja 0–100%"
+      "description": "Wentylator EC — wentylatory nawiewne (grupa I), płynna regulacja 0–100%",
+      "description_en": "EC fan — supply fans (group I), continuous 0–100% control"
     },
     {
       "offset": 3,
@@ -79,7 +93,8 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Wentylator EC — wentylatory wywiewne (grupa II), płynna regulacja 0–100%"
+      "description": "Wentylator EC — wentylatory wywiewne (grupa II), płynna regulacja 0–100%",
+      "description_en": "EC fan — extract fans (group II), continuous 0–100% control"
     },
     {
       "offset": 4,
@@ -132,7 +147,8 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Wentylator EC — wentylatory nawiewne (grupa I), płynna regulacja 0–100%"
+      "description": "Wentylator EC — wentylatory nawiewne (grupa I), płynna regulacja 0–100%",
+      "description_en": "EC fan — supply fans (group I), continuous 0–100% control"
     },
     {
       "offset": 3,
@@ -140,7 +156,8 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Wentylator EC — wentylatory wywiewne (grupa II), płynna regulacja 0–100%"
+      "description": "Wentylator EC — wentylatory wywiewne (grupa II), płynna regulacja 0–100%",
+      "description_en": "EC fan — extract fans (group II), continuous 0–100% control"
     },
     {
       "offset": 5,

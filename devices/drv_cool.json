@@ -1,42 +1,50 @@
 {
   "name": "LEO COOL (DRV COOL)",
   "description": "Nagrzewnica/chłodnica wodna",
+  "description_en": "LEO COOL water/electric heating and cooling unit with EC fans",
   "group_priority": 12,
   "input_registers": [
     {
       "offset": 4,
       "name": "T3",
-      "description": "Temperatura przy suficie (czujnik T3)."
+      "description": "Temperatura przy suficie (czujnik T3).",
+      "description_en": "Ceiling temperature (T3 sensor)."
     },
     {
       "offset": 5,
       "name": "T4",
-      "description": "Temperatura w pomieszczeniu (czujnik T4)."
+      "description": "Temperatura w pomieszczeniu (czujnik T4).",
+      "description_en": "Room temperature (T4 sensor)."
     },
     {
       "offset": 6,
       "name": "FanEff",
-      "description": "Prędkość wentylatora (AC 3-biegowy)."
+      "description": "Prędkość wentylatora (AC 3-biegowy).",
+      "description_en": "Fan speed (3-speed AC fan)."
     },
     {
       "offset": 7,
       "name": "AntifreezeState",
-      "description": "Stan ochrony przeciwzamrożeniowej magazynu — 8 bitów."
+      "description": "Stan ochrony przeciwzamrożeniowej magazynu — 8 bitów.",
+      "description_en": "Warehouse antifreeze protection state — 8 bits."
     },
     {
       "offset": 9,
       "name": "FilterPressureState",
-      "description": "Stan presostatu filtra."
+      "description": "Stan presostatu filtra.",
+      "description_en": "Filter pressure switch state."
     },
     {
       "offset": 10,
       "name": "FuseState",
-      "description": "Stan bezpiecznika wentylatorów (bity). Przykład: 0x100 = OK, 0x200 = przepalony."
+      "description": "Stan bezpiecznika wentylatorów (bity). Przykład: 0x100 = OK, 0x200 = przepalony.",
+      "description_en": "Fan fuse state (bits). Example: 0x100 = OK, 0x200 = blown."
     },
     {
       "offset": 11,
       "name": "ValveState",
-      "description": "Stan zaworu wodnego."
+      "description": "Stan zaworu wodnego.",
+      "description_en": "Water valve state."
     }
   ],
   "holding_registers_single": [
@@ -74,7 +82,8 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
+      "description": "Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
+      "description_en": "3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
     },
     {
       "offset": 8,
@@ -105,7 +114,8 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Minimalna wydajność wentylatora w trybie AUTO. AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1, 34–66=bieg 2, 67–100=bieg 3"
+      "description": "Minimalna wydajność wentylatora w trybie AUTO. AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1, 34–66=bieg 2, 67–100=bieg 3",
+      "description_en": "Minimum fan capacity in AUTO mode. 3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1, 34–66=speed 2, 67–100=speed 3"
     },
     {
       "offset": 16,
@@ -113,7 +123,8 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Maksymalna wydajność wentylatora w trybie AUTO. AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1, 34–66=bieg 2, 67–100=bieg 3"
+      "description": "Maksymalna wydajność wentylatora w trybie AUTO. AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1, 34–66=bieg 2, 67–100=bieg 3",
+      "description_en": "Maximum fan capacity in AUTO mode. 3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1, 34–66=speed 2, 67–100=speed 3"
     },
     {
       "offset": 17,
@@ -121,7 +132,8 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Wydajność wentylatora po osiągnięciu temperatury docelowej w trybie MANUAL. AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1, 34–66=bieg 2, 67–100=bieg 3"
+      "description": "Wydajność wentylatora po osiągnięciu temperatury docelowej w trybie MANUAL. AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1, 34–66=bieg 2, 67–100=bieg 3",
+      "description_en": "Fan capacity after reaching target temperature in MANUAL mode. 3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1, 34–66=speed 2, 67–100=speed 3"
     }
   ],
   "holding_registers_group": [
@@ -144,7 +156,8 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Wydajność wentylatora. AC 3-biegowy."
+      "description": "Wydajność wentylatora. AC 3-biegowy.",
+      "description_en": "Fan capacity. 3-speed AC fan."
     },
     {
       "offset": 9,
@@ -152,7 +165,8 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Minimalna wydajność wentylatora w trybie AUTO."
+      "description": "Minimalna wydajność wentylatora w trybie AUTO.",
+      "description_en": "Minimum fan capacity in AUTO mode."
     },
     {
       "offset": 10,
@@ -160,7 +174,8 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Wydajność wentylatora po osiągnięciu temperatury docelowej w trybie MANUAL."
+      "description": "Wydajność wentylatora po osiągnięciu temperatury docelowej w trybie MANUAL.",
+      "description_en": "Fan capacity after reaching target temperature in MANUAL mode."
     }
   ]
 }

@@ -1,77 +1,92 @@
 {
   "name": "CUBE (DRV CUBE)",
   "description": "Jednostka wentylacyjna CUBE z dyfuzorem wirowym i czujnikiem CO2",
+  "description_en": "CUBE rooftop unit with EC fans and CO2 sensor",
   "group_priority": 13,
   "input_registers": [
     {
       "offset": 9,
       "name": "ambient_temp_value",
-      "description": "Temperatura zewnętrzna."
+      "description": "Temperatura zewnętrzna.",
+      "description_en": "Outdoor air temperature."
     },
     {
       "offset": 10,
       "name": "supply_temp_value",
-      "description": "Temperatura powietrza nawiewanego."
+      "description": "Temperatura powietrza nawiewanego.",
+      "description_en": "Supply air temperature."
     },
     {
       "offset": 11,
       "name": "return_temp_value",
-      "description": "Temperatura powietrza wyciąganego."
+      "description": "Temperatura powietrza wyciąganego.",
+      "description_en": "Return/extract air temperature."
     },
     {
       "offset": 12,
       "name": "water_temp_value",
-      "description": "Temperatura wymiennika wodnego."
+      "description": "Temperatura wymiennika wodnego.",
+      "description_en": "Water heat exchanger temperature."
     },
     {
       "offset": 13,
       "name": "TempRoom_ADD",
-      "description": "Temperatura z dodatkowego czujnika pokojowego."
+      "description": "Temperatura z dodatkowego czujnika pokojowego.",
+      "description_en": "Temperature from additional room sensor."
     },
     {
       "offset": 14,
       "name": "recirculation_damper_level",
-      "description": "Aktualna pozycja klapy recyrkulacji."
+      "description": "Aktualna pozycja klapy recyrkulacji.",
+      "description_en": "Current recirculation damper position."
     },
     {
       "offset": 16,
       "name": "swirl_diffuser_position",
-      "description": "Pozycja dyfuzora wirowego."
+      "description": "Pozycja dyfuzora wirowego.",
+      "description_en": "Swirl diffuser position."
     },
     {
       "offset": 17,
       "name": "rotary_level",
-      "description": "Poziom obrotowego (rotary)."
+      "description": "Poziom obrotowego (rotary).",
+      "description_en": "Rotary level."
     },
     {
       "offset": 18,
       "name": "fan_supply_flow",
-      "description": "Przepływ powietrza nawiewanego."
+      "description": "Przepływ powietrza nawiewanego.",
+      "description_en": "Supply air flow."
     },
     {
       "offset": 19,
       "name": "gas_heating_value",
-      "description": "Wartość ogrzewania gazowego."
+      "description": "Wartość ogrzewania gazowego.",
+      "description_en": "Gas heating value."
     },
     {
       "offset": 20,
       "name": "CO2_status",
-      "description": "Status CO2 — wartość LSB (MSB ignorowany)."
+      "description": "Status CO2 — wartość LSB (MSB ignorowany).",
+      "description_en": "CO2 status — LSB value (MSB ignored)."
     },
     {
       "offset": 21,
       "name": "Rooftop_work_mode",
-      "description": "Zadany tryb pracy jednostki dachowej — wartość LSB."
+      "description": "Zadany tryb pracy jednostki dachowej — wartość LSB.",
+      "description_en": "Commanded rooftop unit operating mode — LSB value."
     },
     {
       "offset": 22,
       "name": "Rooftop_current_work_mode",
-      "description": "Aktualny tryb pracy jednostki dachowej — wartość LSB."
+      "description": "Aktualny tryb pracy jednostki dachowej — wartość LSB.",
+      "description_en": "Current rooftop unit operating mode — LSB value."
     },
     {
       "offset": 23,
       "name": "Alarm",
-      "description": "Stan alarmów — wartość LSB."
+      "description": "Stan alarmów — wartość LSB.",
+      "description_en": "Alarm states — LSB value."
     }
   ],
   "holding_registers_single": [
@@ -83,7 +98,8 @@
         "2": "WM_ON — urządzenie włączone",
         "3": "WM_THERM — tryb termostatyczny"
       },
-      "description": "Rejestr 16-bit: MSB ignorowany, LSB = tryb pracy"
+      "description": "Rejestr 16-bit: MSB ignorowany, LSB = tryb pracy",
+      "description_en": "16-bit register: MSB ignored, LSB = operating mode"
     },
     {
       "offset": 5,
@@ -91,7 +107,8 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Nastawa wydajności wentylatora EC, płynna regulacja 0–100%"
+      "description": "Nastawa wydajności wentylatora EC, płynna regulacja 0–100%",
+      "description_en": "EC fan capacity setpoint, continuous 0–100% control"
     },
     {
       "offset": 6,
@@ -99,7 +116,8 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Nastawa wydajności wentylatora EC dla 1. progu czujnika CO2"
+      "description": "Nastawa wydajności wentylatora EC dla 1. progu czujnika CO2",
+      "description_en": "EC fan capacity setpoint for CO2 sensor threshold 1"
     },
     {
       "offset": 7,
@@ -107,7 +125,8 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Nastawa wydajności wentylatora EC dla 2. progu czujnika CO2"
+      "description": "Nastawa wydajności wentylatora EC dla 2. progu czujnika CO2",
+      "description_en": "EC fan capacity setpoint for CO2 sensor threshold 2"
     },
     {
       "offset": 8,
@@ -116,7 +135,8 @@
         "0": "RM_AUTO — tryb automatyczny",
         "1": "RM_MANUAL — tryb ręczny"
       },
-      "description": "Rejestr 16-bit: MSB ignorowany, LSB = tryb recyrkulacji"
+      "description": "Rejestr 16-bit: MSB ignorowany, LSB = tryb recyrkulacji",
+      "description_en": "16-bit register: MSB ignored, LSB = recirculation mode"
     },
     {
       "offset": 9,
@@ -124,7 +144,8 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Wartość recyrkulacji, płynna regulacja 0–100%"
+      "description": "Wartość recyrkulacji, płynna regulacja 0–100%",
+      "description_en": "Recirculation value, continuous 0–100% control"
     },
     {
       "offset": 10,
@@ -132,7 +153,8 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Wartość recyrkulacji dla 1. progu czujnika CO2"
+      "description": "Wartość recyrkulacji dla 1. progu czujnika CO2",
+      "description_en": "Recirculation value for CO2 sensor threshold 1"
     },
     {
       "offset": 11,
@@ -140,7 +162,8 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Wartość recyrkulacji dla 2. progu czujnika CO2"
+      "description": "Wartość recyrkulacji dla 2. progu czujnika CO2",
+      "description_en": "Recirculation value for CO2 sensor threshold 2"
     },
     {
       "offset": 12,
@@ -149,7 +172,8 @@
         "0": "WM_NW_AUTO — tryb automatyczny dyfuzora",
         "1": "WM_NW_MANUAL — tryb ręczny dyfuzora"
       },
-      "description": "Tryb pracy dyfuzora wirowego (NW). Rejestr 16-bit: MSB ignorowany, LSB = tryb"
+      "description": "Tryb pracy dyfuzora wirowego (NW). Rejestr 16-bit: MSB ignorowany, LSB = tryb",
+      "description_en": "Swirl diffuser (NW) operating mode. 16-bit register: MSB ignored, LSB = mode"
     },
     {
       "offset": 13,
@@ -157,7 +181,8 @@
       "min": 30,
       "max": 100,
       "unit": "%",
-      "description": "Poziom otwarcia dyfuzora wirowego"
+      "description": "Poziom otwarcia dyfuzora wirowego",
+      "description_en": "Swirl diffuser opening level"
     },
     {
       "offset": 14,
@@ -165,7 +190,8 @@
       "min": 30,
       "max": 100,
       "unit": "%",
-      "description": "Poziom otwarcia dyfuzora wirowego w trybie grzania"
+      "description": "Poziom otwarcia dyfuzora wirowego w trybie grzania",
+      "description_en": "Swirl diffuser opening level in heating mode"
     },
     {
       "offset": 15,
@@ -173,7 +199,8 @@
       "min": 30,
       "max": 100,
       "unit": "%",
-      "description": "Poziom otwarcia dyfuzora wirowego w trybie chłodzenia"
+      "description": "Poziom otwarcia dyfuzora wirowego w trybie chłodzenia",
+      "description_en": "Swirl diffuser opening level in cooling mode"
     },
     {
       "offset": 16,
@@ -181,7 +208,8 @@
       "min": 50,
       "max": 450,
       "unit": "°C×0.1",
-      "description": "Docelowa temperatura pomieszczenia"
+      "description": "Docelowa temperatura pomieszczenia",
+      "description_en": "Target room temperature"
     },
     {
       "offset": 17,
@@ -189,7 +217,8 @@
       "min": 50,
       "max": 450,
       "unit": "°C×0.1",
-      "description": "Temperatura pomieszczenia przekazywana do urządzenia przez Modbus"
+      "description": "Temperatura pomieszczenia przekazywana do urządzenia przez Modbus",
+      "description_en": "Room temperature sent to the device via Modbus"
     },
     {
       "offset": 18,
@@ -199,7 +228,8 @@
         "2": "TSL_TLEAD — wartość przez Modbus (tylko gdy lokalny czujnik CUBE jest wyłączony)",
         "3": "TSL_PREFERRED_LOCAL — czujnik lokalny CUBE (gdy jest aktywny)"
       },
-      "description": "Wybór źródła temperatury pomieszczenia"
+      "description": "Wybór źródła temperatury pomieszczenia",
+      "description_en": "Room temperature source selection"
     },
     {
       "offset": 19,
@@ -209,7 +239,8 @@
         "1": "CO2_STAT_L1 — poziom CO2 próg 1",
         "2": "CO2_STAT_L2 — poziom CO2 próg 2"
       },
-      "description": "Status CO2 zapisywany przez T-box do urządzenia. Rejestr 16-bit: MSB ignorowany, LSB = status"
+      "description": "Status CO2 zapisywany przez T-box do urządzenia. Rejestr 16-bit: MSB ignorowany, LSB = status",
+      "description_en": "CO2 status written by T-box to the device. 16-bit register: MSB ignored, LSB = status"
     },
     {
       "offset": 20,
@@ -218,7 +249,8 @@
         "0": "CO2_SOURCE_LOCAL — lokalny czujnik CO2 w CUBE",
         "1": "CO2_SOURCE_TBOX — źródło CO2 z T-box"
       },
-      "description": "Wybór źródła danych CO2. Rejestr 16-bit: MSB ignorowany, LSB = źródło"
+      "description": "Wybór źródła danych CO2. Rejestr 16-bit: MSB ignorowany, LSB = źródło",
+      "description_en": "CO2 data source selection. 16-bit register: MSB ignored, LSB = source"
     }
   ],
   "holding_registers_group": [
@@ -230,7 +262,8 @@
         "2": "WM_ON — urządzenie włączone",
         "3": "WM_THERM — tryb termostatyczny"
       },
-      "description": "Rejestr 16-bit: MSB ignorowany, LSB = tryb pracy"
+      "description": "Rejestr 16-bit: MSB ignorowany, LSB = tryb pracy",
+      "description_en": "16-bit register: MSB ignored, LSB = operating mode"
     },
     {
       "offset": 5,
@@ -238,7 +271,8 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Nastawa wydajności wentylatora EC, płynna regulacja 0–100%"
+      "description": "Nastawa wydajności wentylatora EC, płynna regulacja 0–100%",
+      "description_en": "EC fan capacity setpoint, continuous 0–100% control"
     },
     {
       "offset": 6,
@@ -246,7 +280,8 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Nastawa wydajności wentylatora EC dla 1. progu czujnika CO2"
+      "description": "Nastawa wydajności wentylatora EC dla 1. progu czujnika CO2",
+      "description_en": "EC fan capacity setpoint for CO2 sensor threshold 1"
     },
     {
       "offset": 7,
@@ -254,7 +289,8 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Nastawa wydajności wentylatora EC dla 2. progu czujnika CO2"
+      "description": "Nastawa wydajności wentylatora EC dla 2. progu czujnika CO2",
+      "description_en": "EC fan capacity setpoint for CO2 sensor threshold 2"
     },
     {
       "offset": 8,
@@ -263,7 +299,8 @@
         "0": "RM_AUTO — tryb automatyczny",
         "1": "RM_MANUAL — tryb ręczny"
       },
-      "description": "Rejestr 16-bit: MSB ignorowany, LSB = tryb recyrkulacji"
+      "description": "Rejestr 16-bit: MSB ignorowany, LSB = tryb recyrkulacji",
+      "description_en": "16-bit register: MSB ignored, LSB = recirculation mode"
     },
     {
       "offset": 9,
@@ -271,7 +308,8 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Wartość recyrkulacji, płynna regulacja 0–100%"
+      "description": "Wartość recyrkulacji, płynna regulacja 0–100%",
+      "description_en": "Recirculation value, continuous 0–100% control"
     },
     {
       "offset": 10,
@@ -279,7 +317,8 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Wartość recyrkulacji dla 1. progu czujnika CO2"
+      "description": "Wartość recyrkulacji dla 1. progu czujnika CO2",
+      "description_en": "Recirculation value for CO2 sensor threshold 1"
     },
     {
       "offset": 11,
@@ -287,7 +326,8 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Wartość recyrkulacji dla 2. progu czujnika CO2"
+      "description": "Wartość recyrkulacji dla 2. progu czujnika CO2",
+      "description_en": "Recirculation value for CO2 sensor threshold 2"
     },
     {
       "offset": 12,
@@ -296,7 +336,8 @@
         "0": "WM_NW_AUTO — tryb automatyczny dyfuzora",
         "1": "WM_NW_MANUAL — tryb ręczny dyfuzora"
       },
-      "description": "Tryb pracy dyfuzora wirowego (NW). Rejestr 16-bit: MSB ignorowany, LSB = tryb"
+      "description": "Tryb pracy dyfuzora wirowego (NW). Rejestr 16-bit: MSB ignorowany, LSB = tryb",
+      "description_en": "Swirl diffuser (NW) operating mode. 16-bit register: MSB ignored, LSB = mode"
     },
     {
       "offset": 13,
@@ -304,7 +345,8 @@
       "min": 30,
       "max": 100,
       "unit": "%",
-      "description": "Poziom otwarcia dyfuzora wirowego"
+      "description": "Poziom otwarcia dyfuzora wirowego",
+      "description_en": "Swirl diffuser opening level"
     },
     {
       "offset": 14,
@@ -312,7 +354,8 @@
       "min": 30,
       "max": 100,
       "unit": "%",
-      "description": "Poziom otwarcia dyfuzora wirowego w trybie grzania"
+      "description": "Poziom otwarcia dyfuzora wirowego w trybie grzania",
+      "description_en": "Swirl diffuser opening level in heating mode"
     },
     {
       "offset": 15,
@@ -320,7 +363,8 @@
       "min": 30,
       "max": 100,
       "unit": "%",
-      "description": "Poziom otwarcia dyfuzora wirowego w trybie chłodzenia"
+      "description": "Poziom otwarcia dyfuzora wirowego w trybie chłodzenia",
+      "description_en": "Swirl diffuser opening level in cooling mode"
     }
   ]
 }

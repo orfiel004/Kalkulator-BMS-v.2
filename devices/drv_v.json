@@ -1,47 +1,56 @@
 {
   "name": "LEO AC (DRV V)",
   "description": "Nagrzewnica wodna z wentylatorem EC",
+  "description_en": "LEO AC water heater series V (heating/cooling, EC fan)",
   "group_priority": 5,
   "input_registers": [
     {
       "offset": 4,
       "name": "T3",
-      "description": "Temperatura przy suficie (czujnik T3)."
+      "description": "Temperatura przy suficie (czujnik T3).",
+      "description_en": "Ceiling temperature (T3 sensor)."
     },
     {
       "offset": 5,
       "name": "T4",
-      "description": "Temperatura w pomieszczeniu (czujnik T4)."
+      "description": "Temperatura w pomieszczeniu (czujnik T4).",
+      "description_en": "Room temperature (T4 sensor)."
     },
     {
       "offset": 6,
       "name": "FanEff",
-      "description": "Prędkość wentylatora (AC 3-biegowy)."
+      "description": "Prędkość wentylatora (AC 3-biegowy).",
+      "description_en": "Fan speed (3-speed AC fan)."
     },
     {
       "offset": 7,
       "name": "AntifreezeeState",
-      "description": "Stan ochrony przeciwzamrożeniowej magazynu — 8 bitów."
+      "description": "Stan ochrony przeciwzamrożeniowej magazynu — 8 bitów.",
+      "description_en": "Warehouse antifreeze protection state — 8 bits."
     },
     {
       "offset": 8,
       "name": "DestStatus",
-      "description": "Stan destratyfikacji: aktywna gdy (DestTempRef > Td–Tm) oraz (Tz > Tm)."
+      "description": "Stan destratyfikacji: aktywna gdy (DestTempRef > Td–Tm) oraz (Tz > Tm).",
+      "description_en": "Destratification state: active when (DestTempRef > Td–Tm) and (Tz > Tm)."
     },
     {
       "offset": 9,
       "name": "FilterPressureState",
-      "description": "Stan presostatu filtra."
+      "description": "Stan presostatu filtra.",
+      "description_en": "Filter pressure switch state."
     },
     {
       "offset": 10,
       "name": "FuseState",
-      "description": "Stan bezpiecznika wentylatorów (bity). Przykład: 0x100 = OK, 0x200 = przepalony."
+      "description": "Stan bezpiecznika wentylatorów (bity). Przykład: 0x100 = OK, 0x200 = przepalony.",
+      "description_en": "Fan fuse state (bits). Example: 0x100 = OK, 0x200 = blown."
     },
     {
       "offset": 11,
       "name": "ValveState",
-      "description": "Stan zaworu wodnego."
+      "description": "Stan zaworu wodnego.",
+      "description_en": "Water valve state."
     }
   ],
   "holding_registers_single": [
@@ -80,7 +89,8 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
+      "description": "Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
+      "description_en": "3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
     },
     {
       "offset": 8,
