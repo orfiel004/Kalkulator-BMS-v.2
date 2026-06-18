@@ -6,52 +6,62 @@
     {
       "offset": 5,
       "name": "T3",
-      "description": "Temperatura przy suficie (czujnik T3)."
+      "description": "Temperatura przy suficie (czujnik T3).",
+      "description_en": "Ceiling temperature (T3 sensor)."
     },
     {
       "offset": 6,
       "name": "T4",
-      "description": "Temperatura w pomieszczeniu (czujnik T4)."
+      "description": "Temperatura w pomieszczeniu (czujnik T4).",
+      "description_en": "Room temperature (T4 sensor)."
     },
     {
       "offset": 8,
       "name": "ExternalGasDetectTH1",
-      "description": "Sygnał zewnętrznego czujnika gazu — próg pierwszy."
+      "description": "Sygnał zewnętrznego czujnika gazu — próg pierwszy.",
+      "description_en": "External gas sensor signal — first threshold."
     },
     {
       "offset": 9,
       "name": "ExternalGasDetectTH2",
-      "description": "Sygnał zewnętrznego czujnika gazu — próg drugi."
+      "description": "Sygnał zewnętrznego czujnika gazu — próg drugi.",
+      "description_en": "External gas sensor signal — second threshold."
     },
     {
       "offset": 10,
       "name": "ExternalGasDetectVal",
-      "description": "Stężenie gazu — wejście 0–10V DC (wymagana kalibracja czujnika)."
+      "description": "Stężenie gazu — wejście 0–10V DC (wymagana kalibracja czujnika).",
+      "description_en": "Gas concentration — 0–10V DC input (sensor calibration required)."
     },
     {
       "offset": 15,
       "name": "AntifreezeStateWarehouse",
-      "description": "Stan ochrony przeciwzamrożeniowej magazynu."
+      "description": "Stan ochrony przeciwzamrożeniowej magazynu.",
+      "description_en": "Warehouse antifreeze protection state."
     },
     {
       "offset": 16,
       "name": "FuseState",
-      "description": "Stan bezpiecznika wentylatora."
+      "description": "Stan bezpiecznika wentylatora.",
+      "description_en": "Fan fuse state."
     },
     {
       "offset": 17,
       "name": "GasAlarmState",
-      "description": "Alarm Robur — gaz/płomień. Odczyt z zacisku nr 6 (terminal wewnątrz nagrzewnicy)."
+      "description": "Alarm Robur — gaz/płomień. Odczyt z zacisku nr 6 (terminal wewnątrz nagrzewnicy).",
+      "description_en": "Robur alarm — gas/flame. Read from terminal 6 (inside heater)."
     },
     {
       "offset": 18,
       "name": "STBAlarmState",
-      "description": "Alarm temperatury wyciągu powietrza (STB)."
+      "description": "Alarm temperatury wyciągu powietrza (STB).",
+      "description_en": "Exhaust air temperature alarm (STB)."
     },
     {
       "offset": 19,
       "name": "FilterWorkTime",
-      "description": "Czas pracy filtra. Czas rzeczywisty = 5 × wartość [min]."
+      "description": "Czas pracy filtra. Czas rzeczywisty = 5 × wartość [min].",
+      "description_en": "Filter operating time. Actual value = 5 × register value [min]."
     }
   ],
   "holding_registers_single": [
@@ -105,7 +115,8 @@
         "0": "RO — read-only",
         "1": "ON — sending reset signal (continuous)",
         "2": "OFF — stop reset signal"
-      }
+      },
+      "description_en": "Gas/flame alarm reset. Reset time must not exceed 5 s (then set value to 0x02)"
     },
     {
       "offset": 14,
@@ -141,7 +152,8 @@
       "min": 810,
       "max": 1200,
       "unit": "°C×0.1",
-      "description": "Temperatura progowa alarmu STB (Input Register 0x12). Alarm aktywny gdy wartość ustawiona > T3 (IR 0x05). Domyślna wartość 900 zapewnia wystąpienie błędu przed rzeczywistym alarmem STB Robur (który wymaga ręcznego resetu ze skrzynki sterowniczej)"
+      "description": "Temperatura progowa alarmu STB (Input Register 0x12). Alarm aktywny gdy wartość ustawiona > T3 (IR 0x05). Domyślna wartość 900 zapewnia wystąpienie błędu przed rzeczywistym alarmem STB Robur (który wymaga ręcznego resetu ze skrzynki sterowniczej)",
+      "description_en": "STB alarm activation temperature threshold (Input Register 0x12). Alarm active when set value > T3 (IR 0x05). Default value 900 ensures fault before actual Robur STB alarm (which requires manual reset from control box)"
     },
     {
       "offset": 19,
@@ -161,7 +173,8 @@
       "min": 610,
       "max": 800,
       "unit": "°C×0.1",
-      "description": "Temperatura resetowania alarmu STB. Reset możliwy gdy wartość ustawiona > T3 (IR 0x05). Dodatkowy warunek: STB_T_OFF < STB_T_REF"
+      "description": "Temperatura resetowania alarmu STB. Reset możliwy gdy wartość ustawiona > T3 (IR 0x05). Dodatkowy warunek: STB_T_OFF < STB_T_REF",
+      "description_en": "STB alarm reset temperature. Reset possible when set value > T3 (IR 0x05). Additional condition: STB_T_OFF < STB_T_REF"
     },
     {
       "offset": 21,
@@ -174,7 +187,8 @@
       "values_en": {
         "1": "ON — alarm reset active",
         "2": "OFF — alarm reset inactive"
-      }
+      },
+      "description_en": "If STB_T (T3, IR 0x03) < STBTemperatureAlarmOff (HR 0x14), register will be automatically set to 0x02 (OFF)"
     },
     {
       "offset": 22,
@@ -187,7 +201,8 @@
       "values_en": {
         "0": "Fan OFF — fan off",
         "100": "Fan ON — fan on"
-      }
+      },
+      "description_en": "Fan capacity setpoint after reaching target temperature"
     },
     {
       "offset": 23,
@@ -202,7 +217,8 @@
         "0": "RO — read-only",
         "1": "FIRST_STEP — first combustion stage",
         "2": "SECOND_STEP — second combustion stage"
-      }
+      },
+      "description_en": "Gas combustion stage setting (active only in WM_HEAT_MANUAL mode)"
     }
   ],
   "holding_registers_group": [
@@ -230,7 +246,8 @@
       "min": 810,
       "max": 1200,
       "unit": "°C×0.1",
-      "description": "Temperatura progowa aktywacji alarmu STB."
+      "description": "Temperatura progowa aktywacji alarmu STB.",
+      "description_en": "STB alarm activation temperature threshold (Input Register 0x12). Alarm active when set value > T3 (IR 0x05). Default value 900 ensures fault before actual Robur STB alarm (which requires manual reset from control box)"
     },
     {
       "offset": 13,
@@ -238,7 +255,8 @@
       "min": 610,
       "max": 800,
       "unit": "°C×0.1",
-      "description": "Temperatura resetowania alarmu STB."
+      "description": "Temperatura resetowania alarmu STB.",
+      "description_en": "STB alarm reset temperature. Reset possible when set value > T3 (IR 0x05). Additional condition: STB_T_OFF < STB_T_REF"
     },
     {
       "offset": 14,
@@ -251,7 +269,8 @@
       "values_en": {
         "0": "Fan OFF — fan off",
         "100": "Fan ON — fan on"
-      }
+      },
+      "description_en": "Fan capacity setpoint after reaching target temperature"
     },
     {
       "offset": 15,
@@ -266,7 +285,9 @@
         "0": "RO — read-only",
         "1": "FIRST_STEP — first combustion stage",
         "2": "SECOND_STEP — second combustion stage"
-      }
+      },
+      "description_en": "Gas combustion stage setting (active only in WM_HEAT_MANUAL mode)"
     }
-  ]
+  ],
+  "description_en": "ROBUR NEXT gas heater"
 }

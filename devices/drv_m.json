@@ -6,42 +6,50 @@
     {
       "offset": 4,
       "name": "T3",
-      "description": "Temperatura powietrza za wymiennikiem wodnym (czujnik T3)."
+      "description": "Temperatura powietrza za wymiennikiem wodnym (czujnik T3).",
+      "description_en": "Supply air temperature after water heat exchanger (T3 sensor)."
     },
     {
       "offset": 5,
       "name": "T4",
-      "description": "Temperatura w pomieszczeniu (czujnik T4)."
+      "description": "Temperatura w pomieszczeniu (czujnik T4).",
+      "description_en": "Room temperature (T4 sensor)."
     },
     {
       "offset": 6,
       "name": "FanEff",
-      "description": "Wydajność wentylatora EC — prędkość obrotowa [rpm]."
+      "description": "Wydajność wentylatora EC — prędkość obrotowa [rpm].",
+      "description_en": "EC fan efficiency — rotational speed [rpm]."
     },
     {
       "offset": 7,
       "name": "AntifreezeeState",
-      "description": "Stan ochrony przeciwzamrożeniowej — 8 bitów."
+      "description": "Stan ochrony przeciwzamrożeniowej — 8 bitów.",
+      "description_en": "Antifreeze protection state — 8 bits."
     },
     {
       "offset": 8,
       "name": "DestStatus",
-      "description": "Stan destratyfikacji: aktywna gdy (DestTempRef > Td–Tm) oraz (Tz > Tm)."
+      "description": "Stan destratyfikacji: aktywna gdy (DestTempRef > Td–Tm) oraz (Tz > Tm).",
+      "description_en": "Destratification state: active when (DestTempRef > Td–Tm) and (Tz > Tm)."
     },
     {
       "offset": 9,
       "name": "FanEcConnect",
-      "description": "Status połączenia wentylatora EC z urządzeniem DRV M."
+      "description": "Status połączenia wentylatora EC z urządzeniem DRV M.",
+      "description_en": "EC fan connection status with DRV M device."
     },
     {
       "offset": 10,
       "name": "FuseState",
-      "description": "Stan bezpiecznika wentylatorów EC/3V/dachowych (bity). Przykład: 0x100 = wentylator 3V OK."
+      "description": "Stan bezpiecznika wentylatorów EC/3V/dachowych (bity). Przykład: 0x100 = wentylator 3V OK.",
+      "description_en": "Fan fuse state (EC/3V/roof fans, bits). Example: 0x100 = 3V fan OK."
     },
     {
       "offset": 11,
       "name": "ValveState",
-      "description": "Stan zaworu wodnego."
+      "description": "Stan zaworu wodnego.",
+      "description_en": "Water valve state."
     }
   ],
   "holding_registers_single": [
@@ -258,5 +266,6 @@
       "max": 100,
       "unit": "%"
     }
-  ]
+  ],
+  "description_en": "Water heater with EC fan (continuous regulation)"
 }

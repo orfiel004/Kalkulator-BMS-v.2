@@ -336,7 +336,8 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Maksymalna wydajność wentylatora w trybie dogrzewania (ADD HEAT), Auto. Domyślnie 5%. Warunek: Min < Max."
+      "description": "Maksymalna wydajność wentylatora w trybie dogrzewania (ADD HEAT), Auto. Domyślnie 5%. Warunek: Min < Max.",
+      "description_en": "Maximum fan capacity in ADD HEAT mode, Auto. Default: 5%. Constraint: Max > Min."
     },
     {
       "offset": 28,
@@ -344,7 +345,8 @@
       "min": 0,
       "max": 999,
       "unit": "×0.1°C",
-      "description": "Temperatura zadana przejścia VENT→HEAT w trybie SMART. Domyślnie 170 = 17.0°C. Warunek: ≤ EWMSmartT13h − 1K."
+      "description": "Temperatura zadana przejścia VENT→HEAT w trybie SMART. Domyślnie 170 = 17.0°C. Warunek: ≤ EWMSmartT13h − 1K.",
+      "description_en": "Setpoint for VENT→HEAT transition in SMART mode. Default: 170 = 17.0°C. Constraint: ≤ EWMSmartT13h − 1K."
     },
     {
       "offset": 29,
@@ -352,30 +354,36 @@
       "min": 0,
       "max": 999,
       "unit": "×0.1°C",
-      "description": "Temperatura zadana przejścia HEAT→VENT w trybie SMART. Domyślnie 210 = 21.0°C. Warunek: ≥ EWMSmartT124h + 1K."
+      "description": "Temperatura zadana przejścia HEAT→VENT w trybie SMART. Domyślnie 210 = 21.0°C. Warunek: ≥ EWMSmartT124h + 1K.",
+      "description_en": "Setpoint for HEAT→VENT transition in SMART mode. Default: 210 = 21.0°C. Constraint: ≥ EWMSmartT124h + 1K."
     },
     {
       "offset": 30,
       "name": "HeatT3_PI_KP",
-      "description": "Wzmocnienie KP regulatora PI temperatury nawiewu T3. Domyślnie 3."
+      "description": "Wzmocnienie KP regulatora PI temperatury nawiewu T3. Domyślnie 3.",
+      "description_en": "Proportional gain KP of the T3 supply temperature PI controller. Default: 3."
     },
     {
       "offset": 31,
       "name": "HeatT3_PI_TI",
       "unit": "s",
-      "description": "Czas podwajania TI regulatora PI temperatury nawiewu T3. Domyślnie 180s."
+      "description": "Czas podwajania TI regulatora PI temperatury nawiewu T3. Domyślnie 180s.",
+      "description_en": "Integral time TI of the T3 supply temperature PI controller. Default: 180s."
     },
     {
       "offset": 32,
       "name": "HeatT5_PI_KP",
-      "description": "Wzmocnienie KP regulatora PI temperatury wody powrotnej T5. Domyślnie 3."
+      "description": "Wzmocnienie KP regulatora PI temperatury wody powrotnej T5. Domyślnie 3.",
+      "description_en": "Proportional gain KP of the T5 return water temperature PI controller. Default: 3."
     },
     {
       "offset": 33,
       "name": "HeatT5_PI_TI",
       "unit": "s",
-      "description": "Czas TI regulatora PI temperatury wody powrotnej T5. Domyślnie 180s."
+      "description": "Czas TI regulatora PI temperatury wody powrotnej T5. Domyślnie 180s.",
+      "description_en": "Integral time TI of the T5 return water temperature PI controller. Default: 180s."
     }
   ],
-  "holding_registers_group": []
+  "holding_registers_group": [],
+  "description_en": "ELIS AX air curtain (multi-speed EC fans)"
 }
