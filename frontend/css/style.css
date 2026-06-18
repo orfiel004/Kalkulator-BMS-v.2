@@ -16,6 +16,7 @@ header {
   background: #1a2d47;
   color: #fff;
   padding: 16px 24px;
+  position: relative;
 }
 header h1 { font-size: 20px; font-weight: 600; }
 header p  { font-size: 12px; color: #8da6c5; margin-top: 2px; }
@@ -360,8 +361,6 @@ button:hover { background: #f5f7fa; }
   border-radius: 4px;
   cursor: pointer;
   margin-bottom: 8px;
-  min-width: 240px;
-  text-align: left;
 }
 .btn-controller-toggle:hover { background: #dce8f8; }
 
@@ -460,17 +459,18 @@ button:hover { background: #f5f7fa; }
 
 /* ---- Przełącznik języka ---- */
 .btn-lang {
+  position: absolute;
+  top: 16px;
+  right: 24px;
   background: rgba(255,255,255,0.15);
   border: 1px solid rgba(255,255,255,0.4);
   color: #fff;
   border-radius: 4px;
   padding: 4px 12px;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
-  margin-top: 8px;
-  white-space: nowrap;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.5px;
 }
 .btn-lang:hover {
   background: rgba(255,255,255,0.25);
