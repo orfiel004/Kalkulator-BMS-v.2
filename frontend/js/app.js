@@ -819,4 +819,18 @@ document.getElementById('btn-mbox-calculate').addEventListener('click', calculat
 document.getElementById('btn-add-mbox-device').addEventListener('click', addMboxDeviceRow);
 document.getElementById('btn-lang').addEventListener('click', () => {
   setLang(currentLang === 'pl' ? 'en' : 'pl');
-  applyStaticTransla
+  applyStaticTranslations();
+  // Jeśli wyniki są widoczne — przelicz ponownie (re-render z nowym językiem)
+  const resultsSection = document.getElementById('results');
+  if (resultsSection && resultsSection.style.display !== 'none') {
+    const ctrl = document.getElementById('controllerType').value;
+    if (ctrl === 'mbox') calculateMbox();
+    else calculate();
+  }
+});
+
+document.getElementById('btn-print').addEventListener('click', () => {
+  window.print();
+});
+
+loadDevices();
