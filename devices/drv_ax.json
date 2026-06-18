@@ -1,7 +1,6 @@
 {
   "name": "ELIS AX (DRV AX)",
   "description": "Kurtyna powietrzna ELIS AX (wielobiegowe wentylatory EC)",
-  "description_en": "ELIS AX air curtain (multi-speed EC fans)",
   "group_priority": 4,
   "tbox_zone_only": true,
   "input_registers": [
@@ -117,6 +116,12 @@
         "1": "HEAT — tryb grzania",
         "2": "VENT — wentylacja",
         "3": "SMART — tryb automatyczny"
+      },
+      "values_en": {
+        "0": "OFF — device off",
+        "1": "HEAT — heating mode",
+        "2": "VENT — ventilation",
+        "3": "SMART — automatic mode"
       }
     },
     {
@@ -197,7 +202,11 @@
         "2": "OFF — wyłączone"
       },
       "description": "Włącz/wyłącz ograniczenie temperatury wody powrotnej. Domyślnie OFF.",
-      "description_en": "Enable/disable return water temperature limit. Default: OFF."
+      "description_en": "Enable/disable return water temperature limit. Default: OFF.",
+      "values_en": {
+        "1": "ON — active",
+        "2": "OFF — disabled"
+      }
     },
     {
       "offset": 14,
@@ -234,7 +243,11 @@
         "2": "OFF — wyłączone"
       },
       "description": "Ochrona przeciwzamrożeniowa magazynu. Domyślnie OFF.",
-      "description_en": "Warehouse antifreeze protection. Default: OFF."
+      "description_en": "Warehouse antifreeze protection. Default: OFF.",
+      "values_en": {
+        "1": "ON — active",
+        "2": "OFF — disabled"
+      }
     },
     {
       "offset": 18,
@@ -253,7 +266,11 @@
         "2": "OFF — wyłączone"
       },
       "description": "Ochrona przeciwzamrożeniowa wymiennika wodnego. Domyślnie ON.",
-      "description_en": "Water heat exchanger antifreeze protection. Default: ON."
+      "description_en": "Water heat exchanger antifreeze protection. Default: ON.",
+      "values_en": {
+        "1": "ON — active",
+        "2": "OFF — disabled"
+      }
     },
     {
       "offset": 20,
@@ -281,7 +298,7 @@
         "2": "OFF"
       },
       "description": "Włącz/wyłącz podgrzewanie wstępne (PREHEAT). Domyślnie OFF.",
-      "description_en": "Enable/disable preheat function (PREHEAT). Default: OFF."
+      "description_en": "Enable/disable preheat function. Default: OFF."
     },
     {
       "offset": 23,
@@ -319,8 +336,7 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Maksymalna wydajność wentylatora w trybie dogrzewania (ADD HEAT), Auto. Domyślnie 5%. Warunek: Min < Max.",
-      "description_en": "Maximum fan capacity in ADD HEAT mode, Auto. Default: 5%. Constraint: Min < Max."
+      "description": "Maksymalna wydajność wentylatora w trybie dogrzewania (ADD HEAT), Auto. Domyślnie 5%. Warunek: Min < Max."
     },
     {
       "offset": 28,
@@ -328,8 +344,7 @@
       "min": 0,
       "max": 999,
       "unit": "×0.1°C",
-      "description": "Temperatura zadana przejścia VENT→HEAT w trybie SMART. Domyślnie 170 = 17.0°C. Warunek: ≤ EWMSmartT13h − 1K.",
-      "description_en": "Setpoint temperature for VENT→HEAT transition in SMART mode. Default: 170 = 17.0°C. Constraint: ≤ EWMSmartT13h − 1K."
+      "description": "Temperatura zadana przejścia VENT→HEAT w trybie SMART. Domyślnie 170 = 17.0°C. Warunek: ≤ EWMSmartT13h − 1K."
     },
     {
       "offset": 29,
@@ -337,34 +352,29 @@
       "min": 0,
       "max": 999,
       "unit": "×0.1°C",
-      "description": "Temperatura zadana przejścia HEAT→VENT w trybie SMART. Domyślnie 210 = 21.0°C. Warunek: ≥ EWMSmartT124h + 1K.",
-      "description_en": "Setpoint temperature for HEAT→VENT transition in SMART mode. Default: 210 = 21.0°C. Constraint: ≥ EWMSmartT124h + 1K."
+      "description": "Temperatura zadana przejścia HEAT→VENT w trybie SMART. Domyślnie 210 = 21.0°C. Warunek: ≥ EWMSmartT124h + 1K."
     },
     {
       "offset": 30,
       "name": "HeatT3_PI_KP",
-      "description": "Wzmocnienie KP regulatora PI temperatury nawiewu T3. Domyślnie 3.",
-      "description_en": "Proportional gain KP of the PI controller for supply air temperature T3. Default: 3."
+      "description": "Wzmocnienie KP regulatora PI temperatury nawiewu T3. Domyślnie 3."
     },
     {
       "offset": 31,
       "name": "HeatT3_PI_TI",
       "unit": "s",
-      "description": "Czas podwajania TI regulatora PI temperatury nawiewu T3. Domyślnie 180s.",
-      "description_en": "Integral time TI of the PI controller for supply air temperature T3. Default: 180s."
+      "description": "Czas podwajania TI regulatora PI temperatury nawiewu T3. Domyślnie 180s."
     },
     {
       "offset": 32,
       "name": "HeatT5_PI_KP",
-      "description": "Wzmocnienie KP regulatora PI temperatury wody powrotnej T5. Domyślnie 3.",
-      "description_en": "Proportional gain KP of the PI controller for return water temperature T5. Default: 3."
+      "description": "Wzmocnienie KP regulatora PI temperatury wody powrotnej T5. Domyślnie 3."
     },
     {
       "offset": 33,
       "name": "HeatT5_PI_TI",
       "unit": "s",
-      "description": "Czas TI regulatora PI temperatury wody powrotnej T5. Domyślnie 180s.",
-      "description_en": "Integral time TI of the PI controller for return water temperature T5. Default: 180s."
+      "description": "Czas TI regulatora PI temperatury wody powrotnej T5. Domyślnie 180s."
     }
   ],
   "holding_registers_group": []

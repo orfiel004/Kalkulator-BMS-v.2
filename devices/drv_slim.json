@@ -1,68 +1,57 @@
 {
   "name": "SLIM (DRV SLIM)",
   "description": "Kurtyna powietrzna SLIM",
-  "description_en": "SLIM compact air curtain",
   "group_priority": 15,
   "input_registers": [
     {
       "offset": 4,
       "name": "T3",
-      "description": "Temperatura powietrza za wymiennikiem wodnym (czujnik T3).",
-      "description_en": "Supply air temperature after water heat exchanger (T3 sensor)."
+      "description": "Temperatura powietrza za wymiennikiem wodnym (czujnik T3)."
     },
     {
       "offset": 5,
       "name": "T4",
-      "description": "Temperatura powietrza przed wymiennikiem wodnym (czujnik T4).",
-      "description_en": "Supply air temperature before water heat exchanger (T4 sensor)."
+      "description": "Temperatura powietrza przed wymiennikiem wodnym (czujnik T4)."
     },
     {
       "offset": 6,
       "name": "CurtainFanSpeed",
-      "description": "Prędkość wentylatora kurtyny (AC 3-biegowy: 0=stop, 1–33=bieg1, 34–66=bieg2, 67–100=bieg3).",
-      "description_en": "Curtain fan speed (3-speed AC fan: 0=stop, 1–33=speed 1, 34–66=speed 2, 67–100=speed 3)."
+      "description": "Prędkość wentylatora kurtyny (AC 3-biegowy: 0=stop, 1–33=bieg1, 34–66=bieg2, 67–100=bieg3)."
     },
     {
       "offset": 7,
       "name": "ValveState",
-      "description": "Stan zaworu wodnego.",
-      "description_en": "Water valve state."
+      "description": "Stan zaworu wodnego."
     },
     {
       "offset": 8,
       "name": "HeaterFanSpeed",
-      "description": "Prędkość wentylatora nagrzewnicy (AC 3-biegowy).",
-      "description_en": "Heater fan speed (3-speed AC fan)."
+      "description": "Prędkość wentylatora nagrzewnicy (AC 3-biegowy)."
     },
     {
       "offset": 9,
       "name": "ContactDoor",
-      "description": "Stan styku drzwiowego.",
-      "description_en": "Door contact state."
+      "description": "Stan styku drzwiowego."
     },
     {
       "offset": 10,
       "name": "HeaterDetect",
-      "description": "Procedura wykrywania nagrzewnicy (ELIS-DUO).",
-      "description_en": "Heater detection procedure (ELIS-DUO)."
+      "description": "Procedura wykrywania nagrzewnicy (ELIS-DUO)."
     },
     {
       "offset": 11,
       "name": "AntifreezeState",
-      "description": "Stan ochrony przeciwzamrożeniowej — 8 bitów dla poszczególnych trybów.",
-      "description_en": "Antifreeze protection state — 8 bits for individual modes."
+      "description": "Stan ochrony przeciwzamrożeniowej — 8 bitów dla poszczególnych trybów."
     },
     {
       "offset": 12,
       "name": "FuseState",
-      "description": "Stan bezpiecznika wentylatora 3V (bity 8–11). Przykład: 0x100 = OK, 0x200 = przepalony.",
-      "description_en": "3-speed fan fuse state (bits 8–11). Example: 0x100 = OK, 0x200 = blown."
+      "description": "Stan bezpiecznika wentylatora 3V (bity 8–11). Przykład: 0x100 = OK, 0x200 = przepalony."
     },
     {
       "offset": 13,
       "name": "CurtainElectricpower",
-      "description": "Moc elektrycznej nagrzewnicy kurtyny (wyjścia L1/L2 na złączu VALVE).",
-      "description_en": "Electric heater power of the curtain (L1/L2 outputs on VALVE connector)."
+      "description": "Moc elektrycznej nagrzewnicy kurtyny (wyjścia L1/L2 na złączu VALVE)."
     }
   ],
   "holding_registers_single": [
@@ -74,6 +63,12 @@
         "1": "WM_OFF — urządzenie wyłączone",
         "2": "WM_HEAT — tryb grzania",
         "3": "WM_VENT — wentylacja"
+      },
+      "values_en": {
+        "0": "WM_NS — read-only",
+        "1": "WM_OFF — device off",
+        "2": "WM_HEAT — heating mode",
+        "3": "WM_VENT — wentylacja"
       }
     },
     {
@@ -82,8 +77,7 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Wentylator kurtyny AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
-      "description_en": "Curtain 3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
+      "description": "Wentylator kurtyny AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
     },
     {
       "offset": 6,
@@ -92,6 +86,11 @@
         "0": "HEAT_NS — tylko odczyt",
         "1": "HEAT_ON — grzanie włączone",
         "2": "HEAT_OFF — grzanie wyłączone"
+      },
+      "values_en": {
+        "0": "HEAT_NS — read-only",
+        "1": "HEAT_ON — heating on",
+        "2": "HEAT_OFF — heating off"
       }
     },
     {
@@ -100,8 +99,7 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Wentylator nagrzewnicy AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
-      "description_en": "Heater 3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
+      "description": "Wentylator nagrzewnicy AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
     },
     {
       "offset": 8,
@@ -110,6 +108,11 @@
         "0": "HEAT_NS — tylko odczyt",
         "1": "HEAT_ON — grzanie włączone",
         "2": "HEAT_OFF — grzanie wyłączone"
+      },
+      "values_en": {
+        "0": "HEAT_NS — read-only",
+        "1": "HEAT_ON — heating on",
+        "2": "HEAT_OFF — heating off"
       }
     },
     {
@@ -132,6 +135,10 @@
       "values": {
         "1": "TSL_TLEAD — wartość przez Modbus (TLeadVal)",
         "3": "TSL_T4 — czujnik T4 (złącze DRV)"
+      },
+      "values_en": {
+        "1": "TSL_TLEAD — value via Modbus (TLeadVal)",
+        "3": "TSL_T4 — T4 sensor (DRV connector)"
       }
     },
     {
@@ -141,6 +148,11 @@
         "0": "CURT_PRG_NS — brak wymuszenia",
         "1": "CURT_PRG_K1 — wymuszenie SW3 na K1",
         "2": "CURT_PRG_K2 — wymuszenie SW3 na K2"
+      },
+      "values_en": {
+        "0": "CURT_PRG_NS — no override",
+        "1": "CURT_PRG_K1 — force SW3 to K1",
+        "2": "CURT_PRG_K2 — force SW3 to K2"
       }
     },
     {
@@ -149,8 +161,7 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Wentylator kurtyny AC 3-biegowy (stand-by): 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
-      "description_en": "Curtain 3-speed AC fan (stand-by): 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
+      "description": "Wentylator kurtyny AC 3-biegowy (stand-by): 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
     },
     {
       "offset": 15,
@@ -158,8 +169,7 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Wentylator nagrzewnicy AC 3-biegowy (stand-by): 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
-      "description_en": "Heater 3-speed AC fan (stand-by): 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
+      "description": "Wentylator nagrzewnicy AC 3-biegowy (stand-by): 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
     },
     {
       "offset": 16,
@@ -167,8 +177,7 @@
       "min": 0,
       "max": 65535,
       "unit": "s",
-      "description": "Opóźnienie stand-by wentylatora w sekundach; 65535 = nieskończone",
-      "description_en": "Fan stand-by delay in seconds; 65535 = infinite"
+      "description": "Opóźnienie stand-by wentylatora w sekundach; 65535 = nieskończone"
     },
     {
       "offset": 17,
@@ -176,8 +185,7 @@
       "min": 0,
       "max": 65535,
       "unit": "s",
-      "description": "Opóźnienie zaworu w trybie stand-by w sekundach; 65535 = nieskończone. Warunek: ValveIdleDelay < FanIdleDelay",
-      "description_en": "Valve stand-by delay in seconds; 65535 = infinite. Constraint: ValveIdleDelay < FanIdleDelay"
+      "description": "Opóźnienie zaworu w trybie stand-by w sekundach; 65535 = nieskończone. Warunek: ValveIdleDelay < FanIdleDelay"
     },
     {
       "offset": 18,
@@ -185,6 +193,10 @@
       "values": {
         "1": "WM_ON — włączony",
         "2": "WM_OFF — wyłączony"
+      },
+      "values_en": {
+        "1": "WM_ON — enabled",
+        "2": "WM_OFF — disabled"
       }
     },
     {
@@ -204,6 +216,12 @@
         "1": "WM_OFF — urządzenie wyłączone",
         "2": "WM_HEAT — tryb grzania",
         "3": "WM_VENT — wentylacja"
+      },
+      "values_en": {
+        "0": "WM_NS — read-only",
+        "1": "WM_OFF — device off",
+        "2": "WM_HEAT — heating mode",
+        "3": "WM_VENT — wentylacja"
       }
     },
     {
@@ -212,8 +230,7 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Wentylator kurtyny AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
-      "description_en": "Curtain 3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
+      "description": "Wentylator kurtyny AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
     },
     {
       "offset": 6,
@@ -222,6 +239,11 @@
         "0": "HEAT_NS — tylko odczyt",
         "1": "HEAT_ON — grzanie włączone",
         "2": "HEAT_OFF — grzanie wyłączone"
+      },
+      "values_en": {
+        "0": "HEAT_NS — read-only",
+        "1": "HEAT_ON — heating on",
+        "2": "HEAT_OFF — heating off"
       }
     },
     {
@@ -230,6 +252,10 @@
       "values": {
         "1": "DOOR_OPEN — drzwi otwarte",
         "2": "DOOR_CLOSE — drzwi zamknięte"
+      },
+      "values_en": {
+        "1": "DOOR_OPEN — door open",
+        "2": "DOOR_CLOSE — door closed"
       }
     },
     {
@@ -239,6 +265,11 @@
         "0": "CURT_PRG_NS — brak wymuszenia",
         "1": "CURT_PRG_K1 — wymuszenie SW3 na K1",
         "2": "CURT_PRG_K2 — wymuszenie SW3 na K2"
+      },
+      "values_en": {
+        "0": "CURT_PRG_NS — no override",
+        "1": "CURT_PRG_K1 — force SW3 to K1",
+        "2": "CURT_PRG_K2 — force SW3 to K2"
       }
     },
     {
@@ -247,8 +278,7 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Wentylator kurtyny AC 3-biegowy (stand-by): 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
-      "description_en": "Curtain 3-speed AC fan (stand-by): 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
+      "description": "Wentylator kurtyny AC 3-biegowy (stand-by): 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
     },
     {
       "offset": 10,
@@ -256,8 +286,7 @@
       "min": 0,
       "max": 65535,
       "unit": "s",
-      "description": "Opóźnienie stand-by wentylatora w sekundach; 65535 = nieskończone",
-      "description_en": "Fan stand-by delay in seconds; 65535 = infinite"
+      "description": "Opóźnienie stand-by wentylatora w sekundach; 65535 = nieskończone"
     },
     {
       "offset": 11,
@@ -265,8 +294,7 @@
       "min": 0,
       "max": 65535,
       "unit": "s",
-      "description": "Opóźnienie zaworu w trybie stand-by w sekundach; 65535 = nieskończone. Warunek: ValveIdleDelay < FanIdleDelay",
-      "description_en": "Valve stand-by delay in seconds; 65535 = infinite. Constraint: ValveIdleDelay < FanIdleDelay"
+      "description": "Opóźnienie zaworu w trybie stand-by w sekundach; 65535 = nieskończone. Warunek: ValveIdleDelay < FanIdleDelay"
     }
   ]
 }

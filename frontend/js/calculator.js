@@ -67,8 +67,9 @@ const Calculator = {
 
   renderValueInfo(reg) {
     const parts = [];
-    if (reg.values && Object.keys(reg.values).length > 0) {
-      const items = Object.entries(reg.values)
+    const regValues = (currentLang === 'en' && reg.values_en) ? reg.values_en : reg.values;
+    if (regValues && Object.keys(regValues).length > 0) {
+      const items = Object.entries(regValues)
         .map(([k, v]) => `<span class="val-item"><b>${k}</b> ${v}</span>`)
         .join('');
       parts.push(`<div class="values-list">${items}</div>`);

@@ -1,38 +1,32 @@
 {
   "name": "LEO D (DRV D)",
   "description": "Destratyfikator (DRV D / LEO D)",
-  "description_en": "LEO D water heater (destratification unit)",
   "group_priority": 7,
   "input_registers": [
     {
       "offset": 4,
       "name": "T3",
-      "description": "Temperatura przy suficie (czujnik T3).",
-      "description_en": "Ceiling temperature (T3 sensor)."
+      "description": "Temperatura przy suficie (czujnik T3)."
     },
     {
       "offset": 5,
       "name": "T4",
-      "description": "Temperatura w pomieszczeniu (czujnik T4).",
-      "description_en": "Room temperature (T4 sensor)."
+      "description": "Temperatura w pomieszczeniu (czujnik T4)."
     },
     {
       "offset": 6,
       "name": "FanEff",
-      "description": "Prędkość wentylatora (AC 3-biegowy).",
-      "description_en": "Fan speed (3-speed AC fan)."
+      "description": "Prędkość wentylatora (AC 3-biegowy)."
     },
     {
       "offset": 7,
       "name": "DestStatus",
-      "description": "Stan destratyfikacji: aktywna gdy (DestTempRef > Td–Tm) oraz (Tz > Tm). Td=T3, Tm=TLeadVal lub T4.",
-      "description_en": "Destratification state: active when (DestTempRef > Td–Tm) and (Tz > Tm). Td=T3, Tm=TLeadVal or T4."
+      "description": "Stan destratyfikacji: aktywna gdy (DestTempRef > Td–Tm) oraz (Tz > Tm). Td=T3, Tm=TLeadVal lub T4."
     },
     {
       "offset": 8,
       "name": "FuseState",
-      "description": "Stan bezpiecznika wentylatora 3V (bity 8–11). Przykład: 0x100 = OK, 0x200 = przepalony.",
-      "description_en": "3-speed fan fuse state (bits 8–11). Example: 0x100 = OK, 0x200 = blown."
+      "description": "Stan bezpiecznika wentylatora 3V (bity 8–11). Przykład: 0x100 = OK, 0x200 = przepalony."
     }
   ],
   "holding_registers_single": [
@@ -44,6 +38,12 @@
         "2": "WM_AUTO_DEPEND — AUTO zależny od trybu pracy",
         "3": "WM_AUTO_INDEPEND — AUTO niezależny",
         "4": "WM_MANUAL — tryb ręczny"
+      },
+      "values_en": {
+        "1": "WM_OFF — defrost disabled",
+        "2": "WM_AUTO_DEPEND — AUTO dependent on operating mode",
+        "3": "WM_AUTO_INDEPEND — AUTO independent",
+        "4": "WM_MANUAL — manual mode"
       }
     },
     {
@@ -52,8 +52,7 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
-      "description_en": "3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
+      "description": "Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
     },
     {
       "offset": 6,
@@ -75,6 +74,10 @@
       "values": {
         "1": "TSL_TLEAD — wartość przez Modbus (TLeadVal)",
         "3": "TSL_T4 — czujnik T4 (złącze DRV)"
+      },
+      "values_en": {
+        "1": "TSL_TLEAD — value via Modbus (TLeadVal)",
+        "3": "TSL_T4 — T4 sensor (DRV connector)"
       }
     },
     {
@@ -83,8 +86,7 @@
       "min": 0,
       "max": 100,
       "unit": "K×0.1",
-      "description": "Próg odszraniania: warunek DestTempRef > Td − Tm (Td=T3 sufit, Tm=czujnik prowadzący)",
-      "description_en": "Destratification threshold: condition DestTempRef > Td − Tm (Td=T3 ceiling, Tm=lead sensor)"
+      "description": "Próg odszraniania: warunek DestTempRef > Td − Tm (Td=T3 sufit, Tm=czujnik prowadzący)"
     },
     {
       "offset": 11,
@@ -92,8 +94,7 @@
       "min": 50,
       "max": 450,
       "unit": "°C×0.1",
-      "description": "Docelowa temperatura przy suficie w trybie ręcznym; warunek: WorkModeTempRef > czujnik prowadzący",
-      "description_en": "Target ceiling temperature in manual mode; condition: WorkModeTempRef > lead sensor"
+      "description": "Docelowa temperatura przy suficie w trybie ręcznym; warunek: WorkModeTempRef > czujnik prowadzący"
     }
   ],
   "holding_registers_group": [
@@ -105,6 +106,12 @@
         "2": "WM_AUTO_DEPEND — AUTO zależny od trybu pracy",
         "3": "WM_AUTO_INDEPEND — AUTO niezależny",
         "4": "WM_MANUAL — tryb ręczny"
+      },
+      "values_en": {
+        "1": "WM_OFF — defrost disabled",
+        "2": "WM_AUTO_DEPEND — AUTO dependent on operating mode",
+        "3": "WM_AUTO_INDEPEND — AUTO independent",
+        "4": "WM_MANUAL — manual mode"
       }
     },
     {
@@ -113,8 +120,7 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
-      "description_en": "3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
+      "description": "Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
     },
     {
       "offset": 6,
@@ -122,8 +128,7 @@
       "min": 0,
       "max": 100,
       "unit": "K×0.1",
-      "description": "Próg odszraniania: warunek DestTempRef > Td − Tm (Td=T3 sufit, Tm=czujnik prowadzący)",
-      "description_en": "Destratification threshold: condition DestTempRef > Td − Tm (Td=T3 ceiling, Tm=lead sensor)"
+      "description": "Próg odszraniania: warunek DestTempRef > Td − Tm (Td=T3 sufit, Tm=czujnik prowadzący)"
     },
     {
       "offset": 7,
@@ -131,8 +136,7 @@
       "min": 50,
       "max": 450,
       "unit": "°C×0.1",
-      "description": "Docelowa temperatura przy suficie w trybie ręcznym; warunek: WorkModeTempRef > czujnik prowadzący",
-      "description_en": "Target ceiling temperature in manual mode; condition: WorkModeTempRef > lead sensor"
+      "description": "Docelowa temperatura przy suficie w trybie ręcznym; warunek: WorkModeTempRef > czujnik prowadzący"
     }
   ]
 }

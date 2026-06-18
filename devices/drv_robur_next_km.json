@@ -1,98 +1,82 @@
 {
   "name": "ROBUR R KM NEXT (DRV R KM NEXT)",
   "description": "Nagrzewnica gazowa ROBUR NEXT z klapą mieszającą",
-  "description_en": "ROBUR NEXT KM gas-fired water heater with mixing chamber",
   "group_priority": 11,
   "input_registers": [
     {
       "offset": 4,
       "name": "T1",
-      "description": "Temperatura powietrza świeżego (czujnik T1).",
-      "description_en": "Fresh air temperature (T1 sensor)."
+      "description": "Temperatura powietrza świeżego (czujnik T1)."
     },
     {
       "offset": 5,
       "name": "T3",
-      "description": "Temperatura wyciągu powietrza (czujnik T3).",
-      "description_en": "Extract air temperature (T3 sensor)."
+      "description": "Temperatura wyciągu powietrza (czujnik T3)."
     },
     {
       "offset": 6,
       "name": "T4",
-      "description": "Temperatura w pomieszczeniu (czujnik T4).",
-      "description_en": "Room temperature (T4 sensor)."
+      "description": "Temperatura w pomieszczeniu (czujnik T4)."
     },
     {
       "offset": 8,
       "name": "ExternalGasDetectTH1",
-      "description": "Sygnał zewnętrznego czujnika gazu — próg pierwszy.",
-      "description_en": "External gas sensor signal — first threshold."
+      "description": "Sygnał zewnętrznego czujnika gazu — próg pierwszy."
     },
     {
       "offset": 9,
       "name": "ExternalGasDetectTH2",
-      "description": "Sygnał zewnętrznego czujnika gazu — próg drugi.",
-      "description_en": "External gas sensor signal — second threshold."
+      "description": "Sygnał zewnętrznego czujnika gazu — próg drugi."
     },
     {
       "offset": 10,
       "name": "ExternalGasDetectVal",
-      "description": "Stężenie gazu — wejście 0–10V DC.",
-      "description_en": "Gas concentration — 0–10V DC input."
+      "description": "Stężenie gazu — wejście 0–10V DC."
     },
     {
       "offset": 11,
       "name": "FanRoofTK",
-      "description": "Sygnał TK z wentylatora dachowego.",
-      "description_en": "TK signal from rooftop fan."
+      "description": "Sygnał TK z wentylatora dachowego."
     },
     {
       "offset": 12,
       "name": "FanRoofEff",
-      "description": "Wydajność wentylatora dachowego.",
-      "description_en": "Rooftop fan efficiency."
+      "description": "Wydajność wentylatora dachowego."
     },
     {
       "offset": 13,
       "name": "DamperLevel",
-      "description": "Aktualna pozycja klapy mieszania.",
-      "description_en": "Current mixing damper position."
+      "description": "Aktualna pozycja klapy mieszania."
     },
     {
       "offset": 14,
       "name": "DamperForceState",
-      "description": "Stan wymuszenia pozycji klapy (tryb DamperForceMode = ON).",
-      "description_en": "Damper forced position state (DamperForceMode = ON)."
+      "description": "Stan wymuszenia pozycji klapy (tryb DamperForceMode = ON)."
     },
     {
       "offset": 15,
       "name": "AntifreezeStateWarehouse",
-      "description": "Stan ochrony przeciwzamrożeniowej magazynu.",
-      "description_en": "Warehouse antifreeze protection state."
+      "description": "Stan ochrony przeciwzamrożeniowej magazynu."
     },
     {
       "offset": 16,
       "name": "FuseState",
-      "description": "Stan bezpiecznika wentylatora.",
-      "description_en": "Fan fuse state."
+      "description": "Stan bezpiecznika wentylatora."
     },
     {
       "offset": 17,
       "name": "GasAlarmState",
-      "description": "Alarm Robur — gaz/płomień.",
-      "description_en": "Robur alarm — gas/flame."
+      "description": "Alarm Robur — gaz/płomień."
     },
     {
       "offset": 18,
       "name": "STBAlarmState",
-      "description": "Alarm STB — temperatura wyciągu powietrza.",
-      "description_en": "STB alarm — extract air temperature."
+      "description": "Alarm STB — temperatura wyciągu powietrza."
     },
     {
       "offset": 19,
       "name": "FilterWorkTime",
-      "description": "Czas pracy filtra. Czas rzeczywisty = 5 × wartość [min].",
-      "description_en": "Filter operating time. Actual value = 5 × register value [min]."
+      "description": "Czas pracy filtra. Czas rzeczywisty = 5 × wartość [min]."
     }
   ],
   "holding_registers_single": [
@@ -105,6 +89,13 @@
         "2": "WM_HEAT_AUTO — automatyczne grzanie",
         "3": "WM_HEAT_MANUAL — ręczne grzanie",
         "4": "WM_VENTILATION — wentylacja"
+      },
+      "values_en": {
+        "0": "WM_NS — read-only",
+        "1": "WM_OFF — device off",
+        "2": "WM_HEAT_AUTO — automatic heating",
+        "3": "WM_HEAT_MANUAL — manual heating",
+        "4": "WM_VENTILATION — ventilation"
       }
     },
     {
@@ -113,6 +104,10 @@
       "values": {
         "1": "ON — włączony",
         "2": "OFF — wyłączony"
+      },
+      "values_en": {
+        "1": "ON — enabled",
+        "2": "OFF — disabled"
       }
     },
     {
@@ -129,6 +124,11 @@
         "0": "DAMPER_FMD_NS — tylko odczyt",
         "1": "DAMPER_FMD_OFF — wymuszanie wyłączone",
         "2": "DAMPER_FMD_ON — wymuszanie włączone (jeśli T1 < DamperForceTempRef)"
+      },
+      "values_en": {
+        "0": "DAMPER_FMD_NS — read-only",
+        "1": "DAMPER_FMD_OFF — forcing disabled",
+        "2": "DAMPER_FMD_ON — forcing enabled (if T1 < DamperForceTempRef)"
       }
     },
     {
@@ -137,8 +137,7 @@
       "min": -100,
       "max": 150,
       "unit": "°C×0.1",
-      "description": "Temperatura wymuszonego otwarcia klapy. Połączona z T1 (temperatura świeżego powietrza — IR 0x04)",
-      "description_en": "Damper forced open temperature. Linked to T1 (fresh air temperature — IR 0x04)"
+      "description": "Temperatura wymuszonego otwarcia klapy. Połączona z T1 (temperatura świeżego powietrza — IR 0x04)"
     },
     {
       "offset": 9,
@@ -146,8 +145,7 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Docelowe otwarcie klapy przy wymuszeniu (DamperForceMode == DAMPER_FMD_ON, warunek: Temp < DamperForceTempRef)",
-      "description_en": "Target damper opening at forced mode (DamperForceMode == DAMPER_FMD_ON, condition: Temp < DamperForceTempRef)"
+      "description": "Docelowe otwarcie klapy przy wymuszeniu (DamperForceMode == DAMPER_FMD_ON, warunek: Temp < DamperForceTempRef)"
     },
     {
       "offset": 10,
@@ -155,8 +153,7 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Pozycja klapy mieszającej",
-      "description_en": "Mixing damper position"
+      "description": "Pozycja klapy mieszającej"
     },
     {
       "offset": 11,
@@ -164,8 +161,7 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Pozycja klapy gdy WorkMode == WM_WINTER_CONT",
-      "description_en": "Damper position when WorkMode == WM_WINTER_CONT"
+      "description": "Pozycja klapy gdy WorkMode == WM_WINTER_CONT"
     },
     {
       "offset": 12,
@@ -176,7 +172,11 @@
         "2": "OFF — zatrzymanie sygnału resetującego"
       },
       "description": "Reset alarmu gazowego/płomieniowego. Czas resetu nie powinien przekraczać 5 s (następnie ustawić wartość na 0x02)",
-      "description_en": "Gas/flame alarm reset. Reset time should not exceed 5 s (then set value to 0x02)"
+      "values_en": {
+        "0": "RO — read-only",
+        "1": "ON — sending reset signal (continuous)",
+        "2": "OFF — stop reset signal"
+      }
     },
     {
       "offset": 13,
@@ -184,8 +184,7 @@
       "min": -100,
       "max": 100,
       "unit": "%",
-      "description": "Wymuszenie prędkości wentylatora dachowego — wartość dodawana do aktualnej prędkości",
-      "description_en": "Rooftop fan speed override — value added to current speed"
+      "description": "Wymuszenie prędkości wentylatora dachowego — wartość dodawana do aktualnej prędkości"
     },
     {
       "offset": 14,
@@ -208,6 +207,11 @@
         "0": "TSL_TNS — tylko odczyt",
         "1": "TSL_TLEAD — wartość przez Modbus (TLeadVal)",
         "3": "TSL_T4 — czujnik T4 (temperatura pomieszczenia)"
+      },
+      "values_en": {
+        "0": "TSL_TNS — read-only",
+        "1": "TSL_TLEAD — value via Modbus (TLeadVal)",
+        "3": "TSL_T4 — T4 sensor (room temperature)"
       }
     },
     {
@@ -217,6 +221,11 @@
         "0": "FR_MD_NS — tylko odczyt",
         "1": "FR_MD_01 — zależny od pozycji klapy (DamperLevelRef) i nastawy wentylatora (FanEffRef)",
         "2": "FR_MD_02 — zależny wyłącznie od pozycji klapy (DamperLevelRef)"
+      },
+      "values_en": {
+        "0": "FR_MD_NS — read-only",
+        "1": "FR_MD_01 — dependent on damper position (DamperLevelRef) and fan setpoint (FanEffRef)",
+        "2": "FR_MD_02 — dependent on damper position only (DamperLevelRef)"
       }
     },
     {
@@ -225,8 +234,7 @@
       "min": 810,
       "max": 1200,
       "unit": "°C×0.1",
-      "description": "Temperatura progowa alarmu STB (IR 0x12). Alarm aktywny gdy wartość ustawiona > T3 (IR 0x05)",
-      "description_en": "STB alarm threshold temperature (IR 0x12). Alarm active when set value > T3 (IR 0x05)"
+      "description": "Temperatura progowa alarmu STB (IR 0x12). Alarm aktywny gdy wartość ustawiona > T3 (IR 0x05)"
     },
     {
       "offset": 19,
@@ -234,6 +242,10 @@
       "values": {
         "0": "FLT_CNT_RST_NS — tylko odczyt (po resecie)",
         "1": "FLT_CNT_RST — reset licznika czasu filtra (FilterWorkTime = 0)"
+      },
+      "values_en": {
+        "0": "FLT_CNT_RST_NS — read-only (after reset)",
+        "1": "FLT_CNT_RST — reset filter time counter (FilterWorkTime = 0)"
       }
     },
     {
@@ -242,8 +254,7 @@
       "min": 610,
       "max": 800,
       "unit": "°C×0.1",
-      "description": "Temperatura resetowania alarmu STB. Reset możliwy gdy wartość ustawiona > T3. Dodatkowy warunek: STB_T_OFF < STB_T_REF",
-      "description_en": "STB alarm reset temperature. Reset possible when set value > T3. Additional condition: STB_T_OFF < STB_T_REF"
+      "description": "Temperatura resetowania alarmu STB. Reset możliwy gdy wartość ustawiona > T3. Dodatkowy warunek: STB_T_OFF < STB_T_REF"
     },
     {
       "offset": 21,
@@ -253,7 +264,10 @@
         "2": "OFF — reset alarmu nieaktywny"
       },
       "description": "Jeśli STB_T (T3, IR 0x03) < STBTemperatureAlarmOff (HR 0x14), rejestr zostanie automatycznie ustawiony na 0x02 (OFF)",
-      "description_en": "If STB_T (T3, IR 0x03) < STBTemperatureAlarmOff (HR 0x14), the register will be automatically set to 0x02 (OFF)"
+      "values_en": {
+        "1": "ON — alarm reset active",
+        "2": "OFF — alarm reset inactive"
+      }
     },
     {
       "offset": 22,
@@ -263,7 +277,10 @@
         "100": "Fan ON — wentylator włączony"
       },
       "description": "Ustawienie wydajności wentylatora po osiągnięciu temperatury docelowej",
-      "description_en": "Fan capacity setting after reaching target temperature"
+      "values_en": {
+        "0": "Fan OFF — fan off",
+        "100": "Fan ON — fan on"
+      }
     },
     {
       "offset": 23,
@@ -274,7 +291,11 @@
         "2": "SECOND_STEP — drugi stopień spalania"
       },
       "description": "Ustawienie stopnia spalania gazu (aktywne tylko w trybie ręcznego grzania WM_HEAT_MANUAL)",
-      "description_en": "Gas combustion stage setting (active only in manual heating mode WM_HEAT_MANUAL)"
+      "values_en": {
+        "0": "RO — read-only",
+        "1": "FIRST_STEP — first combustion stage",
+        "2": "SECOND_STEP — second combustion stage"
+      }
     }
   ],
   "holding_registers_group": [
@@ -287,6 +308,13 @@
         "2": "WM_HEAT_AUTO — automatyczne grzanie",
         "3": "WM_HEAT_MANUAL — ręczne grzanie",
         "4": "WM_VENTILATION — wentylacja"
+      },
+      "values_en": {
+        "0": "WM_NS — read-only",
+        "1": "WM_OFF — device off",
+        "2": "WM_HEAT_AUTO — automatic heating",
+        "3": "WM_HEAT_MANUAL — manual heating",
+        "4": "WM_VENTILATION — ventilation"
       }
     },
     {
@@ -296,6 +324,11 @@
         "0": "DAMPER_FMD_NS — tylko odczyt",
         "1": "DAMPER_FMD_OFF — wymuszanie wyłączone",
         "2": "DAMPER_FMD_ON — wymuszanie włączone (jeśli T1 < DamperForceTempRef)"
+      },
+      "values_en": {
+        "0": "DAMPER_FMD_NS — read-only",
+        "1": "DAMPER_FMD_OFF — forcing disabled",
+        "2": "DAMPER_FMD_ON — forcing enabled (if T1 < DamperForceTempRef)"
       }
     },
     {
@@ -304,8 +337,7 @@
       "min": -100,
       "max": 150,
       "unit": "°C×0.1",
-      "description": "Temperatura wymuszonego otwarcia klapy.",
-      "description_en": "Damper forced open temperature."
+      "description": "Temperatura wymuszonego otwarcia klapy."
     },
     {
       "offset": 7,
@@ -313,8 +345,7 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Docelowe otwarcie klapy przy wymuszeniu.",
-      "description_en": "Target damper opening at forced mode."
+      "description": "Docelowe otwarcie klapy przy wymuszeniu."
     },
     {
       "offset": 8,
@@ -322,8 +353,7 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Pozycja klapy mieszającej.",
-      "description_en": "Mixing damper position."
+      "description": "Pozycja klapy mieszającej."
     },
     {
       "offset": 9,
@@ -331,8 +361,7 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Pozycja klapy gdy WorkMode = WM_WINTER_CONT.",
-      "description_en": "Damper position when WorkMode = WM_WINTER_CONT."
+      "description": "Pozycja klapy gdy WorkMode = WM_WINTER_CONT."
     },
     {
       "offset": 10,
@@ -340,8 +369,7 @@
       "min": -100,
       "max": 100,
       "unit": "%",
-      "description": "Wymuszenie prędkości wentylatora dachowego.",
-      "description_en": "Rooftop fan speed override."
+      "description": "Wymuszenie prędkości wentylatora dachowego."
     },
     {
       "offset": 11,
@@ -350,6 +378,11 @@
         "0": "FR_MD_NS — tylko odczyt",
         "1": "FR_MD_01 — zależny od pozycji klapy i nastawy wentylatora",
         "2": "FR_MD_02 — zależny wyłącznie od pozycji klapy"
+      },
+      "values_en": {
+        "0": "FR_MD_NS — read-only",
+        "1": "FR_MD_01 — dependent on damper position and fan setpoint",
+        "2": "FR_MD_02 — dependent on damper position only"
       }
     },
     {
@@ -358,8 +391,7 @@
       "min": 810,
       "max": 1200,
       "unit": "°C×0.1",
-      "description": "Temperatura progowa aktywacji alarmu STB.",
-      "description_en": "STB alarm activation threshold temperature."
+      "description": "Temperatura progowa aktywacji alarmu STB."
     },
     {
       "offset": 13,
@@ -367,8 +399,7 @@
       "min": 610,
       "max": 800,
       "unit": "°C×0.1",
-      "description": "Temperatura resetowania alarmu STB.",
-      "description_en": "STB alarm reset temperature."
+      "description": "Temperatura resetowania alarmu STB."
     },
     {
       "offset": 14,
@@ -378,7 +409,10 @@
         "100": "Fan ON — wentylator włączony"
       },
       "description": "Wydajność wentylatora po osiągnięciu temperatury docelowej.",
-      "description_en": "Fan capacity after reaching target temperature."
+      "values_en": {
+        "0": "Fan OFF — fan off",
+        "100": "Fan ON — fan on"
+      }
     },
     {
       "offset": 15,
@@ -389,7 +423,11 @@
         "2": "SECOND_STEP — drugi stopień spalania"
       },
       "description": "Stopień spalania gazu (aktywne w trybie WM_HEAT_MANUAL).",
-      "description_en": "Gas combustion stage (active in WM_HEAT_MANUAL mode)."
+      "values_en": {
+        "0": "RO — read-only",
+        "1": "FIRST_STEP — first combustion stage",
+        "2": "SECOND_STEP — second combustion stage"
+      }
     },
     {
       "offset": 16,
@@ -397,14 +435,12 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Pozycja klapy dla wejścia EXT TH1. Krok: 5.",
-      "description_en": "Damper position for EXT TH1 input. Step: 5."
+      "description": "Pozycja klapy dla wejścia EXT TH1. Krok: 5."
     },
     {
       "offset": 17,
       "name": "FilterMaxWorkTime",
-      "description": "Czas po którym aktywuje się alarm filtra. Krok: 100.",
-      "description_en": "Time after which the filter alarm activates. Step: 100."
+      "description": "Czas po którym aktywuje się alarm filtra. Krok: 100."
     },
     {
       "offset": 18,
@@ -412,8 +448,7 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Pozycja klapy dla wejścia EXT TH2. Krok: 5.",
-      "description_en": "Damper position for EXT TH2 input. Step: 5."
+      "description": "Pozycja klapy dla wejścia EXT TH2. Krok: 5."
     }
   ]
 }

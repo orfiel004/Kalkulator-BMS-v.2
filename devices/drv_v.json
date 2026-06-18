@@ -1,56 +1,47 @@
 {
   "name": "LEO AC (DRV V)",
   "description": "Nagrzewnica wodna z wentylatorem EC",
-  "description_en": "LEO AC water heater series V (heating/cooling, EC fan)",
   "group_priority": 5,
   "input_registers": [
     {
       "offset": 4,
       "name": "T3",
-      "description": "Temperatura przy suficie (czujnik T3).",
-      "description_en": "Ceiling temperature (T3 sensor)."
+      "description": "Temperatura przy suficie (czujnik T3)."
     },
     {
       "offset": 5,
       "name": "T4",
-      "description": "Temperatura w pomieszczeniu (czujnik T4).",
-      "description_en": "Room temperature (T4 sensor)."
+      "description": "Temperatura w pomieszczeniu (czujnik T4)."
     },
     {
       "offset": 6,
       "name": "FanEff",
-      "description": "Prędkość wentylatora (AC 3-biegowy).",
-      "description_en": "Fan speed (3-speed AC fan)."
+      "description": "Prędkość wentylatora (AC 3-biegowy)."
     },
     {
       "offset": 7,
       "name": "AntifreezeeState",
-      "description": "Stan ochrony przeciwzamrożeniowej magazynu — 8 bitów.",
-      "description_en": "Warehouse antifreeze protection state — 8 bits."
+      "description": "Stan ochrony przeciwzamrożeniowej magazynu — 8 bitów."
     },
     {
       "offset": 8,
       "name": "DestStatus",
-      "description": "Stan destratyfikacji: aktywna gdy (DestTempRef > Td–Tm) oraz (Tz > Tm).",
-      "description_en": "Destratification state: active when (DestTempRef > Td–Tm) and (Tz > Tm)."
+      "description": "Stan destratyfikacji: aktywna gdy (DestTempRef > Td–Tm) oraz (Tz > Tm)."
     },
     {
       "offset": 9,
       "name": "FilterPressureState",
-      "description": "Stan presostatu filtra.",
-      "description_en": "Filter pressure switch state."
+      "description": "Stan presostatu filtra."
     },
     {
       "offset": 10,
       "name": "FuseState",
-      "description": "Stan bezpiecznika wentylatorów (bity). Przykład: 0x100 = OK, 0x200 = przepalony.",
-      "description_en": "Fan fuse state (bits). Example: 0x100 = OK, 0x200 = blown."
+      "description": "Stan bezpiecznika wentylatorów (bity). Przykład: 0x100 = OK, 0x200 = przepalony."
     },
     {
       "offset": 11,
       "name": "ValveState",
-      "description": "Stan zaworu wodnego.",
-      "description_en": "Water valve state."
+      "description": "Stan zaworu wodnego."
     }
   ],
   "holding_registers_single": [
@@ -66,6 +57,15 @@
         "4": "WM_COOL_AUTO — chłodzenie automatyczne",
         "5": "WM_COOL_MANUAL — chłodzenie ręczne",
         "6": "WM_VENT — wentylacja"
+      },
+      "values_en": {
+        "0": "WM_DEF — default after reset",
+        "1": "WM_OFF — device off",
+        "2": "WM_HT_AUTO — automatic heating",
+        "3": "WM_HT_MANUAL — grzanie ręczne",
+        "4": "WM_COOL_AUTO — chłodzenie automatyczne",
+        "5": "WM_COOL_MANUAL — chłodzenie ręczne",
+        "6": "WM_VENT — ventilation"
       }
     },
     {
@@ -74,6 +74,10 @@
       "values": {
         "1": "WM_ON — włączony",
         "2": "WM_OFF — wyłączony"
+      },
+      "values_en": {
+        "1": "WM_ON — enabled",
+        "2": "WM_OFF — disabled"
       }
     },
     {
@@ -89,8 +93,7 @@
       "min": 0,
       "max": 100,
       "unit": "%",
-      "description": "Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)",
-      "description_en": "3-speed AC fan: 0=off (FAN_SPEED0), 1–33=speed 1 (FAN_SPEED1), 34–66=speed 2 (FAN_SPEED2), 67–100=speed 3 (FAN_SPEED3)"
+      "description": "Wentylator AC 3-biegowy: 0=wyłączony (FAN_SPEED0), 1–33=bieg 1 (FAN_SPEED1), 34–66=bieg 2 (FAN_SPEED2), 67–100=bieg 3 (FAN_SPEED3)"
     },
     {
       "offset": 8,
@@ -113,6 +116,11 @@
         "0": "TSL_TNS — tylko odczyt",
         "1": "TSL_TLEAD — wartość przez Modbus",
         "3": "TSL_T4 — czujnik T4 (powietrze przed wymiennikiem)"
+      },
+      "values_en": {
+        "0": "TSL_TNS — read-only",
+        "1": "TSL_TLEAD — value via Modbus",
+        "3": "TSL_T4 — T4 sensor (air before heat exchanger)"
       }
     },
     {
@@ -121,6 +129,10 @@
       "values": {
         "1": "DEST_MDF_OFF — wymuś wyłączenie",
         "2": "DEST_MDF_ON — wymuś włączenie"
+      },
+      "values_en": {
+        "1": "DEST_MDF_OFF — force off",
+        "2": "DEST_MDF_ON — force on"
       }
     },
     {
@@ -130,6 +142,11 @@
         "1": "DEST_MD_OFF — wyłączony",
         "2": "DEST_MD_AUTO_DEPEND — AUTO zależny od trybu pracy",
         "3": "DEST_MD_AUTO_INDEPEND — AUTO niezależny"
+      },
+      "values_en": {
+        "1": "DEST_MD_OFF — disabled",
+        "2": "DEST_MD_AUTO_DEPEND — AUTO dependent on operating mode",
+        "3": "DEST_MD_AUTO_INDEPEND — AUTO independent"
       }
     },
     {
@@ -179,6 +196,15 @@
         "4": "WM_COOL_AUTO — chłodzenie automatyczne",
         "5": "WM_COOL_MANUAL — chłodzenie ręczne",
         "6": "WM_VENT — wentylacja"
+      },
+      "values_en": {
+        "0": "WM_DEF — default after reset",
+        "1": "WM_OFF — device off",
+        "2": "WM_HT_AUTO — automatic heating",
+        "3": "WM_HT_MANUAL — grzanie ręczne",
+        "4": "WM_COOL_AUTO — chłodzenie automatyczne",
+        "5": "WM_COOL_MANUAL — chłodzenie ręczne",
+        "6": "WM_VENT — ventilation"
       }
     },
     {
@@ -194,6 +220,10 @@
       "values": {
         "1": "DEST_MDF_OFF — wymuś wyłączenie",
         "2": "DEST_MDF_ON — wymuś włączenie"
+      },
+      "values_en": {
+        "1": "DEST_MDF_OFF — force off",
+        "2": "DEST_MDF_ON — force on"
       }
     },
     {
