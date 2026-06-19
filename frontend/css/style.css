@@ -226,6 +226,10 @@ button:hover { background: #f5f7fa; }
   margin-bottom: 16px;
 }
 .results-header h2 { font-size: 16px; color: #1a2d47; }
+.results-actions-right {
+  display: flex;
+  gap: 6px;
+}
 
 /* ---- Device result block ---- */
 .result-block {

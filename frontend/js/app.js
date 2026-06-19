@@ -850,10 +850,18 @@ function exportToExcel() {
   const content = document.getElementById('results-content');
   if (!content) return;
 
+  // Czy tryb ma kolumnę Strefa (T-box Zone i M-box)
+  const ctrl = document.getElementById('controllerType').value;
+  const hasZone = (ctrl === 'tbox_zone' || ctrl === 'mbox');
+
   // Nagłówki kolumn (tłumaczone)
-  const HDR = currentLang === 'en'
-    ? ['Section', 'Address', 'Zone / Group', 'Type', 'Address HEX', 'Address DEC', 'Register name', 'Description']
-    : ['Sekcja',  'Adres',   'Strefa / Grupa', 'Typ', 'Adres HEX', 'Adres DEC',   'Nazwa rejestru', 'Opis'];
+  const HDR = hasZone
+    ? (currentLang === 'en'
+        ? ['Section', 'Address', 'Zone', 'Type', 'Address HEX', 'Address DEC', 'Register name', 'Description']
+        : ['Sekcja',  'Adres',   'Strefa', 'Typ', 'Adres HEX',  'Adres DEC',   'Nazwa rejestru', 'Opis'])
+    : (currentLang === 'en'
+        ? ['Section', 'Address', 'Type', 'Address HEX', 'Address DEC', 'Register name', 'Description']
+        : ['Sekcja',  'Adres',   'Typ',  'Adres HEX',   'Adres DEC',   'Nazwa rejestru', 'Opis']);
 
   const rows = [HDR];
 
@@ -920,7 +928,11 @@ function exportToExcel() {
           }
         }
 
-        rows.push([sectionName, deviceAddr, deviceZone, typeShort, addrHex, addrDec, name, description]);
+        if (hasZone) {
+          rows.push([sectionName, deviceAddr, deviceZone, typeShort, addrHex, addrDec, name, description]);
+        } else {
+          rows.push([sectionName, deviceAddr, typeShort, addrHex, addrDec, name, description]);
+        }
       });
     });
   });
@@ -934,16 +946,26 @@ function exportToExcel() {
   const ws = XLSX.utils.aoa_to_sheet(rows);
 
   // Szerokości kolumn
-  ws['!cols'] = [
-    { wch: 22 }, // Sekcja
-    { wch: 8  }, // Adres
-    { wch: 8  }, // Strefa
-    { wch: 5  }, // Typ
-    { wch: 13 }, // Adres HEX
-    { wch: 11 }, // Adres DEC
-    { wch: 28 }, // Nazwa rejestru
-    { wch: 55 }, // Opis
-  ];
+  ws['!cols'] = hasZone
+    ? [
+        { wch: 22 }, // Sekcja
+        { wch: 8  }, // Adres
+        { wch: 8  }, // Strefa
+        { wch: 5  }, // Typ
+        { wch: 13 }, // Adres HEX
+        { wch: 11 }, // Adres DEC
+        { wch: 28 }, // Nazwa rejestru
+        { wch: 55 }, // Opis
+      ]
+    : [
+        { wch: 22 }, // Sekcja
+        { wch: 8  }, // Adres
+        { wch: 5  }, // Typ
+        { wch: 13 }, // Adres HEX
+        { wch: 11 }, // Adres DEC
+        { wch: 28 }, // Nazwa rejestru
+        { wch: 55 }, // Opis
+      ];
 
   const wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, currentLang === 'en' ? 'Registers' : 'Rejestry');
