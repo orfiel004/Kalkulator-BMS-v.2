@@ -861,9 +861,12 @@ function exportToExcel() {
   const blocks = content.querySelectorAll('.result-block');
 
   blocks.forEach(block => {
-    // Nazwa sekcji z nagłówka bloku
-    const h3 = block.querySelector('.result-block-header h3');
-    const sectionName = h3 ? h3.textContent.trim() : '';
+    // Nazwa sekcji + adres/strefa z badge'a nagłówka bloku
+    const h3    = block.querySelector('.result-block-header h3');
+    const badge = block.querySelector('.result-block-header .badge');
+    const baseName   = h3    ? h3.textContent.trim()    : '';
+    const badgeText  = badge ? badge.textContent.trim() : '';
+    const sectionName = badgeText ? `${baseName} (${badgeText})` : baseName;
 
     // Każda podsekcja IR / HR
     const regSections = block.querySelectorAll('.reg-section');
