@@ -477,7 +477,9 @@ button:hover { background: #f5f7fa; }
   letter-spacing: 0.5px;
   appearance: none;
   -webkit-appearance: none;
-  width: 48px;
+  width: fit-content;
+  min-width: 0;
+  padding: 4px 6px;
   text-align: center;
   text-align-last: center;
 }
