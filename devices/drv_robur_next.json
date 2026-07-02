@@ -7,61 +7,125 @@
       "offset": 5,
       "name": "T3",
       "description": "Temperatura przy suficie (czujnik T3).",
-      "description_en": "Ceiling temperature (T3 sensor)."
+      "description_en": "Ceiling temperature (T3 sensor).",
+      "min": -500,
+      "max": 1000,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 6,
       "name": "T4",
       "description": "Temperatura w pomieszczeniu (czujnik T4).",
-      "description_en": "Room temperature (T4 sensor)."
+      "description_en": "Room temperature (T4 sensor).",
+      "min": -500,
+      "max": 1000,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 8,
       "name": "ExternalGasDetectTH1",
       "description": "Sygnał zewnętrznego czujnika gazu — próg pierwszy.",
-      "description_en": "External gas sensor signal — first threshold."
+      "description_en": "External gas sensor signal — first threshold.",
+      "values": {
+        "0": "Stężenie poniżej progu",
+        "1": "Stężenie powyżej progu (ALARM)"
+      },
+      "values_en": {
+        "0": "Concentration below threshold",
+        "1": "Concentration exceeds threshold (ALARM)"
+      }
     },
     {
       "offset": 9,
       "name": "ExternalGasDetectTH2",
       "description": "Sygnał zewnętrznego czujnika gazu — próg drugi.",
-      "description_en": "External gas sensor signal — second threshold."
+      "description_en": "External gas sensor signal — second threshold.",
+      "values": {
+        "0": "Stężenie poniżej progu",
+        "1": "Stężenie powyżej progu (ALARM)"
+      },
+      "values_en": {
+        "0": "Concentration below threshold",
+        "1": "Concentration exceeds threshold (ALARM)"
+      }
     },
     {
       "offset": 10,
       "name": "ExternalGasDetectVal",
       "description": "Stężenie gazu — wejście 0–10V DC (wymagana kalibracja czujnika).",
-      "description_en": "Gas concentration — 0–10V DC input (sensor calibration required)."
+      "description_en": "Gas concentration — 0–10V DC input (sensor calibration required).",
+      "min": 0,
+      "max": 100,
+      "unit": "x0.1 V (0–10 V DC)"
     },
     {
       "offset": 15,
       "name": "AntifreezeStateWarehouse",
       "description": "Stan ochrony przeciwzamrożeniowej magazynu.",
-      "description_en": "Warehouse antifreeze protection state."
+      "description_en": "Warehouse antifreeze protection state.",
+      "values": {
+        "1": "Praca normalna",
+        "2": "Aktywna ochrona przeciwzamrożeniowa (ALARM)"
+      },
+      "values_en": {
+        "1": "Normal work mode",
+        "2": "Antifreeze protection active (ALARM)"
+      }
     },
     {
       "offset": 16,
       "name": "FuseState",
       "description": "Stan bezpiecznika wentylatora.",
-      "description_en": "Fan fuse state."
+      "description_en": "Fan fuse state.",
+      "values": {
+        "0": "(tylko odczyt)",
+        "1": "Sprawny",
+        "2": "Uszkodzony (ALARM)"
+      },
+      "values_en": {
+        "0": "(read only)",
+        "1": "Working",
+        "2": "Blown (ALARM)"
+      }
     },
     {
       "offset": 17,
       "name": "GasAlarmState",
       "description": "Alarm Robur — gaz/płomień. Odczyt z zacisku nr 6 (terminal wewnątrz nagrzewnicy).",
-      "description_en": "Robur alarm — gas/flame. Read from terminal 6 (inside heater)."
+      "description_en": "Robur alarm — gas/flame. Read from terminal 6 (inside heater).",
+      "values": {
+        "1": "Alarm (palnik / gaz) — ALARM",
+        "2": "Brak alarmu"
+      },
+      "values_en": {
+        "1": "Alarm (gas/flame) — ALARM",
+        "2": "No alarm"
+      }
     },
     {
       "offset": 18,
       "name": "STBAlarmState",
       "description": "Alarm temperatury wyciągu powietrza (STB).",
-      "description_en": "Exhaust air temperature alarm (STB)."
+      "description_en": "Exhaust air temperature alarm (STB).",
+      "values": {
+        "0": "Brak czujnika (ALARM)",
+        "1": "Alarm STB aktywny (T3 >= T_STB_REF) — ALARM",
+        "2": "Brak alarmu STB"
+      },
+      "values_en": {
+        "0": "Sensor not connected (ALARM)",
+        "1": "STB alarm active (T3 >= T_STB_REF) — ALARM",
+        "2": "No STB alarm"
+      }
     },
     {
       "offset": 19,
       "name": "FilterWorkTime",
       "description": "Czas pracy filtra. Czas rzeczywisty = 5 × wartość [min].",
-      "description_en": "Filter operating time. Actual value = 5 × register value [min]."
+      "description_en": "Filter operating time. Actual value = 5 × register value [min].",
+      "min": 0,
+      "max": 65535,
+      "unit": "x5 min"
     }
   ],
   "holding_registers_single": [

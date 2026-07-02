@@ -7,85 +7,178 @@
       "offset": 9,
       "name": "ambient_temp_value",
       "description": "Temperatura zewnętrzna.",
-      "description_en": "Outdoor air temperature."
+      "description_en": "Outdoor air temperature.",
+      "min": -640,
+      "max": 640,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 10,
       "name": "supply_temp_value",
       "description": "Temperatura powietrza nawiewanego.",
-      "description_en": "Supply air temperature."
+      "description_en": "Supply air temperature.",
+      "min": -640,
+      "max": 640,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 11,
       "name": "return_temp_value",
       "description": "Temperatura powietrza wyciąganego.",
-      "description_en": "Return air temperature."
+      "description_en": "Return air temperature.",
+      "min": -640,
+      "max": 640,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 12,
       "name": "water_temp_value",
       "description": "Temperatura wymiennika wodnego.",
-      "description_en": "Heat exchanger water temperature."
+      "description_en": "Heat exchanger water temperature.",
+      "min": -640,
+      "max": 1500,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 13,
       "name": "TempRoom_ADD",
       "description": "Temperatura z dodatkowego czujnika pokojowego.",
-      "description_en": "Temperature from additional room sensor."
+      "description_en": "Temperature from additional room sensor.",
+      "min": -640,
+      "max": 1500,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 14,
       "name": "recirculation_damper_level",
       "description": "Aktualna pozycja klapy recyrkulacji.",
-      "description_en": "Current recirculation damper position."
+      "description_en": "Current recirculation damper position.",
+      "min": 0,
+      "max": 100,
+      "unit": "%"
     },
     {
       "offset": 16,
       "name": "swirl_diffuser_position",
       "description": "Pozycja dyfuzora wirowego.",
-      "description_en": "Swirl diffuser position."
+      "description_en": "Swirl diffuser position.",
+      "min": 0,
+      "max": 100,
+      "unit": "%"
     },
     {
       "offset": 17,
       "name": "rotary_level",
       "description": "Poziom obrotowego (rotary).",
-      "description_en": "Rotary level."
+      "description_en": "Rotary level.",
+      "min": 0,
+      "max": 100,
+      "unit": "%"
     },
     {
       "offset": 18,
       "name": "fan_supply_flow",
       "description": "Przepływ powietrza nawiewanego.",
-      "description_en": "Supply air flow."
+      "description_en": "Supply air flow.",
+      "min": 0,
+      "max": 10000
     },
     {
       "offset": 19,
       "name": "gas_heating_value",
       "description": "Wartość ogrzewania gazowego.",
-      "description_en": "Gas heating value."
+      "description_en": "Gas heating value.",
+      "min": 0,
+      "max": 100,
+      "unit": "%"
     },
     {
       "offset": 20,
       "name": "CO2_status",
       "description": "Status CO2 — wartość LSB (MSB ignorowany).",
-      "description_en": "CO2 status written by T-box to the device. 16-bit register: MSB ignored, LSB = status"
+      "description_en": "CO2 status written by T-box to the device. 16-bit register: MSB ignored, LSB = status",
+      "values": {
+        "0": "CO2 OK",
+        "1": "Poziom CO2 — próg 1 (ALARM)",
+        "2": "Poziom CO2 — próg 2 (ALARM)"
+      },
+      "values_en": {
+        "0": "CO2 OK",
+        "1": "CO2 level 1 (ALARM)",
+        "2": "CO2 level 2 (ALARM)"
+      }
     },
     {
       "offset": 21,
       "name": "Rooftop_work_mode",
       "description": "Zadany tryb pracy jednostki dachowej — wartość LSB.",
-      "description_en": "Rooftop unit operating mode setpoint — LSB value."
+      "description_en": "Rooftop unit operating mode setpoint — LSB value.",
+      "values": {
+        "1": "Wentylacja",
+        "2": "Grzanie",
+        "3": "Grzanie z odzyskiem ciepła",
+        "4": "Chłodzenie",
+        "5": "Chłodzenie z odzyskiem"
+      },
+      "values_en": {
+        "1": "Ventilation",
+        "2": "Heating",
+        "3": "Heating with recovery",
+        "4": "Cooling",
+        "5": "Cooling with recovery"
+      }
     },
     {
       "offset": 22,
       "name": "Rooftop_current_work_mode",
       "description": "Aktualny tryb pracy jednostki dachowej — wartość LSB.",
-      "description_en": "Rooftop unit current operating mode — LSB value."
+      "description_en": "Rooftop unit current operating mode — LSB value.",
+      "values": {
+        "1": "STOP",
+        "2": "FREEZ",
+        "3": "OFF",
+        "4": "STARTUP",
+        "5": "ECO",
+        "6": "COMFORT",
+        "7": "CO2",
+        "8": "THERMOSTAT",
+        "9": "NIGHT COOLING",
+        "10": "OVERRUN",
+        "11": "DEFROST"
+      },
+      "values_en": {
+        "1": "STOP",
+        "2": "FREEZ",
+        "3": "OFF",
+        "4": "STARTUP",
+        "5": "ECO",
+        "6": "COMFORT",
+        "7": "CO2",
+        "8": "THERMOSTAT",
+        "9": "NIGHT COOLING",
+        "10": "OVERRUN",
+        "11": "DEFROST"
+      }
     },
     {
       "offset": 23,
       "name": "Alarm",
       "description": "Stan alarmów — wartość LSB.",
-      "description_en": "Alarm state — LSB value."
+      "description_en": "Alarm state — LSB value.",
+      "values": {
+        "0": "OK",
+        "1": "Konserwacja (MAINTENANCE)",
+        "2": "Ostrzeżenie (WARNING)",
+        "3": "Błąd (FAULT)",
+        "4": "Niebezpieczeństwo (DANGER)"
+      },
+      "values_en": {
+        "0": "OK",
+        "1": "Maintenance",
+        "2": "Warning",
+        "3": "Fault",
+        "4": "Danger"
+      }
     }
   ],
   "holding_registers_single": [

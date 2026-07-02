@@ -7,19 +7,28 @@
       "offset": 4,
       "name": "T3",
       "description": "Temperatura powietrza za wymiennikiem wodnym (czujnik T3).",
-      "description_en": "Supply air temperature after water heat exchanger (T3 sensor)."
+      "description_en": "Supply air temperature after water heat exchanger (T3 sensor).",
+      "min": -500,
+      "max": 1000,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 5,
       "name": "T4",
       "description": "Temperatura w pomieszczeniu (czujnik T4).",
-      "description_en": "Room temperature (T4 sensor)."
+      "description_en": "Room temperature (T4 sensor).",
+      "min": -500,
+      "max": 1000,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 6,
       "name": "FanEff",
       "description": "Wydajność wentylatora EC — prędkość obrotowa [rpm].",
-      "description_en": "EC fan efficiency — rotational speed [rpm]."
+      "description_en": "EC fan efficiency — rotational speed [rpm].",
+      "min": 0,
+      "max": 3000,
+      "unit": "RPM"
     },
     {
       "offset": 7,
@@ -31,25 +40,61 @@
       "offset": 8,
       "name": "DestStatus",
       "description": "Stan destratyfikacji: aktywna gdy (DestTempRef > Td–Tm) oraz (Tz > Tm).",
-      "description_en": "Destratification state: active when (DestTempRef > Td–Tm) and (Tz > Tm)."
+      "description_en": "Destratification state: active when (DestTempRef > Td–Tm) and (Tz > Tm).",
+      "values": {
+        "1": "Warunek niespełniony — destratyfikacja nieaktywna",
+        "2": "Warunek spełniony — destratyfikacja aktywna"
+      },
+      "values_en": {
+        "1": "Condition not met — destratification inactive",
+        "2": "Condition met — destratification active"
+      }
     },
     {
       "offset": 9,
       "name": "FanEcConnect",
       "description": "Status połączenia wentylatora EC z urządzeniem DRV M.",
-      "description_en": "EC fan connection status with DRV M device."
+      "description_en": "EC fan connection status with DRV M device.",
+      "values": {
+        "1": "Niepodłączony (ALARM)",
+        "2": "Podłączony"
+      },
+      "values_en": {
+        "1": "Not connected (ALARM)",
+        "2": "Connected"
+      }
     },
     {
       "offset": 10,
       "name": "FuseState",
       "description": "Stan bezpiecznika wentylatorów EC/3V/dachowych (bity). Przykład: 0x100 = wentylator 3V OK.",
-      "description_en": "Fan fuse state (EC/3V/roof fans, bits). Example: 0x100 = 3V fan OK."
+      "description_en": "Fan fuse state (EC/3V/roof fans, bits). Example: 0x100 = 3V fan OK.",
+      "values": {
+        "0": "(tylko odczyt)",
+        "1": "Sprawny",
+        "2": "Uszkodzony (ALARM)"
+      },
+      "values_en": {
+        "0": "(read only)",
+        "1": "Working",
+        "2": "Blown (ALARM)"
+      }
     },
     {
       "offset": 11,
       "name": "ValveState",
       "description": "Stan zaworu wodnego.",
-      "description_en": "Water valve state."
+      "description_en": "Water valve state.",
+      "values": {
+        "0": "IDLE — stand-by",
+        "1": "OPEN — otwieranie",
+        "2": "CLOSE — zamykanie"
+      },
+      "values_en": {
+        "0": "IDLE — stand-by",
+        "1": "OPEN — opening",
+        "2": "CLOSE — closing"
+      }
     }
   ],
   "holding_registers_single": [

@@ -8,133 +8,239 @@
       "offset": 5,
       "name": "RoomTemperatureValue",
       "description": "Temperatura zmierzona przez czujnik T4 (temperatura w pomieszczeniu).",
-      "description_en": "Temperature measured by T4 sensor (room temperature)."
+      "description_en": "Temperature measured by T4 sensor (room temperature).",
+      "min": -150,
+      "max": 950,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 6,
       "name": "LeadTemperatureValue",
       "description": "Temperatura z czujnika wiodącego (MODBUS, ROOM, SUPPLY lub INTAKE — zależnie od ustawień).",
-      "description_en": "Temperature from lead sensor (MODBUS, ROOM, SUPPLY or INTAKE — depends on settings)."
+      "description_en": "Temperature from lead sensor (MODBUS, ROOM, SUPPLY or INTAKE — depends on settings).",
+      "min": -150,
+      "max": 950,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 7,
       "name": "IntakeTemperatureValue",
       "description": "Temperatura zmierzona przez czujnik Ti3 (powietrze wlotowe).",
-      "description_en": "Temperature measured by Ti3 sensor (intake air)."
+      "description_en": "Temperature measured by Ti3 sensor (intake air).",
+      "min": -150,
+      "max": 950,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 8,
       "name": "SupplyTemperatureValue",
       "description": "Temperatura zmierzona przez czujnik T1 (powietrze wylotowe).",
-      "description_en": "Temperature measured by T1 sensor (supply air)."
+      "description_en": "Temperature measured by T1 sensor (supply air).",
+      "min": -150,
+      "max": 950,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 9,
       "name": "HeaterTemperatureValue",
       "description": "Temperatura zmierzona przez czujnik T2 (wymiennik wodny).",
-      "description_en": "Temperature measured by T2 sensor (water heat exchanger)."
+      "description_en": "Temperature measured by T2 sensor (water heat exchanger).",
+      "min": -150,
+      "max": 950,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 10,
       "name": "FanEfficiencyValue",
       "description": "Aktualna wydajność wentylatora.",
-      "description_en": "Current fan efficiency."
+      "description_en": "Current fan efficiency.",
+      "min": 0,
+      "max": 1000,
+      "unit": "x0.1 %"
     },
     {
       "offset": 11,
       "name": "DrainPumpAlarm",
       "description": "Stan alarmu pompy skroplin.",
-      "description_en": "Drain pump alarm state."
+      "description_en": "Drain pump alarm state.",
+      "values": {
+        "0": "Brak alarmu",
+        "1": "Alarm aktywny (ALARM)"
+      },
+      "values_en": {
+        "0": "Alarm off",
+        "1": "Alarm active (ALARM)"
+      }
     },
     {
       "offset": 12,
       "name": "FilterWorkTime",
       "description": "Czas pracy filtra. Czas rzeczywisty = 5 × wartość [min].",
-      "description_en": "Filter operating time. Actual value = 5 × register value [min]."
+      "description_en": "Filter operating time. Actual value = 5 × register value [min].",
+      "min": 0,
+      "max": 32767,
+      "unit": "x5 min"
     },
     {
       "offset": 13,
       "name": "ValveHTValue",
       "description": "Aktualny stan zaworu grzewczego (HT).",
-      "description_en": "Current heating valve (HT) state."
+      "description_en": "Current heating valve (HT) state.",
+      "min": 0,
+      "max": 1000,
+      "unit": "x0.1 %"
     },
     {
       "offset": 14,
       "name": "ValveCLValue",
       "description": "Aktualny stan zaworu chłodniczego (CL).",
-      "description_en": "Current cooling valve (CL) state."
+      "description_en": "Current cooling valve (CL) state.",
+      "min": 0,
+      "max": 1000,
+      "unit": "x0.1 %"
     },
     {
       "offset": 15,
       "name": "Smart1State",
       "description": "Stan trybu SMART I — informacja czy tryb jest aktywny.",
-      "description_en": "SMART MODE I state — indicates whether mode is active."
+      "description_en": "SMART MODE I state — indicates whether mode is active.",
+      "values": {
+        "0": "Nieaktywny",
+        "1": "Aktywny"
+      },
+      "values_en": {
+        "0": "Off",
+        "1": "Active"
+      }
     },
     {
       "offset": 16,
       "name": "Smart2State",
       "description": "Stan trybu SMART II — informacja czy tryb jest aktywny.",
-      "description_en": "SMART MODE II state — indicates whether mode is active."
+      "description_en": "SMART MODE II state — indicates whether mode is active.",
+      "values": {
+        "0": "Nieaktywny",
+        "1": "Aktywny"
+      },
+      "values_en": {
+        "0": "Off",
+        "1": "Active"
+      }
     },
     {
       "offset": 17,
       "name": "Smart3State",
       "description": "Stan trybu SMART III — informacja czy tryb jest aktywny.",
-      "description_en": "SMART MODE III state — indicates whether mode is active."
+      "description_en": "SMART MODE III state — indicates whether mode is active.",
+      "values": {
+        "0": "Nieaktywny",
+        "1": "Aktywny"
+      },
+      "values_en": {
+        "0": "Off",
+        "1": "Active"
+      }
     },
     {
       "offset": 18,
       "name": "TechnologicalHeatAlarm",
       "description": "Brak ciepła ze źródła zasilania.",
-      "description_en": "No heat from power source."
+      "description_en": "No heat from power source.",
+      "values": {
+        "0": "Brak alarmu",
+        "1": "Alarm aktywny — brak ciepła ze źródła (ALARM)"
+      },
+      "values_en": {
+        "0": "Alarm off",
+        "1": "Alarm active — no heat from source (ALARM)"
+      }
     },
     {
       "offset": 19,
       "name": "Smart2LowTempAlarm",
       "description": "Alarm niskiej temperatury nawiewu — II stan.",
-      "description_en": "Low supply temperature alarm — state II."
+      "description_en": "Low supply temperature alarm — state II.",
+      "values": {
+        "0": "Brak alarmu",
+        "1": "Alarm aktywny"
+      },
+      "values_en": {
+        "0": "Alarm off",
+        "1": "Alarm active"
+      }
     },
     {
       "offset": 20,
       "name": "SupplyTemperatureValue2",
       "description": "Temperatura powietrza wylotowego — dodatkowy odczyt (czujnik T1).",
-      "description_en": "Supply air temperature — additional reading (T1 sensor)."
+      "description_en": "Supply air temperature — additional reading (T1 sensor).",
+      "min": -150,
+      "max": 950,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 21,
       "name": "HeaterTemperatureValue2",
       "description": "Temperatura wymiennika wodnego — dodatkowy odczyt (czujnik T2).",
-      "description_en": "Heat exchanger temperature — additional reading (T2 sensor)."
+      "description_en": "Heat exchanger temperature — additional reading (T2 sensor).",
+      "min": -150,
+      "max": 950,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 22,
       "name": "IntakeTemperatureValue2",
       "description": "Temperatura powietrza wlotowego — dodatkowy odczyt (czujnik T3).",
-      "description_en": "Intake air temperature — additional reading (T3 sensor)."
+      "description_en": "Intake air temperature — additional reading (T3 sensor).",
+      "min": -150,
+      "max": 950,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 23,
       "name": "RoomTemperatureValue2",
       "description": "Temperatura powietrza w pomieszczeniu — dodatkowy odczyt (czujnik T4).",
-      "description_en": "Room air temperature — additional reading (T4 sensor)."
+      "description_en": "Room air temperature — additional reading (T4 sensor).",
+      "min": -150,
+      "max": 950,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 24,
       "name": "InputDIState",
       "description": "Stan wejścia cyfrowego DI.",
-      "description_en": "Digital input DI state."
+      "description_en": "Digital input DI state.",
+      "values": {
+        "0": "Nieaktywny",
+        "1": "Aktywny"
+      },
+      "values_en": {
+        "0": "Off",
+        "1": "Active"
+      }
     },
     {
       "offset": 25,
       "name": "FanWorkTime",
       "description": "Czas pracy wentylatora.",
-      "description_en": "Fan operating time."
+      "description_en": "Fan operating time.",
+      "min": 0,
+      "max": 32767,
+      "unit": "h"
     },
     {
       "offset": 26,
       "name": "PreheatState",
       "description": "Stan funkcji podgrzewania wstępnego.",
-      "description_en": "Preheat function state."
+      "description_en": "Preheat function state.",
+      "values": {
+        "0": "Nieaktywny",
+        "1": "Maksymalna temperatura osiągnięta"
+      },
+      "values_en": {
+        "0": "Off",
+        "1": "Maximum temperature reached"
+      }
     }
   ],
   "holding_registers_single": [

@@ -13,31 +13,46 @@
       "offset": 2,
       "name": "T1",
       "description": "Temperatura powietrza nawiewanego (czujnik T1).",
-      "description_en": "Supply air temperature (T1 sensor)."
+      "description_en": "Supply air temperature (T1 sensor).",
+      "min": -500,
+      "max": 1000,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 3,
       "name": "T2",
       "description": "Temperatura powietrza przy wentylatorze wyciągowym (czujnik T2).",
-      "description_en": "Air temperature at exhaust fan (T2 sensor)."
+      "description_en": "Air temperature at exhaust fan (T2 sensor).",
+      "min": -500,
+      "max": 1000,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 4,
       "name": "T3",
       "description": "Temperatura powietrza za wymiennikiem wodnym (czujnik T3).",
-      "description_en": "Air temperature after water heat exchanger (T3 sensor)."
+      "description_en": "Air temperature after water heat exchanger (T3 sensor).",
+      "min": -500,
+      "max": 1000,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 5,
       "name": "T4",
       "description": "Temperatura powietrza powrotnego / pomieszczenia (czujnik T4).",
-      "description_en": "Return air / room temperature (T4 sensor)."
+      "description_en": "Return air / room temperature (T4 sensor).",
+      "min": -500,
+      "max": 1000,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 6,
       "name": "T5",
       "description": "Temperatura wymiennika wodnego (czujnik T5).",
-      "description_en": "Heat exchanger water temperature (T5 sensor)."
+      "description_en": "Heat exchanger water temperature (T5 sensor).",
+      "min": -500,
+      "max": 1000,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 7,
@@ -55,19 +70,28 @@
       "offset": 9,
       "name": "FilterWorkTime",
       "description": "Czas pracy filtra.",
-      "description_en": "Filter operating time."
+      "description_en": "Filter operating time.",
+      "min": 0,
+      "max": 65534,
+      "unit": "x5 min"
     },
     {
       "offset": 10,
       "name": "FansEff_1",
       "description": "Wydajność wentylatorów grupy I — nawiew [%].",
-      "description_en": "Supply fan group I capacity [%]."
+      "description_en": "Supply fan group I capacity [%].",
+      "min": 0,
+      "max": 100,
+      "unit": "%"
     },
     {
       "offset": 11,
       "name": "FansEff_2",
       "description": "Wydajność wentylatorów grupy II — wyciąg [%].",
-      "description_en": "Exhaust fan group II capacity [%]."
+      "description_en": "Exhaust fan group II capacity [%].",
+      "min": 0,
+      "max": 100,
+      "unit": "%"
     }
   ],
   "holding_registers_single": [

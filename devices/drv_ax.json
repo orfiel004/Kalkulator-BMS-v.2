@@ -8,25 +8,37 @@
       "offset": 4,
       "name": "T1",
       "description": "Temperatura powietrza zewnętrznego (czujnik T1).",
-      "description_en": "Outdoor air temperature (T1 sensor)."
+      "description_en": "Outdoor air temperature (T1 sensor).",
+      "min": -1500,
+      "max": 2000,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 5,
       "name": "T3",
       "description": "Temperatura powietrza za wymiennikiem wodnym (czujnik T3).",
-      "description_en": "Supply air temperature after water heat exchanger (T3 sensor)."
+      "description_en": "Supply air temperature after water heat exchanger (T3 sensor).",
+      "min": -1500,
+      "max": 2000,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 6,
       "name": "T4",
       "description": "Temperatura w pomieszczeniu (czujnik T4).",
-      "description_en": "Room temperature (T4 sensor)."
+      "description_en": "Room temperature (T4 sensor).",
+      "min": -1500,
+      "max": 2000,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 7,
       "name": "T5",
       "description": "Temperatura wymiennika wodnego — rura powrotna (czujnik T5).",
-      "description_en": "Water heat exchanger return pipe temperature (T5 sensor)."
+      "description_en": "Water heat exchanger return pipe temperature (T5 sensor).",
+      "min": -1500,
+      "max": 2000,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 8,
@@ -50,61 +62,98 @@
       "offset": 11,
       "name": "Fan1Speed",
       "description": "Rzeczywista prędkość wentylatora nawiewnego 1 [RPM].",
-      "description_en": "Actual supply fan 1 speed [RPM]."
+      "description_en": "Actual supply fan 1 speed [RPM].",
+      "min": 0,
+      "max": 5000,
+      "unit": "RPM"
     },
     {
       "offset": 12,
       "name": "Fan2Speed",
       "description": "Rzeczywista prędkość wentylatora nawiewnego 2 [RPM].",
-      "description_en": "Actual supply fan 2 speed [RPM]."
+      "description_en": "Actual supply fan 2 speed [RPM].",
+      "min": 0,
+      "max": 5000,
+      "unit": "RPM"
     },
     {
       "offset": 13,
       "name": "Fan3Speed",
       "description": "Rzeczywista prędkość wentylatora nawiewnego 3 [RPM].",
-      "description_en": "Actual supply fan 3 speed [RPM]."
+      "description_en": "Actual supply fan 3 speed [RPM].",
+      "min": 0,
+      "max": 5000,
+      "unit": "RPM"
     },
     {
       "offset": 14,
       "name": "Fan4Speed",
       "description": "Rzeczywista prędkość wentylatora nawiewnego 4 [RPM].",
-      "description_en": "Actual supply fan 4 speed [RPM]."
+      "description_en": "Actual supply fan 4 speed [RPM].",
+      "min": 0,
+      "max": 5000,
+      "unit": "RPM"
     },
     {
       "offset": 15,
       "name": "Fan5Speed",
       "description": "Rzeczywista prędkość wentylatora nawiewnego 5 [RPM].",
-      "description_en": "Actual supply fan 5 speed [RPM]."
+      "description_en": "Actual supply fan 5 speed [RPM].",
+      "min": 0,
+      "max": 5000,
+      "unit": "RPM"
     },
     {
       "offset": 16,
       "name": "Fan6Speed",
       "description": "Rzeczywista prędkość wentylatora nawiewnego 6 [RPM].",
-      "description_en": "Actual supply fan 6 speed [RPM]."
+      "description_en": "Actual supply fan 6 speed [RPM].",
+      "min": 0,
+      "max": 5000,
+      "unit": "RPM"
     },
     {
       "offset": 17,
       "name": "Fan7Speed",
       "description": "Rzeczywista prędkość wentylatora nawiewnego 7 [RPM].",
-      "description_en": "Actual supply fan 7 speed [RPM]."
+      "description_en": "Actual supply fan 7 speed [RPM].",
+      "min": 0,
+      "max": 5000,
+      "unit": "RPM"
     },
     {
       "offset": 18,
       "name": "FilterWorkTime",
       "description": "Czas pracy filtra. Czas rzeczywisty = 5 × wartość [min].",
-      "description_en": "Filter operating time. Actual value = 5 × register value [min]."
+      "description_en": "Filter operating time. Actual value = 5 × register value [min].",
+      "min": 0,
+      "max": 65535,
+      "unit": "x5 min"
     },
     {
       "offset": 19,
       "name": "ValveRelaysState",
       "description": "Aktualny status zaworu na stykach VALVE_RELAYS (L1, L2). 0=otwarty, 1=zamknięty.",
-      "description_en": "Current valve status on VALVE_RELAYS contacts (L1, L2). 0=open, 1=closed."
+      "description_en": "Current valve status on VALVE_RELAYS contacts (L1, L2). 0=open, 1=closed.",
+      "values": {
+        "0": "IDLE — stand-by",
+        "1": "OPEN — otwieranie",
+        "2": "CLOSE — zamykanie"
+      },
+      "values_en": {
+        "0": "IDLE — stand-by",
+        "1": "OPEN — opening",
+        "2": "CLOSE — closing"
+      }
     },
     {
       "offset": 20,
       "name": "Valve0-10State",
       "description": "Aktualny status zaworu 0–10V.",
-      "description_en": "Current 0–10V valve status."
+      "description_en": "Current 0–10V valve status.",
+      "min": 0,
+      "max": 100,
+      "unit": "%"
     }
   ],
   "holding_registers_single": [

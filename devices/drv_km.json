@@ -7,73 +7,129 @@
       "offset": 4,
       "name": "T1",
       "description": "Temperatura powietrza świeżego (czujnik T1).",
-      "description_en": "Fresh air temperature (T1 sensor)."
+      "description_en": "Fresh air temperature (T1 sensor).",
+      "min": -500,
+      "max": 1000,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 5,
       "name": "T3",
       "description": "Temperatura czujnika T3 (powietrze za wymiennikiem wodnym).",
-      "description_en": "T3 sensor temperature (air after water heat exchanger)."
+      "description_en": "T3 sensor temperature (air after water heat exchanger).",
+      "min": -500,
+      "max": 1000,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 6,
       "name": "T4",
       "description": "Temperatura powietrza przed wymiennikiem (czujnik T4).",
-      "description_en": "Air temperature before heat exchanger (T4 sensor)."
+      "description_en": "Air temperature before heat exchanger (T4 sensor).",
+      "min": -500,
+      "max": 1000,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 7,
       "name": "T5",
       "description": "Temperatura wody na wymienniku (czujnik T5).",
-      "description_en": "Heat exchanger water temperature (T5 sensor)."
+      "description_en": "Heat exchanger water temperature (T5 sensor).",
+      "min": -500,
+      "max": 1000,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 8,
       "name": "ExternalGasDetectTH1",
       "description": "Sygnał zewnętrznego czujnika gazu — próg pierwszy.",
-      "description_en": "External gas sensor signal — first threshold."
+      "description_en": "External gas sensor signal — first threshold.",
+      "values": {
+        "0": "Stężenie poniżej progu",
+        "1": "Stężenie powyżej progu (ALARM)"
+      },
+      "values_en": {
+        "0": "Concentration below threshold",
+        "1": "Concentration exceeds threshold (ALARM)"
+      }
     },
     {
       "offset": 9,
       "name": "ExternalGasDetectTH2",
       "description": "Sygnał zewnętrznego czujnika gazu — próg drugi.",
-      "description_en": "External gas sensor signal — second threshold."
+      "description_en": "External gas sensor signal — second threshold.",
+      "values": {
+        "0": "Stężenie poniżej progu",
+        "1": "Stężenie powyżej progu (ALARM)"
+      },
+      "values_en": {
+        "0": "Concentration below threshold",
+        "1": "Concentration exceeds threshold (ALARM)"
+      }
     },
     {
       "offset": 10,
       "name": "ExternalGasDetectVal",
       "description": "Stężenie gazu — wejście 0–10V DC.",
-      "description_en": "Gas concentration — 0–10V DC input."
+      "description_en": "Gas concentration — 0–10V DC input.",
+      "min": 0,
+      "max": 100,
+      "unit": "x0.1 V (0–10 V DC)"
     },
     {
       "offset": 11,
       "name": "FanRoofTK",
       "description": "Sygnał TK z wentylatora dachowego.",
-      "description_en": "TK signal from roof fan."
+      "description_en": "TK signal from roof fan.",
+      "values": {
+        "1": "Temperatura poniżej limitu",
+        "2": "Temperatura powyżej limitu (ALARM)"
+      },
+      "values_en": {
+        "1": "Temperature below safe limit",
+        "2": "Temperature above safe limit (ALARM)"
+      }
     },
     {
       "offset": 12,
       "name": "FanEff",
       "description": "Wydajność wentylatora EC lub AC (3-biegowy).",
-      "description_en": "EC or AC fan capacity (3-speed)."
+      "description_en": "EC or AC fan capacity (3-speed).",
+      "min": 0,
+      "max": 100,
+      "unit": "%"
     },
     {
       "offset": 13,
       "name": "FanRoofEff",
       "description": "Wydajność wentylatora dachowego.",
-      "description_en": "Roof fan capacity."
+      "description_en": "Roof fan capacity.",
+      "min": 0,
+      "max": 100,
+      "unit": "%"
     },
     {
       "offset": 14,
       "name": "DamperLevel",
       "description": "Aktualna pozycja klapy.",
-      "description_en": "Current damper position."
+      "description_en": "Current damper position.",
+      "min": 0,
+      "max": 100,
+      "unit": "%"
     },
     {
       "offset": 15,
       "name": "DamperForceState",
       "description": "Stan wymuszenia pozycji klapy.",
-      "description_en": "Damper forcing state."
+      "description_en": "Damper forcing state.",
+      "values": {
+        "1": "Temp >= DamperForceTempRef",
+        "2": "Temp < DamperForceTempRef"
+      },
+      "values_en": {
+        "1": "Temp >= DamperForceTempRef",
+        "2": "Temp < DamperForceTempRef"
+      }
     },
     {
       "offset": 16,
@@ -85,31 +141,72 @@
       "offset": 17,
       "name": "FilterWorkTime",
       "description": "Czas pracy filtra. Czas rzeczywisty = 5 × wartość [min].",
-      "description_en": "Filter operating time. Actual value = 5 × register value [min]."
+      "description_en": "Filter operating time. Actual value = 5 × register value [min].",
+      "min": 0,
+      "max": 65535,
+      "unit": "x5 min"
     },
     {
       "offset": 18,
       "name": "FilterPressureSwitchState",
       "description": "Stan presostatu filtra.",
-      "description_en": "Filter pressure switch state."
+      "description_en": "Filter pressure switch state.",
+      "values": {
+        "0": "Niepodłączony",
+        "1": "Podłączony — dobry stan",
+        "2": "Podłączony — zabrudzony (WARNING)"
+      },
+      "values_en": {
+        "0": "Not connected",
+        "1": "Connected — good condition",
+        "2": "Connected — bad condition (WARNING)"
+      }
     },
     {
       "offset": 19,
       "name": "FanEcConnect",
       "description": "Status połączenia wentylatora EC.",
-      "description_en": "EC fan connection status."
+      "description_en": "EC fan connection status.",
+      "values": {
+        "1": "Niepodłączony (ALARM)",
+        "2": "Podłączony"
+      },
+      "values_en": {
+        "1": "Not connected (ALARM)",
+        "2": "Connected"
+      }
     },
     {
       "offset": 20,
       "name": "FuseState",
       "description": "Stan bezpiecznika wentylatorów EC/3V/dachowych (bity maskowane).",
-      "description_en": "Fan fuse state (EC/3V/roof fans, masked bits)."
+      "description_en": "Fan fuse state (EC/3V/roof fans, masked bits).",
+      "values": {
+        "0": "(tylko odczyt)",
+        "1": "Sprawny",
+        "2": "Uszkodzony (ALARM)"
+      },
+      "values_en": {
+        "0": "(read only)",
+        "1": "Working",
+        "2": "Blown (ALARM)"
+      }
     },
     {
       "offset": 21,
       "name": "ValveState",
       "description": "Stan zaworu wodnego.",
-      "description_en": "Water valve state."
+      "description_en": "Water valve state.",
+      "values": {
+        "0": "IDLE — stand-by",
+        "1": "OPEN — otwieranie",
+        "2": "CLOSE — zamykanie"
+      },
+      "values_en": {
+        "0": "IDLE — stand-by",
+        "1": "OPEN — opening",
+        "2": "CLOSE — closing"
+      }
     }
   ],
   "holding_registers_single": [

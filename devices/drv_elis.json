@@ -7,43 +7,99 @@
       "offset": 4,
       "name": "T3",
       "description": "Temperatura powietrza za wymiennikiem wodnym (czujnik T3).",
-      "description_en": "Supply air temperature after water heat exchanger (T3 sensor)."
+      "description_en": "Supply air temperature after water heat exchanger (T3 sensor).",
+      "min": -350,
+      "max": 350,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 5,
       "name": "T4",
       "description": "Temperatura powietrza przed wymiennikiem wodnym (czujnik T4).",
-      "description_en": "Air temperature before water heat exchanger (T4 sensor)."
+      "description_en": "Air temperature before water heat exchanger (T4 sensor).",
+      "min": -350,
+      "max": 350,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 6,
       "name": "CurtainFanSpeed",
       "description": "Prędkość wentylatora kurtyny (AC 3-biegowy: 0=stop, 1–33=bieg1, 34–66=bieg2, 67–100=bieg3).",
-      "description_en": "Curtain fan speed (3-speed AC fan: 0=stop, 1–33=speed 1, 34–66=speed 2, 67–100=speed 3)."
+      "description_en": "Curtain fan speed (3-speed AC fan: 0=stop, 1–33=speed 1, 34–66=speed 2, 67–100=speed 3).",
+      "values": {
+        "0": "Wył (FAN_SPEED0)",
+        "1..33": "Bieg 1 (FAN_SPEED1)",
+        "34..66": "Bieg 2 (FAN_SPEED2)",
+        "67..100": "Bieg 3 (FAN_SPEED3)"
+      },
+      "values_en": {
+        "0": "Off (FAN_SPEED0)",
+        "1..33": "Speed 1 (FAN_SPEED1)",
+        "34..66": "Speed 2 (FAN_SPEED2)",
+        "67..100": "Speed 3 (FAN_SPEED3)"
+      }
     },
     {
       "offset": 7,
       "name": "ValveState",
       "description": "Stan zaworu wodnego.",
-      "description_en": "Water valve state."
+      "description_en": "Water valve state.",
+      "values": {
+        "0": "IDLE — stand-by",
+        "1": "OPEN — otwieranie",
+        "2": "CLOSE — zamykanie"
+      },
+      "values_en": {
+        "0": "IDLE — stand-by",
+        "1": "OPEN — opening",
+        "2": "CLOSE — closing"
+      }
     },
     {
       "offset": 8,
       "name": "HeaterFanSpeed",
       "description": "Prędkość wentylatora nagrzewnicy (AC 3-biegowy).",
-      "description_en": "Heater fan speed (3-speed AC fan)."
+      "description_en": "Heater fan speed (3-speed AC fan).",
+      "values": {
+        "0": "IDLE — stand-by",
+        "1": "OPEN — otwieranie",
+        "2": "CLOSE — zamykanie"
+      },
+      "values_en": {
+        "0": "IDLE — stand-by",
+        "1": "OPEN — opening",
+        "2": "CLOSE — closing"
+      }
     },
     {
       "offset": 9,
       "name": "ContactDoor",
       "description": "Stan styku drzwiowego.",
-      "description_en": "Door contact state."
+      "description_en": "Door contact state.",
+      "values": {
+        "1": "DOOR_OPEN — otwarte",
+        "2": "DOOR_CLOSE — zamknięte"
+      },
+      "values_en": {
+        "1": "DOOR_OPEN — open",
+        "2": "DOOR_CLOSE — closed"
+      }
     },
     {
       "offset": 10,
       "name": "HeaterDetect",
       "description": "Procedura wykrywania nagrzewnicy (ELIS-DUO).",
-      "description_en": "Heater detection procedure (ELIS-DUO)."
+      "description_en": "Heater detection procedure (ELIS-DUO).",
+      "values": {
+        "0": "Procedura nie uruchomiona",
+        "1": "Nagrzewnica nieznaleziona",
+        "2": "Nagrzewnica wykryta"
+      },
+      "values_en": {
+        "0": "Detection not started",
+        "1": "Heater not detected",
+        "2": "Heater detected"
+      }
     },
     {
       "offset": 11,
@@ -55,13 +111,31 @@
       "offset": 12,
       "name": "FuseState",
       "description": "Stan bezpiecznika wentylatora 3V (bity 8–11). Przykład: 0x100 = OK, 0x200 = przepalony.",
-      "description_en": "Fan fuse state (bits 8–11). Example: 0x100 = OK, 0x200 = blown."
+      "description_en": "Fan fuse state (bits 8–11). Example: 0x100 = OK, 0x200 = blown.",
+      "values": {
+        "0": "(tylko odczyt)",
+        "1": "Sprawny",
+        "2": "Uszkodzony (ALARM)"
+      },
+      "values_en": {
+        "0": "(read only)",
+        "1": "Working",
+        "2": "Blown (ALARM)"
+      }
     },
     {
       "offset": 13,
       "name": "CurtainElectricpower",
       "description": "Moc elektrycznej nagrzewnicy kurtyny (wyjścia L1/L2 na złączu VALVE).",
-      "description_en": "Curtain electric heater power (L1/L2 outputs on VALVE connector)."
+      "description_en": "Curtain electric heater power (L1/L2 outputs on VALVE connector).",
+      "values": {
+        "0": "Wył (L1=OFF, L2=OFF)",
+        "1": "Wł (L1=ON)"
+      },
+      "values_en": {
+        "0": "Off (L1=OFF, L2=OFF)",
+        "1": "On (L1=ON)"
+      }
     }
   ],
   "holding_registers_single": [

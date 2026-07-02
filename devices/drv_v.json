@@ -7,49 +7,111 @@
       "offset": 4,
       "name": "T3",
       "description": "Temperatura przy suficie (czujnik T3).",
-      "description_en": "Ceiling temperature (T3 sensor)."
+      "description_en": "Ceiling temperature (T3 sensor).",
+      "min": -500,
+      "max": 1000,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 5,
       "name": "T4",
       "description": "Temperatura w pomieszczeniu (czujnik T4).",
-      "description_en": "Room temperature (T4 sensor)."
+      "description_en": "Room temperature (T4 sensor).",
+      "min": -500,
+      "max": 1000,
+      "unit": "x0.1 °C"
     },
     {
       "offset": 6,
       "name": "FanEff",
       "description": "Prędkość wentylatora (AC 3-biegowy).",
-      "description_en": "Fan speed (3-speed AC fan)."
+      "description_en": "Fan speed (3-speed AC fan).",
+      "values": {
+        "0": "Wył (FAN_SPEED0)",
+        "1..33": "Bieg 1 (FAN_SPEED1)",
+        "34..66": "Bieg 2 (FAN_SPEED2)",
+        "67..100": "Bieg 3 (FAN_SPEED3)"
+      },
+      "values_en": {
+        "0": "Off (FAN_SPEED0)",
+        "1..33": "Speed 1 (FAN_SPEED1)",
+        "34..66": "Speed 2 (FAN_SPEED2)",
+        "67..100": "Speed 3 (FAN_SPEED3)"
+      }
     },
     {
       "offset": 7,
       "name": "AntifreezeeState",
       "description": "Stan ochrony przeciwzamrożeniowej magazynu — 8 bitów.",
-      "description_en": "Warehouse antifreeze protection state — 8 bits."
+      "description_en": "Warehouse antifreeze protection state — 8 bits.",
+      "values": {
+        "1": "Tryb normalny",
+        "2": "Aktywna ochrona — parametry nadpisane (ALARM)"
+      },
+      "values_en": {
+        "1": "Normal mode",
+        "2": "Antifreeze active — parameters overwritten (ALARM)"
+      }
     },
     {
       "offset": 8,
       "name": "DestStatus",
       "description": "Stan destratyfikacji: aktywna gdy (DestTempRef > Td–Tm) oraz (Tz > Tm).",
-      "description_en": "Destratification state: active when (DestTempRef > Td–Tm) and (Tz > Tm)."
+      "description_en": "Destratification state: active when (DestTempRef > Td–Tm) and (Tz > Tm).",
+      "values": {
+        "1": "Warunek niespełniony — destratyfikacja nieaktywna",
+        "2": "Warunek spełniony — destratyfikacja aktywna"
+      },
+      "values_en": {
+        "1": "Condition not met — destratification inactive",
+        "2": "Condition met — destratification active"
+      }
     },
     {
       "offset": 9,
       "name": "FilterPressureState",
       "description": "Stan presostatu filtra.",
-      "description_en": "Filter pressure switch state."
+      "description_en": "Filter pressure switch state.",
+      "values": {
+        "0": "Zły stan / niepodłączony",
+        "2": "Dobry stan"
+      },
+      "values_en": {
+        "0": "Bad condition or not connected",
+        "2": "Good condition, connected"
+      }
     },
     {
       "offset": 10,
       "name": "FuseState",
       "description": "Stan bezpiecznika wentylatorów (bity). Przykład: 0x100 = OK, 0x200 = przepalony.",
-      "description_en": "Fan fuse state (bits). Example: 0x100 = OK, 0x200 = blown."
+      "description_en": "Fan fuse state (bits). Example: 0x100 = OK, 0x200 = blown.",
+      "values": {
+        "0": "(tylko odczyt)",
+        "1": "Sprawny",
+        "2": "Uszkodzony (ALARM)"
+      },
+      "values_en": {
+        "0": "(read only)",
+        "1": "Working",
+        "2": "Blown (ALARM)"
+      }
     },
     {
       "offset": 11,
       "name": "ValveState",
       "description": "Stan zaworu wodnego.",
-      "description_en": "Water valve state."
+      "description_en": "Water valve state.",
+      "values": {
+        "0": "IDLE — stand-by",
+        "1": "OPEN — otwieranie",
+        "2": "CLOSE — zamykanie"
+      },
+      "values_en": {
+        "0": "IDLE — stand-by",
+        "1": "OPEN — opening",
+        "2": "CLOSE — closing"
+      }
     }
   ],
   "holding_registers_single": [
