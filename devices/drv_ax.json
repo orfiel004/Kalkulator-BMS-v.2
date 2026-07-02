@@ -171,7 +171,9 @@
         "1": "HEAT — heating mode",
         "2": "VENT — ventilation",
         "3": "SMART — automatic mode"
-      }
+      },
+      "description": "Tryb pracy urządzenia — sterowany przez BMS. Dostępne tryby zależą od typu urządzenia.",
+      "description_en": "Device operating mode — controlled by BMS. Available modes depend on device type."
     },
     {
       "offset": 5,

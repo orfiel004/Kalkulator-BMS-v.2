@@ -121,7 +121,9 @@
         "4": "WM_COOL_AUTO — automatic cooling",
         "5": "WM_COOL_MANUAL — manual cooling",
         "6": "WM_VENT — ventilation"
-      }
+      },
+      "description": "Tryb pracy urządzenia — sterowany przez BMS. Dostępne tryby zależą od typu urządzenia.",
+      "description_en": "Device operating mode — controlled by BMS. Available modes depend on device type."
     },
     {
       "offset": 5,
@@ -133,14 +135,18 @@
       "values_en": {
         "1": "WM_ON — enabled",
         "2": "WM_OFF — disabled"
-      }
+      },
+      "description": "Włączenie/wyłączenie ochrony przeciwzamrożeniowej pomieszczenia. Gdy aktywna, urządzenie utrzymuje temperaturę powyżej progu AntifreezeWareHouseTempRef.",
+      "description_en": "Enable/disable warehouse antifreeze protection. When active, the device maintains temperature above the AntifreezeWareHouseTempRef threshold."
     },
     {
       "offset": 6,
       "name": "AntifreezeWareHouseTempRef",
       "min": 50,
       "max": 150,
-      "unit": "°C×0.1"
+      "unit": "°C×0.1",
+      "description": "Temperatura progowa ochrony przeciwzamrożeniowej pomieszczenia (x0,1 degC). Poniżej tej wartości aktywuje się grzanie zabezpieczające.",
+      "description_en": "Warehouse antifreeze temperature threshold (x0.1 degC). Below this value, the protective heating is activated."
     },
     {
       "offset": 7,
@@ -156,14 +162,18 @@
       "name": "Tref",
       "min": 50,
       "max": 450,
-      "unit": "°C×0.1"
+      "unit": "°C×0.1",
+      "description": "Temperatura zadana urządzenia (x0,1 degC). Sterownik dąży do utrzymania tej temperatury w trybach automatycznych.",
+      "description_en": "Device temperature setpoint (x0.1 degC). The controller tries to maintain this temperature in automatic modes."
     },
     {
       "offset": 9,
       "name": "TLeadVal",
       "min": -600,
       "max": 600,
-      "unit": "°C×0.1"
+      "unit": "°C×0.1",
+      "description": "Wartość temperatury wiodącej podawana przez BMS przez Modbus (x0,1 degC). Aktywna gdy TLeadSensorSelect = TSL_TLEAD.",
+      "description_en": "Lead temperature value provided by BMS via Modbus (x0.1 degC). Active when TLeadSensorSelect = TSL_TLEAD."
     },
     {
       "offset": 10,
@@ -177,7 +187,9 @@
         "0": "TSL_TNS — read-only",
         "1": "TSL_TLEAD — value via Modbus (TLeadVal)",
         "3": "TSL_T4 — T4 sensor (air before water heat exchanger)"
-      }
+      },
+      "description": "Wybór źródła temperatury wiodącej używanej przez algorytm sterowania.",
+      "description_en": "Selection of the lead temperature source used by the control algorithm."
     },
     {
       "offset": 15,
@@ -228,7 +240,9 @@
         "4": "WM_COOL_AUTO — automatic cooling",
         "5": "WM_COOL_MANUAL — manual cooling",
         "6": "WM_VENT — ventilation"
-      }
+      },
+      "description": "Tryb pracy urządzenia — sterowany przez BMS. Dostępne tryby zależą od typu urządzenia.",
+      "description_en": "Device operating mode — controlled by BMS. Available modes depend on device type."
     },
     {
       "offset": 5,

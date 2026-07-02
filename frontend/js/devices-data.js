@@ -134,7 +134,9 @@ const DEVICES_DATA = {
           "1": "OX_ON — on",
           "2": "OX_ON — on",
           "3": "OX_ON — on"
-        }
+        },
+        "description": "Stan pracy centrali wentylacyjnej OXEN (włączona/wyłączona). Określa aktualny status zasilania jednostki.",
+        "description_en": "OXEN ventilation unit operating state (on/off). Indicates the current power status of the unit."
       },
       {
         "offset": 5,
@@ -148,21 +150,27 @@ const DEVICES_DATA = {
           "0": "OXEN_MD_AUTO — automatic (automatic bypass control)",
           "1": "OXEN_MD_WINTER — winter mode (bypass off)",
           "2": "OXEN_MD_SUMMER — summer mode (bypass on)"
-        }
+        },
+        "description": "Tryb pracy centrali OXEN: AUTO (automatyczna regulacja bypass), WINTER (bypass wyłączony) lub SUMMER (bypass włączony).",
+        "description_en": "OXEN unit operating mode: AUTO (automatic bypass control), WINTER (bypass off) or SUMMER (bypass on)."
       },
       {
         "offset": 6,
         "name": "TempRef",
         "min": 50,
         "max": 450,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Temperatura zadana centrali OXEN (x0,1 degC). Sterownik dąży do utrzymania tej temperatury w trybie automatycznym.",
+        "description_en": "OXEN unit temperature setpoint (x0.1 degC). The controller maintains this temperature in automatic mode."
       },
       {
         "offset": 7,
         "name": "TLeadVal",
         "min": -500,
         "max": 1500,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Wartość temperatury wiodącej podawana przez BMS przez Modbus (x0,1 degC). Aktywna gdy TLeadSensorSelect = TSL_TLEAD.",
+        "description_en": "Lead temperature value provided by BMS via Modbus (x0.1 degC). Active when TLeadSensorSelect = TSL_TLEAD."
       },
       {
         "offset": 12,
@@ -178,7 +186,9 @@ const DEVICES_DATA = {
           "1": "T_LEAD — value via Modbus (TLeadVal)",
           "2": "TSL_T3 — T3 sensor (DRV connector)",
           "3": "TSL_T4 — T4 sensor (DRV connector)"
-        }
+        },
+        "description": "Wybór źródła temperatury wiodącej używanej przez algorytm sterowania.",
+        "description_en": "Selection of the lead temperature source used by the control algorithm."
       }
     ],
     "holding_registers_group": [
@@ -212,14 +222,18 @@ const DEVICES_DATA = {
           "0": "OXEN_MD_AUTO — automatic (automatic bypass control)",
           "1": "OXEN_MD_WINTER — winter mode (bypass off)",
           "2": "OXEN_MD_SUMMER — summer mode (bypass on)"
-        }
+        },
+        "description": "Tryb pracy centrali OXEN: AUTO (automatyczna regulacja bypass), WINTER (bypass wyłączony) lub SUMMER (bypass włączony).",
+        "description_en": "OXEN unit operating mode: AUTO (automatic bypass control), WINTER (bypass off) or SUMMER (bypass on)."
       },
       {
         "offset": 6,
         "name": "TempRef",
         "min": 50,
         "max": 450,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Temperatura zadana centrali OXEN (x0,1 degC). Sterownik dąży do utrzymania tej temperatury w trybie automatycznym.",
+        "description_en": "OXEN unit temperature setpoint (x0.1 degC). The controller maintains this temperature in automatic mode."
       }
     ],
     "description_en": "OXEN heat recovery unit"
@@ -452,7 +466,9 @@ const DEVICES_DATA = {
           "2": "WM_HT — tryb grzania",
           "3": "WM_COOL — tryb chłodzenia",
           "4": "WM_VENT — ventilation"
-        }
+        },
+        "description": "Tryb pracy urządzenia — sterowany przez BMS. Dostępne tryby zależą od typu urządzenia.",
+        "description_en": "Device operating mode — controlled by BMS. Available modes depend on device type."
       },
       {
         "offset": 5,
@@ -464,14 +480,18 @@ const DEVICES_DATA = {
         "values_en": {
           "1": "disable — disabled",
           "2": "enable — enabled"
-        }
+        },
+        "description": "Włączenie/wyłączenie ochrony przeciwzamrożeniowej pomieszczenia. Gdy aktywna, urządzenie utrzymuje temperaturę powyżej progu AntifreezeWareHouseTempRef.",
+        "description_en": "Enable/disable warehouse antifreeze protection. When active, the device maintains temperature above the AntifreezeWareHouseTempRef threshold."
       },
       {
         "offset": 6,
         "name": "AntifreezeWareHouseTempRef",
         "min": 50,
         "max": 150,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Temperatura progowa ochrony przeciwzamrożeniowej pomieszczenia (x0,1 degC). Poniżej tej wartości aktywuje się grzanie zabezpieczające.",
+        "description_en": "Warehouse antifreeze temperature threshold (x0.1 degC). Below this value, the protective heating is activated."
       },
       {
         "offset": 7,
@@ -485,28 +505,36 @@ const DEVICES_DATA = {
           "0": "DAMPER_FMD_NS — read-only",
           "1": "DAMPER_FMD_OFF — forcing disabled",
           "2": "DAMPER_FMD_ON — forcing enabled (if T1 < DamperForceTempRef)"
-        }
+        },
+        "description": "Tryb wymuszenia pozycji przepustnicy powietrza. Gdy aktywny, przepustnica przyjmuje pozycję DamperForceLevelRef jeśli temperatura T1 < DamperForceTempRef.",
+        "description_en": "Air damper position forcing mode. When active, the damper moves to DamperForceLevelRef position if temperature T1 < DamperForceTempRef."
       },
       {
         "offset": 8,
         "name": "DamperForceTempRef",
         "min": -100,
         "max": 150,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Temperatura progowa (x0,1 degC) aktywująca wymuszenie pozycji przepustnicy. Gdy T1 spadnie poniżej tej wartości i DamperForceMode=ON, przepustnica przechodzi do pozycji DamperForceLevelRef.",
+        "description_en": "Temperature threshold (x0.1 degC) that activates damper position forcing. When T1 falls below this value and DamperForceMode=ON, the damper moves to the DamperForceLevelRef position."
       },
       {
         "offset": 9,
         "name": "DamperForceLevelRef",
         "min": 0,
         "max": 100,
-        "unit": "%"
+        "unit": "%",
+        "description": "Wymuszone położenie przepustnicy (%) aktywowane gdy T1 < DamperForceTempRef i DamperForceMode=ON.",
+        "description_en": "Forced damper position (%) activated when T1 < DamperForceTempRef and DamperForceMode=ON."
       },
       {
         "offset": 10,
         "name": "DamperLevelRef",
         "min": 0,
         "max": 100,
-        "unit": "%"
+        "unit": "%",
+        "description": "Zadane otwarcie przepustnicy powietrza (%). Wartość docelowa w normalnym trybie pracy.",
+        "description_en": "Air damper opening setpoint (%). Target value in normal operating mode."
       },
       {
         "offset": 11,
@@ -531,14 +559,18 @@ const DEVICES_DATA = {
         "name": "Tref",
         "min": 50,
         "max": 450,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Temperatura zadana urządzenia (x0,1 degC). Sterownik dąży do utrzymania tej temperatury w trybach automatycznych.",
+        "description_en": "Device temperature setpoint (x0.1 degC). The controller tries to maintain this temperature in automatic modes."
       },
       {
         "offset": 14,
         "name": "TLeadVal",
         "min": -600,
         "max": 600,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Wartość temperatury wiodącej podawana przez BMS przez Modbus (x0,1 degC). Aktywna gdy TLeadSensorSelect = TSL_TLEAD.",
+        "description_en": "Lead temperature value provided by BMS via Modbus (x0.1 degC). Active when TLeadSensorSelect = TSL_TLEAD."
       },
       {
         "offset": 15,
@@ -552,7 +584,9 @@ const DEVICES_DATA = {
           "0": "TSL_TNS — read-only",
           "1": "TSL_TLEAD — value via Modbus (TLeadVal)",
           "3": "TSL_T4 — T4 sensor (air before heat exchanger)"
-        }
+        },
+        "description": "Wybór źródła temperatury wiodącej używanej przez algorytm sterowania.",
+        "description_en": "Selection of the lead temperature source used by the control algorithm."
       },
       {
         "offset": 16,
@@ -566,7 +600,9 @@ const DEVICES_DATA = {
           "0": "FR_MD_NS — read-only",
           "1": "FR_MD_01 — dependent on damper position (DamperLevelRef) and fan setpoint (FanEffRef)",
           "2": "FR_MD_02 — dependent on damper position only (DamperLevelRef)"
-        }
+        },
+        "description": "Tryb pracy wentylatora dachowego/wywiewnego. Określa zależność pracy wentylatora od pozycji przepustnicy i nastawy.",
+        "description_en": "Roof/exhaust fan operating mode. Defines the fan's dependency on damper position and setpoint."
       },
       {
         "offset": 17,
@@ -578,7 +614,9 @@ const DEVICES_DATA = {
         "values_en": {
           "0": "FLT_CNT_RST_NS — read-only (after reset)",
           "1": "FLT_CNT_RST — reset filter time counter"
-        }
+        },
+        "description": "Reset licznika czasu pracy filtra. Zapis wartości FLT_CNT_RST zeruje rejestr FilterWorkTime.",
+        "description_en": "Filter operating time counter reset. Writing FLT_CNT_RST zeroes the FilterWorkTime register."
       },
       {
         "offset": 18,
@@ -590,7 +628,9 @@ const DEVICES_DATA = {
         "values_en": {
           "1": "THERMO_MD_ON — thermostat mode on",
           "2": "THERMO_MD_OFF — thermostat mode off"
-        }
+        },
+        "description": "Tryb pracy wentylatora z termostatem. Gdy włączony, wentylator sterowany jest przez termostat zamiast przez algorytm PID.",
+        "description_en": "Fan thermostat operating mode. When enabled, the fan is controlled by the thermostat instead of the PID algorithm."
       },
       {
         "offset": 19,
@@ -619,7 +659,9 @@ const DEVICES_DATA = {
           "2": "WM_HT — tryb grzania",
           "3": "WM_COOL — tryb chłodzenia",
           "4": "WM_VENT — ventilation"
-        }
+        },
+        "description": "Tryb pracy urządzenia — sterowany przez BMS. Dostępne tryby zależą od typu urządzenia.",
+        "description_en": "Device operating mode — controlled by BMS. Available modes depend on device type."
       },
       {
         "offset": 5,
@@ -633,28 +675,36 @@ const DEVICES_DATA = {
           "0": "DAMPER_FMD_NS — read-only",
           "1": "DAMPER_FMD_OFF — forcing disabled",
           "2": "DAMPER_FMD_ON — forcing enabled (if T1 < DamperForceTempRef)"
-        }
+        },
+        "description": "Tryb wymuszenia pozycji przepustnicy powietrza. Gdy aktywny, przepustnica przyjmuje pozycję DamperForceLevelRef jeśli temperatura T1 < DamperForceTempRef.",
+        "description_en": "Air damper position forcing mode. When active, the damper moves to DamperForceLevelRef position if temperature T1 < DamperForceTempRef."
       },
       {
         "offset": 6,
         "name": "DamperForceTempRef",
         "min": -100,
         "max": 150,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Temperatura progowa (x0,1 degC) aktywująca wymuszenie pozycji przepustnicy. Gdy T1 spadnie poniżej tej wartości i DamperForceMode=ON, przepustnica przechodzi do pozycji DamperForceLevelRef.",
+        "description_en": "Temperature threshold (x0.1 degC) that activates damper position forcing. When T1 falls below this value and DamperForceMode=ON, the damper moves to the DamperForceLevelRef position."
       },
       {
         "offset": 7,
         "name": "DamperForceLevelRef",
         "min": 0,
         "max": 100,
-        "unit": "%"
+        "unit": "%",
+        "description": "Wymuszone położenie przepustnicy (%) aktywowane gdy T1 < DamperForceTempRef i DamperForceMode=ON.",
+        "description_en": "Forced damper position (%) activated when T1 < DamperForceTempRef and DamperForceMode=ON."
       },
       {
         "offset": 8,
         "name": "DamperLevelRef",
         "min": 0,
         "max": 100,
-        "unit": "%"
+        "unit": "%",
+        "description": "Zadane otwarcie przepustnicy powietrza (%). Wartość docelowa w normalnym trybie pracy.",
+        "description_en": "Air damper opening setpoint (%). Target value in normal operating mode."
       },
       {
         "offset": 9,
@@ -686,7 +736,9 @@ const DEVICES_DATA = {
           "0": "FR_MD_NS — read-only",
           "1": "FR_MD_01 — dependent on damper position (DamperLevelRef) and fan setpoint (FanEffRef)",
           "2": "FR_MD_02 — dependent on damper position only (DamperLevelRef)"
-        }
+        },
+        "description": "Tryb pracy wentylatora dachowego/wywiewnego. Określa zależność pracy wentylatora od pozycji przepustnicy i nastawy.",
+        "description_en": "Roof/exhaust fan operating mode. Defines the fan's dependency on damper position and setpoint."
       },
       {
         "offset": 12,
@@ -698,7 +750,9 @@ const DEVICES_DATA = {
         "values_en": {
           "1": "THERMO_MD_ON — thermostat mode on",
           "2": "THERMO_MD_OFF — thermostat mode off"
-        }
+        },
+        "description": "Tryb pracy wentylatora z termostatem. Gdy włączony, wentylator sterowany jest przez termostat zamiast przez algorytm PID.",
+        "description_en": "Fan thermostat operating mode. When enabled, the fan is controlled by the thermostat instead of the PID algorithm."
       },
       {
         "offset": 13,
@@ -867,7 +921,9 @@ const DEVICES_DATA = {
           "1": "WM_OFF — device off",
           "2": "WM_HEAT — heating mode",
           "3": "WM_VENT — wentylacja"
-        }
+        },
+        "description": "Tryb pracy urządzenia — sterowany przez BMS. Dostępne tryby zależą od typu urządzenia.",
+        "description_en": "Device operating mode — controlled by BMS. Available modes depend on device type."
       },
       {
         "offset": 5,
@@ -890,7 +946,9 @@ const DEVICES_DATA = {
           "0": "HEAT_NS — read-only",
           "1": "HEAT_ON — heating on",
           "2": "HEAT_OFF — heating off"
-        }
+        },
+        "description": "Sterowanie grzaniem kurtyny powietrznej — włącz/wyłącz/tylko odczyt. Definiuje stan nagrzewnicy kurtyny.",
+        "description_en": "Air curtain heating control — on/off/read-only. Defines the curtain heater state."
       },
       {
         "offset": 7,
@@ -913,21 +971,27 @@ const DEVICES_DATA = {
           "0": "HEAT_NS — read-only",
           "1": "HEAT_ON — heating on",
           "2": "HEAT_OFF — heating off"
-        }
+        },
+        "description": "Sterowanie grzaniem nagrzewnicy jednostki — włącz/wyłącz/tylko odczyt. Definiuje stan nagrzewnicy głównej.",
+        "description_en": "Unit heater heating control — on/off/read-only. Defines the main heater state."
       },
       {
         "offset": 10,
         "name": "Tref",
         "min": 50,
         "max": 450,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Temperatura zadana urządzenia (x0,1 degC). Sterownik dąży do utrzymania tej temperatury w trybach automatycznych.",
+        "description_en": "Device temperature setpoint (x0.1 degC). The controller tries to maintain this temperature in automatic modes."
       },
       {
         "offset": 11,
         "name": "TLeadVal",
         "min": -600,
         "max": 600,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Wartość temperatury wiodącej podawana przez BMS przez Modbus (x0,1 degC). Aktywna gdy TLeadSensorSelect = TSL_TLEAD.",
+        "description_en": "Lead temperature value provided by BMS via Modbus (x0.1 degC). Active when TLeadSensorSelect = TSL_TLEAD."
       },
       {
         "offset": 12,
@@ -939,7 +1003,9 @@ const DEVICES_DATA = {
         "values_en": {
           "1": "TSL_TLEAD — value via Modbus (TLeadVal)",
           "3": "TSL_T4 — T4 sensor (DRV connector)"
-        }
+        },
+        "description": "Wybór źródła temperatury wiodącej używanej przez algorytm sterowania.",
+        "description_en": "Selection of the lead temperature source used by the control algorithm."
       },
       {
         "offset": 13,
@@ -953,7 +1019,9 @@ const DEVICES_DATA = {
           "0": "CURT_PRG_NS — no override",
           "1": "CURT_PRG_K1 — force SW3 to K1",
           "2": "CURT_PRG_K2 — force SW3 to K2"
-        }
+        },
+        "description": "Program pracy kurtyny — wybór wymuszonego stanu przełącznika SW3 (K1 / K2 / brak wymuszenia).",
+        "description_en": "Curtain operating program — selects the forced state of switch SW3 (K1 / K2 / no override)."
       },
       {
         "offset": 14,
@@ -1001,14 +1069,18 @@ const DEVICES_DATA = {
         "values_en": {
           "1": "WM_ON — enabled",
           "2": "WM_OFF — disabled"
-        }
+        },
+        "description": "Włączenie/wyłączenie ochrony przeciwzamrożeniowej pomieszczenia. Gdy aktywna, urządzenie utrzymuje temperaturę powyżej progu AntifreezeWareHouseTempRef.",
+        "description_en": "Enable/disable warehouse antifreeze protection. When active, the device maintains temperature above the AntifreezeWareHouseTempRef threshold."
       },
       {
         "offset": 19,
         "name": "AntifreezeWareHouseTempRef",
         "min": 50,
         "max": 150,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Temperatura progowa ochrony przeciwzamrożeniowej pomieszczenia (x0,1 degC). Poniżej tej wartości aktywuje się grzanie zabezpieczające.",
+        "description_en": "Warehouse antifreeze temperature threshold (x0.1 degC). Below this value, the protective heating is activated."
       }
     ],
     "holding_registers_group": [
@@ -1026,7 +1098,9 @@ const DEVICES_DATA = {
           "1": "WM_OFF — device off",
           "2": "WM_HEAT — heating mode",
           "3": "WM_VENT — wentylacja"
-        }
+        },
+        "description": "Tryb pracy urządzenia — sterowany przez BMS. Dostępne tryby zależą od typu urządzenia.",
+        "description_en": "Device operating mode — controlled by BMS. Available modes depend on device type."
       },
       {
         "offset": 5,
@@ -1049,7 +1123,9 @@ const DEVICES_DATA = {
           "0": "HEAT_NS — read-only",
           "1": "HEAT_ON — heating on",
           "2": "HEAT_OFF — heating off"
-        }
+        },
+        "description": "Sterowanie grzaniem kurtyny powietrznej — włącz/wyłącz/tylko odczyt. Definiuje stan nagrzewnicy kurtyny.",
+        "description_en": "Air curtain heating control — on/off/read-only. Defines the curtain heater state."
       },
       {
         "offset": 7,
@@ -1061,7 +1137,9 @@ const DEVICES_DATA = {
         "values_en": {
           "1": "DOOR_OPEN — door open",
           "2": "DOOR_CLOSE — door closed"
-        }
+        },
+        "description": "Stan styku drzwiowego kurtyny powietrznej. Definiuje czy drzwi są otwarte czy zamknięte.",
+        "description_en": "Air curtain door contact state. Defines whether the door is open or closed."
       },
       {
         "offset": 8,
@@ -1075,7 +1153,9 @@ const DEVICES_DATA = {
           "0": "CURT_PRG_NS — no override",
           "1": "CURT_PRG_K1 — force SW3 to K1",
           "2": "CURT_PRG_K2 — force SW3 to K2"
-        }
+        },
+        "description": "Program pracy kurtyny — wybór wymuszonego stanu przełącznika SW3 (K1 / K2 / brak wymuszenia).",
+        "description_en": "Curtain operating program — selects the forced state of switch SW3 (K1 / K2 / no override)."
       },
       {
         "offset": 9,
@@ -1271,7 +1351,9 @@ const DEVICES_DATA = {
           "1": "HEAT — heating mode",
           "2": "VENT — ventilation",
           "3": "SMART — automatic mode"
-        }
+        },
+        "description": "Tryb pracy urządzenia — sterowany przez BMS. Dostępne tryby zależą od typu urządzenia.",
+        "description_en": "Device operating mode — controlled by BMS. Available modes depend on device type."
       },
       {
         "offset": 5,
@@ -1674,7 +1756,9 @@ const DEVICES_DATA = {
           "4": "WM_COOL_AUTO — chłodzenie automatyczne",
           "5": "WM_COOL_MANUAL — chłodzenie ręczne",
           "6": "WM_VENT — ventilation"
-        }
+        },
+        "description": "Tryb pracy urządzenia — sterowany przez BMS. Dostępne tryby zależą od typu urządzenia.",
+        "description_en": "Device operating mode — controlled by BMS. Available modes depend on device type."
       },
       {
         "offset": 5,
@@ -1686,14 +1770,18 @@ const DEVICES_DATA = {
         "values_en": {
           "1": "WM_ON — enabled",
           "2": "WM_OFF — disabled"
-        }
+        },
+        "description": "Włączenie/wyłączenie ochrony przeciwzamrożeniowej pomieszczenia. Gdy aktywna, urządzenie utrzymuje temperaturę powyżej progu AntifreezeWareHouseTempRef.",
+        "description_en": "Enable/disable warehouse antifreeze protection. When active, the device maintains temperature above the AntifreezeWareHouseTempRef threshold."
       },
       {
         "offset": 6,
         "name": "AntifreezeWareHouseTempRef",
         "min": 50,
         "max": 150,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Temperatura progowa ochrony przeciwzamrożeniowej pomieszczenia (x0,1 degC). Poniżej tej wartości aktywuje się grzanie zabezpieczające.",
+        "description_en": "Warehouse antifreeze temperature threshold (x0.1 degC). Below this value, the protective heating is activated."
       },
       {
         "offset": 7,
@@ -1709,14 +1797,18 @@ const DEVICES_DATA = {
         "name": "Tref",
         "min": 50,
         "max": 450,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Temperatura zadana urządzenia (x0,1 degC). Sterownik dąży do utrzymania tej temperatury w trybach automatycznych.",
+        "description_en": "Device temperature setpoint (x0.1 degC). The controller tries to maintain this temperature in automatic modes."
       },
       {
         "offset": 9,
         "name": "TLeadVal",
         "min": -600,
         "max": 600,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Wartość temperatury wiodącej podawana przez BMS przez Modbus (x0,1 degC). Aktywna gdy TLeadSensorSelect = TSL_TLEAD.",
+        "description_en": "Lead temperature value provided by BMS via Modbus (x0.1 degC). Active when TLeadSensorSelect = TSL_TLEAD."
       },
       {
         "offset": 10,
@@ -1730,7 +1822,9 @@ const DEVICES_DATA = {
           "0": "TSL_TNS — read-only",
           "1": "TSL_TLEAD — value via Modbus",
           "3": "TSL_T4 — T4 sensor (air before heat exchanger)"
-        }
+        },
+        "description": "Wybór źródła temperatury wiodącej używanej przez algorytm sterowania.",
+        "description_en": "Selection of the lead temperature source used by the control algorithm."
       },
       {
         "offset": 11,
@@ -1742,7 +1836,9 @@ const DEVICES_DATA = {
         "values_en": {
           "1": "DEST_MDF_OFF — force off",
           "2": "DEST_MDF_ON — force on"
-        }
+        },
+        "description": "Wymuszenie trybu destratyfikacji (nadpisuje ustawienie DestMode). Pozwala BMS-owi natychmiast włączyć lub wyłączyć destratyfikację.",
+        "description_en": "Destratification mode override (overrides the DestMode setting). Allows BMS to immediately enable or disable destratification."
       },
       {
         "offset": 12,
@@ -1756,7 +1852,9 @@ const DEVICES_DATA = {
           "1": "DEST_MD_OFF — disabled",
           "2": "DEST_MD_AUTO_DEPEND — AUTO dependent on operating mode",
           "3": "DEST_MD_AUTO_INDEPEND — AUTO independent"
-        }
+        },
+        "description": "Tryb pracy destratyfikacji. Definiuje czy destratyfikacja działa automatycznie (zależnie lub niezależnie od trybu pracy) czy jest wyłączona.",
+        "description_en": "Destratification operating mode. Defines whether destratification operates automatically (dependent on or independent of operating mode) or is disabled."
       },
       {
         "offset": 13,
@@ -1764,32 +1862,42 @@ const DEVICES_DATA = {
         "default": 50,
         "min": 0,
         "max": 100,
-        "unit": "K×0.1"
+        "unit": "K×0.1",
+        "description": "Różnica temperatur (K x0,1) między strefą górną a dolną, powyżej której uruchamia się destratyfikacja.",
+        "description_en": "Temperature difference (K x0.1) between the upper and lower zone above which destratification activates."
       },
       {
         "offset": 14,
-        "name": "DestStratTimeDelay"
+        "name": "DestStratTimeDelay",
+        "description": "Opóźnienie czasowe (min) przed uruchomieniem destratyfikacji po osiągnięciu progu temperatury.",
+        "description_en": "Time delay (min) before destratification starts after the temperature threshold is reached."
       },
       {
         "offset": 15,
         "name": "ModeAuto_FanEffRefMin",
         "min": 0,
         "max": 100,
-        "unit": "%"
+        "unit": "%",
+        "description": "Minimalna wydajność wentylatora w trybie AUTO (%). Wentylator nie zejdzie poniżej tej wartości podczas automatycznej regulacji.",
+        "description_en": "Minimum fan efficiency in AUTO mode (%). The fan will not go below this value during automatic control."
       },
       {
         "offset": 16,
         "name": "ModeAuto_FanEffRefMax",
         "min": 0,
         "max": 100,
-        "unit": "%"
+        "unit": "%",
+        "description": "Maksymalna wydajność wentylatora w trybie AUTO (%). Wentylator nie przekroczy tej wartości podczas automatycznej regulacji.",
+        "description_en": "Maximum fan efficiency in AUTO mode (%). The fan will not exceed this value during automatic control."
       },
       {
         "offset": 17,
         "name": "ModeManual_FanEffRef",
         "min": 0,
         "max": 100,
-        "unit": "%"
+        "unit": "%",
+        "description": "Wydajność wentylatora w trybie MANUAL (%). Stała wartość obrotów stosowana gdy sterownik pracuje w trybie ręcznym.",
+        "description_en": "Fan efficiency in MANUAL mode (%). Fixed speed value applied when the controller operates in manual mode."
       }
     ],
     "holding_registers_group": [
@@ -1814,14 +1922,18 @@ const DEVICES_DATA = {
           "4": "WM_COOL_AUTO — chłodzenie automatyczne",
           "5": "WM_COOL_MANUAL — chłodzenie ręczne",
           "6": "WM_VENT — ventilation"
-        }
+        },
+        "description": "Tryb pracy urządzenia — sterowany przez BMS. Dostępne tryby zależą od typu urządzenia.",
+        "description_en": "Device operating mode — controlled by BMS. Available modes depend on device type."
       },
       {
         "offset": 5,
         "name": "FanEffRef",
         "min": 0,
         "max": 100,
-        "unit": "%"
+        "unit": "%",
+        "description": "Nastawa wydajności wentylatora zadawana przez BMS (%). Aktywna w trybie ręcznym lub jako ograniczenie w trybie automatycznym.",
+        "description_en": "Fan efficiency setpoint commanded by BMS (%). Active in manual mode or as a limit in automatic mode."
       },
       {
         "offset": 6,
@@ -1833,7 +1945,9 @@ const DEVICES_DATA = {
         "values_en": {
           "1": "DEST_MDF_OFF — force off",
           "2": "DEST_MDF_ON — force on"
-        }
+        },
+        "description": "Wymuszenie trybu destratyfikacji (nadpisuje ustawienie DestMode). Pozwala BMS-owi natychmiast włączyć lub wyłączyć destratyfikację.",
+        "description_en": "Destratification mode override (overrides the DestMode setting). Allows BMS to immediately enable or disable destratification."
       },
       {
         "offset": 7,
@@ -1841,25 +1955,33 @@ const DEVICES_DATA = {
         "default": 50,
         "min": 0,
         "max": 100,
-        "unit": "K×0.1"
+        "unit": "K×0.1",
+        "description": "Różnica temperatur (K x0,1) między strefą górną a dolną, powyżej której uruchamia się destratyfikacja.",
+        "description_en": "Temperature difference (K x0.1) between the upper and lower zone above which destratification activates."
       },
       {
         "offset": 8,
-        "name": "DestStratTimeDelay"
+        "name": "DestStratTimeDelay",
+        "description": "Opóźnienie czasowe (min) przed uruchomieniem destratyfikacji po osiągnięciu progu temperatury.",
+        "description_en": "Time delay (min) before destratification starts after the temperature threshold is reached."
       },
       {
         "offset": 9,
         "name": "ModeAuto_FanEffRefMin",
         "min": 0,
         "max": 100,
-        "unit": "%"
+        "unit": "%",
+        "description": "Minimalna wydajność wentylatora w trybie AUTO (%). Wentylator nie zejdzie poniżej tej wartości podczas automatycznej regulacji.",
+        "description_en": "Minimum fan efficiency in AUTO mode (%). The fan will not go below this value during automatic control."
       },
       {
         "offset": 10,
         "name": "ModeManual_FanEffRef",
         "min": 0,
         "max": 100,
-        "unit": "%"
+        "unit": "%",
+        "description": "Wydajność wentylatora w trybie MANUAL (%). Stała wartość obrotów stosowana gdy sterownik pracuje w trybie ręcznym.",
+        "description_en": "Fan efficiency in MANUAL mode (%). Fixed speed value applied when the controller operates in manual mode."
       }
     ],
     "description_en": "Water heater with EC fan"
@@ -1985,7 +2107,9 @@ const DEVICES_DATA = {
           "4": "WM_COOL_AUTO — chłodzenie automatyczne",
           "5": "WM_COOL_MANUAL — chłodzenie ręczne",
           "6": "WM_VENT — ventilation"
-        }
+        },
+        "description": "Tryb pracy urządzenia — sterowany przez BMS. Dostępne tryby zależą od typu urządzenia.",
+        "description_en": "Device operating mode — controlled by BMS. Available modes depend on device type."
       },
       {
         "offset": 5,
@@ -1997,35 +2121,45 @@ const DEVICES_DATA = {
         "values_en": {
           "1": "WM_ON — enabled",
           "2": "WM_OFF — disabled"
-        }
+        },
+        "description": "Włączenie/wyłączenie ochrony przeciwzamrożeniowej pomieszczenia. Gdy aktywna, urządzenie utrzymuje temperaturę powyżej progu AntifreezeWareHouseTempRef.",
+        "description_en": "Enable/disable warehouse antifreeze protection. When active, the device maintains temperature above the AntifreezeWareHouseTempRef threshold."
       },
       {
         "offset": 6,
         "name": "AntifreezeWareHouseTempRef",
         "min": 50,
         "max": 150,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Temperatura progowa ochrony przeciwzamrożeniowej pomieszczenia (x0,1 degC). Poniżej tej wartości aktywuje się grzanie zabezpieczające.",
+        "description_en": "Warehouse antifreeze temperature threshold (x0.1 degC). Below this value, the protective heating is activated."
       },
       {
         "offset": 7,
         "name": "FanEffRef",
         "min": 0,
         "max": 100,
-        "unit": "%"
+        "unit": "%",
+        "description": "Nastawa wydajności wentylatora zadawana przez BMS (%). Aktywna w trybie ręcznym lub jako ograniczenie w trybie automatycznym.",
+        "description_en": "Fan efficiency setpoint commanded by BMS (%). Active in manual mode or as a limit in automatic mode."
       },
       {
         "offset": 8,
         "name": "Tref",
         "min": 50,
         "max": 450,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Temperatura zadana urządzenia (x0,1 degC). Sterownik dąży do utrzymania tej temperatury w trybach automatycznych.",
+        "description_en": "Device temperature setpoint (x0.1 degC). The controller tries to maintain this temperature in automatic modes."
       },
       {
         "offset": 9,
         "name": "TLeadVal",
         "min": -600,
         "max": 600,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Wartość temperatury wiodącej podawana przez BMS przez Modbus (x0,1 degC). Aktywna gdy TLeadSensorSelect = TSL_TLEAD.",
+        "description_en": "Lead temperature value provided by BMS via Modbus (x0.1 degC). Active when TLeadSensorSelect = TSL_TLEAD."
       },
       {
         "offset": 10,
@@ -2039,7 +2173,9 @@ const DEVICES_DATA = {
           "0": "TSL_TNS — read-only",
           "1": "TSL_TLEAD — value via Modbus",
           "3": "TSL_T4 — T4 sensor (air before heat exchanger)"
-        }
+        },
+        "description": "Wybór źródła temperatury wiodącej używanej przez algorytm sterowania.",
+        "description_en": "Selection of the lead temperature source used by the control algorithm."
       },
       {
         "offset": 11,
@@ -2051,7 +2187,9 @@ const DEVICES_DATA = {
         "values_en": {
           "1": "DEST_MDF_OFF — force off",
           "2": "DEST_MDF_ON — force on"
-        }
+        },
+        "description": "Wymuszenie trybu destratyfikacji (nadpisuje ustawienie DestMode). Pozwala BMS-owi natychmiast włączyć lub wyłączyć destratyfikację.",
+        "description_en": "Destratification mode override (overrides the DestMode setting). Allows BMS to immediately enable or disable destratification."
       },
       {
         "offset": 12,
@@ -2065,7 +2203,9 @@ const DEVICES_DATA = {
           "1": "DEST_MD_OFF — disabled",
           "2": "DEST_MD_AUTO_DEPEND — AUTO dependent on operating mode",
           "3": "DEST_MD_AUTO_INDEPEND — AUTO independent"
-        }
+        },
+        "description": "Tryb pracy destratyfikacji. Definiuje czy destratyfikacja działa automatycznie (zależnie lub niezależnie od trybu pracy) czy jest wyłączona.",
+        "description_en": "Destratification operating mode. Defines whether destratification operates automatically (dependent on or independent of operating mode) or is disabled."
       },
       {
         "offset": 13,
@@ -2073,32 +2213,42 @@ const DEVICES_DATA = {
         "default": 50,
         "min": 0,
         "max": 100,
-        "unit": "K×0.1"
+        "unit": "K×0.1",
+        "description": "Różnica temperatur (K x0,1) między strefą górną a dolną, powyżej której uruchamia się destratyfikacja.",
+        "description_en": "Temperature difference (K x0.1) between the upper and lower zone above which destratification activates."
       },
       {
         "offset": 14,
-        "name": "DestStratTimeDelay"
+        "name": "DestStratTimeDelay",
+        "description": "Opóźnienie czasowe (min) przed uruchomieniem destratyfikacji po osiągnięciu progu temperatury.",
+        "description_en": "Time delay (min) before destratification starts after the temperature threshold is reached."
       },
       {
         "offset": 15,
         "name": "ModeAuto_FanEffRefMin",
         "min": 0,
         "max": 100,
-        "unit": "%"
+        "unit": "%",
+        "description": "Minimalna wydajność wentylatora w trybie AUTO (%). Wentylator nie zejdzie poniżej tej wartości podczas automatycznej regulacji.",
+        "description_en": "Minimum fan efficiency in AUTO mode (%). The fan will not go below this value during automatic control."
       },
       {
         "offset": 16,
         "name": "ModeAuto_FanEffRefMax",
         "min": 0,
         "max": 100,
-        "unit": "%"
+        "unit": "%",
+        "description": "Maksymalna wydajność wentylatora w trybie AUTO (%). Wentylator nie przekroczy tej wartości podczas automatycznej regulacji.",
+        "description_en": "Maximum fan efficiency in AUTO mode (%). The fan will not exceed this value during automatic control."
       },
       {
         "offset": 17,
         "name": "ModeManual_FanEffRef",
         "min": 0,
         "max": 100,
-        "unit": "%"
+        "unit": "%",
+        "description": "Wydajność wentylatora w trybie MANUAL (%). Stała wartość obrotów stosowana gdy sterownik pracuje w trybie ręcznym.",
+        "description_en": "Fan efficiency in MANUAL mode (%). Fixed speed value applied when the controller operates in manual mode."
       }
     ],
     "holding_registers_group": [
@@ -2123,14 +2273,18 @@ const DEVICES_DATA = {
           "4": "WM_COOL_AUTO — chłodzenie automatyczne",
           "5": "WM_COOL_MANUAL — chłodzenie ręczne",
           "6": "WM_VENT — ventilation"
-        }
+        },
+        "description": "Tryb pracy urządzenia — sterowany przez BMS. Dostępne tryby zależą od typu urządzenia.",
+        "description_en": "Device operating mode — controlled by BMS. Available modes depend on device type."
       },
       {
         "offset": 5,
         "name": "FanEffRef",
         "min": 0,
         "max": 100,
-        "unit": "%"
+        "unit": "%",
+        "description": "Nastawa wydajności wentylatora zadawana przez BMS (%). Aktywna w trybie ręcznym lub jako ograniczenie w trybie automatycznym.",
+        "description_en": "Fan efficiency setpoint commanded by BMS (%). Active in manual mode or as a limit in automatic mode."
       },
       {
         "offset": 6,
@@ -2142,7 +2296,9 @@ const DEVICES_DATA = {
         "values_en": {
           "1": "DEST_MDF_OFF — force off",
           "2": "DEST_MDF_ON — force on"
-        }
+        },
+        "description": "Wymuszenie trybu destratyfikacji (nadpisuje ustawienie DestMode). Pozwala BMS-owi natychmiast włączyć lub wyłączyć destratyfikację.",
+        "description_en": "Destratification mode override (overrides the DestMode setting). Allows BMS to immediately enable or disable destratification."
       },
       {
         "offset": 7,
@@ -2150,32 +2306,42 @@ const DEVICES_DATA = {
         "default": 50,
         "min": 0,
         "max": 100,
-        "unit": "K×0.1"
+        "unit": "K×0.1",
+        "description": "Różnica temperatur (K x0,1) między strefą górną a dolną, powyżej której uruchamia się destratyfikacja.",
+        "description_en": "Temperature difference (K x0.1) between the upper and lower zone above which destratification activates."
       },
       {
         "offset": 8,
-        "name": "DestStratTimeDelay"
+        "name": "DestStratTimeDelay",
+        "description": "Opóźnienie czasowe (min) przed uruchomieniem destratyfikacji po osiągnięciu progu temperatury.",
+        "description_en": "Time delay (min) before destratification starts after the temperature threshold is reached."
       },
       {
         "offset": 9,
         "name": "ModeAuto_FanEffRefMin",
         "min": 0,
         "max": 100,
-        "unit": "%"
+        "unit": "%",
+        "description": "Minimalna wydajność wentylatora w trybie AUTO (%). Wentylator nie zejdzie poniżej tej wartości podczas automatycznej regulacji.",
+        "description_en": "Minimum fan efficiency in AUTO mode (%). The fan will not go below this value during automatic control."
       },
       {
         "offset": 10,
         "name": "ModeAuto_FanEffRefMax",
         "min": 0,
         "max": 100,
-        "unit": "%"
+        "unit": "%",
+        "description": "Maksymalna wydajność wentylatora w trybie AUTO (%). Wentylator nie przekroczy tej wartości podczas automatycznej regulacji.",
+        "description_en": "Maximum fan efficiency in AUTO mode (%). The fan will not exceed this value during automatic control."
       },
       {
         "offset": 11,
         "name": "ModeManual_FanEffRef",
         "min": 0,
         "max": 100,
-        "unit": "%"
+        "unit": "%",
+        "description": "Wydajność wentylatora w trybie MANUAL (%). Stała wartość obrotów stosowana gdy sterownik pracuje w trybie ręcznym.",
+        "description_en": "Fan efficiency in MANUAL mode (%). Fixed speed value applied when the controller operates in manual mode."
       }
     ],
     "description_en": "Water heater with EC fan (continuous regulation)"
@@ -2267,7 +2433,9 @@ const DEVICES_DATA = {
           "2": "WM_AUTO_DEPEND — AUTO dependent on operating mode",
           "3": "WM_AUTO_INDEPEND — AUTO independent",
           "4": "WM_MANUAL — manual mode"
-        }
+        },
+        "description": "Tryb pracy urządzenia — sterowany przez BMS. Dostępne tryby zależą od typu urządzenia.",
+        "description_en": "Device operating mode — controlled by BMS. Available modes depend on device type."
       },
       {
         "offset": 5,
@@ -2283,14 +2451,18 @@ const DEVICES_DATA = {
         "name": "Tref",
         "min": 50,
         "max": 450,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Temperatura zadana urządzenia (x0,1 degC). Sterownik dąży do utrzymania tej temperatury w trybach automatycznych.",
+        "description_en": "Device temperature setpoint (x0.1 degC). The controller tries to maintain this temperature in automatic modes."
       },
       {
         "offset": 7,
         "name": "TLeadVal",
         "min": -600,
         "max": 600,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Wartość temperatury wiodącej podawana przez BMS przez Modbus (x0,1 degC). Aktywna gdy TLeadSensorSelect = TSL_TLEAD.",
+        "description_en": "Lead temperature value provided by BMS via Modbus (x0.1 degC). Active when TLeadSensorSelect = TSL_TLEAD."
       },
       {
         "offset": 8,
@@ -2302,7 +2474,9 @@ const DEVICES_DATA = {
         "values_en": {
           "1": "TSL_TLEAD — value via Modbus (TLeadVal)",
           "3": "TSL_T4 — T4 sensor (DRV connector)"
-        }
+        },
+        "description": "Wybór źródła temperatury wiodącej używanej przez algorytm sterowania.",
+        "description_en": "Selection of the lead temperature source used by the control algorithm."
       },
       {
         "offset": 10,
@@ -2338,7 +2512,9 @@ const DEVICES_DATA = {
           "2": "WM_AUTO_DEPEND — AUTO dependent on operating mode",
           "3": "WM_AUTO_INDEPEND — AUTO independent",
           "4": "WM_MANUAL — manual mode"
-        }
+        },
+        "description": "Tryb pracy urządzenia — sterowany przez BMS. Dostępne tryby zależą od typu urządzenia.",
+        "description_en": "Device operating mode — controlled by BMS. Available modes depend on device type."
       },
       {
         "offset": 5,
@@ -2521,7 +2697,9 @@ const DEVICES_DATA = {
           "3": "WM_HEAT — heating mode",
           "4": "WM_VENT — ventilation",
           "5": "WM_RAW — raw mode"
-        }
+        },
+        "description": "Tryb pracy urządzenia — sterowany przez BMS. Dostępne tryby zależą od typu urządzenia.",
+        "description_en": "Device operating mode — controlled by BMS. Available modes depend on device type."
       },
       {
         "offset": 5,
@@ -2533,14 +2711,18 @@ const DEVICES_DATA = {
         "values_en": {
           "1": "WM_ON — enabled",
           "2": "WM_OFF — disabled"
-        }
+        },
+        "description": "Włączenie/wyłączenie ochrony przeciwzamrożeniowej pomieszczenia. Gdy aktywna, urządzenie utrzymuje temperaturę powyżej progu AntifreezeWareHouseTempRef.",
+        "description_en": "Enable/disable warehouse antifreeze protection. When active, the device maintains temperature above the AntifreezeWareHouseTempRef threshold."
       },
       {
         "offset": 6,
         "name": "AntifreezeWareHouseTempRef",
         "min": 50,
         "max": 150,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Temperatura progowa ochrony przeciwzamrożeniowej pomieszczenia (x0,1 degC). Poniżej tej wartości aktywuje się grzanie zabezpieczające.",
+        "description_en": "Warehouse antifreeze temperature threshold (x0.1 degC). Below this value, the protective heating is activated."
       },
       {
         "offset": 7,
@@ -2556,14 +2738,18 @@ const DEVICES_DATA = {
         "name": "Tref",
         "min": 50,
         "max": 450,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Temperatura zadana urządzenia (x0,1 degC). Sterownik dąży do utrzymania tej temperatury w trybach automatycznych.",
+        "description_en": "Device temperature setpoint (x0.1 degC). The controller tries to maintain this temperature in automatic modes."
       },
       {
         "offset": 9,
         "name": "TLeadVal",
         "min": -600,
         "max": 600,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Wartość temperatury wiodącej podawana przez BMS przez Modbus (x0,1 degC). Aktywna gdy TLeadSensorSelect = TSL_TLEAD.",
+        "description_en": "Lead temperature value provided by BMS via Modbus (x0.1 degC). Active when TLeadSensorSelect = TSL_TLEAD."
       },
       {
         "offset": 10,
@@ -2577,7 +2763,9 @@ const DEVICES_DATA = {
           "0": "TSL_TNS — read-only",
           "1": "TSL_TLEAD — value via Modbus (TLeadVal)",
           "3": "TSL_T4 — T4 sensor (DRV connector)"
-        }
+        },
+        "description": "Wybór źródła temperatury wiodącej używanej przez algorytm sterowania.",
+        "description_en": "Selection of the lead temperature source used by the control algorithm."
       },
       {
         "offset": 11,
@@ -2589,7 +2777,9 @@ const DEVICES_DATA = {
         "values_en": {
           "1": "DEST_MDF_OFF — destratification forcing disabled",
           "2": "DEST_MDF_ON — destratification forcing enabled"
-        }
+        },
+        "description": "Wymuszenie trybu destratyfikacji (nadpisuje ustawienie DestMode). Pozwala BMS-owi natychmiast włączyć lub wyłączyć destratyfikację.",
+        "description_en": "Destratification mode override (overrides the DestMode setting). Allows BMS to immediately enable or disable destratification."
       },
       {
         "offset": 12,
@@ -2603,7 +2793,9 @@ const DEVICES_DATA = {
           "1": "DEST_MD_OFF — destratification disabled",
           "2": "DEST_MD_AUTO_DEPEND — AUTO dependent on operating mode",
           "3": "DEST_MD_AUTO_INDEPEND — AUTO independent"
-        }
+        },
+        "description": "Tryb pracy destratyfikacji. Definiuje czy destratyfikacja działa automatycznie (zależnie lub niezależnie od trybu pracy) czy jest wyłączona.",
+        "description_en": "Destratification operating mode. Defines whether destratification operates automatically (dependent on or independent of operating mode) or is disabled."
       },
       {
         "offset": 13,
@@ -2670,7 +2862,9 @@ const DEVICES_DATA = {
           "3": "WM_HEAT — heating mode",
           "4": "WM_VENT — ventilation",
           "5": "WM_RAW — raw mode"
-        }
+        },
+        "description": "Tryb pracy urządzenia — sterowany przez BMS. Dostępne tryby zależą od typu urządzenia.",
+        "description_en": "Device operating mode — controlled by BMS. Available modes depend on device type."
       },
       {
         "offset": 5,
@@ -2686,7 +2880,9 @@ const DEVICES_DATA = {
         "name": "Tref",
         "min": 50,
         "max": 450,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Temperatura zadana urządzenia (x0,1 degC). Sterownik dąży do utrzymania tej temperatury w trybach automatycznych.",
+        "description_en": "Device temperature setpoint (x0.1 degC). The controller tries to maintain this temperature in automatic modes."
       },
       {
         "offset": 7,
@@ -2700,7 +2896,9 @@ const DEVICES_DATA = {
           "1": "DEST_MD_OFF — destratification disabled",
           "2": "DEST_MD_AUTO_DEPEND — AUTO dependent on operating mode",
           "3": "DEST_MD_AUTO_INDEPEND — AUTO independent"
-        }
+        },
+        "description": "Tryb pracy destratyfikacji. Definiuje czy destratyfikacja działa automatycznie (zależnie lub niezależnie od trybu pracy) czy jest wyłączona.",
+        "description_en": "Destratification operating mode. Defines whether destratification operates automatically (dependent on or independent of operating mode) or is disabled."
       },
       {
         "offset": 8,
@@ -2870,7 +3068,9 @@ const DEVICES_DATA = {
           "2": "WM_HEAT_AUTO — automatic heating",
           "3": "WM_HEAT_MANUAL — manual heating",
           "4": "WM_VENTILATION — ventilation"
-        }
+        },
+        "description": "Tryb pracy urządzenia — sterowany przez BMS. Dostępne tryby zależą od typu urządzenia.",
+        "description_en": "Device operating mode — controlled by BMS. Available modes depend on device type."
       },
       {
         "offset": 5,
@@ -2882,14 +3082,18 @@ const DEVICES_DATA = {
         "values_en": {
           "1": "ON — enabled",
           "2": "OFF — disabled"
-        }
+        },
+        "description": "Włączenie/wyłączenie ochrony przeciwzamrożeniowej pomieszczenia. Gdy aktywna, urządzenie utrzymuje temperaturę powyżej progu AntifreezeWareHouseTempRef.",
+        "description_en": "Enable/disable warehouse antifreeze protection. When active, the device maintains temperature above the AntifreezeWareHouseTempRef threshold."
       },
       {
         "offset": 6,
         "name": "AntifreezeWareHouseTempRef",
         "min": 50,
         "max": 150,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Temperatura progowa ochrony przeciwzamrożeniowej pomieszczenia (x0,1 degC). Poniżej tej wartości aktywuje się grzanie zabezpieczające.",
+        "description_en": "Warehouse antifreeze temperature threshold (x0.1 degC). Below this value, the protective heating is activated."
       },
       {
         "offset": 12,
@@ -2912,14 +3116,18 @@ const DEVICES_DATA = {
         "name": "Tref",
         "min": 50,
         "max": 450,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Temperatura zadana urządzenia (x0,1 degC). Sterownik dąży do utrzymania tej temperatury w trybach automatycznych.",
+        "description_en": "Device temperature setpoint (x0.1 degC). The controller tries to maintain this temperature in automatic modes."
       },
       {
         "offset": 15,
         "name": "TLeadVal",
         "min": -600,
         "max": 600,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Wartość temperatury wiodącej podawana przez BMS przez Modbus (x0,1 degC). Aktywna gdy TLeadSensorSelect = TSL_TLEAD.",
+        "description_en": "Lead temperature value provided by BMS via Modbus (x0.1 degC). Active when TLeadSensorSelect = TSL_TLEAD."
       },
       {
         "offset": 16,
@@ -2933,7 +3141,9 @@ const DEVICES_DATA = {
           "0": "TSL_TNS — read-only",
           "1": "TSL_TLEAD — value via Modbus (TLeadVal)",
           "3": "TSL_T4 — T4 sensor (room temperature)"
-        }
+        },
+        "description": "Wybór źródła temperatury wiodącej używanej przez algorytm sterowania.",
+        "description_en": "Selection of the lead temperature source used by the control algorithm."
       },
       {
         "offset": 18,
@@ -2954,7 +3164,9 @@ const DEVICES_DATA = {
         "values_en": {
           "0": "FLT_CNT_RST_NS — read-only (after reset)",
           "1": "FLT_CNT_RST — reset filter time counter (FilterWorkTime = 0)"
-        }
+        },
+        "description": "Reset licznika czasu pracy filtra. Zapis wartości FLT_CNT_RST zeruje rejestr FilterWorkTime.",
+        "description_en": "Filter operating time counter reset. Writing FLT_CNT_RST zeroes the FilterWorkTime register."
       },
       {
         "offset": 20,
@@ -3027,7 +3239,9 @@ const DEVICES_DATA = {
           "2": "WM_HEAT_AUTO — automatic heating",
           "3": "WM_HEAT_MANUAL — manual heating",
           "4": "WM_VENTILATION — ventilation"
-        }
+        },
+        "description": "Tryb pracy urządzenia — sterowany przez BMS. Dostępne tryby zależą od typu urządzenia.",
+        "description_en": "Device operating mode — controlled by BMS. Available modes depend on device type."
       },
       {
         "offset": 12,
@@ -3282,7 +3496,9 @@ const DEVICES_DATA = {
           "2": "WM_HEAT_AUTO — automatic heating",
           "3": "WM_HEAT_MANUAL — manual heating",
           "4": "WM_VENTILATION — ventilation"
-        }
+        },
+        "description": "Tryb pracy urządzenia — sterowany przez BMS. Dostępne tryby zależą od typu urządzenia.",
+        "description_en": "Device operating mode — controlled by BMS. Available modes depend on device type."
       },
       {
         "offset": 5,
@@ -3294,14 +3510,18 @@ const DEVICES_DATA = {
         "values_en": {
           "1": "ON — enabled",
           "2": "OFF — disabled"
-        }
+        },
+        "description": "Włączenie/wyłączenie ochrony przeciwzamrożeniowej pomieszczenia. Gdy aktywna, urządzenie utrzymuje temperaturę powyżej progu AntifreezeWareHouseTempRef.",
+        "description_en": "Enable/disable warehouse antifreeze protection. When active, the device maintains temperature above the AntifreezeWareHouseTempRef threshold."
       },
       {
         "offset": 6,
         "name": "AntifreezeWareHouseTempRef",
         "min": 50,
         "max": 150,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Temperatura progowa ochrony przeciwzamrożeniowej pomieszczenia (x0,1 degC). Poniżej tej wartości aktywuje się grzanie zabezpieczające.",
+        "description_en": "Warehouse antifreeze temperature threshold (x0.1 degC). Below this value, the protective heating is activated."
       },
       {
         "offset": 7,
@@ -3315,7 +3535,9 @@ const DEVICES_DATA = {
           "0": "DAMPER_FMD_NS — read-only",
           "1": "DAMPER_FMD_OFF — forcing disabled",
           "2": "DAMPER_FMD_ON — forcing enabled (if T1 < DamperForceTempRef)"
-        }
+        },
+        "description": "Tryb wymuszenia pozycji przepustnicy powietrza. Gdy aktywny, przepustnica przyjmuje pozycję DamperForceLevelRef jeśli temperatura T1 < DamperForceTempRef.",
+        "description_en": "Air damper position forcing mode. When active, the damper moves to DamperForceLevelRef position if temperature T1 < DamperForceTempRef."
       },
       {
         "offset": 8,
@@ -3383,14 +3605,18 @@ const DEVICES_DATA = {
         "name": "Tref",
         "min": 50,
         "max": 450,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Temperatura zadana urządzenia (x0,1 degC). Sterownik dąży do utrzymania tej temperatury w trybach automatycznych.",
+        "description_en": "Device temperature setpoint (x0.1 degC). The controller tries to maintain this temperature in automatic modes."
       },
       {
         "offset": 15,
         "name": "TLeadVal",
         "min": -600,
         "max": 600,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Wartość temperatury wiodącej podawana przez BMS przez Modbus (x0,1 degC). Aktywna gdy TLeadSensorSelect = TSL_TLEAD.",
+        "description_en": "Lead temperature value provided by BMS via Modbus (x0.1 degC). Active when TLeadSensorSelect = TSL_TLEAD."
       },
       {
         "offset": 16,
@@ -3404,7 +3630,9 @@ const DEVICES_DATA = {
           "0": "TSL_TNS — read-only",
           "1": "TSL_TLEAD — value via Modbus (TLeadVal)",
           "3": "TSL_T4 — T4 sensor (room temperature)"
-        }
+        },
+        "description": "Wybór źródła temperatury wiodącej używanej przez algorytm sterowania.",
+        "description_en": "Selection of the lead temperature source used by the control algorithm."
       },
       {
         "offset": 17,
@@ -3418,7 +3646,9 @@ const DEVICES_DATA = {
           "0": "FR_MD_NS — read-only",
           "1": "FR_MD_01 — dependent on damper position (DamperLevelRef) and fan setpoint (FanEffRef)",
           "2": "FR_MD_02 — dependent on damper position only (DamperLevelRef)"
-        }
+        },
+        "description": "Tryb pracy wentylatora dachowego/wywiewnego. Określa zależność pracy wentylatora od pozycji przepustnicy i nastawy.",
+        "description_en": "Roof/exhaust fan operating mode. Defines the fan's dependency on damper position and setpoint."
       },
       {
         "offset": 18,
@@ -3439,7 +3669,9 @@ const DEVICES_DATA = {
         "values_en": {
           "0": "FLT_CNT_RST_NS — read-only (after reset)",
           "1": "FLT_CNT_RST — reset filter time counter (FilterWorkTime = 0)"
-        }
+        },
+        "description": "Reset licznika czasu pracy filtra. Zapis wartości FLT_CNT_RST zeruje rejestr FilterWorkTime.",
+        "description_en": "Filter operating time counter reset. Writing FLT_CNT_RST zeroes the FilterWorkTime register."
       },
       {
         "offset": 20,
@@ -3512,7 +3744,9 @@ const DEVICES_DATA = {
           "2": "WM_HEAT_AUTO — automatic heating",
           "3": "WM_HEAT_MANUAL — manual heating",
           "4": "WM_VENTILATION — ventilation"
-        }
+        },
+        "description": "Tryb pracy urządzenia — sterowany przez BMS. Dostępne tryby zależą od typu urządzenia.",
+        "description_en": "Device operating mode — controlled by BMS. Available modes depend on device type."
       },
       {
         "offset": 5,
@@ -3526,7 +3760,9 @@ const DEVICES_DATA = {
           "0": "DAMPER_FMD_NS — read-only",
           "1": "DAMPER_FMD_OFF — forcing disabled",
           "2": "DAMPER_FMD_ON — forcing enabled (if T1 < DamperForceTempRef)"
-        }
+        },
+        "description": "Tryb wymuszenia pozycji przepustnicy powietrza. Gdy aktywny, przepustnica przyjmuje pozycję DamperForceLevelRef jeśli temperatura T1 < DamperForceTempRef.",
+        "description_en": "Air damper position forcing mode. When active, the damper moves to DamperForceLevelRef position if temperature T1 < DamperForceTempRef."
       },
       {
         "offset": 6,
@@ -3585,7 +3821,9 @@ const DEVICES_DATA = {
           "0": "FR_MD_NS — read-only",
           "1": "FR_MD_01 — dependent on damper position and fan setpoint",
           "2": "FR_MD_02 — dependent on damper position only"
-        }
+        },
+        "description": "Tryb pracy wentylatora dachowego/wywiewnego. Określa zależność pracy wentylatora od pozycji przepustnicy i nastawy.",
+        "description_en": "Roof/exhaust fan operating mode. Defines the fan's dependency on damper position and setpoint."
       },
       {
         "offset": 12,
@@ -3785,7 +4023,9 @@ const DEVICES_DATA = {
           "4": "WM_COOL_AUTO — automatic cooling",
           "5": "WM_COOL_MANUAL — manual cooling",
           "6": "WM_VENT — ventilation"
-        }
+        },
+        "description": "Tryb pracy urządzenia — sterowany przez BMS. Dostępne tryby zależą od typu urządzenia.",
+        "description_en": "Device operating mode — controlled by BMS. Available modes depend on device type."
       },
       {
         "offset": 5,
@@ -3797,14 +4037,18 @@ const DEVICES_DATA = {
         "values_en": {
           "1": "WM_ON — enabled",
           "2": "WM_OFF — disabled"
-        }
+        },
+        "description": "Włączenie/wyłączenie ochrony przeciwzamrożeniowej pomieszczenia. Gdy aktywna, urządzenie utrzymuje temperaturę powyżej progu AntifreezeWareHouseTempRef.",
+        "description_en": "Enable/disable warehouse antifreeze protection. When active, the device maintains temperature above the AntifreezeWareHouseTempRef threshold."
       },
       {
         "offset": 6,
         "name": "AntifreezeWareHouseTempRef",
         "min": 50,
         "max": 150,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Temperatura progowa ochrony przeciwzamrożeniowej pomieszczenia (x0,1 degC). Poniżej tej wartości aktywuje się grzanie zabezpieczające.",
+        "description_en": "Warehouse antifreeze temperature threshold (x0.1 degC). Below this value, the protective heating is activated."
       },
       {
         "offset": 7,
@@ -3820,14 +4064,18 @@ const DEVICES_DATA = {
         "name": "Tref",
         "min": 50,
         "max": 450,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Temperatura zadana urządzenia (x0,1 degC). Sterownik dąży do utrzymania tej temperatury w trybach automatycznych.",
+        "description_en": "Device temperature setpoint (x0.1 degC). The controller tries to maintain this temperature in automatic modes."
       },
       {
         "offset": 9,
         "name": "TLeadVal",
         "min": -600,
         "max": 600,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Wartość temperatury wiodącej podawana przez BMS przez Modbus (x0,1 degC). Aktywna gdy TLeadSensorSelect = TSL_TLEAD.",
+        "description_en": "Lead temperature value provided by BMS via Modbus (x0.1 degC). Active when TLeadSensorSelect = TSL_TLEAD."
       },
       {
         "offset": 10,
@@ -3841,7 +4089,9 @@ const DEVICES_DATA = {
           "0": "TSL_TNS — read-only",
           "1": "TSL_TLEAD — value via Modbus (TLeadVal)",
           "3": "TSL_T4 — T4 sensor (air before water heat exchanger)"
-        }
+        },
+        "description": "Wybór źródła temperatury wiodącej używanej przez algorytm sterowania.",
+        "description_en": "Selection of the lead temperature source used by the control algorithm."
       },
       {
         "offset": 15,
@@ -3892,7 +4142,9 @@ const DEVICES_DATA = {
           "4": "WM_COOL_AUTO — automatic cooling",
           "5": "WM_COOL_MANUAL — manual cooling",
           "6": "WM_VENT — ventilation"
-        }
+        },
+        "description": "Tryb pracy urządzenia — sterowany przez BMS. Dostępne tryby zależą od typu urządzenia.",
+        "description_en": "Device operating mode — controlled by BMS. Available modes depend on device type."
       },
       {
         "offset": 5,
@@ -5071,7 +5323,9 @@ const DEVICES_DATA = {
           "1": "WM_OFF — device off",
           "2": "WM_HEAT — heating mode",
           "3": "WM_VENT — wentylacja"
-        }
+        },
+        "description": "Tryb pracy urządzenia — sterowany przez BMS. Dostępne tryby zależą od typu urządzenia.",
+        "description_en": "Device operating mode — controlled by BMS. Available modes depend on device type."
       },
       {
         "offset": 5,
@@ -5094,7 +5348,9 @@ const DEVICES_DATA = {
           "0": "HEAT_NS — read-only",
           "1": "HEAT_ON — heating on",
           "2": "HEAT_OFF — heating off"
-        }
+        },
+        "description": "Sterowanie grzaniem kurtyny powietrznej — włącz/wyłącz/tylko odczyt. Definiuje stan nagrzewnicy kurtyny.",
+        "description_en": "Air curtain heating control — on/off/read-only. Defines the curtain heater state."
       },
       {
         "offset": 7,
@@ -5117,21 +5373,27 @@ const DEVICES_DATA = {
           "0": "HEAT_NS — read-only",
           "1": "HEAT_ON — heating on",
           "2": "HEAT_OFF — heating off"
-        }
+        },
+        "description": "Sterowanie grzaniem nagrzewnicy jednostki — włącz/wyłącz/tylko odczyt. Definiuje stan nagrzewnicy głównej.",
+        "description_en": "Unit heater heating control — on/off/read-only. Defines the main heater state."
       },
       {
         "offset": 10,
         "name": "Tref",
         "min": 50,
         "max": 450,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Temperatura zadana urządzenia (x0,1 degC). Sterownik dąży do utrzymania tej temperatury w trybach automatycznych.",
+        "description_en": "Device temperature setpoint (x0.1 degC). The controller tries to maintain this temperature in automatic modes."
       },
       {
         "offset": 11,
         "name": "TLeadVal",
         "min": -600,
         "max": 600,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Wartość temperatury wiodącej podawana przez BMS przez Modbus (x0,1 degC). Aktywna gdy TLeadSensorSelect = TSL_TLEAD.",
+        "description_en": "Lead temperature value provided by BMS via Modbus (x0.1 degC). Active when TLeadSensorSelect = TSL_TLEAD."
       },
       {
         "offset": 12,
@@ -5143,7 +5405,9 @@ const DEVICES_DATA = {
         "values_en": {
           "1": "TSL_TLEAD — value via Modbus (TLeadVal)",
           "3": "TSL_T4 — T4 sensor (DRV connector)"
-        }
+        },
+        "description": "Wybór źródła temperatury wiodącej używanej przez algorytm sterowania.",
+        "description_en": "Selection of the lead temperature source used by the control algorithm."
       },
       {
         "offset": 13,
@@ -5157,7 +5421,9 @@ const DEVICES_DATA = {
           "0": "CURT_PRG_NS — no override",
           "1": "CURT_PRG_K1 — force SW3 to K1",
           "2": "CURT_PRG_K2 — force SW3 to K2"
-        }
+        },
+        "description": "Program pracy kurtyny — wybór wymuszonego stanu przełącznika SW3 (K1 / K2 / brak wymuszenia).",
+        "description_en": "Curtain operating program — selects the forced state of switch SW3 (K1 / K2 / no override)."
       },
       {
         "offset": 14,
@@ -5205,14 +5471,18 @@ const DEVICES_DATA = {
         "values_en": {
           "1": "WM_ON — enabled",
           "2": "WM_OFF — disabled"
-        }
+        },
+        "description": "Włączenie/wyłączenie ochrony przeciwzamrożeniowej pomieszczenia. Gdy aktywna, urządzenie utrzymuje temperaturę powyżej progu AntifreezeWareHouseTempRef.",
+        "description_en": "Enable/disable warehouse antifreeze protection. When active, the device maintains temperature above the AntifreezeWareHouseTempRef threshold."
       },
       {
         "offset": 19,
         "name": "AntifreezeWareHouseTempRef",
         "min": 50,
         "max": 150,
-        "unit": "°C×0.1"
+        "unit": "°C×0.1",
+        "description": "Temperatura progowa ochrony przeciwzamrożeniowej pomieszczenia (x0,1 degC). Poniżej tej wartości aktywuje się grzanie zabezpieczające.",
+        "description_en": "Warehouse antifreeze temperature threshold (x0.1 degC). Below this value, the protective heating is activated."
       }
     ],
     "holding_registers_group": [
@@ -5230,7 +5500,9 @@ const DEVICES_DATA = {
           "1": "WM_OFF — device off",
           "2": "WM_HEAT — heating mode",
           "3": "WM_VENT — wentylacja"
-        }
+        },
+        "description": "Tryb pracy urządzenia — sterowany przez BMS. Dostępne tryby zależą od typu urządzenia.",
+        "description_en": "Device operating mode — controlled by BMS. Available modes depend on device type."
       },
       {
         "offset": 5,
@@ -5253,7 +5525,9 @@ const DEVICES_DATA = {
           "0": "HEAT_NS — read-only",
           "1": "HEAT_ON — heating on",
           "2": "HEAT_OFF — heating off"
-        }
+        },
+        "description": "Sterowanie grzaniem kurtyny powietrznej — włącz/wyłącz/tylko odczyt. Definiuje stan nagrzewnicy kurtyny.",
+        "description_en": "Air curtain heating control — on/off/read-only. Defines the curtain heater state."
       },
       {
         "offset": 7,
@@ -5265,7 +5539,9 @@ const DEVICES_DATA = {
         "values_en": {
           "1": "DOOR_OPEN — door open",
           "2": "DOOR_CLOSE — door closed"
-        }
+        },
+        "description": "Stan styku drzwiowego kurtyny powietrznej. Definiuje czy drzwi są otwarte czy zamknięte.",
+        "description_en": "Air curtain door contact state. Defines whether the door is open or closed."
       },
       {
         "offset": 8,
@@ -5279,7 +5555,9 @@ const DEVICES_DATA = {
           "0": "CURT_PRG_NS — no override",
           "1": "CURT_PRG_K1 — force SW3 to K1",
           "2": "CURT_PRG_K2 — force SW3 to K2"
-        }
+        },
+        "description": "Program pracy kurtyny — wybór wymuszonego stanu przełącznika SW3 (K1 / K2 / brak wymuszenia).",
+        "description_en": "Curtain operating program — selects the forced state of switch SW3 (K1 / K2 / no override)."
       },
       {
         "offset": 9,

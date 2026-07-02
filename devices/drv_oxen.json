@@ -133,7 +133,9 @@
         "1": "OX_ON — on",
         "2": "OX_ON — on",
         "3": "OX_ON — on"
-      }
+      },
+      "description": "Stan pracy centrali wentylacyjnej OXEN (włączona/wyłączona). Określa aktualny status zasilania jednostki.",
+      "description_en": "OXEN ventilation unit operating state (on/off). Indicates the current power status of the unit."
     },
     {
       "offset": 5,
@@ -147,21 +149,27 @@
         "0": "OXEN_MD_AUTO — automatic (automatic bypass control)",
         "1": "OXEN_MD_WINTER — winter mode (bypass off)",
         "2": "OXEN_MD_SUMMER — summer mode (bypass on)"
-      }
+      },
+      "description": "Tryb pracy centrali OXEN: AUTO (automatyczna regulacja bypass), WINTER (bypass wyłączony) lub SUMMER (bypass włączony).",
+      "description_en": "OXEN unit operating mode: AUTO (automatic bypass control), WINTER (bypass off) or SUMMER (bypass on)."
     },
     {
       "offset": 6,
       "name": "TempRef",
       "min": 50,
       "max": 450,
-      "unit": "°C×0.1"
+      "unit": "°C×0.1",
+      "description": "Temperatura zadana centrali OXEN (x0,1 degC). Sterownik dąży do utrzymania tej temperatury w trybie automatycznym.",
+      "description_en": "OXEN unit temperature setpoint (x0.1 degC). The controller maintains this temperature in automatic mode."
     },
     {
       "offset": 7,
       "name": "TLeadVal",
       "min": -500,
       "max": 1500,
-      "unit": "°C×0.1"
+      "unit": "°C×0.1",
+      "description": "Wartość temperatury wiodącej podawana przez BMS przez Modbus (x0,1 degC). Aktywna gdy TLeadSensorSelect = TSL_TLEAD.",
+      "description_en": "Lead temperature value provided by BMS via Modbus (x0.1 degC). Active when TLeadSensorSelect = TSL_TLEAD."
     },
     {
       "offset": 12,
@@ -177,7 +185,9 @@
         "1": "T_LEAD — value via Modbus (TLeadVal)",
         "2": "TSL_T3 — T3 sensor (DRV connector)",
         "3": "TSL_T4 — T4 sensor (DRV connector)"
-      }
+      },
+      "description": "Wybór źródła temperatury wiodącej używanej przez algorytm sterowania.",
+      "description_en": "Selection of the lead temperature source used by the control algorithm."
     }
   ],
   "holding_registers_group": [
@@ -211,14 +221,18 @@
         "0": "OXEN_MD_AUTO — automatic (automatic bypass control)",
         "1": "OXEN_MD_WINTER — winter mode (bypass off)",
         "2": "OXEN_MD_SUMMER — summer mode (bypass on)"
-      }
+      },
+      "description": "Tryb pracy centrali OXEN: AUTO (automatyczna regulacja bypass), WINTER (bypass wyłączony) lub SUMMER (bypass włączony).",
+      "description_en": "OXEN unit operating mode: AUTO (automatic bypass control), WINTER (bypass off) or SUMMER (bypass on)."
     },
     {
       "offset": 6,
       "name": "TempRef",
       "min": 50,
       "max": 450,
-      "unit": "°C×0.1"
+      "unit": "°C×0.1",
+      "description": "Temperatura zadana centrali OXEN (x0,1 degC). Sterownik dąży do utrzymania tej temperatury w trybie automatycznym.",
+      "description_en": "OXEN unit temperature setpoint (x0.1 degC). The controller maintains this temperature in automatic mode."
     }
   ],
   "description_en": "OXEN heat recovery unit"

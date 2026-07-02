@@ -149,7 +149,9 @@
         "3": "WM_HEAT — heating mode",
         "4": "WM_VENT — ventilation",
         "5": "WM_RAW — raw mode"
-      }
+      },
+      "description": "Tryb pracy urządzenia — sterowany przez BMS. Dostępne tryby zależą od typu urządzenia.",
+      "description_en": "Device operating mode — controlled by BMS. Available modes depend on device type."
     },
     {
       "offset": 5,
@@ -161,14 +163,18 @@
       "values_en": {
         "1": "WM_ON — enabled",
         "2": "WM_OFF — disabled"
-      }
+      },
+      "description": "Włączenie/wyłączenie ochrony przeciwzamrożeniowej pomieszczenia. Gdy aktywna, urządzenie utrzymuje temperaturę powyżej progu AntifreezeWareHouseTempRef.",
+      "description_en": "Enable/disable warehouse antifreeze protection. When active, the device maintains temperature above the AntifreezeWareHouseTempRef threshold."
     },
     {
       "offset": 6,
       "name": "AntifreezeWareHouseTempRef",
       "min": 50,
       "max": 150,
-      "unit": "°C×0.1"
+      "unit": "°C×0.1",
+      "description": "Temperatura progowa ochrony przeciwzamrożeniowej pomieszczenia (x0,1 degC). Poniżej tej wartości aktywuje się grzanie zabezpieczające.",
+      "description_en": "Warehouse antifreeze temperature threshold (x0.1 degC). Below this value, the protective heating is activated."
     },
     {
       "offset": 7,
@@ -184,14 +190,18 @@
       "name": "Tref",
       "min": 50,
       "max": 450,
-      "unit": "°C×0.1"
+      "unit": "°C×0.1",
+      "description": "Temperatura zadana urządzenia (x0,1 degC). Sterownik dąży do utrzymania tej temperatury w trybach automatycznych.",
+      "description_en": "Device temperature setpoint (x0.1 degC). The controller tries to maintain this temperature in automatic modes."
     },
     {
       "offset": 9,
       "name": "TLeadVal",
       "min": -600,
       "max": 600,
-      "unit": "°C×0.1"
+      "unit": "°C×0.1",
+      "description": "Wartość temperatury wiodącej podawana przez BMS przez Modbus (x0,1 degC). Aktywna gdy TLeadSensorSelect = TSL_TLEAD.",
+      "description_en": "Lead temperature value provided by BMS via Modbus (x0.1 degC). Active when TLeadSensorSelect = TSL_TLEAD."
     },
     {
       "offset": 10,
@@ -205,7 +215,9 @@
         "0": "TSL_TNS — read-only",
         "1": "TSL_TLEAD — value via Modbus (TLeadVal)",
         "3": "TSL_T4 — T4 sensor (DRV connector)"
-      }
+      },
+      "description": "Wybór źródła temperatury wiodącej używanej przez algorytm sterowania.",
+      "description_en": "Selection of the lead temperature source used by the control algorithm."
     },
     {
       "offset": 11,
@@ -217,7 +229,9 @@
       "values_en": {
         "1": "DEST_MDF_OFF — destratification forcing disabled",
         "2": "DEST_MDF_ON — destratification forcing enabled"
-      }
+      },
+      "description": "Wymuszenie trybu destratyfikacji (nadpisuje ustawienie DestMode). Pozwala BMS-owi natychmiast włączyć lub wyłączyć destratyfikację.",
+      "description_en": "Destratification mode override (overrides the DestMode setting). Allows BMS to immediately enable or disable destratification."
     },
     {
       "offset": 12,
@@ -231,7 +245,9 @@
         "1": "DEST_MD_OFF — destratification disabled",
         "2": "DEST_MD_AUTO_DEPEND — AUTO dependent on operating mode",
         "3": "DEST_MD_AUTO_INDEPEND — AUTO independent"
-      }
+      },
+      "description": "Tryb pracy destratyfikacji. Definiuje czy destratyfikacja działa automatycznie (zależnie lub niezależnie od trybu pracy) czy jest wyłączona.",
+      "description_en": "Destratification operating mode. Defines whether destratification operates automatically (dependent on or independent of operating mode) or is disabled."
     },
     {
       "offset": 13,
@@ -298,7 +314,9 @@
         "3": "WM_HEAT — heating mode",
         "4": "WM_VENT — ventilation",
         "5": "WM_RAW — raw mode"
-      }
+      },
+      "description": "Tryb pracy urządzenia — sterowany przez BMS. Dostępne tryby zależą od typu urządzenia.",
+      "description_en": "Device operating mode — controlled by BMS. Available modes depend on device type."
     },
     {
       "offset": 5,
@@ -314,7 +332,9 @@
       "name": "Tref",
       "min": 50,
       "max": 450,
-      "unit": "°C×0.1"
+      "unit": "°C×0.1",
+      "description": "Temperatura zadana urządzenia (x0,1 degC). Sterownik dąży do utrzymania tej temperatury w trybach automatycznych.",
+      "description_en": "Device temperature setpoint (x0.1 degC). The controller tries to maintain this temperature in automatic modes."
     },
     {
       "offset": 7,
@@ -328,7 +348,9 @@
         "1": "DEST_MD_OFF — destratification disabled",
         "2": "DEST_MD_AUTO_DEPEND — AUTO dependent on operating mode",
         "3": "DEST_MD_AUTO_INDEPEND — AUTO independent"
-      }
+      },
+      "description": "Tryb pracy destratyfikacji. Definiuje czy destratyfikacja działa automatycznie (zależnie lub niezależnie od trybu pracy) czy jest wyłączona.",
+      "description_en": "Destratification operating mode. Defines whether destratification operates automatically (dependent on or independent of operating mode) or is disabled."
     },
     {
       "offset": 8,

@@ -85,7 +85,9 @@
         "2": "WM_AUTO_DEPEND — AUTO dependent on operating mode",
         "3": "WM_AUTO_INDEPEND — AUTO independent",
         "4": "WM_MANUAL — manual mode"
-      }
+      },
+      "description": "Tryb pracy urządzenia — sterowany przez BMS. Dostępne tryby zależą od typu urządzenia.",
+      "description_en": "Device operating mode — controlled by BMS. Available modes depend on device type."
     },
     {
       "offset": 5,
@@ -101,14 +103,18 @@
       "name": "Tref",
       "min": 50,
       "max": 450,
-      "unit": "°C×0.1"
+      "unit": "°C×0.1",
+      "description": "Temperatura zadana urządzenia (x0,1 degC). Sterownik dąży do utrzymania tej temperatury w trybach automatycznych.",
+      "description_en": "Device temperature setpoint (x0.1 degC). The controller tries to maintain this temperature in automatic modes."
     },
     {
       "offset": 7,
       "name": "TLeadVal",
       "min": -600,
       "max": 600,
-      "unit": "°C×0.1"
+      "unit": "°C×0.1",
+      "description": "Wartość temperatury wiodącej podawana przez BMS przez Modbus (x0,1 degC). Aktywna gdy TLeadSensorSelect = TSL_TLEAD.",
+      "description_en": "Lead temperature value provided by BMS via Modbus (x0.1 degC). Active when TLeadSensorSelect = TSL_TLEAD."
     },
     {
       "offset": 8,
@@ -120,7 +126,9 @@
       "values_en": {
         "1": "TSL_TLEAD — value via Modbus (TLeadVal)",
         "3": "TSL_T4 — T4 sensor (DRV connector)"
-      }
+      },
+      "description": "Wybór źródła temperatury wiodącej używanej przez algorytm sterowania.",
+      "description_en": "Selection of the lead temperature source used by the control algorithm."
     },
     {
       "offset": 10,
@@ -156,7 +164,9 @@
         "2": "WM_AUTO_DEPEND — AUTO dependent on operating mode",
         "3": "WM_AUTO_INDEPEND — AUTO independent",
         "4": "WM_MANUAL — manual mode"
-      }
+      },
+      "description": "Tryb pracy urządzenia — sterowany przez BMS. Dostępne tryby zależą od typu urządzenia.",
+      "description_en": "Device operating mode — controlled by BMS. Available modes depend on device type."
     },
     {
       "offset": 5,

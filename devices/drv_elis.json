@@ -153,7 +153,9 @@
         "1": "WM_OFF — device off",
         "2": "WM_HEAT — heating mode",
         "3": "WM_VENT — wentylacja"
-      }
+      },
+      "description": "Tryb pracy urządzenia — sterowany przez BMS. Dostępne tryby zależą od typu urządzenia.",
+      "description_en": "Device operating mode — controlled by BMS. Available modes depend on device type."
     },
     {
       "offset": 5,
@@ -176,7 +178,9 @@
         "0": "HEAT_NS — read-only",
         "1": "HEAT_ON — heating on",
         "2": "HEAT_OFF — heating off"
-      }
+      },
+      "description": "Sterowanie grzaniem kurtyny powietrznej — włącz/wyłącz/tylko odczyt. Definiuje stan nagrzewnicy kurtyny.",
+      "description_en": "Air curtain heating control — on/off/read-only. Defines the curtain heater state."
     },
     {
       "offset": 7,
@@ -199,21 +203,27 @@
         "0": "HEAT_NS — read-only",
         "1": "HEAT_ON — heating on",
         "2": "HEAT_OFF — heating off"
-      }
+      },
+      "description": "Sterowanie grzaniem nagrzewnicy jednostki — włącz/wyłącz/tylko odczyt. Definiuje stan nagrzewnicy głównej.",
+      "description_en": "Unit heater heating control — on/off/read-only. Defines the main heater state."
     },
     {
       "offset": 10,
       "name": "Tref",
       "min": 50,
       "max": 450,
-      "unit": "°C×0.1"
+      "unit": "°C×0.1",
+      "description": "Temperatura zadana urządzenia (x0,1 degC). Sterownik dąży do utrzymania tej temperatury w trybach automatycznych.",
+      "description_en": "Device temperature setpoint (x0.1 degC). The controller tries to maintain this temperature in automatic modes."
     },
     {
       "offset": 11,
       "name": "TLeadVal",
       "min": -600,
       "max": 600,
-      "unit": "°C×0.1"
+      "unit": "°C×0.1",
+      "description": "Wartość temperatury wiodącej podawana przez BMS przez Modbus (x0,1 degC). Aktywna gdy TLeadSensorSelect = TSL_TLEAD.",
+      "description_en": "Lead temperature value provided by BMS via Modbus (x0.1 degC). Active when TLeadSensorSelect = TSL_TLEAD."
     },
     {
       "offset": 12,
@@ -225,7 +235,9 @@
       "values_en": {
         "1": "TSL_TLEAD — value via Modbus (TLeadVal)",
         "3": "TSL_T4 — T4 sensor (DRV connector)"
-      }
+      },
+      "description": "Wybór źródła temperatury wiodącej używanej przez algorytm sterowania.",
+      "description_en": "Selection of the lead temperature source used by the control algorithm."
     },
     {
       "offset": 13,
@@ -239,7 +251,9 @@
         "0": "CURT_PRG_NS — no override",
         "1": "CURT_PRG_K1 — force SW3 to K1",
         "2": "CURT_PRG_K2 — force SW3 to K2"
-      }
+      },
+      "description": "Program pracy kurtyny — wybór wymuszonego stanu przełącznika SW3 (K1 / K2 / brak wymuszenia).",
+      "description_en": "Curtain operating program — selects the forced state of switch SW3 (K1 / K2 / no override)."
     },
     {
       "offset": 14,
@@ -287,14 +301,18 @@
       "values_en": {
         "1": "WM_ON — enabled",
         "2": "WM_OFF — disabled"
-      }
+      },
+      "description": "Włączenie/wyłączenie ochrony przeciwzamrożeniowej pomieszczenia. Gdy aktywna, urządzenie utrzymuje temperaturę powyżej progu AntifreezeWareHouseTempRef.",
+      "description_en": "Enable/disable warehouse antifreeze protection. When active, the device maintains temperature above the AntifreezeWareHouseTempRef threshold."
     },
     {
       "offset": 19,
       "name": "AntifreezeWareHouseTempRef",
       "min": 50,
       "max": 150,
-      "unit": "°C×0.1"
+      "unit": "°C×0.1",
+      "description": "Temperatura progowa ochrony przeciwzamrożeniowej pomieszczenia (x0,1 degC). Poniżej tej wartości aktywuje się grzanie zabezpieczające.",
+      "description_en": "Warehouse antifreeze temperature threshold (x0.1 degC). Below this value, the protective heating is activated."
     }
   ],
   "holding_registers_group": [
@@ -312,7 +330,9 @@
         "1": "WM_OFF — device off",
         "2": "WM_HEAT — heating mode",
         "3": "WM_VENT — wentylacja"
-      }
+      },
+      "description": "Tryb pracy urządzenia — sterowany przez BMS. Dostępne tryby zależą od typu urządzenia.",
+      "description_en": "Device operating mode — controlled by BMS. Available modes depend on device type."
     },
     {
       "offset": 5,
@@ -335,7 +355,9 @@
         "0": "HEAT_NS — read-only",
         "1": "HEAT_ON — heating on",
         "2": "HEAT_OFF — heating off"
-      }
+      },
+      "description": "Sterowanie grzaniem kurtyny powietrznej — włącz/wyłącz/tylko odczyt. Definiuje stan nagrzewnicy kurtyny.",
+      "description_en": "Air curtain heating control — on/off/read-only. Defines the curtain heater state."
     },
     {
       "offset": 7,
@@ -347,7 +369,9 @@
       "values_en": {
         "1": "DOOR_OPEN — door open",
         "2": "DOOR_CLOSE — door closed"
-      }
+      },
+      "description": "Stan styku drzwiowego kurtyny powietrznej. Definiuje czy drzwi są otwarte czy zamknięte.",
+      "description_en": "Air curtain door contact state. Defines whether the door is open or closed."
     },
     {
       "offset": 8,
@@ -361,7 +385,9 @@
         "0": "CURT_PRG_NS — no override",
         "1": "CURT_PRG_K1 — force SW3 to K1",
         "2": "CURT_PRG_K2 — force SW3 to K2"
-      }
+      },
+      "description": "Program pracy kurtyny — wybór wymuszonego stanu przełącznika SW3 (K1 / K2 / brak wymuszenia).",
+      "description_en": "Curtain operating program — selects the forced state of switch SW3 (K1 / K2 / no override)."
     },
     {
       "offset": 9,
