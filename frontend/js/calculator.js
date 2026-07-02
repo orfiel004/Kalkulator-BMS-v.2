@@ -770,4 +770,131 @@ const Calculator = {
     }, // koniec devices
 
   }, // koniec MBOX
+
+  // ---- HMI Wi-Fi AC — termostat FCU Series (Modbus RTU) ----
+
+  HMI_WIFI_AC: {
+    regs: [
+      { addr: 0,  rw: 'R/W', name: 'OnOffFlag',
+        description:    'Włączenie/wyłączenie termostatu.',
+        description_en: 'Thermostat on/off.',
+        values:    { '0': 'OFF — wyłączony', '1': 'ON — włączony' },
+        values_en: { '0': 'OFF — off',       '1': 'ON — on' } },
+
+      { addr: 1,  rw: 'RO',  name: 'RoomTempMeasurement',
+        description:    'Pomiar temperatury pomieszczenia (×0,1 °C). Np. 215 = 21,5 °C.',
+        description_en: 'Room temperature measurement (×0.1 °C). E.g. 215 = 21.5 °C.',
+        min: 0, max: 500, unit: '×0.1 °C' },
+
+      { addr: 2,  rw: 'R/W', name: 'SetTemperature',
+        description:    'Nastawa temperatury setpoint (×0,1 °C). Np. 210 = 21,0 °C.',
+        description_en: 'Temperature setpoint (×0.1 °C). E.g. 210 = 21.0 °C.',
+        min: 50, max: 350, unit: '×0.1 °C' },
+
+      { addr: 3,  rw: 'R/W', name: 'TemperatureCalibration',
+        description:    'Kalibracja czujnika temperatury (×0,1 °C). Wartość dodatnia przesuwa pomiar w górę.',
+        description_en: 'Temperature sensor calibration (×0.1 °C). Positive value shifts reading up.',
+        min: -90, max: 90, unit: '×0.1 °C' },
+
+      { addr: 4,  rw: 'R/W', name: 'WorkingMode',
+        description:    'Tryb pracy termostatu.',
+        description_en: 'Thermostat operating mode.',
+        values:    { '0': 'Chłodzenie (Cooling)', '1': 'Grzanie (Heating)', '2': 'Wentylacja (Ventilation)' },
+        values_en: { '0': 'Cooling',              '1': 'Heating',           '2': 'Ventilation' } },
+
+      { addr: 5,  rw: 'R/W', name: 'SensorSelection',
+        description:    'Wybór czujnika temperatury — wewnętrzny lub zewnętrzny NTC.',
+        description_en: 'Temperature sensor selection — internal or external NTC.',
+        values:    { '0': 'Wewnętrzny (Internal)', '1': 'Zewnętrzny (External / NTC)' },
+        values_en: { '0': 'Internal',              '1': 'External / NTC' } },
+
+      { addr: 6,  rw: 'RO',  name: 'OutputStatusFan',
+        description:    'Aktualny bieg wentylatora — status wyjścia.',
+        description_en: 'Current fan speed — output status.',
+        values:    { '0': 'Fan OFF — wentylator wyłączony', '1': 'Low — bieg niski', '2': 'Medium — bieg średni', '3': 'High — bieg wysoki' },
+        values_en: { '0': 'Fan OFF',                        '1': 'Low',              '2': 'Medium',               '3': 'High' } },
+
+      { addr: 7,  rw: 'R/W', name: 'ButtonLock',
+        description:    'Blokada przycisków (Child Lock). Opcjonalne — 0 jeśli funkcja niedostępna.',
+        description_en: 'Button lock (Child Lock). Optional — 0 if function unavailable.',
+        values:    { '0': 'Odblokowane', '1': 'Zablokowane' },
+        values_en: { '0': 'Unlocked',    '1': 'Locked' } },
+
+      { addr: 8,  rw: 'R/W', name: 'AntifreezeEnable',
+        description:    'Włączenie funkcji przeciwzamrożeniowej.',
+        description_en: 'Enable antifreeze function.',
+        values:    { '0': 'Nieaktywna (Disable)', '1': 'Aktywna (Enable)' },
+        values_en: { '0': 'Disabled',             '1': 'Enabled' } },
+
+      { addr: 9,  rw: 'R/W', name: 'AntifreezeTemperature',
+        description:    'Nastawa temperatury przeciwzamrożeniowej (×0,1 °C). Domyślnie: 80 = 8,0 °C.',
+        description_en: 'Antifreeze temperature setpoint (×0.1 °C). Default: 80 = 8.0 °C.',
+        min: 50, max: 100, unit: '×0.1 °C' },
+
+      { addr: 10, rw: 'R/W', name: 'TimeSettingHour',
+        description:    'Ustawienie czasu — godzina (format BCD, 00–23).',
+        description_en: 'Time setting — hour (BCD format, 00–23).',
+        min: 0, max: 23, unit: 'BCD' },
+
+      { addr: 11, rw: 'R/W', name: 'TimeSettingMinute',
+        description:    'Ustawienie czasu — minuta (format BCD, 00–59).',
+        description_en: 'Time setting — minute (BCD format, 00–59).',
+        min: 0, max: 59, unit: 'BCD' },
+
+      { addr: 12, rw: 'R/W', name: 'TimeSettingWeekday',
+        description:    'Ustawienie dnia tygodnia (format BCD). 01 = Poniedziałek, 07 = Niedziela.',
+        description_en: 'Weekday setting (BCD format). 01 = Monday, 07 = Sunday.',
+        min: 1, max: 7, unit: 'BCD' },
+
+      { addr: 13, rw: 'R/W', name: 'C1C2',
+        description:    'Tryb funkcji C1/C2 — termostatyczny lub ciągły.',
+        description_en: 'C1/C2 function mode — thermostat or continuous.',
+        values:    { '0': 'C1 — tryb termostatyczny', '1': 'C2 — tryb ciągły' },
+        values_en: { '0': 'C1 — thermostat mode',     '1': 'C2 — continuous mode' } },
+
+      { addr: 14, rw: 'R/W', name: 'FanSpeedSetting',
+        description:    'Zadany bieg wentylatora.',
+        description_en: 'Fan speed setpoint.',
+        values:    { '0': 'Auto', '1': 'Low — bieg niski', '2': 'Medium — bieg średni', '3': 'High — bieg wysoki' },
+        values_en: { '0': 'Auto', '1': 'Low',              '2': 'Medium',               '3': 'High' } },
+
+      { addr: 15, rw: 'R/W', name: 'OperationMode',
+        description:    'Tryb sterowania termostatem.',
+        description_en: 'Thermostat control mode.',
+        values:    { '0': 'Ręczny (Manual)',   '1': 'Automatyczny (Auto)', '2': 'Chwilowo ręczny (Temporary Manual)' },
+        values_en: { '0': 'Manual',            '1': 'Auto',                '2': 'Temporary Manual' } },
+
+      { addr: 16, rw: 'R/W', name: 'DryContactEnable',
+        description:    'Aktywacja wejścia bezpotencjałowego (suchego styku).',
+        description_en: 'Enable dry contact input.',
+        values:    { '0': 'Wyłączona (Disable)', '1': 'Włączona (Enable)' },
+        values_en: { '0': 'Disabled',            '1': 'Enabled' } },
+
+      { addr: 17, rw: 'R/W', name: 'DryContactSetting',
+        description:    'Typ styku bezpotencjałowego — normalnie zamknięty lub otwarty.',
+        description_en: 'Dry contact type — normally closed or open.',
+        values:    { '0': 'NC — normalnie zamknięty', '1': 'NO — normalnie otwarty' },
+        values_en: { '0': 'NC — normally closed',     '1': 'NO — normally open' } },
+
+      { addr: 18, rw: 'RO',  name: 'OutputStatusValve',
+        description:    'Aktualny status wyjścia zaworu.',
+        description_en: 'Current valve output status.',
+        values:    { '0': 'Valve OFF — zawór zamknięty', '1': 'Valve ON — zawór otwarty' },
+        values_en: { '0': 'Valve OFF',                   '1': 'Valve ON' } },
+
+      { addr: 19, rw: 'RO',  name: 'DryContactInput',
+        description:    'Status wejścia bezpotencjałowego (suchego styku).',
+        description_en: 'Dry contact input status.',
+        values:    { '0': 'Nieaktywne (Inactive)', '1': 'Aktywne (Active)' },
+        values_en: { '0': 'Inactive',              '1': 'Active' } },
+
+      { addr: 21, rw: 'RO',  name: 'ModbusVersion',
+        description:    'Wersja protokołu Modbus (format HEX/UINT).',
+        description_en: 'Modbus protocol version (HEX/UINT format).' },
+
+      { addr: 22, rw: 'RO',  name: 'FirmwareVersion',
+        description:    'Wersja oprogramowania termostatu (format HEX/UINT).',
+        description_en: 'Thermostat firmware version (HEX/UINT format).' },
+    ],
+  },
 };

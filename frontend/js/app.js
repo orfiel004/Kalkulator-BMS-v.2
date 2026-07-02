@@ -54,9 +54,10 @@ function updateFormForControllerType() {
   const val = document.getElementById('controllerType').value;
   const isTboxZone = val === 'tbox_zone';
   const isMbox     = val === 'mbox';
+  const isHmiWifi  = val === 'hmi_wifi_ac';
 
   // Tryb pracy — widoczny tylko dla T-box klasycznego
-  document.getElementById('mode-field').style.display = (isTboxZone || isMbox) ? 'none' : '';
+  document.getElementById('mode-field').style.display = (isTboxZone || isMbox || isHmiWifi) ? 'none' : '';
 
   // Nagłówki ZoneID/DeviceID — tylko T-box Zone
   document.querySelectorAll('.zone-header-row').forEach(el => {
@@ -69,21 +70,25 @@ function updateFormForControllerType() {
   });
 
   // Sekcja urządzeń T-box
-  document.getElementById('devices-container').style.display = isMbox ? 'none' : '';
+  document.getElementById('devices-container').style.display = (isMbox || isHmiWifi) ? 'none' : '';
 
   // Kontener urządzeń M-box (dynamiczne wiersze)
   const mboxContainer = document.getElementById('mbox-devices-container');
   if (mboxContainer) mboxContainer.style.display = isMbox ? 'block' : 'none';
 
   // Przyciski formularza T-box
-  document.getElementById('tbox-actions').style.display = isMbox ? 'none' : '';
+  document.getElementById('tbox-actions').style.display = (isMbox || isHmiWifi) ? 'none' : '';
 
   // Przyciski formularza M-box
   const mboxActions = document.getElementById('mbox-actions');
   if (mboxActions) mboxActions.style.display = isMbox ? 'flex' : 'none';
 
-  // Przebuduj opcje w selektach urządzeń T-box (tylko gdy nie M-box)
-  if (!isMbox) {
+  // Przyciski formularza HMI Wi-Fi AC
+  const hmiActions = document.getElementById('hmi-actions');
+  if (hmiActions) hmiActions.style.display = isHmiWifi ? 'flex' : 'none';
+
+  // Przebuduj opcje w selektach urządzeń T-box (tylko gdy nie M-box i nie HMI)
+  if (!isMbox && !isHmiWifi) {
     const names = Object.keys(devices)
       .filter(name => isTboxZone || !devices[name].tbox_zone_only)
       .sort();
@@ -266,10 +271,16 @@ function validateForm() {
 // ============================================================
 function calculate() {
   hideError();
+  const controllerType = document.getElementById('controllerType').value;
+
+  // HMI Wi-Fi AC — nie potrzebuje urządzeń ani trybu
+  if (controllerType === 'hmi_wifi_ac') {
+    showHmiWifiAcResults();
+    return;
+  }
+
   const err = validateForm();
   if (err) { showError(err); return; }
-
-  const controllerType = document.getElementById('controllerType').value;
   const isTboxZone = controllerType === 'tbox_zone';
 
   const selectedDevices = [];
@@ -298,6 +309,39 @@ function calculate() {
     resultsEl.appendChild(modeInfo);
     renderTbox(resultsEl, selectedDevices, mode);
   }
+
+  document.getElementById('results').style.display = 'block';
+  document.querySelector('.form-section').style.display = 'none';
+  document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ============================================================
+// Render: HMI Wi-Fi AC
+// ============================================================
+function showHmiWifiAcResults() {
+  const resultsEl = document.getElementById('results-content');
+  resultsEl.innerHTML = '';
+
+  const block = document.createElement('div');
+  block.className = 'result-block controller-block';
+
+  const header = document.createElement('div');
+  header.className = 'result-block-header controller-block-header';
+  header.innerHTML = '<h3>HMI Wi-Fi AC</h3><span class="badge">Modbus RTU — FC03 / FC06</span>';
+  block.appendChild(header);
+
+  const roRows = Calculator.HMI_WIFI_AC.regs
+    .filter(r => r.rw === 'RO')
+    .map(r => ({ addrDec: r.addr, addrHex: Calculator.toHex(r.addr), name: r.name, reg: r }));
+
+  const rwRows = Calculator.HMI_WIFI_AC.regs
+    .filter(r => r.rw === 'R/W')
+    .map(r => ({ addrDec: r.addr, addrHex: Calculator.toHex(r.addr), name: r.name, reg: r }));
+
+  if (roRows.length > 0) block.appendChild(buildRegSection(t('section.ir'), roRows));
+  if (rwRows.length > 0) block.appendChild(buildRegSection(t('section.hr_rw'), rwRows));
+
+  resultsEl.appendChild(block);
 
   document.getElementById('results').style.display = 'block';
   document.querySelector('.form-section').style.display = 'none';
@@ -792,6 +836,7 @@ document.getElementById('btn-calculate').addEventListener('click', calculate);
 document.getElementById('btn-reset').addEventListener('click', resetForm);
 document.getElementById('btn-mbox-calculate').addEventListener('click', calculateMbox);
 document.getElementById('btn-add-mbox-device').addEventListener('click', addMboxDeviceRow);
+document.getElementById('btn-hmi-calculate').addEventListener('click', calculate);
 document.getElementById('btn-lang').addEventListener('change', (e) => {
   setLang(e.target.value);
   applyStaticTranslations();
