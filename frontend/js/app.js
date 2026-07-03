@@ -24,8 +24,9 @@ function applyStaticTranslations() {
   });
   // Tytuł strony
   document.title = t('page.title');
-  const btnLang = document.getElementById('btn-lang');
-  if (btnLang && btnLang.tagName === 'SELECT') btnLang.value = currentLang;
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === currentLang);
+  });
   // Atrybut lang na <html>
   document.documentElement.lang = currentLang;
 }
@@ -841,16 +842,20 @@ document.getElementById('btn-reset').addEventListener('click', resetForm);
 document.getElementById('btn-mbox-calculate').addEventListener('click', calculateMbox);
 document.getElementById('btn-add-mbox-device').addEventListener('click', addMboxDeviceRow);
 document.getElementById('btn-hmi-calculate').addEventListener('click', calculate);
-document.getElementById('btn-lang').addEventListener('change', (e) => {
-  setLang(e.target.value);
-  applyStaticTranslations();
-  // Jeśli wyniki są widoczne — przelicz ponownie (re-render z nowym językiem)
-  const resultsSection = document.getElementById('results');
-  if (resultsSection && resultsSection.style.display !== 'none') {
-    const ctrl = document.getElementById('controllerType').value;
-    if (ctrl === 'mbox') calculateMbox();
-    else calculate();
-  }
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    setLang(btn.dataset.lang);
+    applyStaticTranslations();
+    // Jeśli wyniki są widoczne — przelicz ponownie (re-render z nowym językiem)
+    const resultsSection = document.getElementById('results');
+    if (resultsSection && resultsSection.style.display !== 'none') {
+      const ctrl = document.getElementById('controllerType').value;
+      if (ctrl === 'mbox') calculateMbox();
+      else calculate();
+    }
+  });
 });
 
 document.getElementById('btn-print').addEventListener('click', () => {

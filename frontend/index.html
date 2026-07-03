@@ -4,17 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kalkulator BMS — Rejestry Modbus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <header>
-  <h1 data-i18n="page.h1">Kalkulator BMS</h1>
-  <p data-i18n="page.subtitle">Obliczanie adresów rejestrów Modbus dla urządzeń podłączonych do sterowników SYSTEMU FLOWAIR</p>
-  <select id="btn-lang" class="btn-lang">
-    <option value="pl">PL</option>
-    <option value="en">EN</option>
-  </select>
+  <div class="header-logo-area">
+    <div class="flowair-logo">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="18" cy="18" r="3.5" fill="#b01a17"/>
+        <path d="M18 14.5 C19 10, 24 8, 26 10 C24 13, 21 14, 18 14.5Z" fill="#b01a17"/>
+        <path d="M21 20 C25 21, 27 26, 25 28 C22 26, 20 23, 21 20Z" fill="#b01a17"/>
+        <path d="M15 19 C11 20, 8 17, 9 14 C12 14, 15 16, 15 19Z" fill="#b01a17"/>
+      </svg>
+      <div class="flowair-logo-text">
+        <span class="brand">FLOWAIR</span>
+        <span class="tagline">intelligent air flow</span>
+      </div>
+    </div>
+    <div class="header-title">
+      <h1 data-i18n="page.h1">Kalkulator BMS</h1>
+      <p data-i18n="page.subtitle">Rejestry Modbus — SYSTEM FLOWAIR</p>
+    </div>
+  </div>
+  <div class="lang-switcher">
+    <button class="lang-btn active" data-lang="pl">PL</button>
+    <button class="lang-btn" data-lang="en">EN</button>
+  </div>
 </header>
 
 <main>

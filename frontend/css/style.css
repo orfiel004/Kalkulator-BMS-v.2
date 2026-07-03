@@ -1,25 +1,95 @@
 /* ============================================================
-   Kalkulator BMS — Style
+   Kalkulator BMS — Style (Flowair Brand)
    ============================================================ */
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: 'Segoe UI', Arial, sans-serif;
+  font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
   font-size: 14px;
-  background: #f0f2f5;
-  color: #222;
+  background: #f2f2f2;
+  color: #000;
 }
 
 /* ---- Header ---- */
 header {
-  background: #1a2d47;
-  color: #fff;
-  padding: 16px 24px;
+  background: #fff;
+  border-bottom: 3px solid #afd2db;
+  padding: 10px 24px 8px 24px;
   position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  min-height: 58px;
 }
-header h1 { font-size: 20px; font-weight: 600; }
-header p  { font-size: 12px; color: #8da6c5; margin-top: 2px; }
+
+.header-logo-area {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.flowair-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.flowair-logo-text .brand {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #000;
+  display: block;
+}
+
+.flowair-logo-text .tagline {
+  font-size: 9px;
+  font-weight: 300;
+  color: #878787;
+  letter-spacing: 0.5px;
+  display: block;
+}
+
+.header-title {
+  border-left: 1px solid #e0e0e0;
+  padding-left: 14px;
+  margin-left: 4px;
+}
+
+header h1 { font-size: 14px; font-weight: 600; color: #000; }
+header p  { font-size: 10px; color: #878787; margin-top: 1px; font-weight: 300; }
+
+/* ---- Przełącznik języka — dwa przyciski, prawy dolny róg ---- */
+.lang-switcher {
+  position: absolute;
+  bottom: 8px;
+  right: 24px;
+  display: flex;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.lang-btn {
+  background: #fff;
+  color: #000;
+  border: none;
+  border-right: 1px solid #aaa;
+  padding: 2px 7px;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  line-height: 1.6;
+}
+
+.lang-btn:last-child { border-right: none; }
+
+.lang-btn.active {
+  background: #afd2db;
+  color: #000;
+}
 
 /* ---- Main layout ---- */
 main {
@@ -31,8 +101,8 @@ main {
 /* ---- Form section ---- */
 .form-section {
   background: #fff;
-  border: 1px solid #dde2ea;
-  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  border-radius: 0;
   padding: 20px;
   margin-bottom: 20px;
 }
@@ -55,24 +125,26 @@ main {
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
-  color: #667;
+  color: #878787;
   letter-spacing: 0.5px;
 }
 
 select, input[type="number"] {
   padding: 6px 10px;
-  border: 1px solid #ccd2da;
+  border: 1px solid #aaa;
   border-radius: 4px;
   font-size: 13px;
   background: #fff;
-  color: #222;
+  color: #000;
   min-width: 160px;
+  font-family: inherit;
+  outline: none;
 }
 
 select:focus, input[type="number"]:focus {
+  border-color: #000;
   outline: none;
-  border-color: #3a7bd5;
-  box-shadow: 0 0 0 2px rgba(58,123,213,0.15);
+  box-shadow: none;
 }
 
 .radio-group {
@@ -86,7 +158,7 @@ select:focus, input[type="number"]:focus {
   text-transform: none;
   letter-spacing: 0;
   cursor: pointer;
-  color: #222;
+  color: #000;
   display: flex;
   align-items: center;
   gap: 5px;
@@ -139,9 +211,11 @@ select:focus, input[type="number"]:focus {
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
-  color: #667;
+  color: #878787;
   letter-spacing: 0.5px;
   margin-bottom: 8px;
+  border-left: 3px solid #afd2db;
+  padding-left: 8px;
 }
 
 .device-row {
@@ -152,27 +226,31 @@ select:focus, input[type="number"]:focus {
   flex-wrap: wrap;
 }
 
-.device-row select { min-width: 200px; }
+.device-row select {
+  min-width: 160px;
+  width: auto;
+}
 
-.device-row input[type="number"] { width: 80px; min-width: unset; }
+.device-row input[type="number"] { width: 70px; min-width: unset; }
 
 .device-row label {
   font-size: 12px;
-  color: #667;
+  color: #878787;
   white-space: nowrap;
 }
 
 .btn-remove {
-  background: none;
-  border: 1px solid #e0e0e0;
+  background: #fff5f5;
+  border: 1px solid #e8b0b0;
   border-radius: 4px;
-  color: #c00;
+  color: #c00000;
   cursor: pointer;
   padding: 4px 10px;
   font-size: 16px;
   line-height: 1;
+  font-family: inherit;
 }
-.btn-remove:hover { background: #fff0f0; }
+.btn-remove:hover { background: #ffe0e0; }
 
 /* ---- Form actions ---- */
 .form-actions {
@@ -185,26 +263,28 @@ select:focus, input[type="number"]:focus {
 button {
   padding: 8px 18px;
   border-radius: 4px;
-  border: 1px solid #ccd2da;
+  border: 1px solid #aaa;
   cursor: pointer;
   font-size: 13px;
-  background: #fff;
-  color: #333;
+  background: #f2f2f2;
+  color: #444;
   white-space: nowrap;
+  font-family: inherit;
 }
-button:hover { background: #f5f7fa; }
+button:hover { background: #e8e8e8; }
 
 .btn-primary {
-  background: #2563eb;
-  color: #fff;
-  border-color: #2563eb;
+  background: #afd2db;
+  color: #000;
+  border-color: #8dbdc8;
   font-weight: 600;
 }
-.btn-primary:hover { background: #1d4ed8; }
+.btn-primary:hover { background: #9dc4ce; }
 
 .btn-secondary {
-  background: #f0f2f5;
-  border-color: #ccd2da;
+  background: #f2f2f2;
+  border-color: #aaa;
+  color: #444;
 }
 
 /* ---- Form error ---- */
@@ -225,7 +305,13 @@ button:hover { background: #f5f7fa; }
   align-items: center;
   margin-bottom: 16px;
 }
-.results-header h2 { font-size: 16px; color: #1a2d47; }
+.results-header h2 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+  border-left: 4px solid #afd2db;
+  padding-left: 10px;
+}
 .results-actions-right {
   display: flex;
   gap: 6px;
@@ -234,26 +320,30 @@ button:hover { background: #f5f7fa; }
 /* ---- Device result block ---- */
 .result-block {
   background: #fff;
-  border: 1px solid #dde2ea;
-  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  border-left: 4px solid #afd2db;
+  border-radius: 0;
   margin-bottom: 16px;
   overflow: hidden;
 }
 
 .result-block-header {
-  background: #1a2d47;
-  color: #fff;
+  background: #f2f2f2;
+  color: #000;
   padding: 10px 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid #e0e0e0;
 }
-.result-block-header h3 { font-size: 14px; font-weight: 600; }
+.result-block-header h3 { font-size: 13px; font-weight: 600; color: #000; }
 .result-block-header .badge {
-  font-size: 11px;
-  background: rgba(255,255,255,0.15);
-  padding: 2px 8px;
+  font-size: 10px;
+  background: #e4eef1;
+  color: #3a7a8a;
+  padding: 3px 10px;
   border-radius: 10px;
+  font-weight: 600;
 }
 
 /* ---- Sub-section (IR / HR) ---- */
@@ -264,10 +354,22 @@ button:hover { background: #f5f7fa; }
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.6px;
-  color: #3a7bd5;
+  color: #878787;
   margin-bottom: 6px;
   padding-bottom: 4px;
-  border-bottom: 2px solid #e8edf5;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.reg-section-title::before {
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 12px;
+  background: #afd2db;
+  flex-shrink: 0;
 }
 
 /* ---- Register table ---- */
@@ -288,38 +390,39 @@ button:hover { background: #f5f7fa; }
 .reg-table th:nth-child(3),
 .reg-table td:nth-child(3) { width: 100px; }
 
-/* Kolumna 4 (Nazwa rejestru) zajmuje pozostałe miejsce */
-
 .reg-table th {
-  background: #f5f7fa;
+  background: #f2f2f2;
   padding: 6px 10px;
   text-align: left;
   font-weight: 600;
-  color: #445;
-  border-bottom: 2px solid #dde2ea;
+  color: #878787;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   white-space: nowrap;
   overflow: hidden;
 }
 
 .reg-table td {
   padding: 5px 10px;
-  border-bottom: 1px solid #eef0f4;
+  border-bottom: 1px solid #f0f0f0;
   vertical-align: top;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .reg-table tr:last-child td { border-bottom: none; }
-.reg-table tr:hover td { background: #f8fafd; }
+.reg-table tr:hover td { background: #fafafa; }
 
-.addr-hex { font-family: 'Consolas', monospace; color: #1a5eb8; font-weight: 600; }
-.addr-dec { font-family: 'Consolas', monospace; color: #555; }
-.reg-name { font-weight: 600; color: #1a2d47; }
+.addr-hex { font-family: 'Consolas', monospace; color: #878787; font-weight: 600; }
+.addr-dec { font-family: 'Consolas', monospace; color: #878787; }
+.reg-name { font-weight: 600; color: #000; }
 
 /* ---- Values display ---- */
 .values-list { display: flex; flex-direction: column; gap: 1px; }
 .val-item { color: #445; }
-.val-item b { color: #2563eb; margin-right: 3px; }
+.val-item b { color: #000; margin-right: 3px; }
 .range-info { color: #556; }
 .val-desc { color: #888; font-style: italic; font-size: 11px; margin-top: 2px; }
 
@@ -332,8 +435,8 @@ button:hover { background: #f5f7fa; }
   font-weight: 600;
   margin-left: 6px;
 }
-.mode-single { background: #e8f0fe; color: #2563eb; }
-.mode-group  { background: #fef3e8; color: #c87020; }
+.mode-single { background: #e4eef1; color: #3a7a8a; }
+.mode-group  { background: #ede8e2; color: #7a6a55; }
 
 /* ---- Empty state ---- */
 .empty-note {
@@ -347,7 +450,7 @@ button:hover { background: #f5f7fa; }
 .loading {
   text-align: center;
   padding: 40px;
-  color: #667;
+  color: #878787;
 }
 
 /* ---- Sekcja rejestrów sterownika ---- */
@@ -356,38 +459,57 @@ button:hover { background: #f5f7fa; }
 }
 
 .btn-controller-toggle {
-  background: #f0f4fa;
-  border: 1px solid #b8c8e8;
-  color: #1a2d47;
+  background: #f2f2f2;
+  border: 1px solid #aaa;
+  color: #000;
   font-weight: 600;
   font-size: 13px;
   padding: 8px 18px;
   border-radius: 4px;
   cursor: pointer;
   margin-bottom: 8px;
+  font-family: inherit;
 }
-.btn-controller-toggle:hover { background: #dce8f8; }
+.btn-controller-toggle:hover { background: #e4eef1; }
 
 .controller-block-header {
-  background: #2d4a6e;
+  background: #f2f2f2;
 }
 
 /* ---- Sekcja rejestrów strefy ---- */
 .zone-block {
-  border-left: 4px solid #2d8a5a;
+  border-left: 4px solid #a3c1a3;
 }
 
 .zone-block-header {
-  background: #1e6640;
+  background: #dceadc;
+}
+
+.zone-block .result-block-header .badge {
+  background: #c2d9c2;
+  color: #2a5a2a;
+}
+
+.zone-block .reg-section-title::before {
+  background: #a3c1a3;
 }
 
 /* ---- Blok Holding Registers Group (T-box Group mode) ---- */
 .group-hr-block {
-  border-left: 4px solid #b06000;
+  border-left: 4px solid #d1c8ba;
 }
 
 .group-hr-header {
-  background: #7a4010;
+  background: #ede8e2;
+}
+
+.group-hr-block .result-block-header .badge {
+  background: #d1c8ba;
+  color: #5a4a35;
+}
+
+.group-hr-block .reg-section-title::before {
+  background: #d1c8ba;
 }
 
 /* ---- Pole Strefa w wierszu urządzenia ---- */
@@ -402,13 +524,13 @@ button:hover { background: #f5f7fa; }
   user-select: none;
 }
 .reg-row-expandable:hover td {
-  background: #eef4ff;
+  background: #f0f8fa;
 }
 .reg-row-open td {
-  background: #e4edff;
+  background: #e4eef1;
 }
 
-/* Dymek "Kliknij aby rozwinąć" — widoczny przy hover, znika gdy wiersz otwarty */
+/* Dymek "Kliknij aby rozwinąć" */
 .reg-table td:last-child {
   overflow: visible;
 }
@@ -439,7 +561,7 @@ button:hover { background: #f5f7fa; }
 .expand-icon {
   display: inline-block;
   font-size: 9px;
-  color: #3a7bd5;
+  color: #878787;
   margin-right: 6px;
   line-height: 1;
 }
@@ -456,56 +578,26 @@ button:hover { background: #f5f7fa; }
 }
 .reg-detail-cell {
   padding: 8px 16px 12px 36px;
-  background: #f0f5ff;
-  border-bottom: 2px solid #c8d8f0;
-  border-left: 3px solid #3a7bd5;
-}
-
-/* ---- Przełącznik języka ---- */
-.btn-lang {
-  position: absolute;
-  top: 16px;
-  right: 24px;
-  background: rgba(255,255,255,0.15);
-  border: 1px solid rgba(255,255,255,0.4);
-  color: #fff;
-  border-radius: 4px;
-  padding: 4px 6px;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  letter-spacing: 0.5px;
-  appearance: none;
-  -webkit-appearance: none;
-  width: 36px;
-  text-align: center;
-  text-align-last: center;
-}
-.btn-lang:hover, .btn-lang:focus {
-  background: rgba(255,255,255,0.25);
-  outline: none;
-}
-.btn-lang option {
-  background: #1a2d47;
-  color: #fff;
+  background: #f0f8fa;
+  border-bottom: 1px solid #d0e4e8;
+  border-left: 3px solid #afd2db;
 }
 
 /* ---- Przycisk eksportu Excel ---- */
 #btn-export-xlsx {
-  background: #f0faf4;
-  border-color: #4caf82;
-  color: #1a6b42;
+  background: #eaf5eb;
+  border-color: #8fca9a;
+  color: #1e6b37;
   font-weight: 600;
 }
-#btn-export-xlsx:hover { background: #d8f3e5; }
+#btn-export-xlsx:hover { background: #d4ecd6; }
 
 /* ============================================================
    PRINT / PDF
    ============================================================ */
 @media print {
 
-  /* Ukryj zbędne elementy UI */
-  header .btn-lang,
+  header .lang-switcher,
   #form-section,
   #btn-reset,
   #btn-print,
@@ -515,52 +607,43 @@ button:hover { background: #f5f7fa; }
     display: none !important;
   }
 
-  /* Upewnij się, że sekcja wyników jest widoczna */
   #results {
     display: block !important;
   }
 
-  /* Rozwiń wszystkie ukryte wiersze szczegółów rejestrów */
   .reg-detail-row {
     display: table-row !important;
   }
 
-  /* Ukryj ikonę rozwijania */
   .reg-expand-icon {
     display: none !important;
   }
 
-  /* Marginesy strony */
   @page {
     margin: 1.5cm 1.5cm 2cm 1.5cm;
   }
 
-  /* Unikaj łamania wewnątrz bloków wynikowych */
   .result-block {
     page-break-inside: avoid;
     break-inside: avoid;
   }
 
-  /* Unikaj łamania wewnątrz wierszy tabeli */
   tr {
     page-break-inside: avoid;
     break-inside: avoid;
   }
 
-  /* Drukuj kolory tła */
   * {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
 
-  /* Usuń cienie i zaokrąglenia */
   .result-block,
   table {
     box-shadow: none !important;
     border-radius: 0 !important;
   }
 
-  /* Tabele — pełna szerokość */
   table {
     width: 100%;
   }
