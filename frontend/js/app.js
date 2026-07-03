@@ -55,7 +55,7 @@ function updateFormForControllerType() {
   const val = document.getElementById('controllerType').value;
   const isTboxZone = val === 'tbox_zone';
   const isMbox     = val === 'mbox';
-  const isHmiWifi  = val === 'hmi_wifi_ac';
+  const isHmiWifi  = val === 'hmi_wifi_ac' || val === 'hmi_wifi_ec';
 
   // Tryb pracy — widoczny tylko dla T-box klasycznego
   document.getElementById('mode-field').style.display = (isTboxZone || isMbox || isHmiWifi) ? 'none' : '';
@@ -283,6 +283,7 @@ function calculate() {
     showHmiWifiAcResults();
     return;
   }
+  if (controllerType === 'hmi_wifi_ec') { showHmiWifiEcResults(); return; }
 
   const err = validateForm();
   if (err) { showError(err); return; }
@@ -351,6 +352,37 @@ function showHmiWifiAcResults() {
   document.getElementById('results').style.display = 'block';
   document.querySelector('.form-section').style.display = 'none';
   document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+}
+
+/**
+ * Wyświetla wyniki dla sterownika HMI Wi-Fi EC.
+ * Analogicznie do showHmiWifiAcResults() — podział na RO i R/W.
+ */
+function showHmiWifiEcResults() {
+  const resultsEl = document.getElementById('results-content');
+  resultsEl.innerHTML = '';
+
+  const roRows = HMI_WIFI_EC.regs
+    .filter(r => r.rw === 'RO')
+    .map(r => ({ addrDec: r.addr, addrHex: Calculator.toHex(r.addr), name: r.name, reg: r }));
+
+  const rwRows = HMI_WIFI_EC.regs
+    .filter(r => r.rw === 'R/W')
+    .map(r => ({ addrDec: r.addr, addrHex: Calculator.toHex(r.addr), name: r.name, reg: r }));
+
+  const wrapper = document.createElement('div');
+  wrapper.className = 'result-block';
+  wrapper.innerHTML = `
+    <div class="result-block-header">
+      <h3>HMI Wi-Fi EC</h3>
+      <span class="badge">Rejestry sterownika</span>
+    </div>`;
+  wrapper.appendChild(buildRegSection(t('section.ir'), roRows));
+  wrapper.appendChild(buildRegSection(t('section.hr_rw'), rwRows));
+  resultsEl.appendChild(wrapper);
+
+  document.getElementById('results').style.display = '';
+  document.getElementById('form-section').style.display = 'none';
 }
 
 // ============================================================

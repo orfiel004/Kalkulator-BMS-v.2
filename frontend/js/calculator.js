@@ -898,3 +898,161 @@ const Calculator = {
     ],
   },
 };
+
+// ============================================================
+// HMI Wi-Fi EC — RL309 EC ROOM THERMOSTAT
+// Źródło: RL309 EC WIFI-A3.docx, sekcja Modbus Setting
+// ============================================================
+const HMI_WIFI_EC = {
+  regs: [
+    {
+      addr: 0x0000, rw: 'R/W', name: 'OnOffFlag',
+      description: 'Stan termostatu',
+      description_en: 'Thermostat on/off state',
+      values: { 0: 'Wyłączony', 1: 'Włączony' },
+      values_en: { 0: 'Off', 1: 'On' },
+    },
+    {
+      addr: 0x0001, rw: 'RO', name: 'RoomTempMeasurement',
+      description: 'Zmierzona temperatura pokojowa (rejestr × 0.1 °C, zakres 0.0–50.0 °C)',
+      description_en: 'Measured room temperature (register × 0.1 °C, range 0.0–50.0 °C)',
+      min: 0, max: 500, unit: '×0.1°C',
+    },
+    {
+      addr: 0x0002, rw: 'R/W', name: 'SetTemperature',
+      description: 'Temperatura zadana (rejestr × 0.1 °C, zakres 5.0–40.0 °C)',
+      description_en: 'Set temperature (register × 0.1 °C, range 5.0–40.0 °C)',
+      min: 50, max: 400, unit: '×0.1°C',
+    },
+    {
+      addr: 0x0003, rw: 'R/W', name: 'TemperatureCalibration',
+      description: 'Kalibracja temperatury (00–80, zakres –9.0 do +9.0 °C)',
+      description_en: 'Temperature calibration (00–80, range –9.0 to +9.0 °C)',
+      min: 0, max: 80,
+    },
+    {
+      addr: 0x0004, rw: 'R/W', name: 'WorkingMode',
+      description: 'Tryb HVAC',
+      description_en: 'HVAC working mode',
+      values: { 0: 'Chłodzenie', 1: 'Grzanie', 2: 'Wentylacja' },
+      values_en: { 0: 'Cooling', 1: 'Heating', 2: 'Ventilation' },
+    },
+    {
+      addr: 0x0005, rw: 'R/W', name: 'SensorSelection',
+      description: 'Wybór czujnika temperatury',
+      description_en: 'Temperature sensor selection',
+      values: { 0: 'Wewnętrzny', 1: 'Zewnętrzny' },
+      values_en: { 0: 'Internal sensor', 1: 'External sensor' },
+    },
+    {
+      addr: 0x0006, rw: 'RO', name: 'OutputStatusFan',
+      description: 'Stan wyjścia wentylatora (tylko odczyt)',
+      description_en: 'Fan output status (read only)',
+      values: { 0: 'Niska prędkość', 1: 'Średnia prędkość', 2: 'Wysoka prędkość', 4: 'Wyłączony' },
+      values_en: { 0: 'Low speed', 1: 'Medium speed', 2: 'High speed', 4: 'Fan off' },
+    },
+    {
+      addr: 0x0007, rw: 'R/W', name: 'ButtonLock',
+      description: 'Blokada przycisków panelu',
+      description_en: 'Panel button lock',
+      values: { 0: 'Odblokowane', 1: 'Zablokowane' },
+      values_en: { 0: 'Unlocked', 1: 'Locked' },
+    },
+    {
+      addr: 0x0008, rw: 'R/W', name: 'AntifreezeEnable',
+      description: 'Funkcja przeciwzamrożeniowa',
+      description_en: 'Anti-freeze function',
+      values: { 0: 'Wyłączona', 1: 'Włączona' },
+      values_en: { 0: 'Disable', 1: 'Enable' },
+    },
+    {
+      addr: 0x0009, rw: 'R/W', name: 'AntifreezeTemperature',
+      description: 'Temperatura przeciwzamrożeniowa (rejestr × 0.1 °C, zakres 5.0–19.0 °C)',
+      description_en: 'Anti-freeze temperature (register × 0.1 °C, range 5.0–19.0 °C)',
+      min: 50, max: 190, unit: '×0.1°C',
+    },
+    {
+      addr: 0x000A, rw: 'R/W', name: 'TimeSettingHour',
+      description: 'Ustawienie czasu — godzina (BCD, zakres 09–23)',
+      description_en: 'Time setting — hour (BCD, range 09–23)',
+      min: 9, max: 23,
+    },
+    {
+      addr: 0x000B, rw: 'R/W', name: 'TimeSettingMinute',
+      description: 'Ustawienie czasu — minuta (BCD, zakres 00–59)',
+      description_en: 'Time setting — minute (BCD, range 00–59)',
+      min: 0, max: 59,
+    },
+    {
+      addr: 0x000C, rw: 'R/W', name: 'TimeSettingWeekday',
+      description: 'Ustawienie czasu — dzień tygodnia (BCD)',
+      description_en: 'Time setting — weekday (BCD)',
+    },
+    {
+      addr: 0x000D, rw: 'R/W', name: 'C1C2Selection',
+      description: 'Wybór obwodu wyjściowego C1/C2',
+      description_en: 'Output circuit selection C1/C2',
+      values: { 0: 'C1', 1: 'C2' },
+      values_en: { 0: 'C1', 1: 'C2' },
+    },
+    {
+      addr: 0x000E, rw: 'R/W', name: 'FanSpeedSetting',
+      description: 'Nastawienie prędkości wentylatora',
+      description_en: 'Fan speed setting',
+      values: { 1: 'Niska', 2: 'Średnia', 3: 'Wysoka', 4: 'Auto' },
+      values_en: { 1: 'Low', 2: 'Medium', 3: 'High', 4: 'Auto' },
+    },
+    {
+      addr: 0x000F, rw: 'R/W', name: 'OperationMode',
+      description: 'Tryb sterowania (tygodniowy/ręczny)',
+      description_en: 'Operation mode (weekly/manual)',
+      values: { 0: 'Auto (tygodniowy)', 1: 'Ręczny', 2: 'Chwilowo ręczny' },
+      values_en: { 0: 'Auto (weekly)', 1: 'Manual', 2: 'Temporary Manual' },
+    },
+    {
+      addr: 0x0010, rw: 'R/W', name: 'DryContactEnable',
+      description: 'Czujnik magnetyczny / suchy styk — aktywacja',
+      description_en: 'Magnetic sensor dry contact — enable',
+      values: { 0: 'Wyłączony', 1: 'Włączony' },
+      values_en: { 0: 'Disable', 1: 'Enable' },
+    },
+    {
+      addr: 0x0011, rw: 'R/W', name: 'DryContactSetting',
+      description: 'Typ styku suchego',
+      description_en: 'Dry contact type',
+      values: { 0: 'NC — normalnie zamknięty', 1: 'NO — normalnie otwarty' },
+      values_en: { 0: 'NC — Normally Close', 1: 'NO — Normally Open' },
+    },
+    {
+      addr: 0x0012, rw: 'RO', name: 'OutputStatusValve',
+      description: 'Stan wyjścia zaworu (tylko odczyt)',
+      description_en: 'Valve output status (read only)',
+      values: { 0: 'Zamknięty', 1: 'Otwarty' },
+      values_en: { 0: 'Valve off', 1: 'Valve on' },
+    },
+    {
+      addr: 0x0013, rw: 'RO', name: 'PracticalStatusOutput',
+      description: 'Faktyczny stan wyjścia (tylko odczyt)',
+      description_en: 'Practical status of output (read only)',
+      values: { 0: 'Otwarty', 1: 'Zamknięty', 2: 'Nieznany' },
+      values_en: { 0: 'Open', 1: 'Close', 2: 'Unknown/Open/Close' },
+    },
+    {
+      addr: 0x0014, rw: 'R/W', name: 'FeedbackAlarm',
+      description: 'Alarm sprzężenia zwrotnego zaworu',
+      description_en: 'Valve feedback alarm',
+      values: { 0: 'Włączony', 1: 'Wyłączony' },
+      values_en: { 0: 'Enable', 1: 'Disable' },
+    },
+    {
+      addr: 0x0015, rw: 'RO', name: 'ModbusVersion',
+      description: 'Wersja protokołu Modbus (tylko odczyt)',
+      description_en: 'Modbus protocol version (read only)',
+    },
+    {
+      addr: 0x0016, rw: 'RO', name: 'FirmwareVersion',
+      description: 'Numer części wersji Modbus (tylko odczyt)',
+      description_en: 'Part number of Modbus version (read only)',
+    },
+  ],
+};
