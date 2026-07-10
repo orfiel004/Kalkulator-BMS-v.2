@@ -706,10 +706,8 @@ button:hover { background: #e8e8e8; }
 
 .tut-body-top {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  gap: 20px;
-  align-items: flex-start;
+  flex-direction: column;
+  gap: 10px;
   margin-bottom: 6px;
 }
 
@@ -719,7 +717,7 @@ button:hover { background: #e8e8e8; }
   flex: 1;
 }
 
-.tut-diagram-wrap { flex-shrink: 0; width: 200px; }
+.tut-diagram-wrap { width: 200px; }
 
 .tut-section-title {
   font-size: 11px;
