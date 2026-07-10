@@ -88,6 +88,13 @@ const TRANSLATIONS = {
     /* Różne */
     'misc.no_regs':    'Brak rejestrów dla tego urządzenia.',
     'misc.lang_btn':   'PL',
+
+    /* Samouczek */
+    'tutorial.label':    'Co to jest?',
+    'tutorial.collapse': 'zwiń',
+    'tutorial.expand':   'rozwiń',
+    'tutorial.params':   'Parametry transmisji',
+    'tutorial.modes':    'Tryby pracy',
   },
 
   // ===========================================================
@@ -164,6 +171,13 @@ const TRANSLATIONS = {
     'error.bad_zone':       'Invalid zone number (must be 1–31).',
     'error.bad_device_id':  'Device ID must be a number from 1 to 32.',
     'error.bad_zone_mbox':  'Zone number must be between 1 and 6.',
+
+    /* Tutorial */
+    'tutorial.label':    'What is this?',
+    'tutorial.collapse': 'collapse',
+    'tutorial.expand':   'expand',
+    'tutorial.params':   'Transmission parameters',
+    'tutorial.modes':    'Operating modes',
 
     /* Misc */
     'misc.no_regs':   'No registers for this device.',

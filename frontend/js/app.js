@@ -32,6 +32,274 @@ function applyStaticTranslations() {
 }
 
 // ============================================================
+// Samouczek sterowników — dane i renderowanie
+// ============================================================
+
+/**
+ * Dane treści karty samouczka dla każdego sterownika (PL i EN).
+ * Parametry transmisji na podstawie dokumentacji Flowair.
+ */
+const TUTORIAL_DATA = {
+
+  tbox: {
+    pl: {
+      name: 'T-box',
+      desc: 'Sterownik Flowair do nagrzewnic i kurtyn powietrznych. Łączy się z systemem BMS przez Modbus RTU (RS485) i zarządza urządzeniami połączonymi szeregowo na tej samej magistrali.',
+      params: [
+        ['Standard',            'RS485'],
+        ['Prędkość transmisji', '9600, 19200, 38400, 57600, 76800, 115200, 230400'],
+        ['Bity danych',         '8'],
+        ['Parzystość',          'Even'],
+        ['Bity stopu',          '1'],
+        ['Typ danych',          'Unsigned Int16 (o ile nie zaznaczono inaczej)'],
+      ],
+      modes: [
+        ['Single mode', 'Indywidualne sterowanie każdym urządzeniem. Ustawienia T-boxa są zablokowane (brak możliwości sterowania lokalnego).'],
+        ['Group mode',  'Sterowanie grupami urządzeń. Ustawienia T-boxa są odblokowane (możliwe sterowanie lokalne).'],
+      ],
+    },
+    en: {
+      name: 'T-box',
+      desc: 'Flowair controller for heaters and air curtains. Connects to the BMS via Modbus RTU (RS485) and manages devices wired in series on the same bus.',
+      params: [
+        ['Standard',   'RS485'],
+        ['Baudrate',   '9600, 19200, 38400, 57600, 76800, 115200, 230400'],
+        ['Data bits',  '8'],
+        ['Parity',     'Even'],
+        ['Stop bits',  '1'],
+        ['Data type',  'Unsigned Int16 (if not stated otherwise)'],
+      ],
+      modes: [
+        ['Single mode', 'Individual control of each device. T-box settings are locked (no local control possible).'],
+        ['Group mode',  'Group control of devices. T-box settings are unlocked (local control possible).'],
+      ],
+    },
+  },
+
+  tbox_zone: {
+    pl: {
+      name: 'T-box Zone',
+      desc: 'Sterownik T-box Zone z możliwością strefowego sterowania grupami urządzeń. Komunikacja z systemem BMS za pomocą protokołu Modbus RTU.',
+      params: [
+        ['Standard',            'RS485'],
+        ['Prędkość transmisji', '9600, 19200, 38400, 57600, 76800, 115200, 230400'],
+        ['Bity danych',         '8'],
+        ['Parzystość',          'Even; None; Odd'],
+        ['Bity stopu',          '1; 2'],
+        ['Typ danych',          'Unsigned Int16 (o ile nie zaznaczono inaczej)'],
+      ],
+      modes: [],
+    },
+    en: {
+      name: 'T-box Zone',
+      desc: 'T-box Zone controller with zone-based group control of devices. Communicates with the BMS via Modbus RTU.',
+      params: [
+        ['Standard',  'RS485'],
+        ['Baudrate',  '9600, 19200, 38400, 57600, 76800, 115200, 230400'],
+        ['Data bits', '8'],
+        ['Parity',    'Even; None; Odd'],
+        ['Stop bits', '1; 2'],
+        ['Data type', 'Unsigned Int16 (if not stated otherwise)'],
+      ],
+      modes: [],
+    },
+  },
+
+  mbox: {
+    pl: {
+      name: 'M-box',
+      desc: 'Sterownik M-box umożliwiający sterowanie strefowe urządzeniami. Komunikacja z systemem BMS realizowana jest za pomocą protokołu Modbus TCP.',
+      params: [
+        ['Protokół do BMS',      'Modbus TCP (Ethernet)'],
+        ['Protokół do urządzeń', 'Modbus RTU (RS485)'],
+      ],
+      modes: [],
+    },
+    en: {
+      name: 'M-box',
+      desc: 'M-box controller enabling zone-based control of devices. Communication with the BMS is carried out via Modbus TCP.',
+      params: [
+        ['Protocol to BMS',     'Modbus TCP (Ethernet)'],
+        ['Protocol to devices', 'Modbus RTU (RS485)'],
+      ],
+      modes: [],
+    },
+  },
+
+  hmi_wifi_ac: {
+    pl: {
+      name: 'HMI Wi-Fi AC',
+      desc: 'Ścienny termostat pokojowy. Podłączany bezpośrednio do BMS przez Modbus RTU (RS485). Brak urządzeń podrzędnych — węzeł końcowy magistrali.',
+      params: [
+        ['Protokół do BMS', 'Modbus RTU (RS485)'],
+      ],
+      modes: [],
+    },
+    en: {
+      name: 'HMI Wi-Fi AC',
+      desc: 'Wall-mounted room thermostat. Connected directly to the BMS via Modbus RTU (RS485). No downstream devices — terminal node on the bus.',
+      params: [
+        ['Protocol to BMS', 'Modbus RTU (RS485)'],
+      ],
+      modes: [],
+    },
+  },
+
+  hmi_wifi_ec: {
+    pl: {
+      name: 'HMI Wi-Fi EC',
+      desc: 'Ścienny termostat pokojowy dla urządzeń EC. Podłączany bezpośrednio do BMS przez Modbus RTU (RS485). Brak urządzeń podrzędnych — węzeł końcowy magistrali.',
+      params: [
+        ['Protokół do BMS', 'Modbus RTU (RS485)'],
+      ],
+      modes: [],
+    },
+    en: {
+      name: 'HMI Wi-Fi EC',
+      desc: 'Wall-mounted room thermostat for EC devices. Connected directly to the BMS via Modbus RTU (RS485). No downstream devices — terminal node on the bus.',
+      params: [
+        ['Protocol to BMS', 'Modbus RTU (RS485)'],
+      ],
+      modes: [],
+    },
+  },
+};
+
+/**
+ * Generuje SVG diagram topologii dla danego sterownika.
+ * @param {string} type - wartość select#controllerType
+ * @returns {string} łańcuch SVG
+ */
+function buildTutorialDiagram(type) {
+  if (type === 'tbox' || type === 'tbox_zone') {
+    const zone     = type === 'tbox_zone';
+    const label    = zone ? 'T-box Zone' : 'T-box';
+    const mainY    = zone ? 58 : 52;
+    const mainSize = zone ? 7.5 : 9;
+    const modeSpan = zone
+      ? ''
+      : `<tspan x="92" dy="11" font-size="6.5" fill="#1a5a6a">Single/Group</tspan>`;
+    return `<svg viewBox="0 0 200 120" width="200" height="120" xmlns="http://www.w3.org/2000/svg">
+      <rect x="1" y="41" width="44" height="34" fill="#f7fbfc" stroke="#afd2db" stroke-width="1"/>
+      <text x="23" y="58" text-anchor="middle" dominant-baseline="middle" font-size="8.5" font-family="Poppins,sans-serif" fill="#000" font-weight="600">BMS</text>
+      <text x="23" y="69" text-anchor="middle" font-size="6.5" font-family="Poppins,sans-serif" fill="#878787">RS485</text>
+      <line x1="45" y1="58" x2="65" y2="58" stroke="#afd2db" stroke-width="1.2" stroke-dasharray="4,2"/>
+      <rect x="65" y="40" width="54" height="36" fill="#afd2db" stroke="#7abfcc" stroke-width="1"/>
+      <text text-anchor="middle" font-family="Poppins,sans-serif" fill="#0d3d4a">
+        <tspan x="92" y="${mainY}" font-size="${mainSize}" font-weight="600">${label}</tspan>${modeSpan}
+      </text>
+      <line x1="119" y1="58" x2="139" y2="58" stroke="#afd2db" stroke-width="1.2" stroke-dasharray="4,2"/>
+      <text x="145" y="47" text-anchor="middle" font-size="6.5" font-family="Poppins,sans-serif" fill="#878787">RS485</text>
+      <rect x="139" y="49" width="55" height="18" fill="#f2f2f2" stroke="#bbb" stroke-width="1"/>
+      <text x="166" y="58" text-anchor="middle" dominant-baseline="middle" font-size="7.5" font-family="Poppins,sans-serif" fill="#333">Urządz. 1</text>
+      <line x1="166" y1="67" x2="166" y2="75" stroke="#ccc" stroke-width="1" stroke-dasharray="3,2"/>
+      <rect x="139" y="75" width="55" height="18" fill="#f2f2f2" stroke="#bbb" stroke-width="1"/>
+      <text x="166" y="84" text-anchor="middle" dominant-baseline="middle" font-size="7.5" font-family="Poppins,sans-serif" fill="#333">Urządz. 2</text>
+      <line x1="166" y1="93" x2="166" y2="100" stroke="#ccc" stroke-width="1.2" stroke-dasharray="2,2"/>
+      <text x="166" y="111" text-anchor="middle" font-size="10" font-family="Poppins,sans-serif" fill="#aaa">···</text>
+    </svg>`;
+  }
+
+  if (type === 'mbox') {
+    return `<svg viewBox="0 0 200 120" width="200" height="120" xmlns="http://www.w3.org/2000/svg">
+      <rect x="1" y="38" width="44" height="42" fill="#f7fbfc" stroke="#afd2db" stroke-width="1"/>
+      <text x="23" y="59" text-anchor="middle" dominant-baseline="middle" font-size="8.5" font-family="Poppins,sans-serif" fill="#000" font-weight="600">BMS</text>
+      <text x="23" y="70" text-anchor="middle" font-size="6.5" font-family="Poppins,sans-serif" fill="#878787">Modbus TCP</text>
+      <line x1="45" y1="59" x2="65" y2="59" stroke="#a3c1a3" stroke-width="1.2" stroke-dasharray="4,2"/>
+      <rect x="65" y="40" width="50" height="36" fill="#afd2db" stroke="#7abfcc" stroke-width="1"/>
+      <text x="90" y="58" text-anchor="middle" dominant-baseline="middle" font-size="9" font-family="Poppins,sans-serif" fill="#0d3d4a" font-weight="600">M-box</text>
+      <line x1="115" y1="58" x2="135" y2="58" stroke="#afd2db" stroke-width="1.2" stroke-dasharray="4,2"/>
+      <text x="141" y="47" text-anchor="middle" font-size="6.5" font-family="Poppins,sans-serif" fill="#878787">RS485</text>
+      <rect x="135" y="49" width="55" height="18" fill="#f2f2f2" stroke="#bbb" stroke-width="1"/>
+      <text x="162" y="58" text-anchor="middle" dominant-baseline="middle" font-size="7.5" font-family="Poppins,sans-serif" fill="#333">Urządz. 1</text>
+      <line x1="162" y1="67" x2="162" y2="75" stroke="#ccc" stroke-width="1" stroke-dasharray="3,2"/>
+      <rect x="135" y="75" width="55" height="18" fill="#f2f2f2" stroke="#bbb" stroke-width="1"/>
+      <text x="162" y="84" text-anchor="middle" dominant-baseline="middle" font-size="7.5" font-family="Poppins,sans-serif" fill="#333">Urządz. 2</text>
+      <line x1="162" y1="93" x2="162" y2="100" stroke="#ccc" stroke-width="1.2" stroke-dasharray="2,2"/>
+      <text x="162" y="111" text-anchor="middle" font-size="10" font-family="Poppins,sans-serif" fill="#aaa">···</text>
+    </svg>`;
+  }
+
+  /* HMI Wi-Fi AC / EC */
+  const tp = type === 'hmi_wifi_ac' ? 'AC' : 'EC';
+  return `<svg viewBox="0 0 200 100" width="200" height="100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="5" y="33" width="50" height="34" fill="#f7fbfc" stroke="#afd2db" stroke-width="1"/>
+    <text x="30" y="50" text-anchor="middle" dominant-baseline="middle" font-size="8.5" font-family="Poppins,sans-serif" fill="#000" font-weight="600">BMS</text>
+    <text x="30" y="62" text-anchor="middle" font-size="6.5" font-family="Poppins,sans-serif" fill="#878787">RS485</text>
+    <line x1="55" y1="50" x2="80" y2="50" stroke="#afd2db" stroke-width="1.2" stroke-dasharray="4,2"/>
+    <rect x="80" y="28" width="110" height="44" fill="#afd2db" stroke="#7abfcc" stroke-width="1"/>
+    <text text-anchor="middle" font-family="Poppins,sans-serif" fill="#0d3d4a">
+      <tspan x="135" y="46" font-size="9" font-weight="600">HMI Wi-Fi ${tp}</tspan>
+      <tspan x="135" dy="12" font-size="7">termostat pokojowy</tspan>
+    </text>
+  </svg>`;
+}
+
+/* Stan zwijania karty samouczka */
+let tutCardOpen = true;
+
+/**
+ * Renderuje kartę samouczka dla wybranego sterownika.
+ * Woływana przy zmianie sterownika oraz przy zmianie języka.
+ */
+function renderTutorialCard(controllerType) {
+  const card = document.getElementById('tutorial-card');
+  const data  = TUTORIAL_DATA[controllerType];
+  if (!data) { card.style.display = 'none'; return; }
+
+  const d = data[currentLang] || data['pl'];
+
+  /* Nagłówek */
+  document.getElementById('tut-ctrl-name').textContent = d.name;
+  document.getElementById('tut-label').textContent     = t('tutorial.label');
+  document.getElementById('tut-toggle-txt').textContent =
+    t(tutCardOpen ? 'tutorial.collapse' : 'tutorial.expand');
+
+  /* Parametry transmisji */
+  const paramsHtml = d.params
+    .map(([k, v]) =>
+      `<span class="tut-param-label">${k}</span><span class="tut-param-val">${v}</span>`)
+    .join('');
+
+  /* Tryby pracy (opcjonalne) */
+  const modesHtml = (d.modes && d.modes.length) ? `
+    <div class="tut-section-title">${t('tutorial.modes')}</div>
+    <div class="tut-modes-list">
+      ${d.modes.map(([n, desc]) =>
+        `<div class="tut-mode-item"><span class="tut-mode-name">${n}</span> — ${desc}</div>`
+      ).join('')}
+    </div>` : '';
+
+  /* Treść body */
+  document.getElementById('tutorial-body').innerHTML = `
+    <div class="tut-body-top">
+      <p class="tut-desc">${d.desc}</p>
+      <div class="tut-diagram-wrap">${buildTutorialDiagram(controllerType)}</div>
+    </div>
+    <div class="tut-section-title">${t('tutorial.params')}</div>
+    <div class="tut-params-grid">${paramsHtml}</div>
+    ${modesHtml}
+  `;
+
+  /* Zachowaj stan zwinięcia */
+  document.getElementById('tutorial-body').style.display = tutCardOpen ? '' : 'none';
+
+  card.style.display = '';
+}
+
+/**
+ * Zwija / rozwija ciało karty samouczka.
+ */
+function toggleTutorialCard() {
+  tutCardOpen = !tutCardOpen;
+  document.getElementById('tutorial-body').style.display = tutCardOpen ? '' : 'none';
+  document.getElementById('tut-toggle-txt').textContent =
+    t(tutCardOpen ? 'tutorial.collapse' : 'tutorial.expand');
+  const ch = document.getElementById('tut-chevron');
+  ch.className = 'tut-chevron' + (tutCardOpen ? ' open' : '');
+}
+
+// ============================================================
 // Inicjalizacja
 // ============================================================
 function loadDevices() {
@@ -106,6 +374,9 @@ function updateFormForControllerType() {
       if (!names.includes(current) && names.length > 0) sel.value = names[0];
     });
   }
+
+  /* Karta samouczka — aktualizuj przy zmianie sterownika */
+  renderTutorialCard(val);
 }
 
 // ============================================================
@@ -883,6 +1154,11 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.add('active');
     setLang(btn.dataset.lang);
     applyStaticTranslations();
+    // Karta samouczka — przerenderuj z nowym językiem
+    const tutCard = document.getElementById('tutorial-card');
+    if (tutCard && tutCard.style.display !== 'none') {
+      renderTutorialCard(document.getElementById('controllerType').value);
+    }
     // Jeśli wyniki są widoczne — przelicz ponownie (re-render z nowym językiem)
     const resultsSection = document.getElementById('results');
     if (resultsSection && resultsSection.style.display !== 'none') {

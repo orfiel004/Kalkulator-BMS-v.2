@@ -52,6 +52,25 @@
       </div>
     </div>
 
+    <!-- Karta samouczka — pojawia się po wyborze sterownika -->
+    <div id="tutorial-card" class="tutorial-card" style="display:none;">
+      <div class="tutorial-header" onclick="toggleTutorialCard()">
+        <div class="tutorial-title">
+          <svg class="tut-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 16v-4M12 8h.01"/>
+          </svg>
+          <span class="tut-label-text" id="tut-label" data-i18n="tutorial.label">Co to jest?</span>
+          <span class="tut-ctrl-badge" id="tut-ctrl-name"></span>
+        </div>
+        <div class="tutorial-toggle">
+          <span id="tut-toggle-txt">zwiń</span>
+          <span class="tut-chevron open" id="tut-chevron">▲</span>
+        </div>
+      </div>
+      <div id="tutorial-body" class="tutorial-body"></div>
+    </div>
+
     <div class="devices-header">
       <span data-i18n="form.devices">Urządzenia</span>
     </div>

@@ -633,3 +633,131 @@ button:hover { background: #e8e8e8; }
     width: 100%;
   }
 }
+
+/* ============================================================
+   Tutorial card — karta samouczka pod dropdownem sterownika
+   ============================================================ */
+
+.tutorial-card {
+  margin-top: 14px;
+  border: 1px solid #afd2db;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tutorial-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: #f7fbfc;
+  cursor: pointer;
+  user-select: none;
+  border-bottom: 1px solid #e0eef2;
+}
+
+.tutorial-header:hover { background: #eef6f8; }
+
+.tutorial-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tut-icon {
+  width: 16px;
+  height: 16px;
+  stroke: #3a7a8a;
+  stroke-width: 2;
+  fill: none;
+  flex-shrink: 0;
+}
+
+.tut-label-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: #3a7a8a;
+}
+
+.tut-ctrl-badge {
+  background: #e8f4f7;
+  border: 1px solid #afd2db;
+  color: #2a6a7a;
+  font-size: 12px;
+  padding: 2px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.tutorial-toggle {
+  font-size: 12px;
+  color: #3a7a8a;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+}
+
+.tut-chevron { display: inline-block; transition: transform 0.2s; }
+.tut-chevron.open { transform: rotate(180deg); }
+
+.tutorial-body { padding: 16px 20px; }
+
+.tut-body-top {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+
+.tut-desc {
+  font-size: 13px;
+  line-height: 1.65;
+  flex: 1;
+}
+
+.tut-diagram-wrap { flex-shrink: 0; width: 200px; }
+
+.tut-section-title {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #878787;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+  border-left: 3px solid #afd2db;
+  padding-left: 7px;
+}
+
+.tut-params-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 3px 16px;
+  font-size: 12px;
+  margin-bottom: 14px;
+}
+
+.tut-param-label { color: #878787; font-weight: 600; white-space: nowrap; }
+.tut-param-val   { color: #000; }
+
+.tut-modes-list { display: flex; flex-direction: column; gap: 6px; }
+
+.tut-mode-item {
+  font-size: 12px;
+  line-height: 1.55;
+  padding-left: 12px;
+  position: relative;
+}
+
+.tut-mode-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #afd2db;
+}
+
+.tut-mode-name { font-weight: 600; }
