@@ -235,8 +235,8 @@ function buildTutorialDiagram(type) {
   </svg>`;
 }
 
-/* Stan zwijania karty samouczka */
-let tutCardOpen = true;
+/* Stan zwijania karty samouczka — domyślnie zwinięta */
+let tutCardOpen = false;
 
 /**
  * Renderuje kartę samouczka dla wybranego sterownika.
