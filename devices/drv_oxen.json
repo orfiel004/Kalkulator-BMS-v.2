@@ -92,53 +92,75 @@
       "min": 0,
       "max": 100,
       "unit": "%"
+    },
+    {
+      "offset": 12,
+      "name": "OxenElectricHeaterPTCPOwer",
+      "values": {
+        "1": "OFF",
+        "2": "EH_PTC_PWR_01",
+        "3": "EH_PTC_PWR_02",
+        "4": "EH_PTC_PWR_03"
+      },
+      "values_en": {
+        "1": "OFF",
+        "2": "EH_PTC_PWR_01",
+        "3": "EH_PTC_PWR_02",
+        "4": "EH_PTC_PWR_03"
+      },
+      "description": "Status mocy nagrzewnicy elektrycznej (odczyt aktualnego stopnia PTC).",
+      "description_en": "Electric heater power status (current PTC stage read)."
+    },
+    {
+      "offset": 13,
+      "name": "OxenThermalContactState",
+      "values": {
+        "1": "OFF",
+        "2": "ON"
+      },
+      "values_en": {
+        "1": "OFF",
+        "2": "ON"
+      },
+      "description": "Stan zabezpieczenia termicznego.",
+      "description_en": "Thermal protection contact state."
     }
   ],
   "holding_registers_single": [
     {
       "offset": 0,
-      "name": "Config1",
-      "description": "Bit 0: FilterWorkTimeRST — 0=brak akcji, 1=reset licznika czasu filtra (ustawia adres 0x09 na 0x000)",
-      "description_en": "Bit 0: FilterWorkTimeRST — 0=no action, 1=reset filter time counter (sets address 0x09 to 0x000)"
+      "name": "FanEffRef1",
+      "min": 0,
+      "max": 100,
+      "unit": "%",
+      "description": "Wydajność wentylatora grupy I — nawiew (0–100%).",
+      "description_en": "Supply fan group I capacity (0–100%)."
+    },
+    {
+      "offset": 1,
+      "name": "FanEffRef2",
+      "min": 0,
+      "max": 100,
+      "unit": "%",
+      "description": "Wydajność wentylatora grupy II — wyciąg (0–100%).",
+      "description_en": "Exhaust fan group II capacity (0–100%)."
     },
     {
       "offset": 2,
-      "name": "FanEffRef_1",
-      "min": 0,
-      "max": 100,
-      "unit": "%",
-      "description": "Wentylator EC — wentylatory nawiewne (grupa I), płynna regulacja 0–100%",
-      "description_en": "EC fan — supply fans (group I), continuous regulation 0–100%"
+      "name": "OxenState",
+      "values": {
+        "0": "OFF",
+        "1": "ON"
+      },
+      "values_en": {
+        "0": "OFF",
+        "1": "ON"
+      },
+      "description": "Stan pracy centrali wentylacyjnej OXEN.",
+      "description_en": "OXEN ventilation unit operating state."
     },
     {
       "offset": 3,
-      "name": "FanEffRef_2",
-      "min": 0,
-      "max": 100,
-      "unit": "%",
-      "description": "Wentylator EC — wentylatory wywiewne (grupa II), płynna regulacja 0–100%",
-      "description_en": "EC fan — exhaust fans (group II), continuous regulation 0–100%"
-    },
-    {
-      "offset": 4,
-      "name": "OxenState",
-      "values": {
-        "0": "OX_OFF — wyłączony",
-        "1": "OX_ON — włączony",
-        "2": "OX_ON — włączony",
-        "3": "OX_ON — włączony"
-      },
-      "values_en": {
-        "0": "OX_OFF — off",
-        "1": "OX_ON — on",
-        "2": "OX_ON — on",
-        "3": "OX_ON — on"
-      },
-      "description": "Stan pracy centrali wentylacyjnej OXEN (włączona/wyłączona). Określa aktualny status zasilania jednostki.",
-      "description_en": "OXEN ventilation unit operating state (on/off). Indicates the current power status of the unit."
-    },
-    {
-      "offset": 5,
       "name": "OxenMode",
       "values": {
         "0": "OXEN_MD_AUTO — automatyczny (automatyczna regulacja bypass)",
@@ -150,44 +172,111 @@
         "1": "OXEN_MD_WINTER — winter mode (bypass off)",
         "2": "OXEN_MD_SUMMER — summer mode (bypass on)"
       },
-      "description": "Tryb pracy centrali OXEN: AUTO (automatyczna regulacja bypass), WINTER (bypass wyłączony) lub SUMMER (bypass włączony).",
-      "description_en": "OXEN unit operating mode: AUTO (automatic bypass control), WINTER (bypass off) or SUMMER (bypass on)."
+      "description": "Tryb pracy centrali OXEN.",
+      "description_en": "OXEN unit operating mode."
+    },
+    {
+      "offset": 4,
+      "name": "FilterMaxWorkTime",
+      "min": 100,
+      "max": 4000,
+      "description": "Maksymalny czas pracy filtrów.",
+      "description_en": "Maximum filter operating time."
     },
     {
       "offset": 6,
-      "name": "TempRef",
-      "min": 50,
-      "max": 450,
-      "unit": "°C×0.1",
-      "description": "Temperatura zadana centrali OXEN (x0,1 degC). Sterownik dąży do utrzymania tej temperatury w trybie automatycznym.",
-      "description_en": "OXEN unit temperature setpoint (x0.1 degC). The controller maintains this temperature in automatic mode."
+      "name": "T3LeadSensorOffset",
+      "min": -100,
+      "max": 100,
+      "unit": "x0.1 °C",
+      "description": "Offset czujnika wiodącego (skalowanie x0.1: zakres –10.0°C do 10.0°C).",
+      "description_en": "Lead sensor offset (scale ×0.1: range –10.0 °C to 10.0 °C)."
     },
     {
       "offset": 7,
-      "name": "TLeadVal",
-      "min": -500,
-      "max": 1500,
-      "unit": "°C×0.1",
-      "description": "Wartość temperatury wiodącej podawana przez BMS przez Modbus (x0,1 degC). Aktywna gdy TLeadSensorSelect = TSL_TLEAD.",
-      "description_en": "Lead temperature value provided by BMS via Modbus (x0.1 degC). Active when TLeadSensorSelect = TSL_TLEAD."
+      "name": "WorkMode",
+      "values": {
+        "1": "WM_AUTO_OXEN_EL — tryb automatyczny z nagrzewnicą elektryczną",
+        "2": "WM_MANUAL_OXEN_EL — tryb ręczny z nagrzewnicą elektryczną"
+      },
+      "values_en": {
+        "1": "WM_AUTO_OXEN_EL — automatic mode with electric heater",
+        "2": "WM_MANUAL_OXEN_EL — manual mode with electric heater"
+      },
+      "description": "Tryb grzania.",
+      "description_en": "Heating mode."
+    },
+    {
+      "offset": 8,
+      "name": "OxenElectricHeaterPTCPOwer",
+      "values": {
+        "1": "OFF",
+        "2": "EH_PTC_PWR_01",
+        "3": "EH_PTC_PWR_02",
+        "4": "EH_PTC_PWR_03"
+      },
+      "values_en": {
+        "1": "OFF",
+        "2": "EH_PTC_PWR_01",
+        "3": "EH_PTC_PWR_02",
+        "4": "EH_PTC_PWR_03"
+      },
+      "description": "Moc nagrzewnicy elektrycznej.",
+      "description_en": "Electric heater power."
+    },
+    {
+      "offset": 9,
+      "name": "ExternalInputTH1FanRef1",
+      "min": 0,
+      "max": 100,
+      "unit": "%",
+      "description": "Wydajność wentylatora grupy I dla wejścia EXT TH1.",
+      "description_en": "Fan group I capacity for external input EXT TH1."
+    },
+    {
+      "offset": 10,
+      "name": "ExternalInputTH2FanRef1",
+      "min": 0,
+      "max": 100,
+      "unit": "%",
+      "description": "Wydajność wentylatora grupy I dla wejścia EXT TH2.",
+      "description_en": "Fan group I capacity for external input EXT TH2."
+    },
+    {
+      "offset": 11,
+      "name": "ExternalInputTH1FanRef2",
+      "min": 0,
+      "max": 100,
+      "unit": "%",
+      "description": "Wydajność wentylatora grupy II dla wejścia EXT TH1.",
+      "description_en": "Fan group II capacity for external input EXT TH1."
     },
     {
       "offset": 12,
-      "name": "TleadSensorSelect",
+      "name": "ExternalInputTH2FanRef2",
+      "min": 0,
+      "max": 100,
+      "unit": "%",
+      "description": "Wydajność wentylatora grupy II dla wejścia EXT TH2.",
+      "description_en": "Fan group II capacity for external input EXT TH2."
+    },
+    {
+      "offset": 14,
+      "name": "OxenElectricHeaterPTCPOwer_ref",
       "values": {
-        "0": "T_NS — tylko odczyt",
-        "1": "T_LEAD — wartość przez Modbus (TLeadVal)",
-        "2": "TSL_T3 — czujnik T3 (złącze DRV)",
-        "3": "TSL_T4 — czujnik T4 (złącze DRV)"
+        "1": "OFF",
+        "2": "EH_PTC_PWR_01",
+        "3": "EH_PTC_PWR_02",
+        "4": "EH_PTC_PWR_03"
       },
       "values_en": {
-        "0": "T_NS — read-only",
-        "1": "T_LEAD — value via Modbus (TLeadVal)",
-        "2": "TSL_T3 — T3 sensor (DRV connector)",
-        "3": "TSL_T4 — T4 sensor (DRV connector)"
+        "1": "OFF",
+        "2": "EH_PTC_PWR_01",
+        "3": "EH_PTC_PWR_02",
+        "4": "EH_PTC_PWR_03"
       },
-      "description": "Wybór źródła temperatury wiodącej używanej przez algorytm sterowania.",
-      "description_en": "Selection of the lead temperature source used by the control algorithm."
+      "description": "Moc nagrzewnicy elektrycznej (zapis setpoint).",
+      "description_en": "Electric heater power (write setpoint)."
     }
   ],
   "holding_registers_group": [
@@ -233,6 +322,24 @@
       "unit": "°C×0.1",
       "description": "Temperatura zadana centrali OXEN (x0,1 degC). Sterownik dąży do utrzymania tej temperatury w trybie automatycznym.",
       "description_en": "OXEN unit temperature setpoint (x0.1 degC). The controller maintains this temperature in automatic mode."
+    },
+    {
+      "offset": 11,
+      "name": "OxenElectricHeaterPTCPOwer",
+      "values": {
+        "1": "OFF",
+        "2": "EH_PTC_PWR_01",
+        "3": "EH_PTC_PWR_02",
+        "4": "EH_PTC_PWR_03"
+      },
+      "values_en": {
+        "1": "OFF",
+        "2": "EH_PTC_PWR_01",
+        "3": "EH_PTC_PWR_02",
+        "4": "EH_PTC_PWR_03"
+      },
+      "description": "Moc nagrzewnicy elektrycznej (sterowanie grupą).",
+      "description_en": "Electric heater power (group control)."
     }
   ],
   "description_en": "OXEN heat recovery unit"
