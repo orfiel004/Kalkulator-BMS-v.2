@@ -155,6 +155,29 @@ const TUTORIAL_DATA = {
     },
   },
 
+  cube_direct: {
+    pl: {
+      name: 'Cube (bezpośrednio)',
+      desc: 'Sterownik Cube podłączony bezpośrednio do systemu BMS. Obsługuje trzy protokoły komunikacyjne — wybierz odpowiedni przycisk poniżej, aby wyświetlić mapę rejestrów.',
+      params: [
+        ['Modbus RTU',  'RS485'],
+        ['Modbus TCP',  'Ethernet'],
+        ['BACnet IP',   'Ethernet'],
+      ],
+      modes: [],
+    },
+    en: {
+      name: 'Cube (direct)',
+      desc: 'Cube controller connected directly to the BMS. Supports three communication protocols — select the appropriate button below to view the register map.',
+      params: [
+        ['Modbus RTU',  'RS485'],
+        ['Modbus TCP',  'Ethernet'],
+        ['BACnet IP',   'Ethernet'],
+      ],
+      modes: [],
+    },
+  },
+
   drv: {
     pl: {
       name: 'DRV (bezpośrednio)',
@@ -266,6 +289,21 @@ function buildTutorialDiagram(type) {
       <text x="162" y="84" text-anchor="middle" dominant-baseline="middle" font-size="7.5" font-family="Poppins,sans-serif" fill="#333">Urządz. 2</text>
       <line x1="162" y1="93" x2="162" y2="100" stroke="#ccc" stroke-width="1.2" stroke-dasharray="2,2"/>
       <text x="162" y="111" text-anchor="middle" font-size="10" font-family="Poppins,sans-serif" fill="#aaa">···</text>
+    </svg>`;
+  }
+
+  if (type === 'cube_direct') {
+    return `<svg viewBox="0 0 200 120" width="200" height="120" xmlns="http://www.w3.org/2000/svg">
+      <rect x="1" y="38" width="44" height="44" fill="#f7fbfc" stroke="#afd2db" stroke-width="1"/>
+      <text x="23" y="57" text-anchor="middle" dominant-baseline="middle" font-size="8.5" font-family="Poppins,sans-serif" fill="#000" font-weight="600">BMS</text>
+      <text x="23" y="69" text-anchor="middle" font-size="6" font-family="Poppins,sans-serif" fill="#878787">RTU/TCP/</text>
+      <text x="23" y="77" text-anchor="middle" font-size="6" font-family="Poppins,sans-serif" fill="#878787">BACnet</text>
+      <line x1="45" y1="60" x2="80" y2="60" stroke="#afd2db" stroke-width="1.2" stroke-dasharray="4,2"/>
+      <rect x="80" y="38" width="110" height="44" fill="#afd2db" stroke="#7abfcc" stroke-width="1"/>
+      <text text-anchor="middle" font-family="Poppins,sans-serif" fill="#0d3d4a">
+        <tspan x="135" y="57" font-size="9" font-weight="600">Cube</tspan>
+        <tspan x="135" dy="12" font-size="7">połączenie bezpośrednie</tspan>
+      </text>
     </svg>`;
   }
 
@@ -387,10 +425,11 @@ function updateFormForControllerType() {
   const isTboxZone = val === 'tbox_zone';
   const isMbox     = val === 'mbox';
   const isHmiWifi  = val === 'hmi_wifi_ac' || val === 'hmi_wifi_ec';
-  const isDrv      = val === 'drv';
+  const isDrv        = val === 'drv';
+  const isCubeDirect = val === 'cube_direct';
 
   // Tryb pracy — widoczny tylko dla T-box klasycznego
-  document.getElementById('mode-field').style.display = (isTboxZone || isMbox || isHmiWifi || isDrv) ? 'none' : '';
+  document.getElementById('mode-field').style.display = (isTboxZone || isMbox || isHmiWifi || isDrv || isCubeDirect) ? 'none' : '';
 
   // Nagłówki ZoneID/DeviceID — tylko T-box Zone
   document.querySelectorAll('.zone-header-row').forEach(el => {
@@ -404,10 +443,10 @@ function updateFormForControllerType() {
 
   // Etykieta "Urządzenia" — ukryta gdy brak listy urządzeń w formularzu
   const devHeader = document.querySelector('.devices-header');
-  if (devHeader) devHeader.style.display = (isHmiWifi || isDrv) ? 'none' : '';
+  if (devHeader) devHeader.style.display = (isHmiWifi || isDrv || isCubeDirect) ? 'none' : '';
 
   // Sekcja urządzeń T-box
-  document.getElementById('devices-container').style.display = (isMbox || isHmiWifi || isDrv) ? 'none' : '';
+  document.getElementById('devices-container').style.display = (isMbox || isHmiWifi || isDrv || isCubeDirect) ? 'none' : '';
 
   // Kontener urządzeń M-box (dynamiczne wiersze)
   const mboxContainer = document.getElementById('mbox-devices-container');
@@ -417,8 +456,12 @@ function updateFormForControllerType() {
   const drvContainer = document.getElementById('drv-container');
   if (drvContainer) drvContainer.style.display = isDrv ? 'block' : 'none';
 
+  // Cube (bezpośrednio) — brak selektu urządzenia; zarządza tylko przyciskami
+  const cubeActions = document.getElementById('cube-actions');
+  if (cubeActions) cubeActions.style.display = isCubeDirect ? 'flex' : 'none';
+
   // Przyciski formularza T-box
-  document.getElementById('tbox-actions').style.display = (isMbox || isHmiWifi || isDrv) ? 'none' : '';
+  document.getElementById('tbox-actions').style.display = (isMbox || isHmiWifi || isDrv || isCubeDirect) ? 'none' : '';
 
   // Przyciski formularza M-box
   const mboxActions = document.getElementById('mbox-actions');
@@ -447,8 +490,8 @@ function updateFormForControllerType() {
     }
   }
 
-  // Przebuduj opcje w selektach urządzeń T-box (tylko gdy nie M-box i nie HMI)
-  if (!isMbox && !isHmiWifi && !isDrv) {
+  // Przebuduj opcje w selektach urządzeń T-box (tylko gdy nie M-box, nie HMI, nie DRV, nie Cube)
+  if (!isMbox && !isHmiWifi && !isDrv && !isCubeDirect) {
     const names = Object.keys(devices)
       .filter(name => isTboxZone || !devices[name].tbox_zone_only)
       .sort();
@@ -805,6 +848,68 @@ function showDrvResults() {
 
   resultsEl.appendChild(block);
 
+  document.getElementById('results').style.display = 'block';
+  document.querySelector('.form-section').style.display = 'none';
+  document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ============================================================
+// Render: Cube (bezpośrednio) — Modbus RTU / TCP
+// ============================================================
+
+/**
+ * Placeholder — mapa rejestrów Modbus dla Cube (bezpośrednio).
+ * Dane zostaną uzupełnione po dostarczeniu dokumentacji.
+ */
+function showCubeModbusResults() {
+  const resultsEl = document.getElementById('results-content');
+  resultsEl.innerHTML = '';
+
+  const block = document.createElement('div');
+  block.className = 'result-block';
+  block.innerHTML = `
+    <div class="result-block-header">
+      <h3>Cube</h3>
+      <span class="badge">Modbus RTU / TCP</span>
+    </div>
+    <div class="empty-note" style="padding:20px 16px; color:#878787; font-size:13px;">
+      ${currentLang === 'en'
+        ? 'Register map coming soon — documentation pending.'
+        : 'Mapa rejestrów zostanie uzupełniona po dostarczeniu dokumentacji.'}
+    </div>`;
+
+  resultsEl.appendChild(block);
+  document.getElementById('results').style.display = 'block';
+  document.querySelector('.form-section').style.display = 'none';
+  document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ============================================================
+// Render: Cube (bezpośrednio) — BACnet IP
+// ============================================================
+
+/**
+ * Placeholder — mapa rejestrów BACnet IP dla Cube (bezpośrednio).
+ * Dane zostaną uzupełnione po dostarczeniu dokumentacji.
+ */
+function showCubeBacnetResults() {
+  const resultsEl = document.getElementById('results-content');
+  resultsEl.innerHTML = '';
+
+  const block = document.createElement('div');
+  block.className = 'result-block';
+  block.innerHTML = `
+    <div class="result-block-header">
+      <h3>Cube</h3>
+      <span class="badge">BACnet IP</span>
+    </div>
+    <div class="empty-note" style="padding:20px 16px; color:#878787; font-size:13px;">
+      ${currentLang === 'en'
+        ? 'BACnet IP register map coming soon — documentation pending.'
+        : 'Mapa obiektów BACnet IP zostanie uzupełniona po dostarczeniu dokumentacji.'}
+    </div>`;
+
+  resultsEl.appendChild(block);
   document.getElementById('results').style.display = 'block';
   document.querySelector('.form-section').style.display = 'none';
   document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
@@ -1300,6 +1405,8 @@ document.getElementById('btn-mbox-calculate').addEventListener('click', calculat
 document.getElementById('btn-add-mbox-device').addEventListener('click', addMboxDeviceRow);
 document.getElementById('btn-hmi-calculate').addEventListener('click', calculate);
 document.getElementById('btn-drv-calculate').addEventListener('click', calculate);
+document.getElementById('btn-cube-modbus').addEventListener('click', showCubeModbusResults);
+document.getElementById('btn-cube-bacnet').addEventListener('click', showCubeBacnetResults);
 document.querySelectorAll('.lang-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     // Zapamiętaj pozycję przewijania przed re-renderem

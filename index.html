@@ -42,6 +42,7 @@
           <option value="hmi_wifi_ac">HMI Wi-Fi AC</option>
           <option value="hmi_wifi_ec">HMI Wi-Fi EC</option>
           <option value="drv">DRV (bezpośrednio)</option>
+          <option value="cube_direct">Cube (bezpośrednio)</option>
         </select>
       </div>
       <div class="field-group" id="mode-field">
@@ -106,6 +107,11 @@
 
     <div class="form-actions" id="drv-actions" style="display:none">
       <button id="btn-drv-calculate" type="button" class="btn-primary" data-i18n="btn.calculate">Oblicz</button>
+    </div>
+
+    <div class="form-actions" id="cube-actions" style="display:none">
+      <button id="btn-cube-modbus" type="button" class="btn-primary">Modbus RTU / TCP</button>
+      <button id="btn-cube-bacnet" type="button" class="btn-primary">BACnet IP</button>
     </div>
 
     <div class="form-actions" id="tbox-actions">
