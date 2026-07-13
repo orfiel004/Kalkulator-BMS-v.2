@@ -155,6 +155,35 @@ const TUTORIAL_DATA = {
     },
   },
 
+  drv: {
+    pl: {
+      name: 'DRV (bezpośrednio)',
+      desc: 'Bezpośrednie połączenie systemu BMS z napędem DRV przez Modbus RTU (RS485). Pomija sterownik pośredni (T-box, M-box). Każde urządzenie DRV posiada własną mapę rejestrów Modbus.',
+      params: [
+        ['Standard',            'RS485'],
+        ['Protokół',            'Modbus RTU'],
+        ['Prędkość transmisji', '38400'],
+        ['Parzystość',          'Even'],
+        ['Bity danych',         '8'],
+        ['Bity stopu',          '1'],
+      ],
+      modes: [],
+    },
+    en: {
+      name: 'DRV (direct)',
+      desc: 'Direct BMS-to-DRV connection via Modbus RTU (RS485). Bypasses the intermediate controller (T-box, M-box). Each DRV unit has its own Modbus register map.',
+      params: [
+        ['Standard',   'RS485'],
+        ['Protocol',   'Modbus RTU'],
+        ['Baudrate',   '38400'],
+        ['Parity',     'Even'],
+        ['Data bits',  '8'],
+        ['Stop bits',  '1'],
+      ],
+      modes: [],
+    },
+  },
+
   hmi_wifi_ec: {
     pl: {
       name: 'HMI Wi-Fi EC',
@@ -237,6 +266,20 @@ function buildTutorialDiagram(type) {
       <text x="162" y="84" text-anchor="middle" dominant-baseline="middle" font-size="7.5" font-family="Poppins,sans-serif" fill="#333">Urządz. 2</text>
       <line x1="162" y1="93" x2="162" y2="100" stroke="#ccc" stroke-width="1.2" stroke-dasharray="2,2"/>
       <text x="162" y="111" text-anchor="middle" font-size="10" font-family="Poppins,sans-serif" fill="#aaa">···</text>
+    </svg>`;
+  }
+
+  if (type === 'drv') {
+    return `<svg viewBox="0 0 200 100" width="200" height="100" xmlns="http://www.w3.org/2000/svg">
+      <rect x="5" y="33" width="50" height="34" fill="#f7fbfc" stroke="#afd2db" stroke-width="1"/>
+      <text x="30" y="50" text-anchor="middle" dominant-baseline="middle" font-size="8.5" font-family="Poppins,sans-serif" fill="#000" font-weight="600">BMS</text>
+      <text x="30" y="62" text-anchor="middle" font-size="6.5" font-family="Poppins,sans-serif" fill="#878787">RS485</text>
+      <line x1="55" y1="50" x2="80" y2="50" stroke="#afd2db" stroke-width="1.2" stroke-dasharray="4,2"/>
+      <rect x="80" y="28" width="110" height="44" fill="#afd2db" stroke="#7abfcc" stroke-width="1"/>
+      <text text-anchor="middle" font-family="Poppins,sans-serif" fill="#0d3d4a">
+        <tspan x="135" y="46" font-size="9" font-weight="600">DRV</tspan>
+        <tspan x="135" dy="12" font-size="7">połączenie bezpośrednie</tspan>
+      </text>
     </svg>`;
   }
 
@@ -344,9 +387,10 @@ function updateFormForControllerType() {
   const isTboxZone = val === 'tbox_zone';
   const isMbox     = val === 'mbox';
   const isHmiWifi  = val === 'hmi_wifi_ac' || val === 'hmi_wifi_ec';
+  const isDrv      = val === 'drv';
 
   // Tryb pracy — widoczny tylko dla T-box klasycznego
-  document.getElementById('mode-field').style.display = (isTboxZone || isMbox || isHmiWifi) ? 'none' : '';
+  document.getElementById('mode-field').style.display = (isTboxZone || isMbox || isHmiWifi || isDrv) ? 'none' : '';
 
   // Nagłówki ZoneID/DeviceID — tylko T-box Zone
   document.querySelectorAll('.zone-header-row').forEach(el => {
@@ -360,17 +404,21 @@ function updateFormForControllerType() {
 
   // Etykieta "Urządzenia" — ukryta gdy brak listy urządzeń w formularzu
   const devHeader = document.querySelector('.devices-header');
-  if (devHeader) devHeader.style.display = isHmiWifi ? 'none' : '';
+  if (devHeader) devHeader.style.display = (isHmiWifi || isDrv) ? 'none' : '';
 
   // Sekcja urządzeń T-box
-  document.getElementById('devices-container').style.display = (isMbox || isHmiWifi) ? 'none' : '';
+  document.getElementById('devices-container').style.display = (isMbox || isHmiWifi || isDrv) ? 'none' : '';
 
   // Kontener urządzeń M-box (dynamiczne wiersze)
   const mboxContainer = document.getElementById('mbox-devices-container');
   if (mboxContainer) mboxContainer.style.display = isMbox ? 'block' : 'none';
 
+  // Kontener urządzenia DRV (pojedynczy select)
+  const drvContainer = document.getElementById('drv-container');
+  if (drvContainer) drvContainer.style.display = isDrv ? 'block' : 'none';
+
   // Przyciski formularza T-box
-  document.getElementById('tbox-actions').style.display = (isMbox || isHmiWifi) ? 'none' : '';
+  document.getElementById('tbox-actions').style.display = (isMbox || isHmiWifi || isDrv) ? 'none' : '';
 
   // Przyciski formularza M-box
   const mboxActions = document.getElementById('mbox-actions');
@@ -380,8 +428,27 @@ function updateFormForControllerType() {
   const hmiActions = document.getElementById('hmi-actions');
   if (hmiActions) hmiActions.style.display = isHmiWifi ? 'flex' : 'none';
 
+  // Przyciski formularza DRV
+  const drvActions = document.getElementById('drv-actions');
+  if (drvActions) drvActions.style.display = isDrv ? 'flex' : 'none';
+
+  // Przebuduj listę urządzeń DRV (wszystkie urządzenia bez tbox_zone_only)
+  if (isDrv) {
+    const drvSel = document.getElementById('drv-device-select');
+    if (drvSel) {
+      const current = drvSel.value;
+      const names = Object.keys(devices)
+        .filter(name => !devices[name].tbox_zone_only)
+        .sort();
+      drvSel.innerHTML = names.map(n =>
+        `<option value="${n}"${n === current ? ' selected' : ''}>${n}</option>`
+      ).join('');
+      if (!names.includes(current) && names.length > 0) drvSel.value = names[0];
+    }
+  }
+
   // Przebuduj opcje w selektach urządzeń T-box (tylko gdy nie M-box i nie HMI)
-  if (!isMbox && !isHmiWifi) {
+  if (!isMbox && !isHmiWifi && !isDrv) {
     const names = Object.keys(devices)
       .filter(name => isTboxZone || !devices[name].tbox_zone_only)
       .sort();
@@ -575,6 +642,7 @@ function calculate() {
     return;
   }
   if (controllerType === 'hmi_wifi_ec') { showHmiWifiEcResults(); return; }
+  if (controllerType === 'drv')         { showDrvResults(); return; }
 
   const err = validateForm();
   if (err) { showError(err); return; }
@@ -674,6 +742,72 @@ function showHmiWifiEcResults() {
 
   document.getElementById('results').style.display = '';
   document.getElementById('form-section').style.display = 'none';
+}
+
+// ============================================================
+// Render: DRV (bezpośrednio)
+// ============================================================
+
+/**
+ * Wyświetla rejestry wybranego urządzenia DRV przy bezpośrednim
+ * połączeniu BMS–DRV. Adresy = wartości offset z JSON (bez kalkulacji).
+ */
+function showDrvResults() {
+  const sel    = document.getElementById('drv-device-select');
+  const name   = sel ? sel.value : '';
+  const device = devices[name];
+
+  const resultsEl = document.getElementById('results-content');
+  resultsEl.innerHTML = '';
+
+  const block = document.createElement('div');
+  block.className = 'result-block';
+
+  const header = document.createElement('div');
+  header.className = 'result-block-header';
+  const headerLabel = currentLang === 'en' ? 'Direct connection' : 'Połączenie bezpośrednie';
+  header.innerHTML = `<h3>${name}</h3><span class="badge">${headerLabel} — Modbus RTU</span>`;
+  block.appendChild(header);
+
+  if (!device) {
+    const empty = document.createElement('div');
+    empty.className = 'empty-note';
+    empty.textContent = t('misc.no_regs');
+    block.appendChild(empty);
+    resultsEl.appendChild(block);
+  } else {
+    // Input Registers — adresy bezpośrednie z offset
+    const irRows = (device.input_registers || []).map(reg => ({
+      addrDec: reg.offset,
+      addrHex: Calculator.toHex(reg.offset),
+      name:    reg.name,
+      reg:     reg,
+    }));
+
+    // Holding Registers — adresy bezpośrednie z offset
+    const hrRows = (device.holding_registers_single || []).map(reg => ({
+      addrDec: reg.offset,
+      addrHex: Calculator.toHex(reg.offset),
+      name:    reg.name,
+      reg:     reg,
+    }));
+
+    if (irRows.length > 0) block.appendChild(buildRegSection(t('section.ir'), irRows));
+    if (hrRows.length > 0) block.appendChild(buildRegSection(t('section.hr'), hrRows));
+
+    if (irRows.length === 0 && hrRows.length === 0) {
+      const empty = document.createElement('div');
+      empty.className = 'empty-note';
+      empty.textContent = t('misc.no_regs');
+      block.appendChild(empty);
+    }
+  }
+
+  resultsEl.appendChild(block);
+
+  document.getElementById('results').style.display = 'block';
+  document.querySelector('.form-section').style.display = 'none';
+  document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
 }
 
 // ============================================================
@@ -1165,6 +1299,7 @@ document.getElementById('btn-reset').addEventListener('click', resetForm);
 document.getElementById('btn-mbox-calculate').addEventListener('click', calculateMbox);
 document.getElementById('btn-add-mbox-device').addEventListener('click', addMboxDeviceRow);
 document.getElementById('btn-hmi-calculate').addEventListener('click', calculate);
+document.getElementById('btn-drv-calculate').addEventListener('click', calculate);
 document.querySelectorAll('.lang-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     // Zapamiętaj pozycję przewijania przed re-renderem

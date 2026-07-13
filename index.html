@@ -41,6 +41,7 @@
           <option value="mbox">M-box</option>
           <option value="hmi_wifi_ac">HMI Wi-Fi AC</option>
           <option value="hmi_wifi_ec">HMI Wi-Fi EC</option>
+          <option value="drv">DRV (bezpośrednio)</option>
         </select>
       </div>
       <div class="field-group" id="mode-field">
@@ -85,6 +86,15 @@
       <!-- Wiersze urządzeń M-box dodawane dynamicznie -->
     </div>
 
+    <div id="drv-container" style="display:none">
+      <div class="devices-header" id="drv-devices-header">
+        <span data-i18n="form.devices">Urządzenia</span>
+      </div>
+      <div class="device-row" style="margin-top:4px">
+        <select id="drv-device-select"></select>
+      </div>
+    </div>
+
     <div class="form-actions" id="mbox-actions" style="display:none">
       <button id="btn-add-mbox-device" type="button" data-i18n="btn.add_device">+ Dodaj urządzenie</button>
       <button id="btn-mbox-calculate" type="button" class="btn-primary" data-i18n="btn.calculate">Oblicz</button>
@@ -92,6 +102,10 @@
 
     <div class="form-actions" id="hmi-actions" style="display:none">
       <button id="btn-hmi-calculate" type="button" class="btn-primary" data-i18n="btn.calculate">Oblicz</button>
+    </div>
+
+    <div class="form-actions" id="drv-actions" style="display:none">
+      <button id="btn-drv-calculate" type="button" class="btn-primary" data-i18n="btn.calculate">Oblicz</button>
     </div>
 
     <div class="form-actions" id="tbox-actions">
