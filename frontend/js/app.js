@@ -854,29 +854,138 @@ function showDrvResults() {
 }
 
 // ============================================================
+// Dane rejestrów Cube (bezpośrednio)
+// Źródło: Rooftop Cube v02022024_2EN (Modbus) + FLOWAIR_CUBE_BACnet (BACnet)
+// ============================================================
+const CUBE_DIRECT = {
+
+  // --- Modbus: Input Registers ---
+  // Źródło: System FLOWAIR -RTP Cube (offset 9–26) + RTP Cube (offset 100–105)
+  ir: [
+    { offset:   9, name: 'ambient temp.value',               description_en: 'Outside temperature',                        unit: 'x0.1 °C' },
+    { offset:  10, name: 'supply temp.value',                description_en: 'Supply air temperature',                     unit: 'x0.1 °C' },
+    { offset:  11, name: 'return temp.value',                description_en: 'Exhaust air temperature',                    unit: 'x0.1 °C' },
+    { offset:  12, name: 'water temp.value',                 description_en: 'Water exchanger temperature',                unit: 'x0.1 °C' },
+    { offset:  13, name: 'temperature room',                 description_en: 'Room temperature',                           unit: 'x0.1 °C' },
+    { offset:  14, name: 'recirculation damper level',       description_en: 'Recirculation damper level' },
+    { offset:  15, name: 'swirl diffuser position',          description_en: 'Swirl diffuser position' },
+    { offset:  16, name: 'rotary level',                     description_en: 'Rotary heat exchanger level' },
+    { offset:  17, name: 'fan supply flow',                  description_en: 'Fan supply flow' },
+    { offset:  18, name: 'gas heating value',                description_en: 'Gas heating value' },
+    { offset:  19, name: 'CO2_status',                       description_en: 'Status CO2' },
+    { offset:  20, name: 'rooftop work mode',                description_en: 'Rooftop work mode' },
+    { offset:  21, name: 'rooftop current work mode',        description_en: 'Rooftop current work mode' },
+    { offset:  22, name: 'alarm',                            description_en: 'Alarm' },
+    { offset:  23, name: 'room temp.sensor status',          description_en: 'Room temperature sensor status' },
+    { offset:  24, name: 'dehum absolute humidity setpoint', description_en: 'Dehum absolute humidity setpoint',           unit: 'x0.01' },
+    { offset:  25, name: 'humidity control',                 description_en: 'Humidity control' },
+    { offset:  26, name: 'CntrlSource',                      description_en: 'Control source' },
+    { offset: 100, name: 'WtrCoilPosition',                  description_en: 'Water cooler recirculation valve level' },
+    { offset: 101, name: 'ClgWtr',                           description_en: 'Cold water status' },
+    { offset: 102, name: 'HotWtr',                           description_en: 'Hot water status' },
+    { offset: 103, name: 'HtgSwitch_1Swi',                  description_en: 'Heater control level' },
+    { offset: 104, name: 'HumAmbntVal',                      description_en: 'Outside relative humidity',                  unit: '%' },
+    { offset: 105, name: 'HumRtnVal',                        description_en: 'Return air relative humidity',               unit: '%' },
+  ],
+
+  // --- Modbus: Holding Registers ---
+  // Źródło: Holding Registers: RTP Cube (offset 100–127)
+  hr: [
+    { offset: 100, name: 'work mode',                        description_en: 'Work mode settings' },
+    { offset: 101, name: 'Comfort flow',                     description_en: 'Comfort mode flow' },
+    { offset: 102, name: 'Eco flow',                         description_en: 'Eco mode flow' },
+    { offset: 103, name: 'Standby flow',                     description_en: 'Standby mode flow' },
+    { offset: 104, name: 'flow rem1',                        description_en: 'Flow Rem 1' },
+    { offset: 105, name: 'flow rem 2',                       description_en: 'Flow Rem 2' },
+    { offset: 106, name: 'flow rem 3',                       description_en: 'Flow Rem 3' },
+    { offset: 107, name: 'Over Run flow',                    description_en: 'Over run flow' },
+    { offset: 108, name: 'temperature ref Eco',              description_en: 'Target temperature Eco settings',            unit: 'x0.1 °C' },
+    { offset: 109, name: 'temperature ref Cmfrt',            description_en: 'Target temperature Comfort settings',        unit: 'x0.1 °C' },
+    { offset: 110, name: 'temperature ref Thrmst',           description_en: 'Target temperature Thermostatic settings',   unit: 'x0.1 °C' },
+    { offset: 111, name: 'temperature ref NClg',             description_en: 'Target temperature Night cooling settings',  unit: 'x0.1 °C' },
+    { offset: 112, name: 'recirculation damper mode',        description_en: 'Recirculation damper mode' },
+    { offset: 113, name: 'recirculation damper level',       description_en: 'Recirculation damper level' },
+    { offset: 114, name: 'recirculation damper level NClg',  description_en: 'Recirculation damper level Night cooling' },
+    { offset: 115, name: 'recirculation damper level Rem1',  description_en: 'Recirculation damper level Rem 1' },
+    { offset: 116, name: 'recirculation damper level Rem2',  description_en: 'Recirculation damper level Rem 2' },
+    { offset: 117, name: 'recirculation damper level Rem3',  description_en: 'Recirculation damper level Rem 3' },
+    { offset: 118, name: 'swirl diffuser mode',              description_en: 'Swirl diffuser mode' },
+    { offset: 119, name: 'Htg_swirl_diffuser_level',         description_en: 'Swirl diffuser level in heating mode' },
+    { offset: 120, name: 'Clg_swirl_diffuser_level',         description_en: 'Swirl diffuser level in cooling mode' },
+    { offset: 121, name: 'swirl_diffuser_level manual',      description_en: 'Swirl diffuser level in manual mode' },
+    { offset: 122, name: 'com Status',                       description_en: 'BMS communication status' },
+    { offset: 123, name: 'DehumTmpCmfrt',                    description_en: 'Drying temperature Comfort mode',            unit: 'x0.1 °C' },
+    { offset: 124, name: 'DehumHumCmfrt',                    description_en: 'Drying Comfort mode humidity',               unit: '%' },
+    { offset: 125, name: 'DehumTmpEco',                      description_en: 'Drying temperature Eco mode',                unit: 'x0.1 °C' },
+    { offset: 126, name: 'DehumHumEco',                      description_en: 'Drying Eco mode humidity',                   unit: '%' },
+    { offset: 127, name: 'Dehum DB',                         description_en: 'Drying deadband',                            unit: 'x0.1 °C' },
+  ],
+
+  // --- BACnet IP ---
+  // Źródło: 20220606_FLOWAIR_CUBE_BACnet.pdf, urządzenie POL908_FF489E
+  bacnet: [
+    { no:  1, name: 'ActiveAlarm',     instance:  16512, en: 'Alarm',                      pl: 'Alarm urządzenia',                                     states: 'OK; Maintenance; Warning; Fault; Danger' },
+    { no:  2, name: 'AlmAckPls',       instance:  35011, en: 'Alarm acknowledge',           pl: 'Reset alarmu',                                         states: 'Ack' },
+    { no:  3, name: 'Htg1AlmVal',      instance:  15248, en: 'Heating 1 alarm Status',      pl: 'Stan alarmu grzania 1',                                states: 'Passive; Active' },
+    { no:  4, name: 'Htg2AlmVal',      instance:  62437, en: 'Heating 2 alarm Status',      pl: 'Stan alarmu grzania 2',                                states: 'Passive; Active' },
+    { no:  5, name: 'FanSply1Filter',  instance:  32120, en: 'Supply air filter',           pl: 'Stan filtra powietrza nawiewanego',                    states: 'OK; Alarm' },
+    { no:  6, name: 'FanRtn1Filter',   instance:  53365, en: 'Return air filter',           pl: 'Stan filtra powietrza wywiewanego',                    states: 'OK; Alarm' },
+    { no:  7, name: 'FanSply1Flow',    instance:  21243, en: 'Supply fan 1 flow',           pl: 'Nastawa przepływu wentylatora nawiewanego 1',          unit: 'm³/h' },
+    { no:  8, name: 'TmpAmbntVal',     instance:  41863, en: 'Ambient temperature value',   pl: 'Temp. otoczenia',                                      unit: '°C' },
+    { no:  9, name: 'TmpRtnVal',       instance:  26527, en: 'Return temperature',          pl: 'Temp. powietrza wyciągowego',                          unit: '°C' },
+    { no: 10, name: 'TmpSplyVal',      instance:  40967, en: 'Supply temperature',          pl: 'Temp. powietrza nawiewanego',                          unit: '°C' },
+    { no: 11, name: 'TmpWtrVal',       instance:  37193, en: 'Water temperature',           pl: 'Temp. wody na króćcu powrotnym',                       unit: '°C' },
+    { no: 12, name: 'DXCmpr1Val',      instance:   4664, en: 'Compressor 1 Status',         pl: 'Stan pracy kompresora 1',                              states: 'Passive; Active' },
+    { no: 13, name: 'DXCmpr2Val',      instance:  64746, en: 'Compressor 2 Status',         pl: 'Stan pracy kompresora 2',                              states: 'Passive; Active' },
+    { no: 14, name: 'DXCmpr3Val',      instance:  22203, en: 'Compressor 3 Status',         pl: 'Stan pracy kompresora 3',                              states: 'Passive; Active' },
+    { no: 15, name: 'DXCmpr4Val',      instance:  12655, en: 'Compressor 4 Status',         pl: 'Stan pracy kompresora 4',                              states: 'Passive; Active' },
+    { no: 16, name: 'DXCpctyCmd',      instance:  25667, en: 'DX capacity signal',          pl: 'Wydajność układu chłodzenia DX',                       unit: '%' },
+    { no: 17, name: 'BMSOpModStp',     instance: 254195, en: 'BMS oper. mode stpt',         pl: 'Nastawa trybu pracy urządzenia (BMS)',                  states: 'Off; StndBy; Eco; Comf' },
+    { no: 18, name: 'ActOpModStpMod',  instance:  47792, en: 'Operation mode set point',    pl: 'Zadany tryb pracy urządzenia',                         states: 'Off; StnBy; Eco; Comf' },
+    { no: 19, name: 'StpTmpCmfrt',     instance:    842, en: 'Comfort temp. setpoint',      pl: 'Nastawa temp. dla trybu Komfort',                      unit: '°C' },
+    { no: 20, name: 'StpTmpClg',       instance:  48466, en: 'Cooling stpt',                pl: 'Nastawa temp. dla chłodzenia',                         unit: '°C' },
+    { no: 21, name: 'StpTmpEco',       instance:  40644, en: 'Eco temp. setpoint',          pl: 'Nastawa temp. dla trybu Eko',                          unit: '°C' },
+    { no: 22, name: 'StpTmpHtg',       instance:  51065, en: 'Heating stpt',                pl: 'Nastawa temp. dla grzania',                            unit: '°C' },
+    { no: 23, name: 'StpFlowCmfrt',    instance:  15679, en: 'Comfort flow setpoint',       pl: 'Nastawa wydajności wentylatora — tryb Komfort',        unit: 'm³/h' },
+    { no: 24, name: 'StpFlowEco',      instance:  25922, en: 'Eco flow setpoint',           pl: 'Nastawa wydajności wentylatora — tryb Eko',            unit: 'm³/h' },
+    { no: 25, name: 'DmprPosCmd',      instance:  17359, en: 'Damper signal',               pl: 'Aktualna nastawa przepustnicy recyrkulacyjnej',        unit: '%' },
+    { no: 26, name: 'StpRecMan',       instance:   1993, en: 'Recirculation man stpt',      pl: 'Nastawa przepustnicy recyrkulacyjnej (ręczna)',         unit: '%' },
+    { no: 27, name: 'DfsrPosCmd',      instance:  38159, en: 'Diffuser signal',             pl: 'Aktualna nastawa nawiewnika wirowego',                  unit: '%' },
+    { no: 28, name: 'StpDfsrStpt',     instance:  55450, en: 'Diffuser stpt',               pl: 'Nastawa nawiewnika wirowego',                          unit: '%' },
+    { no: 29, name: 'DehumAbsHumStp',  instance:  16797, en: 'Drying Act.humidity setp.',   pl: 'Osuszanie — akt. nastawa wilgotności',                 unit: 'g/kg' },
+    { no: 30, name: 'DehumHumCmfrt',   instance:   5178, en: 'Drying Comf. humidity',       pl: 'Osuszanie — nastawa wilgotności wzgl. tryb Komfort',   unit: '%rH' },
+  ],
+};
+
+// ============================================================
 // Render: Cube (bezpośrednio) — Modbus RTU / TCP
 // ============================================================
 
-/**
- * Placeholder — mapa rejestrów Modbus dla Cube (bezpośrednio).
- * Dane zostaną uzupełnione po dostarczeniu dokumentacji.
- */
 function showCubeModbusResults() {
   const resultsEl = document.getElementById('results-content');
   resultsEl.innerHTML = '';
 
   const block = document.createElement('div');
   block.className = 'result-block';
-  block.innerHTML = `
-    <div class="result-block-header">
-      <h3>Cube</h3>
-      <span class="badge">Modbus RTU / TCP</span>
-    </div>
-    <div class="empty-note" style="padding:20px 16px; color:#878787; font-size:13px;">
-      ${currentLang === 'en'
-        ? 'Register map coming soon — documentation pending.'
-        : 'Mapa rejestrów zostanie uzupełniona po dostarczeniu dokumentacji.'}
-    </div>`;
+
+  const header = document.createElement('div');
+  header.className = 'result-block-header';
+  header.innerHTML = '<h3>Cube</h3><span class="badge">Modbus RTU / TCP</span>';
+  block.appendChild(header);
+
+  /* Mapper: offset → {addrDec, addrHex, name, reg} */
+  const mapReg = reg => ({
+    addrDec: reg.offset,
+    addrHex: Calculator.toHex(reg.offset),
+    name:    reg.name,
+    reg:     { description: reg.description_en, description_en: reg.description_en, unit: reg.unit },
+  });
+
+  const irRows = CUBE_DIRECT.ir.map(mapReg);
+  const hrRows = CUBE_DIRECT.hr.map(mapReg);
+
+  if (irRows.length > 0) block.appendChild(buildRegSection(t('section.ir'), irRows));
+  if (hrRows.length > 0) block.appendChild(buildRegSection(t('section.hr'), hrRows));
 
   resultsEl.appendChild(block);
   document.getElementById('results').style.display = 'block';
@@ -888,31 +997,73 @@ function showCubeModbusResults() {
 // Render: Cube (bezpośrednio) — BACnet IP
 // ============================================================
 
-/**
- * Placeholder — mapa rejestrów BACnet IP dla Cube (bezpośrednio).
- * Dane zostaną uzupełnione po dostarczeniu dokumentacji.
- */
 function showCubeBacnetResults() {
   const resultsEl = document.getElementById('results-content');
   resultsEl.innerHTML = '';
 
   const block = document.createElement('div');
   block.className = 'result-block';
-  block.innerHTML = `
-    <div class="result-block-header">
-      <h3>Cube</h3>
-      <span class="badge">BACnet IP</span>
-    </div>
-    <div class="empty-note" style="padding:20px 16px; color:#878787; font-size:13px;">
-      ${currentLang === 'en'
-        ? 'BACnet IP register map coming soon — documentation pending.'
-        : 'Mapa obiektów BACnet IP zostanie uzupełniona po dostarczeniu dokumentacji.'}
-    </div>`;
+
+  const header = document.createElement('div');
+  header.className = 'result-block-header';
+  header.innerHTML = '<h3>Cube</h3><span class="badge">BACnet IP</span>';
+  block.appendChild(header);
+
+  block.appendChild(buildBacnetSection(CUBE_DIRECT.bacnet));
 
   resultsEl.appendChild(block);
   document.getElementById('results').style.display = 'block';
   document.querySelector('.form-section').style.display = 'none';
   document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+}
+
+/**
+ * Buduje sekcję tabeli dla obiektów BACnet IP.
+ * Kolumny: Nr | Instance | Object Name | Opis | Stany / Jednostka
+ */
+function buildBacnetSection(objects) {
+  const section = document.createElement('div');
+  section.className = 'reg-section';
+
+  const titleEl = document.createElement('div');
+  titleEl.className = 'reg-section-title';
+  titleEl.textContent = currentLang === 'en' ? 'BACnet Objects' : 'Obiekty BACnet';
+  section.appendChild(titleEl);
+
+  const table = document.createElement('table');
+  table.className = 'reg-table';
+  table.innerHTML = `
+    <thead>
+      <tr>
+        <th>${currentLang === 'en' ? 'No.' : 'Nr'}</th>
+        <th>Instance</th>
+        <th>Object Name</th>
+        <th>${currentLang === 'en' ? 'Description' : 'Opis'}</th>
+        <th>${currentLang === 'en' ? 'States / Unit' : 'Stany / Jednostka'}</th>
+      </tr>
+    </thead>`;
+
+  const tbody = document.createElement('tbody');
+  objects.forEach(obj => {
+    const desc = currentLang === 'en' ? obj.en : obj.pl;
+    const extra = obj.states
+      ? `<span style="font-size:11px;color:#878787">${obj.states}</span>`
+      : (obj.unit ? `<i style="font-size:11px;color:#878787">${obj.unit}</i>` : '');
+
+    const tr = document.createElement('tr');
+    tr.className = 'reg-row';
+    tr.innerHTML = `
+      <td style="color:#aaa">${obj.no}</td>
+      <td><span class="addr-dec">${obj.instance}</span></td>
+      <td><span class="reg-name">${obj.name}</span></td>
+      <td>${desc}</td>
+      <td>${extra}</td>`;
+    tbody.appendChild(tr);
+  });
+
+  table.appendChild(tbody);
+  section.appendChild(table);
+  return section;
 }
 
 // ============================================================
