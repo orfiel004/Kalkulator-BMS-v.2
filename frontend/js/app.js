@@ -1675,6 +1675,18 @@ function hideError() {
   document.getElementById('form-error').style.display = 'none';
 }
 
+/**
+ * Wraca do widoku formularza ze strony wyników.
+ * Nie resetuje ustawień — zachowuje wybrany sterownik, tryb, urządzenia, adresy.
+ */
+function backToForm() {
+  const results = document.getElementById('results');
+  if (results.style.display === 'none') return;
+  results.style.display = 'none';
+  document.querySelector('.form-section').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 function resetForm() {
   document.getElementById('results').style.display = 'none';
   document.querySelector('.form-section').style.display = 'block';
@@ -1825,6 +1837,9 @@ document.getElementById('controllerType').addEventListener('change', updateFormF
 document.getElementById('btn-add-device').addEventListener('click', addDeviceRow);
 document.getElementById('btn-calculate').addEventListener('click', calculate);
 document.getElementById('btn-reset').addEventListener('click', resetForm);
+
+// Kliknięcie w logo — powrót do formularza bez resetowania ustawień
+document.querySelector('.header-logo-area').addEventListener('click', backToForm);
 document.getElementById('btn-mbox-calculate').addEventListener('click', calculateMbox);
 document.getElementById('btn-add-mbox-device').addEventListener('click', addMboxDeviceRow);
 document.getElementById('btn-hmi-calculate').addEventListener('click', calculate);
