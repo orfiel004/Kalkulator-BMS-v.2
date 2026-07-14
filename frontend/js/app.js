@@ -419,7 +419,6 @@ function loadDevices() {
     return;
   }
   addDeviceRow();
-  addDeviceRow();
   addMboxDeviceRow();
   updateFormForControllerType();
   applyStaticTranslations();
@@ -791,8 +790,8 @@ function showHmiWifiEcResults() {
   wrapper.appendChild(buildRegSection(t('section.hr_rw'), rwRows));
   resultsEl.appendChild(wrapper);
 
-  document.getElementById('results').style.display = '';
-  document.getElementById('form-section').style.display = 'none';
+  document.getElementById('results').style.display = 'block';
+  document.querySelector('.form-section').style.display = 'none';
 }
 
 // ============================================================
@@ -1691,6 +1690,19 @@ function resetForm() {
   document.getElementById('results').style.display = 'none';
   document.querySelector('.form-section').style.display = 'block';
 
+  // Reset wyboru sterownika i trybu pracy
+  document.getElementById('controllerType').value = 'tbox';
+  const singleRadio = document.querySelector('input[name="mode"][value="single"]');
+  if (singleRadio) singleRadio.checked = true;
+
+  // Reset wierszy T-box — wyczyść i dodaj jeden pusty wiersz
+  const tboxContainer = document.getElementById('devices-container');
+  if (tboxContainer) {
+    tboxContainer.innerHTML = '';
+    deviceRowCount = 0;
+    addDeviceRow();
+  }
+
   // Reset wierszy M-box — wyczyść i dodaj jeden pusty wiersz
   const mboxContainer = document.getElementById('mbox-devices-container');
   if (mboxContainer) {
@@ -1698,6 +1710,10 @@ function resetForm() {
     mboxRowCount = 0;
     addMboxDeviceRow();
   }
+
+  // Aktualizuj widoczność elementów formularza pod kątem wybranego sterownika
+  updateFormForControllerType();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // ============================================================
